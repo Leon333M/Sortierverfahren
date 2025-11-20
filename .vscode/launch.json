@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Starte Sortierverfahren",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Debug/Sortierverfahren.exe",
+      "args": [
+        "E:\\Code\\Sortierverfahren\\config.txt",
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "console": "externalTerminal"
+    }
+  ]
+}

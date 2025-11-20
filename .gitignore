@@ -1,0 +1,9 @@
+*.obj
+log*.txt
+Todo.txt
+build/*
+!build/Debug/
+!build/Debug/CachingProjekt.exe
+build/Debug/CachingProjekt.pdb
+!build/Release/
+!build/Release/CachingProjekt.exe
