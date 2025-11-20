@@ -1,0 +1,2 @@
+// Manager.h
+#pragma once

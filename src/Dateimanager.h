@@ -1,0 +1,2 @@
+// Dateimanager.h
+#pragma once
