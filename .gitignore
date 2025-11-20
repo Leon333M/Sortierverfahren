@@ -3,7 +3,7 @@ log*.txt
 Todo.txt
 build/*
 !build/Debug/
-!build/Debug/CachingProjekt.exe
-build/Debug/CachingProjekt.pdb
+!build/Debug/Sortierverfahren.exe
+build/Debug/Sortierverfahren.pdb
 !build/Release/
-!build/Release/CachingProjekt.exe
+!build/Release/Sortierverfahren.exe
