@@ -4,7 +4,7 @@
 
 Mergesort::Mergesort() {};
 
-void Mergesort::mergesort(int liste[], int links, int rechts) {
+void Mergesort::mergesort(int *liste, int links, int rechts) {
     int lange = rechts - links + 1;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
@@ -14,7 +14,7 @@ void Mergesort::mergesort(int liste[], int links, int rechts) {
     }
 };
 
-void Mergesort::mischen(int liste[], int links, int mitte, int rechts, int lange) {
+void Mergesort::mischen(int *liste, int links, int mitte, int rechts, int lange) {
     std::unique_ptr<int[]> listeB = std::make_unique<int[]>(lange);
     // Kopiere nach listeB
     for (int i = links; i < mitte; i++) {

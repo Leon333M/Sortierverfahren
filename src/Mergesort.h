@@ -12,6 +12,6 @@ public:
 
 private:
     // Funktionen
-    void mergesort(int liste[], int links, int rechts);
-    void mischen(int liste[], int links, int mitte, int rechts, int lange);
+    void mergesort(int *liste, int links, int rechts);
+    void mischen(int *liste, int links, int mitte, int rechts, int lange);
 };
