@@ -7,7 +7,7 @@ private:
 
 public:
     // Funktionen
-    Sortierverfaren();
+    Sortierverfaren() {};
 
 private:
     // Funktionen
