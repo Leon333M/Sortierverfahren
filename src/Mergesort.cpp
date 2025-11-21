@@ -24,6 +24,7 @@ void Mergesort::mergesort(int *liste, int links, int rechts) {
 
 void Mergesort::mischen(int *liste, int links, int mitte, int rechts, int lange) {
     int *listeB = new int[lange];
+
     // Kopiere nach listeB
     for (int i = links; i < mitte + 1; i++) {
         listeB[i - links] = liste[i];
@@ -31,12 +32,6 @@ void Mergesort::mischen(int *liste, int links, int mitte, int rechts, int lange)
     for (int i = mitte + 1; i < rechts + 1; i++) {
         listeB[lange - 1 + mitte + 1 - i] = liste[i];
     }
-
-    // // listeA abschnitt
-    // for (int i = links; i < rechts + 1; i++) {
-    //     std::cout << liste[i] << " ";
-    // }
-    // std::cout << std::endl;
 
     // Sortiere liste
     int i = 0;         // links
@@ -53,25 +48,6 @@ void Mergesort::mischen(int *liste, int links, int mitte, int rechts, int lange)
         k++;
     }
     liste[rechts] = listeB[i];
-
-    // // listeA abschnitt
-    // for (int i = links; i < rechts + 1; i++) {
-    //     std::cout << liste[i] << " ";
-    // }
-    // std::cout << std::endl;
-
-    // // listeB
-    // for (int i = 0; i < lange; ++i) {
-    //     std::cout << listeB[i] << " ";
-    // }
-    // std::cout << std::endl;
-    // std::cout << "ende mischen" << std::endl;
-
-    // // listeA
-    // for (int i = 0; i < 10; ++i) {
-    //    std::cout << liste[i] << " ";
-    //}
-    // std::cout << std::endl;
 
     delete[] listeB;
 };

@@ -9,7 +9,10 @@ private:
 public:
     // Funktionen
     Quiksort();
+    void sort(int *liste, int lange);
 
 private:
     // Funktionen
+    void quiksort(int *liste, int links, int rechts);
+    void partitioniere(int *liste, int links, int rechts, int &ml, int &mr);
 };

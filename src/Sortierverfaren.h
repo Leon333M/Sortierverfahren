@@ -2,13 +2,14 @@
 #pragma once
 
 class Sortierverfaren {
-private:
+protected:
     // Vaibalen
 
 public:
     // Funktionen
     Sortierverfaren() {};
 
-private:
+protected:
     // Funktionen
+    void vertausche(int *liste, int a, int b);
 };
