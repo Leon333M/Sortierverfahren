@@ -35,4 +35,6 @@ void Quiksort::partitioniere(int *liste, int links, int rechts, int &ml, int &mr
             j--;
         }
     };
+    ml = j;
+    mr = i;
 };
