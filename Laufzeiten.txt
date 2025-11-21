@@ -1,0 +1,17 @@
+listengröße 400'000'000:
+Mergesort :
+Laufzeit: 126777 ms
+Quicksort :
+Laufzeit: 60960 ms
+
+80000000:
+Laufzeit: 24048 ms
+Laufzeit: 11341 ms
+
+40000000 :
+Laufzeit: 11847 ms
+Laufzeit: 5562 ms
+
+20000000:
+Laufzeit: 5733 ms
+Laufzeit: 2704 ms
