@@ -15,3 +15,8 @@ Laufzeit: 5562 ms
 20000000:
 Laufzeit: 5733 ms
 Laufzeit: 2704 ms
+
+4000000:
+Laufzeit: 1081 ms
+Laufzeit: 489 ms
+QuicksortP: über 10 min.

@@ -8,8 +8,9 @@ protected:
 public:
     // Funktionen
     Sortierverfaren() {};
+    void sort(int *liste, int lange);
+    void sortParallel(int *liste, int lange);
 
 protected:
     // Funktionen
-    void vertausche(int *liste, int a, int b);
 };

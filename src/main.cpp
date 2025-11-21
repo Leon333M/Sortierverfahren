@@ -38,11 +38,26 @@ int main(int argc, char *argv[]) {
     // Quicksort
     liste = listenersteler.erstelleListe(lange);
     Quicksort quicksort;
-    auto start2 = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     quicksort.sort(liste, lange);
-    auto stop2 = std::chrono::high_resolution_clock::now();
-    auto dauer2 = std::chrono::duration_cast<std::chrono::milliseconds>(stop2 - start2).count();
-    std::cout << "Laufzeit: " << dauer2 << " ms" << std::endl;
+    stop = std::chrono::high_resolution_clock::now();
+    dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+    if (lange <= 75) {
+        for (int i = 0; i < lange; i++) {
+            std::cout << liste[i] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    // QuicksorttParallel
+    liste = listenersteler.erstelleListe(lange);
+    Quicksort quicksortParallel;
+    start = std::chrono::high_resolution_clock::now();
+    quicksortParallel.sortParallel(liste, lange);
+    stop = std::chrono::high_resolution_clock::now();
+    dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
     if (lange <= 75) {
         for (int i = 0; i < lange; i++) {
             std::cout << liste[i] << " ";
