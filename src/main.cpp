@@ -23,10 +23,10 @@ int main(int argc, char *argv[]) {
 
     // Mergesort
     Mergesort mergesort;
-    auto start = std::chrono::high_resolution_clock::now();
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
     mergesort.sort(liste, lange);
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+    long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
     if (lange <= 75) {
         for (int i = 0; i < lange; i++) {

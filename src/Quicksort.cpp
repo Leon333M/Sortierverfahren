@@ -1,5 +1,6 @@
 // Quicksort.cpp
 #include "Quicksort.h"
+#include <chrono>
 #include <thread>
 #include <vector>
 
@@ -16,7 +17,8 @@ void Quicksort::sort(int *liste, int lange) {
 void Quicksort::sortParallel(int *liste, int lange) {
     int links = 0;
     int rechts = lange - 1;
-    quicksortParallel(liste, links, rechts);
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+    quicksortParallel(liste, links, rechts, &start);
 };
 
 void Quicksort::quicksort(int *liste, int links, int rechts) {
@@ -28,13 +30,19 @@ void Quicksort::quicksort(int *liste, int links, int rechts) {
     }
 };
 
-void Quicksort::quicksortParallel(int *liste, int links, int rechts) {
+void Quicksort::quicksortParallel(int *liste, const int links, const int rechts, std::chrono::time_point<std::chrono::high_resolution_clock> *zeitpunkt) {
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+    int lange = rechts + 1 - links;
+    long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(start - *zeitpunkt).count();
+    std::cout << "lange : " << lange << " init Zeit : " << dauer << " ms" << std::endl;
     if (links < rechts) {
         int ml, mr;
         partitioniere(liste, links, rechts, ml, mr);
         std::vector<std::thread> threads = std::vector<std::thread>();
-        threads.emplace_back(&Quicksort::quicksortParallel, liste, links, ml);
-        threads.emplace_back(&Quicksort::quicksortParallel, liste, mr, rechts);
+        std::chrono::time_point<std::chrono::high_resolution_clock> start1 = std::chrono::high_resolution_clock::now();
+        threads.emplace_back(&Quicksort::quicksortParallel, liste, links, ml, &start1);
+        std::chrono::time_point<std::chrono::high_resolution_clock> start2 = std::chrono::high_resolution_clock::now();
+        threads.emplace_back(&Quicksort::quicksortParallel, liste, mr, rechts, &start2);
         for (std::thread &thread : threads) {
             thread.join();
         }

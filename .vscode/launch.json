@@ -7,7 +7,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/build/Debug/Sortierverfahren.exe",
       "args": [
-        "",
+        "1200",
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
