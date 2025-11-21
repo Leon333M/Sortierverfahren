@@ -19,6 +19,6 @@ add_executable(Sortierverfahren
      src/Listenersteler.cpp
      src/Sortierverfaren.cpp
      src/Mergesort.cpp
-     src/Quiksort.cpp
+     src/Quicksort.cpp
 )
 

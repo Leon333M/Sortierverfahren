@@ -1,34 +1,54 @@
 // main.cpp
 #include "Listenersteler.h"
 #include "Mergesort.h"
-#include "Quiksort.h"
+#include "Quicksort.h"
+#include <chrono>
 #include <iostream>
+#include <string>
 
-int main() {
-    std::cout << "Hallo Welt!" << std::endl;
-    Listenersteler listenersteler;
+int main(int argc, char *argv[]) {
     int lange = 10;
-    int *liste = listenersteler.erstelleListe(lange);
-    for (int i = 0; i < lange; ++i) {
-        std::cout << liste[i] << " ";
+    // bei 40000000 merge 9.2s quick 2.9s
+    if (argc == 2) {
+        lange = std::stoi(argv[1]);
     }
-    std::cout << std::endl;
+    Listenersteler listenersteler;
+    int *liste = listenersteler.erstelleListe(lange);
+    if (lange <= 75) {
+        for (int i = 0; i < lange; i++) {
+            std::cout << liste[i] << " ";
+        }
+        std::cout << std::endl;
+    }
 
     // Mergesort
     Mergesort mergesort;
+    auto start = std::chrono::high_resolution_clock::now();
     mergesort.sort(liste, lange);
-    for (int i = 0; i < lange; ++i) {
-        std::cout << liste[i] << " ";
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+    if (lange <= 75) {
+        for (int i = 0; i < lange; i++) {
+            std::cout << liste[i] << " ";
+        }
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
 
-    // Quiksort
-    Quiksort quiksort;
-    quiksort.sort(liste, lange);
-    for (int i = 0; i < lange; ++i) {
-        std::cout << liste[i] << " ";
+    // Quicksort
+    liste = listenersteler.erstelleListe(lange);
+    Quicksort quicksort;
+    auto start2 = std::chrono::high_resolution_clock::now();
+    quicksort.sort(liste, lange);
+    auto stop2 = std::chrono::high_resolution_clock::now();
+    auto dauer2 = std::chrono::duration_cast<std::chrono::milliseconds>(stop2 - start2).count();
+    std::cout << "Laufzeit: " << dauer2 << " ms" << std::endl;
+    if (lange <= 75) {
+        for (int i = 0; i < lange; i++) {
+            std::cout << liste[i] << " ";
+        }
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
 
     // Ende
     std::cout << "Ende" << std::endl;
