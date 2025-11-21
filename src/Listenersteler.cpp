@@ -13,7 +13,7 @@ int *Listenersteler::erstelleListe(int lange) {
     // std::random_device rd;
     // std::mt19937 gen(rd());
     std::mt19937 gen(seed);
-    std::uniform_int_distribution<> dis(0, 100);
+    std::uniform_int_distribution<> dis(0, 9);
 
     std::generate_n(liste.get(), lange, [&]() { return dis(gen); });
 

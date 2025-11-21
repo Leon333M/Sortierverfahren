@@ -12,6 +12,12 @@ int main() {
         std::cout << liste[i] << " ";
     }
     std::cout << std::endl;
+    Mergesort mergesort;
+    mergesort.sort(liste, lange);
+    for (int i = 0; i < lange; ++i) {
+        std::cout << liste[i] << " ";
+    }
+    std::cout << std::endl;
     std::cout << "Ende" << std::endl;
     return 0;
 }

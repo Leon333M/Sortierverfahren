@@ -9,6 +9,7 @@ private:
 public:
     // Funktionen
     Mergesort();
+    void sort(int *liste, int lange);
 
 private:
     // Funktionen
