@@ -13,6 +13,6 @@ public:
 
 private:
     // Funktionen
-    void mergesort(int *liste, int links, int rechts);
-    void mischen(int *liste, int links, int mitte, int rechts, int lange);
+    void mergesort(int *liste, const int links, const int rechts, Position *pos);
+    void mischen(int *liste, const int links, const int mitte, const int rechts, const int lange);
 };

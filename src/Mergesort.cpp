@@ -9,20 +9,21 @@ Mergesort::Mergesort() {};
 void Mergesort::sort(int *liste, int lange) {
     int links = 0;
     int rechts = lange - 1;
-    mergesort(liste, links, rechts);
+    Position pos(1);
+    mergesort(liste, links, rechts, &pos);
 };
 
-void Mergesort::mergesort(int *liste, int links, int rechts) {
+void Mergesort::mergesort(int *liste, const int links, const int rechts, Position *pos) {
     int lange = rechts + 1 - links;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
-        mergesort(liste, links, mitte);
-        mergesort(liste, mitte + 1, rechts);
+        mergesort(liste, links, mitte, new Position(pos, 1));
+        mergesort(liste, mitte + 1, rechts, new Position(pos, 2));
         mischen(liste, links, mitte, rechts, lange);
     }
 };
 
-void Mergesort::mischen(int *liste, int links, int mitte, int rechts, int lange) {
+void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {
     int *listeB = new int[lange];
 
     // Kopiere nach listeB
