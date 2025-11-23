@@ -17,9 +17,7 @@ void Quicksort::sortG(int *liste, int lange) {
 void Quicksort::sortO(int *liste, int lange, Position *pos) {
     int links = 0;
     int rechts = lange - 1;
-    pos->start1 = std::chrono::high_resolution_clock::now();
     quicksort(liste, links, rechts, pos);
-    pos->ende2 = std::chrono::high_resolution_clock::now();
 };
 
 // void Quicksort::sortParallel(int *liste, int lange) {

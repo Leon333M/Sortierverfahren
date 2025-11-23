@@ -15,9 +15,7 @@ void Mergesort::sortG(int *liste, int lange) {
 void Mergesort::sortO(int *liste, int lange, Position *pos) {
     int links = 0;
     int rechts = lange - 1;
-    pos->start1 = std::chrono::high_resolution_clock::now();
     mergesort(liste, links, rechts, pos);
-    pos->ende1 = std::chrono::high_resolution_clock::now();
 };
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts) {

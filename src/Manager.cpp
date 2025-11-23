@@ -59,6 +59,9 @@ void Manager::overheadzeiten() {
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
 
+    // gebe Speicher frei da 10Gb bei Aray von 40'000'000
+    pos.~Position();
+
     // Quicksort
     pos = Position(1);
     liste = listenersteler.erstelleListe(lange);
