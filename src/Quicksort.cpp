@@ -25,7 +25,8 @@ void Quicksort::sortParallel(int *liste, int lange) {
 };
 
 void Quicksort::quicksort(int *liste, int links, int rechts, Position *pos) {
-    // also ein gesamt erhohte Laufzeit von 80/12
+    // eine erhohte Laufzeit von +550% wegen Position erzeugung und Zeitmessungen
+    // Overhead sinkt je grosser das Array
     pos->start1 = std::chrono::high_resolution_clock::now();
     if (links < rechts) {
         int ml, mr;
