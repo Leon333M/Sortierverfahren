@@ -1,6 +1,5 @@
 // Manager.cpp
 #include "Manager.h"
-#include "Listenersteler.h"
 #include "Mergesort.h"
 #include "Quicksort.h"
 #include <chrono>
@@ -8,32 +7,35 @@
 #include <string>
 
 Manager::Manager(int argc, char *argv[]) {
-    int lange = 10;
-    if (argc == 2) {
+    char variante = 'a';
+    if (argc >= 2) {
         lange = std::stoi(argv[1]);
     }
-    Listenersteler listenersteler;
-    int *liste = listenersteler.erstelleListe(lange);
-    if (lange <= 75) {
-        for (int i = 0; i < lange; i++) {
-            std::cout << liste[i] << " ";
-        }
-        std::cout << std::endl;
+    if (argc >= 3) {
+        char variante = argv[2][0];
     }
 
+    if (variante == 'g' || variante == 'a') {
+        grundzeiten();
+    }
+    if (variante == 'o' || variante == 'a') {
+        // overheadzeiten();
+    }
+
+    // Ende
+    std::cout << "Ende" << std::endl;
+};
+
+void Manager::grundzeiten() {
+
     // Mergesort
+    int *liste = listenersteler.erstelleListe(lange);
     Mergesort mergesort;
     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
     mergesort.sort(liste, lange);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
-    if (lange <= 75) {
-        for (int i = 0; i < lange; i++) {
-            std::cout << liste[i] << " ";
-        }
-        std::cout << std::endl;
-    }
 
     // Quicksort
     liste = listenersteler.erstelleListe(lange);
@@ -43,28 +45,4 @@ Manager::Manager(int argc, char *argv[]) {
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
-    if (lange <= 75) {
-        for (int i = 0; i < lange; i++) {
-            std::cout << liste[i] << " ";
-        }
-        std::cout << std::endl;
-    }
-
-    // // QuicksorttParallel
-    // liste = listenersteler.erstelleListe(lange);
-    // Quicksort quicksortParallel;
-    // start = std::chrono::high_resolution_clock::now();
-    // quicksortParallel.sortParallel(liste, lange);
-    // stop = std::chrono::high_resolution_clock::now();
-    // dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    // std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
-    // if (lange <= 75) {
-    //     for (int i = 0; i < lange; i++) {
-    //         std::cout << liste[i] << " ";
-    //     }w
-    //     std::cout << std::endl;
-    // }
-
-    // Ende
-    std::cout << "Ende" << std::endl;
 };
