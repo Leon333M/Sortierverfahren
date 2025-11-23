@@ -16,7 +16,8 @@ void Mergesort::sort(int *liste, int lange) {
 };
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts, Position *pos) {
-    // +1/8 Laufzeit wegen chrono messungen
+    // t = t+(5/3)t Laufzeit wegen Position erzeugung
+    // t = t+(1/8)t Laufzeit wegen chrono messungen
     pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts + 1 - links;
     if (lange > 1) {
