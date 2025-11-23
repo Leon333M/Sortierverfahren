@@ -7,7 +7,7 @@ private:
 
 public:
     // Funktionen
-    Manager();
+    Manager(int argc, char *argv[]);
 
 private:
     // Funktionen
