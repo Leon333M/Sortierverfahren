@@ -25,6 +25,7 @@ void Quicksort::sortParallel(int *liste, int lange) {
 };
 
 void Quicksort::quicksort(int *liste, int links, int rechts, Position *pos) {
+    // also ein gesamt erhohte Laufzeit von 80/12
     pos->start1 = std::chrono::high_resolution_clock::now();
     if (links < rechts) {
         int ml, mr;
