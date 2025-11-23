@@ -19,7 +19,7 @@ Manager::Manager(int argc, char *argv[]) {
         grundzeiten();
     }
     if (variante == 'o' || variante == 'a') {
-        // overheadzeiten();
+        overheadzeiten();
     }
 
     // Ende
@@ -32,7 +32,7 @@ void Manager::grundzeiten() {
     int *liste = listenersteler.erstelleListe(lange);
     Mergesort mergesort;
     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-    mergesort.sort(liste, lange);
+    mergesort.sortG(liste, lange);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
@@ -41,7 +41,30 @@ void Manager::grundzeiten() {
     liste = listenersteler.erstelleListe(lange);
     Quicksort quicksort;
     start = std::chrono::high_resolution_clock::now();
-    quicksort.sort(liste, lange);
+    quicksort.sortG(liste, lange);
+    stop = std::chrono::high_resolution_clock::now();
+    dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+};
+
+void Manager::overheadzeiten() {
+
+    // Mergesort
+    Position pos = Position(1);
+    int *liste = listenersteler.erstelleListe(lange);
+    Mergesort mergesort;
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+    mergesort.sortO(liste, lange, &pos);
+    std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+    long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+
+    // Quicksort
+    pos = Position(1);
+    liste = listenersteler.erstelleListe(lange);
+    Quicksort quicksort;
+    start = std::chrono::high_resolution_clock::now();
+    quicksort.sortO(liste, lange, &pos);
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;

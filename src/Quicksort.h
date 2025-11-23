@@ -9,13 +9,15 @@ private:
 public:
     // Funktionen
     Quicksort();
-    void sort(int *liste, int lange);
+    void sortG(int *liste, int lange);
+    void sortO(int *liste, int lange, Position *pos);
     // void sortParallel(int *liste, int lange);
 
     // public Static
 
 private:
     // Funktionen
+    static void quicksort(int *liste, int links, int rechts);
     static void quicksort(int *liste, int links, int rechts, Position *pos);
     // static void quicksortParallel(int *liste, const int links, const int rechts);
     static void partitioniere(int *liste, int links, int rechts, int &ml, int &mr);

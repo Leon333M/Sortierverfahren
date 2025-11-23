@@ -8,13 +8,18 @@
 
 Quicksort::Quicksort() {};
 
-void Quicksort::sort(int *liste, int lange) {
+void Quicksort::sortG(int *liste, int lange) {
     int links = 0;
     int rechts = lange - 1;
-    Position pos(1);
-    pos.start1 = std::chrono::high_resolution_clock::now();
-    quicksort(liste, links, rechts, &pos);
-    pos.ende2 = std::chrono::high_resolution_clock::now();
+    quicksort(liste, links, rechts);
+};
+
+void Quicksort::sortO(int *liste, int lange, Position *pos) {
+    int links = 0;
+    int rechts = lange - 1;
+    pos->start1 = std::chrono::high_resolution_clock::now();
+    quicksort(liste, links, rechts, pos);
+    pos->ende2 = std::chrono::high_resolution_clock::now();
 };
 
 // void Quicksort::sortParallel(int *liste, int lange) {
@@ -23,6 +28,15 @@ void Quicksort::sort(int *liste, int lange) {
 //     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
 //     quicksortParallel(liste, links, rechts);
 // };
+
+void Quicksort::quicksort(int *liste, int links, int rechts) {
+    if (links < rechts) {
+        int ml, mr;
+        partitioniere(liste, links, rechts, ml, mr);
+        quicksort(liste, links, ml);
+        quicksort(liste, mr, rechts);
+    }
+};
 
 void Quicksort::quicksort(int *liste, int links, int rechts, Position *pos) {
     // eine erhohte Laufzeit von +550% wegen Position erzeugung und Zeitmessungen
