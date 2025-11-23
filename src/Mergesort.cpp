@@ -21,8 +21,6 @@ void Mergesort::sortO(int *liste, int lange, Position *pos) {
 };
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts) {
-    // eine erhohte Laufzeit von +200% wegen Position erzeugung und Zeitmessungen
-    // Overhead steigt je grosser das Array
     int lange = rechts + 1 - links;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
