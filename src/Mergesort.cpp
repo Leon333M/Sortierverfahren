@@ -10,17 +10,24 @@ void Mergesort::sort(int *liste, int lange) {
     int links = 0;
     int rechts = lange - 1;
     Position pos(1);
+    pos.start1 = std::chrono::high_resolution_clock::now();
     mergesort(liste, links, rechts, &pos);
+    pos.ende1 = std::chrono::high_resolution_clock::now();
 };
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts, Position *pos) {
+    // +1/8 Laufzeit wegen chrono messungen
+    pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts + 1 - links;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
+        pos->start2 = std::chrono::high_resolution_clock::now();
         mergesort(liste, links, mitte, new Position(pos, 1));
         mergesort(liste, mitte + 1, rechts, new Position(pos, 2));
+        pos->ende2 = std::chrono::high_resolution_clock::now();
         mischen(liste, links, mitte, rechts, lange);
     }
+    pos->ende1 = std::chrono::high_resolution_clock::now();
 };
 
 void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {

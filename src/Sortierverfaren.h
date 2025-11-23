@@ -6,6 +6,10 @@ struct Position {
     int abschnitt;
     Position *pos1 = nullptr;
     Position *pos2 = nullptr;
+    std::chrono::time_point<std::chrono::high_resolution_clock> start1;
+    std::chrono::time_point<std::chrono::high_resolution_clock> start2;
+    std::chrono::time_point<std::chrono::high_resolution_clock> ende2;
+    std::chrono::time_point<std::chrono::high_resolution_clock> ende1;
 
     // Konstruktor für Startposition
     Position(int neuerabschnitt) : abschnitt(neuerabschnitt) {}
