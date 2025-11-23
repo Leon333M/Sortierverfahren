@@ -12,7 +12,9 @@ void Quicksort::sort(int *liste, int lange) {
     int links = 0;
     int rechts = lange - 1;
     Position pos(1);
+    pos.start1 = std::chrono::high_resolution_clock::now();
     quicksort(liste, links, rechts, &pos);
+    pos.ende2 = std::chrono::high_resolution_clock::now();
 };
 
 void Quicksort::sortParallel(int *liste, int lange) {
@@ -23,12 +25,16 @@ void Quicksort::sortParallel(int *liste, int lange) {
 };
 
 void Quicksort::quicksort(int *liste, int links, int rechts, Position *pos) {
+    pos->start1 = std::chrono::high_resolution_clock::now();
     if (links < rechts) {
         int ml, mr;
         partitioniere(liste, links, rechts, ml, mr);
+        pos->start2 = std::chrono::high_resolution_clock::now();
         quicksort(liste, links, ml, new Position(pos, 1));
         quicksort(liste, mr, rechts, new Position(pos, 2));
+        pos->ende2 = std::chrono::high_resolution_clock::now();
     }
+    pos->ende1 = std::chrono::high_resolution_clock::now();
 };
 
 void Quicksort::quicksortParallel(int *liste, const int links, const int rechts) {
