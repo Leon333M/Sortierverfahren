@@ -19,7 +19,7 @@ Manager::Manager(int argc, char *argv[]) {
         grundzeiten();
     }
     if (variante == 'o' || variante == 'a') {
-        overheadzeiten();
+        messeSortierzeiten();
     }
 
     // Ende
@@ -47,7 +47,7 @@ void Manager::grundzeiten() {
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
 };
 
-void Manager::overheadzeiten() {
+void Manager::messeSortierzeiten() {
 
     // Mergesort
     Position pos = Position(1);

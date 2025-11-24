@@ -15,5 +15,5 @@ public:
 private:
     // Funktionen
     void grundzeiten();
-    void overheadzeiten();
+    void messeSortierzeiten();
 };

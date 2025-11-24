@@ -1,6 +1,8 @@
 // Sortierverfaren.h
 #pragma once
 #include <chrono>
+#include <mutex>
+#include <vector>
 
 struct Position {
     int abschnitt;
@@ -32,6 +34,22 @@ struct Position {
 };
 
 class Sortierverfaren {
+public:
+    // static
+    static std::vector<std::vector<std::unique_ptr<Position>>> messDaten;
+    static std::mutex mutex; // Sperre für Thread-Sicherheit
+
+    // Funktion zum Hinzufugen von Messdaten (Thread-sicher)
+    static void addMessDaten(int ebene, Position *daten) {
+        std::lock_guard<std::mutex> lock(mutex);
+
+        if (ebene >= messDaten.size()) {
+            messDaten.resize(ebene + 1);
+        }
+
+        messDaten[ebene].push_back(std::unique_ptr<Position>(daten));
+    }
+
 protected:
     // Vaibalen
 

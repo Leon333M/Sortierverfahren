@@ -7,5 +7,3 @@ build/*
 build/Debug/Sortierverfahren.pdb
 !build/Release/
 !build/Release/Sortierverfahren.exe
-src/Cache.h
-src/Cache.cpp
