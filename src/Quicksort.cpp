@@ -14,18 +14,11 @@ void Quicksort::sortG(int *liste, int lange) {
     quicksort(liste, links, rechts);
 };
 
-void Quicksort::sortM(int *liste, int lange, Position *pos) {
+void Quicksort::sortM(int *liste, int lange, int messEbene) {
     int links = 0;
     int rechts = lange - 1;
-    quicksort(liste, links, rechts, pos);
+    quicksort(liste, links, rechts, messEbene);
 };
-
-// void Quicksort::sortParallel(int *liste, int lange) {
-//     int links = 0;
-//     int rechts = lange - 1;
-//     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-//     quicksortParallel(liste, links, rechts);
-// };
 
 void Quicksort::quicksort(int *liste, int links, int rechts) {
     if (links < rechts) {
@@ -36,7 +29,7 @@ void Quicksort::quicksort(int *liste, int links, int rechts) {
     }
 };
 
-void Quicksort::quicksort(int *liste, int links, int rechts, Position *pos) {
+void Quicksort::quicksort(int *liste, int links, int rechts, int messEbene) {
     // eine erhohte Laufzeit von +550% wegen Position erzeugung und Zeitmessungen
     // Overhead sinkt je grosser das Array
     pos->start1 = std::chrono::high_resolution_clock::now();
@@ -50,24 +43,6 @@ void Quicksort::quicksort(int *liste, int links, int rechts, Position *pos) {
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
 };
-
-// void Quicksort::quicksortParallel(int *liste, const int links, const int rechts) {
-//     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-//     int lange = rechts + 1 - links;
-//     if (links < rechts) {
-//         int ml, mr;
-//         partitioniere(liste, links, rechts, ml, mr);
-//         std::vector<std::thread> threads = std::vector<std::thread>();
-//         std::chrono::time_point<std::chrono::high_resolution_clock> start1 = std::chrono::high_resolution_clock::now();
-//         threads.emplace_back(&Quicksort::quicksortParallel, liste, links, ml);
-//         std::chrono::time_point<std::chrono::high_resolution_clock> start2 = std::chrono::high_resolution_clock::now();
-//         threads.emplace_back(&Quicksort::quicksortParallel, liste, mr, rechts);
-//         for (std::thread &thread : threads) {
-//             thread.join();
-//         }
-//     }
-//     std::chrono::time_point<std::chrono::high_resolution_clock> ende = std::chrono::high_resolution_clock::now();
-// };
 
 void Quicksort::partitioniere(int *liste, int links, int rechts, int &ml, int &mr) {
     int i = links;

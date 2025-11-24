@@ -12,10 +12,10 @@ void Mergesort::sortG(int *liste, int lange) {
     mergesort(liste, links, rechts);
 };
 
-void Mergesort::sortM(int *liste, int lange, Position *pos) {
+void Mergesort::sortM(int *liste, int lange, int messEbene) {
     int links = 0;
     int rechts = lange - 1;
-    mergesort(liste, links, rechts, pos);
+    mergesort(liste, links, rechts, 1, messEbene);
 };
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts) {
@@ -28,20 +28,18 @@ void Mergesort::mergesort(int *liste, const int links, const int rechts) {
     }
 };
 
-void Mergesort::mergesort(int *liste, const int links, const int rechts, Position *pos) {
-    // eine erhohte Laufzeit von +200% wegen Position erzeugung und Zeitmessungen
-    // Overhead steigt je grosser das Array
-    pos->start1 = std::chrono::high_resolution_clock::now();
+void Mergesort::mergesort(int *liste, const int links, const int rechts, const int aktuelleEbene, const int messEbene) {
+    // pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts + 1 - links;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
-        pos->start2 = std::chrono::high_resolution_clock::now();
-        mergesort(liste, links, mitte, new Position(pos, 1));
-        mergesort(liste, mitte + 1, rechts, new Position(pos, 2));
-        pos->ende2 = std::chrono::high_resolution_clock::now();
+        // pos->start2 = std::chrono::high_resolution_clock::now();
+        mergesort(liste, links, mitte, aktuelleEbene + 1, messEbene);
+        mergesort(liste, mitte + 1, rechts, aktuelleEbene + 1, messEbene);
+        // pos->ende2 = std::chrono::high_resolution_clock::now();
         mischen(liste, links, mitte, rechts, lange);
     }
-    pos->ende1 = std::chrono::high_resolution_clock::now();
+    // pos->ende1 = std::chrono::high_resolution_clock::now();
 };
 
 void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {

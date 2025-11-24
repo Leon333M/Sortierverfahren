@@ -10,16 +10,15 @@ public:
     // Funktionen
     Quicksort();
     void sortG(int *liste, int lange);
-    void sortM(int *liste, int lange, Position *pos);
+    void sortM(int *liste, int lange, int messEbene);
     // void sortParallel(int *liste, int lange);
 
     // public Static
 
 private:
     // Funktionen
-    static void quicksort(int *liste, int links, int rechts);
-    static void quicksort(int *liste, int links, int rechts, Position *pos);
-    // static void quicksortParallel(int *liste, const int links, const int rechts);
+    static void quicksort(int *liste, int links, int rechts, int aktuelleEbene = 1);
+    static void quicksort(int *liste, int links, int rechts, int aktuelleEbene = 1, int messEbene);
     static void partitioniere(int *liste, int links, int rechts, int &ml, int &mr);
     static void vertausche(int *liste, int a, int b);
 };
