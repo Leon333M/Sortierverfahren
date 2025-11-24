@@ -47,7 +47,7 @@ public:
             messDaten.resize(ebene + 1);
         }
 
-        messDaten[ebene].push_back(std::unique_ptr<Position>(daten));
+        messDaten[ebene].emplace_back(daten);
     }
 
 protected:
