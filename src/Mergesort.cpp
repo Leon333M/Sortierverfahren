@@ -29,17 +29,33 @@ void Mergesort::mergesort(int *liste, const int links, const int rechts) {
 };
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts, const int aktuelleEbene, const int messEbene) {
-    // pos->start1 = std::chrono::high_resolution_clock::now();
+    if (aktuelleEbene == messEbene) {
+        mergesortM(liste, links, rechts, aktuelleEbene + 1);
+    } else {
+        int lange = rechts + 1 - links;
+        if (lange > 1) {
+            int mitte = (links + rechts) / 2;
+            mergesort(liste, links, mitte, aktuelleEbene + 1, messEbene);
+            mergesort(liste, mitte + 1, rechts, aktuelleEbene + 1, messEbene);
+            mischen(liste, links, mitte, rechts, lange);
+        }
+    }
+};
+
+void Mergesort::mergesortM(int *liste, const int links, const int rechts, const int aktuelleEbene) {
+    Position *pos = new Position();
+    pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts + 1 - links;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
-        // pos->start2 = std::chrono::high_resolution_clock::now();
-        mergesort(liste, links, mitte, aktuelleEbene + 1, messEbene);
-        mergesort(liste, mitte + 1, rechts, aktuelleEbene + 1, messEbene);
-        // pos->ende2 = std::chrono::high_resolution_clock::now();
+        pos->start2 = std::chrono::high_resolution_clock::now();
+        mergesort(liste, links, mitte);
+        mergesort(liste, mitte + 1, rechts);
+        pos->ende2 = std::chrono::high_resolution_clock::now();
         mischen(liste, links, mitte, rechts, lange);
     }
-    // pos->ende1 = std::chrono::high_resolution_clock::now();
+    pos->ende1 = std::chrono::high_resolution_clock::now();
+    addMessDaten(aktuelleEbene, pos);
 };
 
 void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {

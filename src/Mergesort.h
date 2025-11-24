@@ -16,5 +16,6 @@ private:
     // Funktionen
     static void mergesort(int *liste, const int links, const int rechts);
     static void mergesort(int *liste, const int links, const int rechts, const int aktuelleEbene, const int messEbene);
+    static void mergesortM(int *liste, const int links, const int rechts, const int aktuelleEbene);
     static void mischen(int *liste, const int links, const int mitte, const int rechts, const int lange);
 };

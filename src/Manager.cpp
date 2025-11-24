@@ -50,7 +50,6 @@ void Manager::grundzeiten() {
 void Manager::messeSortierzeiten() {
 
     // Mergesort
-    Position pos = Position(1);
     int *liste = listenersteler.erstelleListe(lange);
     Mergesort mergesort;
     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
@@ -60,10 +59,8 @@ void Manager::messeSortierzeiten() {
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
 
     // gebe Speicher frei da 10Gb bei Aray von 40'000'000
-    pos.~Position();
 
     // Quicksort
-    pos = Position(1);
     liste = listenersteler.erstelleListe(lange);
     Quicksort quicksort;
     start = std::chrono::high_resolution_clock::now();
