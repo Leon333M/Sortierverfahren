@@ -12,7 +12,7 @@ void Mergesort::sortG(int *liste, int lange) {
     mergesort(liste, links, rechts);
 };
 
-void Mergesort::sortO(int *liste, int lange, Position *pos) {
+void Mergesort::sortM(int *liste, int lange, Position *pos) {
     int links = 0;
     int rechts = lange - 1;
     mergesort(liste, links, rechts, pos);

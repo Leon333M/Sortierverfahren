@@ -54,7 +54,7 @@ void Manager::messeSortierzeiten() {
     int *liste = listenersteler.erstelleListe(lange);
     Mergesort mergesort;
     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-    mergesort.sortO(liste, lange, &pos);
+    mergesort.sortM(liste, lange, &pos);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
@@ -67,7 +67,7 @@ void Manager::messeSortierzeiten() {
     liste = listenersteler.erstelleListe(lange);
     Quicksort quicksort;
     start = std::chrono::high_resolution_clock::now();
-    quicksort.sortO(liste, lange, &pos);
+    quicksort.sortM(liste, lange, &pos);
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;

@@ -57,7 +57,7 @@ public:
     // Funktionen
     Sortierverfaren() {};
     void sortG(int *liste, int lange);
-    void sortO(int *liste, int lange, Position *pos);
+    void sortM(int *liste, int lange, Position *pos);
     // void sortParallel(int *liste, int lange);
 
 protected:

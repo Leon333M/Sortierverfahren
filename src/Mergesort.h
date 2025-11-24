@@ -10,7 +10,7 @@ public:
     // Funktionen
     Mergesort();
     void sortG(int *liste, int lange);
-    void sortO(int *liste, int lange, Position *pos);
+    void sortM(int *liste, int lange, Position *pos);
 
 private:
     // Funktionen

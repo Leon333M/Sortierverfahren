@@ -14,7 +14,7 @@ void Quicksort::sortG(int *liste, int lange) {
     quicksort(liste, links, rechts);
 };
 
-void Quicksort::sortO(int *liste, int lange, Position *pos) {
+void Quicksort::sortM(int *liste, int lange, Position *pos) {
     int links = 0;
     int rechts = lange - 1;
     quicksort(liste, links, rechts, pos);
