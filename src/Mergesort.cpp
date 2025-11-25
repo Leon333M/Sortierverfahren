@@ -27,6 +27,13 @@ void Mergesort::sortP(int *liste, int lange, int anzahlThreads) {
     mergesortP(liste, links, rechts, 1, neueThreadsBisEbene);
 };
 
+void Mergesort::sortPM(int *liste, int lange, int anzahlThreads, int messEbene) {
+    int links = 0;
+    int rechts = lange - 1;
+    int neueThreadsBisEbene = static_cast<int>(std::ceil(std::log2(static_cast<double>(anzahlThreads) + 1.0)));
+    mergesortP(liste, links, rechts, 1, neueThreadsBisEbene, messEbene);
+};
+
 void Mergesort::mergesort(int *liste, const int links, const int rechts) {
     int lange = rechts + 1 - links;
     if (lange > 1) {

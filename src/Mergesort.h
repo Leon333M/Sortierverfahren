@@ -12,6 +12,7 @@ public:
     void sortG(int *liste, int lange);
     void sortM(int *liste, int lange, int messEbene);
     void sortP(int *liste, int lange, int anzahlThreads);
+    void sortPM(int *liste, int lange, int anzahlThreads, int messEbene);
 
 private:
     // Funktionen

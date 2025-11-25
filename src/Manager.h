@@ -17,4 +17,5 @@ private:
     void grundzeiten();
     void parallelzeiten();
     void messeSortierzeiten();
+    void messeSortierzeitenP();
 };

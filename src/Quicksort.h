@@ -11,7 +11,7 @@ public:
     Quicksort();
     void sortG(int *liste, int lange);
     void sortM(int *liste, int lange, int messEbene);
-    // void sortParallel(int *liste, int lange);
+    void sortPM(int *liste, int lange, int anzahlThreads, int messEbene) {};
 
     // public Static
 
