@@ -15,5 +15,6 @@ public:
 private:
     // Funktionen
     void grundzeiten();
+    void parallelzeiten();
     void messeSortierzeiten();
 };

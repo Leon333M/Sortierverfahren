@@ -12,14 +12,17 @@ Manager::Manager(int argc, char *argv[]) {
         lange = std::stoi(argv[1]);
     }
     if (argc >= 3) {
-        char variante = argv[2][0];
+        variante = argv[2][0];
     }
 
     if (variante == 'g' || variante == 'a') {
         grundzeiten();
     }
-    if (variante == 'o' || variante == 'a') {
+    if (variante == 'm' || variante == 'a') {
         messeSortierzeiten();
+    }
+    if (variante == 'p' || variante == 'a') {
+        parallelzeiten();
     }
 
     // Ende
@@ -74,4 +77,27 @@ void Manager::messeSortierzeiten() {
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+};
+
+void Manager::parallelzeiten() {
+    // init
+    int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
+    std::cout << "maxEbene : " << maxEbene << std::endl;
+    int *liste = listenersteler.erstelleListe(lange);
+
+    // Mergesort
+    Mergesort mergesort;
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+    mergesort.sortP(liste, lange, 2);
+    std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+    long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+
+    // // Quicksort
+    // Quicksort quicksort;
+    // start = std::chrono::high_resolution_clock::now();
+    // quicksort.sortP(liste, lange, 16);
+    // stop = std::chrono::high_resolution_clock::now();
+    // dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    // std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
 };

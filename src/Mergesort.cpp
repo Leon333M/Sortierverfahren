@@ -1,6 +1,8 @@
 // Mergesort.cpp
 #include "Mergesort.h"
 #include <memory>
+#include <thread>
+#include <vector>
 
 // #include <iostream>
 
@@ -19,7 +21,10 @@ void Mergesort::sortM(int *liste, int lange, int messEbene) {
 };
 
 void Mergesort::sortP(int *liste, int lange, int anzahlThreads) {
+    int links = 0;
+    int rechts = lange - 1;
     int neueThreadsBisEbene = static_cast<int>(std::ceil(std::log2(static_cast<double>(anzahlThreads) + 1.0)));
+    mergesortP(liste, links, rechts, 1, neueThreadsBisEbene);
 };
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts) {
@@ -63,12 +68,26 @@ void Mergesort::mergesortM(int *liste, const int links, const int rechts, const 
 };
 
 void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
-    int lange = rechts + 1 - links;
-    if (lange > 1) {
-        int mitte = (links + rechts) / 2;
-        mergesort(liste, links, mitte);
-        mergesort(liste, mitte + 1, rechts);
-        mischen(liste, links, mitte, rechts, lange);
+    if (aktuelleEbene < neueThreadsBisEbene) {
+        int lange = rechts + 1 - links;
+        if (lange > 1) {
+            int mitte = (links + rechts) / 2;
+            std::vector<std::thread> threads;
+            // mergesort(liste, links, mitte);
+            threads.emplace_back(
+                static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+                liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene);
+            // mergesort(liste, mitte + 1, rechts);
+            threads.emplace_back(
+                static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+                liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+            for (std::thread &thread : threads) {
+                thread.join();
+            }
+            mischen(liste, links, mitte, rechts, lange);
+        }
+    } else {
+        mergesort(liste, links, rechts);
     }
 };
 
