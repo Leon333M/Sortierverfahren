@@ -19,6 +19,7 @@ private:
     // Funktionen
     static void quicksort(int *liste, int links, int rechts);
     static void quicksort(int *liste, int links, int rechts, int aktuelleEbene, int messEbene);
+    static void quicksortM(int *liste, int links, int rechts, int aktuelleEbene);
     static void partitioniere(int *liste, int links, int rechts, int &ml, int &mr);
     static void vertausche(int *liste, int a, int b);
 };

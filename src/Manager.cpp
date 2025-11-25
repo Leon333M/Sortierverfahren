@@ -48,23 +48,29 @@ void Manager::grundzeiten() {
 };
 
 void Manager::messeSortierzeiten() {
+    // init
+    int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
+    std::cout << "maxEbene : " << maxEbene << std::endl;
+    Sortierverfaren::initMessDaten(lange);
+    int *liste = listenersteler.erstelleListe(lange);
 
     // Mergesort
-    int *liste = listenersteler.erstelleListe(lange);
     Mergesort mergesort;
     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-    mergesort.sortM(liste, lange, 1);
+    mergesort.sortMA(lange);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
 
     // gebe Speicher frei da 10Gb bei Aray von 40'000'000
+    Sortierverfaren::resetMessDaten();
+    Sortierverfaren::initMessDaten(lange);
+    liste = listenersteler.erstelleListe(lange);
 
     // Quicksort
-    liste = listenersteler.erstelleListe(lange);
     Quicksort quicksort;
     start = std::chrono::high_resolution_clock::now();
-    quicksort.sortM(liste, lange, 1);
+    quicksort.sortMA(lange);
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << std::endl;

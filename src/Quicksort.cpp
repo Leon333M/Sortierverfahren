@@ -30,18 +30,31 @@ void Quicksort::quicksort(int *liste, int links, int rechts) {
 };
 
 void Quicksort::quicksort(int *liste, int links, int rechts, int aktuelleEbene, int messEbene) {
-    // eine erhohte Laufzeit von +550% wegen Position erzeugung und Zeitmessungen
-    // Overhead sinkt je grosser das Array
-    // pos->start1 = std::chrono::high_resolution_clock::now();
+    if (aktuelleEbene == messEbene) {
+        quicksortM(liste, links, rechts, aktuelleEbene);
+    } else {
+        if (links < rechts) {
+            int ml, mr;
+            partitioniere(liste, links, rechts, ml, mr);
+            quicksort(liste, links, ml, aktuelleEbene + 1, messEbene);
+            quicksort(liste, mr, rechts, aktuelleEbene + 1, messEbene);
+        }
+    }
+};
+
+void Quicksort::quicksortM(int *liste, int links, int rechts, int aktuelleEbene) {
+    Position *pos = new Position();
+    pos->start1 = std::chrono::high_resolution_clock::now();
     if (links < rechts) {
         int ml, mr;
         partitioniere(liste, links, rechts, ml, mr);
-        // pos->start2 = std::chrono::high_resolution_clock::now();
-        quicksort(liste, links, ml, aktuelleEbene, messEbene);
-        quicksort(liste, mr, rechts, aktuelleEbene, messEbene);
-        // pos->ende2 = std::chrono::high_resolution_clock::now();
+        pos->start2 = std::chrono::high_resolution_clock::now();
+        quicksort(liste, links, ml);
+        quicksort(liste, mr, rechts);
+        pos->ende2 = std::chrono::high_resolution_clock::now();
     }
-    // pos->ende1 = std::chrono::high_resolution_clock::now();
+    pos->ende1 = std::chrono::high_resolution_clock::now();
+    addMessDaten(aktuelleEbene, pos);
 };
 
 void Quicksort::partitioniere(int *liste, int links, int rechts, int &ml, int &mr) {
