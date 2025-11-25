@@ -38,7 +38,7 @@ void Manager::grundzeiten() {
     mergesort.sortG(liste, lange);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+    std::cout << "Laufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
 
     // Quicksort
     liste = listenersteler.erstelleListe(lange);
@@ -47,7 +47,7 @@ void Manager::grundzeiten() {
     quicksort.sortG(liste, lange);
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+    std::cout << "Laufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
 };
 
 void Manager::messeSortierzeiten() {
@@ -63,7 +63,7 @@ void Manager::messeSortierzeiten() {
     mergesort.sortMA(lange);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+    std::cout << "Laufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
 
     // gebe Speicher frei da 10Gb bei Aray von 40'000'000
     Sortierverfaren::resetMessDaten();
@@ -76,24 +76,29 @@ void Manager::messeSortierzeiten() {
     quicksort.sortMA(lange);
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+    std::cout << "Laufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
 };
 
 void Manager::parallelzeiten() {
     // init
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
-    int *liste = listenersteler.erstelleListe(lange);
 
     // Mergesort
-    Mergesort mergesort;
-    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-    mergesort.sortP(liste, lange, 2);
-    std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
-    long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+    int t[] = {1, 2, 4, 8, 16};
+    std::cout << "Mergesort :" << std::endl;
+    for (int i : t) {
+        Mergesort mergesort;
+        int *liste = listenersteler.erstelleListe(lange);
+        std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+        mergesort.sortP(liste, lange, i);
+        std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+        long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+        std::cout << "Laufzeit: " << dauer << " ms" << " threads : " << i << std::endl;
+    }
 
     // // Quicksort
+    // std::cout << "Quicksort :" << std::endl;
     // Quicksort quicksort;
     // start = std::chrono::high_resolution_clock::now();
     // quicksort.sortP(liste, lange, 16);
