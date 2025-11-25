@@ -14,7 +14,7 @@ void Sortierverfaren::initMessDaten(int arrayGroesse) {
 
     // Berechne ungefahre Anzahl Positionen pro Ebene (z.B. 2^ebene)
     for (int ebene = 0; ebene < maxEbene; ebene++) {
-        int anzahlPositionen = static_cast<int>(std::pow(2, ebene));
+        int anzahlPositionen = static_cast<int>(std::pow(2, ebene - 1));
         Sortierverfaren::messDaten[ebene].resize(anzahlPositionen);
     }
 };

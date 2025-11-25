@@ -18,6 +18,10 @@ void Mergesort::sortM(int *liste, int lange, int messEbene) {
     mergesort(liste, links, rechts, 1, messEbene);
 };
 
+void Mergesort::sortP(int *liste, int lange, int anzahlThreads) {
+    int neueThreadsBisEbene = static_cast<int>(std::ceil(std::log2(static_cast<double>(anzahlThreads) + 1.0)));
+};
+
 void Mergesort::mergesort(int *liste, const int links, const int rechts) {
     int lange = rechts + 1 - links;
     if (lange > 1) {
@@ -56,6 +60,36 @@ void Mergesort::mergesortM(int *liste, const int links, const int rechts, const 
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
     addMessDaten(aktuelleEbene, pos);
+};
+
+void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
+    int lange = rechts + 1 - links;
+    if (lange > 1) {
+        int mitte = (links + rechts) / 2;
+        mergesort(liste, links, mitte);
+        mergesort(liste, mitte + 1, rechts);
+        mischen(liste, links, mitte, rechts, lange);
+    }
+};
+
+void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene) {
+    int lange = rechts + 1 - links;
+    if (lange > 1) {
+        int mitte = (links + rechts) / 2;
+        mergesort(liste, links, mitte);
+        mergesort(liste, mitte + 1, rechts);
+        mischen(liste, links, mitte, rechts, lange);
+    }
+};
+
+void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
+    int lange = rechts + 1 - links;
+    if (lange > 1) {
+        int mitte = (links + rechts) / 2;
+        mergesort(liste, links, mitte);
+        mergesort(liste, mitte + 1, rechts);
+        mischen(liste, links, mitte, rechts, lange);
+    }
 };
 
 void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {
