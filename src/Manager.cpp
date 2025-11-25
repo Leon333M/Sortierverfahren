@@ -81,11 +81,11 @@ void Manager::messeSortierzeiten() {
 
 void Manager::parallelzeiten() {
     // init
+    int t[] = {1, 2, 4, 8, 16, 32, 64, 128, 256};
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
 
     // Mergesort
-    int t[] = {1, 2, 4, 8, 16};
     std::cout << "Mergesort :" << std::endl;
     for (int i : t) {
         Mergesort mergesort;
