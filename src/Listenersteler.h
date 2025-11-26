@@ -13,6 +13,11 @@ public:
     // Funktionen
     Listenersteler();
     int *erstelleListe(int lange);
+    int *erstelleZufallsListe(int lange);
+    int *erstelleSortierteListe(int lange);
+    int *erstelleInvertierteListe(int lange);
+    int *erstelleFastSortierteListe(int lange, int swaps = 10);
+    int *erstelleDuplizierteListe(int lange, int uniqueValues = 100);
 
 private:
     // Funktionen

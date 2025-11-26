@@ -20,3 +20,67 @@ int *Listenersteler::erstelleListe(int lange) {
 
     return liste.get();
 };
+
+int *Listenersteler::erstelleZufallsListe(int lange) {
+    listenLange = lange;
+    liste = std::make_unique<int[]>(listenLange);
+
+    std::mt19937 gen(seed);
+    std::uniform_int_distribution<> dis(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+
+    std::generate_n(liste.get(), lange, [&]() { return dis(gen); });
+    return liste.get();
+}
+
+int *Listenersteler::erstelleSortierteListe(int lange) {
+    listenLange = lange;
+    liste = std::make_unique<int[]>(listenLange);
+
+    for (int i = 0; i < lange; i++)
+        liste[i] = i;
+
+    return liste.get();
+}
+
+int *Listenersteler::erstelleInvertierteListe(int lange) {
+    listenLange = lange;
+    liste = std::make_unique<int[]>(listenLange);
+
+    for (int i = 0; i < lange; i++)
+        liste[i] = lange - i;
+
+    return liste.get();
+}
+
+int *Listenersteler::erstelleFastSortierteListe(int lange, int swaps) {
+    listenLange = lange;
+    liste = std::make_unique<int[]>(listenLange);
+
+    // Erst sortierte Liste erzeugen
+    for (int i = 0; i < lange; i++)
+        liste[i] = i;
+
+    // Reproduzierbare Zufallsvertauschungen
+    std::mt19937 gen(seed);
+    std::uniform_int_distribution<> dis(0, lange - 1);
+
+    for (int i = 0; i < swaps; i++) {
+        int a = dis(gen);
+        int b = dis(gen);
+        std::swap(liste[a], liste[b]);
+    }
+
+    return liste.get();
+}
+
+int *Listenersteler::erstelleDuplizierteListe(int lange, int uniqueValues) {
+    listenLange = lange;
+    liste = std::make_unique<int[]>(listenLange);
+
+    std::mt19937 gen(seed);
+    std::uniform_int_distribution<> dis(0, uniqueValues - 1);
+
+    std::generate_n(liste.get(), lange, [&]() { return dis(gen); });
+
+    return liste.get();
+}
