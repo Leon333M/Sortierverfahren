@@ -18,7 +18,7 @@ class Sortierverfaren {
 public:
     // static
     static std::vector<std::vector<std::unique_ptr<Position>>> messDaten;
-    static std::mutex mutex; // Sperre für Thread-Sicherheit
+    static std::mutex mutex; // Sperre fur Thread-Sicherheit
 
     // Funktion zum Hinzufugen von Messdaten (Thread-sicher)
     static void addMessDaten(int ebene, Position *daten) {
