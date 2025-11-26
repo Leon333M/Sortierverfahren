@@ -84,3 +84,7 @@ int *Listenersteler::erstelleDuplizierteListe(int lange, int uniqueValues) {
 
     return liste.get();
 }
+
+bool Listenersteler::istSortiert() const {
+    return std::is_sorted(liste.get(), liste.get() + listenLange);
+}

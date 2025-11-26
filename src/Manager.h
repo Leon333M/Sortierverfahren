@@ -18,4 +18,5 @@ private:
     void parallelzeiten();
     void messeSortierzeiten();
     void messeSortierzeitenP();
+    void istSortiert() const;
 };

@@ -18,6 +18,7 @@ public:
     int *erstelleInvertierteListe(int lange);
     int *erstelleFastSortierteListe(int lange, int swaps = 10);
     int *erstelleDuplizierteListe(int lange, int uniqueValues = 100);
+    bool istSortiert() const;
 
 private:
     // Funktionen
