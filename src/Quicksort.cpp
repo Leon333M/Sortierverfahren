@@ -20,6 +20,13 @@ void Quicksort::sortM(int *liste, int lange, int messEbene) {
     quicksort(liste, links, rechts, 1, messEbene);
 };
 
+void Quicksort::sortP(int *liste, int lange, int anzahlThreads) {
+    int links = 0;
+    int rechts = lange - 1;
+    int neueThreadsBisEbene = static_cast<int>(std::ceil(std::log2(static_cast<double>(anzahlThreads) + 1.0)));
+    quicksortP(liste, links, rechts, 1, neueThreadsBisEbene);
+};
+
 void Quicksort::quicksort(int *liste, int links, int rechts) {
     if (links < rechts) {
         int ml, mr;
@@ -55,6 +62,29 @@ void Quicksort::quicksortM(int *liste, int links, int rechts, int aktuelleEbene)
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
     addMessDaten(aktuelleEbene, pos);
+};
+
+void Quicksort::quicksortP(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene) {
+    if (aktuelleEbene < neueThreadsBisEbene) {
+        if (links < rechts) {
+            int ml, mr;
+            partitioniere(liste, links, rechts, ml, mr);
+            std::vector<std::thread> threads;
+            // quicksort(liste, links, ml);
+            threads.emplace_back(
+                static_cast<void (*)(int *, int, int, int, const int)>(&Quicksort::quicksortP),
+                liste, links, ml, aktuelleEbene + 1, neueThreadsBisEbene);
+            // quicksort(liste, mr, rechts);
+            threads.emplace_back(
+                static_cast<void (*)(int *, int, int, int, const int)>(&Quicksort::quicksortP),
+                liste, mr, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+            for (std::thread &thread : threads) {
+                thread.join();
+            }
+        }
+    } else {
+        quicksort(liste, links, rechts);
+    }
 };
 
 void Quicksort::partitioniere(int *liste, int links, int rechts, int &ml, int &mr) {

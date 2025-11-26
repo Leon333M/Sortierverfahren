@@ -18,13 +18,13 @@ Manager::Manager(int argc, char *argv[]) {
     if (variante == 'g' || variante == 'a') {
         grundzeiten();
     }
-    if (variante == 'm' || variante == 'a') {
+    if (variante == 'm' /*|| variante == 'a'*/) {
         messeSortierzeiten();
     }
     if (variante == 'p' || variante == 'a') {
         parallelzeiten();
     }
-    if (variante == 'o' || variante == 'a') {
+    if (variante == 'o' /*|| variante == 'a'*/) {
         messeSortierzeitenP();
     }
 
@@ -84,7 +84,7 @@ void Manager::messeSortierzeiten() {
 
 void Manager::parallelzeiten() {
     // init
-    int t[] = {1, 2, 4, 8, 16, 32, 64, 128, 256};
+    int t[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 1024, 4096};
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
 
@@ -100,14 +100,17 @@ void Manager::parallelzeiten() {
         std::cout << "Laufzeit: " << dauer << " ms" << " threads : " << i << std::endl;
     }
 
-    // // Quicksort
-    // std::cout << "Quicksort :" << std::endl;
-    // Quicksort quicksort;
-    // start = std::chrono::high_resolution_clock::now();
-    // quicksort.sortP(liste, lange, 16);
-    // stop = std::chrono::high_resolution_clock::now();
-    // dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    // std::cout << "Laufzeit: " << dauer << " ms" << std::endl;
+    // Quicksort
+    std::cout << "Quicksort :" << std::endl;
+    for (int i : t) {
+        Quicksort quicksort;
+        int *liste = listenersteler.erstelleListe(lange);
+        std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+        quicksort.sortP(liste, lange, i);
+        std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+        long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+        std::cout << "Laufzeit: " << dauer << " ms" << " threads : " << i << std::endl;
+    }
 };
 
 void Manager::messeSortierzeitenP() {
