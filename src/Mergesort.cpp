@@ -20,17 +20,15 @@ void Mergesort::sortM(int *liste, int lange, int messEbene) {
     mergesort(liste, links, rechts, 1, messEbene);
 };
 
-void Mergesort::sortP(int *liste, int lange, int anzahlThreads) {
+void Mergesort::sortP(int *liste, int lange, int neueThreadsBisEbene) {
     int links = 0;
     int rechts = lange - 1;
-    int neueThreadsBisEbene = static_cast<int>(std::ceil(std::log2(static_cast<double>(anzahlThreads) + 1.0)));
     mergesortP(liste, links, rechts, 1, neueThreadsBisEbene);
 };
 
-void Mergesort::sortPM(int *liste, int lange, int anzahlThreads, int messEbene) {
+void Mergesort::sortPM(int *liste, int lange, int neueThreadsBisEbene, int messEbene) {
     int links = 0;
     int rechts = lange - 1;
-    int neueThreadsBisEbene = static_cast<int>(std::ceil(std::log2(static_cast<double>(anzahlThreads) + 1.0)));
     mergesortP(liste, links, rechts, 1, neueThreadsBisEbene, messEbene);
 };
 
@@ -122,11 +120,7 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
             }
         }
     } else {
-        if (aktuelleEbene == messEbene) {
-            mergesortM(liste, links, rechts, aktuelleEbene);
-        } else {
-            mergesort(liste, links, rechts, aktuelleEbene, messEbene);
-        }
+        mergesort(liste, links, rechts, aktuelleEbene, messEbene);
     }
 };
 

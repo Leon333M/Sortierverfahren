@@ -7,7 +7,7 @@ std::vector<std::vector<std::unique_ptr<Position>>> Sortierverfaren::messDaten;
 std::mutex Sortierverfaren::mutex;
 
 void Sortierverfaren::initMessDaten(int arrayGroesse) {
-    // Berechne maximale Tiefe eines binären Baums für die gegebene Array-Länge
+    // Berechne maximale Tiefe eines binaren Baums für die gegebene Array-Lange
     int maxEbene = static_cast<int>(std::ceil(std::log2(arrayGroesse))) + 1;
 
     Sortierverfaren::messDaten.resize(maxEbene);
@@ -29,12 +29,12 @@ void Sortierverfaren::sortMA(int lange) {
     }
 };
 
-void Sortierverfaren::sortPMA(int lange, int anzahlThreads) {
+void Sortierverfaren::sortPMA(int lange, int neueThreadsBisEbene) {
     Listenersteler listenersteler;
     int *liste;
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     for (int ebene = 1; ebene < (maxEbene + 1); ebene++) {
         liste = listenersteler.erstelleListe(lange);
-        sortPM(liste, lange, ebene, anzahlThreads);
+        sortPM(liste, lange, ebene, neueThreadsBisEbene);
     }
 };

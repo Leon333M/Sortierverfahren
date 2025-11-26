@@ -47,9 +47,9 @@ public:
     void sortG(int *liste, int lange);
     virtual void sortM(int *liste, int lange, int messEbene) = 0;
     void sortMA(int lange);
-    void sortP(int *liste, int lange, int anzahlThreads);
-    virtual void sortPM(int *liste, int lange, int anzahlThreads, int messEbene) = 0;
-    void sortPMA(int lange, int anzahlThreads);
+    void sortP(int *liste, int lange, int neueThreadsBisEbene);
+    virtual void sortPM(int *liste, int lange, int neueThreadsBisEbene, int messEbene) = 0;
+    void sortPMA(int lange, int neueThreadsBisEbene);
 
 protected:
     // Funktionen
