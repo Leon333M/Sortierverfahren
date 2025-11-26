@@ -4,35 +4,39 @@
 #include <thread>
 #include <vector>
 
-// #include <iostream>
+template <typename T>
+Mergesort<T>::Mergesort(){};
 
-Mergesort::Mergesort() {};
-
-void Mergesort::sortG(int *liste, int lange) {
+template <typename T>
+void Mergesort<T>::sortG(T *liste, int lange) {
     int links = 0;
     int rechts = lange - 1;
     mergesort(liste, links, rechts);
 };
 
-void Mergesort::sortM(int *liste, int lange, int messEbene) {
+template <typename T>
+void Mergesort<T>::sortM(T *liste, int lange, int messEbene) {
     int links = 0;
     int rechts = lange - 1;
     mergesort(liste, links, rechts, 1, messEbene);
 };
 
-void Mergesort::sortP(int *liste, int lange, int neueThreadsBisEbene) {
+template <typename T>
+void Mergesort<T>::sortP(T *liste, int lange, int neueThreadsBisEbene) {
     int links = 0;
     int rechts = lange - 1;
     mergesortP(liste, links, rechts, 1, neueThreadsBisEbene);
 };
 
-void Mergesort::sortPM(int *liste, int lange, int neueThreadsBisEbene, int messEbene) {
+template <typename T>
+void Mergesort<T>::sortPM(T *liste, int lange, int neueThreadsBisEbene, int messEbene) {
     int links = 0;
     int rechts = lange - 1;
     mergesortP(liste, links, rechts, 1, neueThreadsBisEbene, messEbene);
 };
 
-void Mergesort::mergesort(int *liste, const int links, const int rechts) {
+template <typename T>
+void Mergesort<T>::mergesort(T *liste, const int links, const int rechts) {
     int lange = rechts + 1 - links;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
@@ -42,7 +46,8 @@ void Mergesort::mergesort(int *liste, const int links, const int rechts) {
     }
 };
 
-void Mergesort::mergesort(int *liste, const int links, const int rechts, const int aktuelleEbene, const int messEbene) {
+template <typename T>
+void Mergesort<T>::mergesort(T *liste, const int links, const int rechts, const int aktuelleEbene, const int messEbene) {
     if (aktuelleEbene == messEbene) {
         mergesortM(liste, links, rechts, aktuelleEbene + 1);
     } else {
@@ -56,7 +61,8 @@ void Mergesort::mergesort(int *liste, const int links, const int rechts, const i
     }
 };
 
-void Mergesort::mergesortM(int *liste, const int links, const int rechts, const int aktuelleEbene) {
+template <typename T>
+void Mergesort<T>::mergesortM(T *liste, const int links, const int rechts, const int aktuelleEbene) {
     Position *pos = new Position();
     pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts + 1 - links;
@@ -69,10 +75,11 @@ void Mergesort::mergesortM(int *liste, const int links, const int rechts, const 
         mischen(liste, links, mitte, rechts, lange);
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
-    addMessDaten(aktuelleEbene, pos);
+    Sortierverfaren<T>::addMessDaten(aktuelleEbene, pos);
 };
 
-void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
+template <typename T>
+void Mergesort<T>::mergesortP(T *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
     if (aktuelleEbene < neueThreadsBisEbene) {
         int lange = rechts + 1 - links;
         if (lange > 1) {
@@ -80,11 +87,11 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
             std::vector<std::thread> threads;
             // mergesort(liste, links, mitte);
             threads.emplace_back(
-                static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+                static_cast<void (*)(T *, const int, const int, const int, const int)>(&Mergesort<T>::mergesortP),
                 liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene);
             // mergesort(liste, mitte + 1, rechts);
             threads.emplace_back(
-                static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+                static_cast<void (*)(T *, const int, const int, const int, const int)>(&Mergesort<T>::mergesortP),
                 liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
             for (std::thread &thread : threads) {
                 thread.join();
@@ -96,7 +103,8 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
     }
 };
 
-void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene) {
+template <typename T>
+void Mergesort<T>::mergesortP(T *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene) {
     if (aktuelleEbene < neueThreadsBisEbene) {
         if (aktuelleEbene == messEbene) {
             mergesortPM(liste, links, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
@@ -107,11 +115,11 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
                 std::vector<std::thread> threads;
                 // mergesort(liste, links, mitte);
                 threads.emplace_back(
-                    static_cast<void (*)(int *, const int, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+                    static_cast<void (*)(T *, const int, const int, const int, const int, const int)>(&Mergesort<T>::mergesortP),
                     liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene, messEbene);
                 // mergesort(liste, mitte + 1, rechts);
                 threads.emplace_back(
-                    static_cast<void (*)(int *, const int, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+                    static_cast<void (*)(T *, const int, const int, const int, const int, const int)>(&Mergesort<T>::mergesortP),
                     liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene, messEbene);
                 for (std::thread &thread : threads) {
                     thread.join();
@@ -124,7 +132,8 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
     }
 };
 
-void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
+template <typename T>
+void Mergesort<T>::mergesortPM(T *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
     Position *pos = new Position();
     pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts + 1 - links;
@@ -134,11 +143,11 @@ void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const
         pos->start2 = std::chrono::high_resolution_clock::now();
         // mergesort(liste, links, mitte);
         threads.emplace_back(
-            static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+            static_cast<void (*)(T *, const int, const int, const int, const int)>(&Mergesort<T>::mergesortP),
             liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene);
         // mergesort(liste, mitte + 1, rechts);
         threads.emplace_back(
-            static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+            static_cast<void (*)(T *, const int, const int, const int, const int)>(&Mergesort<T>::mergesortP),
             liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
         for (std::thread &thread : threads) {
             thread.join();
@@ -147,11 +156,12 @@ void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const
         mischen(liste, links, mitte, rechts, lange);
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
-    addMessDaten(aktuelleEbene, pos);
+    Sortierverfaren<T>::addMessDaten(aktuelleEbene, pos);
 };
 
-void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {
-    int *listeB = new int[lange];
+template <typename T>
+void Mergesort<T>::mischen(T *liste, int links, const int mitte, const int rechts, const int lange) {
+    T *listeB = new T[lange];
 
     // Kopiere nach listeB
     for (int i = links; i < mitte + 1; i++) {
@@ -179,3 +189,7 @@ void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts
 
     delete[] listeB;
 };
+
+// explizite Template-Instanziierungen
+template class Mergesort<int>;
+template class Mergesort<std::string>;

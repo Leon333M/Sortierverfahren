@@ -2,28 +2,30 @@
 #pragma once
 #include "Sortierverfaren.h"
 
-class Quicksort : public Sortierverfaren {
+template <typename T>
+
+class Quicksort : public Sortierverfaren<T> {
 private:
     // Vaibalen
 
 public:
     // Funktionen
     Quicksort();
-    void sortG(int *liste, int lange);
-    void sortM(int *liste, int lange, int messEbene);
-    void sortP(int *liste, int lange, int neueThreadsBisEbene);
-    void sortPM(int *liste, int lange, int neueThreadsBisEbene, int messEbene);
+    void sortG(T *liste, int lange);
+    void sortM(T *liste, int lange, int messEbene);
+    void sortP(T *liste, int lange, int neueThreadsBisEbene);
+    void sortPM(T *liste, int lange, int neueThreadsBisEbene, int messEbene);
 
     // public Static
 
 private:
     // Funktionen
-    static void quicksort(int *liste, int links, int rechts);
-    static void quicksort(int *liste, int links, int rechts, int aktuelleEbene, int messEbene);
-    static void quicksortM(int *liste, int links, int rechts, int aktuelleEbene);
-    static void quicksortP(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene);
-    static void quicksortP(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene, int messEbene);
-    static void quicksortPM(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene);
-    static void partitioniere(int *liste, int links, int rechts, int &ml, int &mr);
-    static void vertausche(int *liste, int a, int b);
+    static void quicksort(T *liste, int links, int rechts);
+    static void quicksort(T *liste, int links, int rechts, int aktuelleEbene, int messEbene);
+    static void quicksortM(T *liste, int links, int rechts, int aktuelleEbene);
+    static void quicksortP(T *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene);
+    static void quicksortP(T *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene, int messEbene);
+    static void quicksortPM(T *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene);
+    static void partitioniere(T *liste, int links, int rechts, int &ml, int &mr);
+    static void vertausche(T *liste, int a, int b);
 };

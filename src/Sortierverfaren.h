@@ -14,6 +14,7 @@ struct Position {
     Position() {}
 };
 
+template <typename T>
 class Sortierverfaren {
 public:
     // static
@@ -44,11 +45,11 @@ protected:
 public:
     // Funktionen
     Sortierverfaren() {};
-    void sortG(int *liste, int lange);
-    virtual void sortM(int *liste, int lange, int messEbene) = 0;
+    void sortG(T *liste, int lange);
+    virtual void sortM(T *liste, int lange, int messEbene) = 0;
     void sortMA(int lange);
-    void sortP(int *liste, int lange, int neueThreadsBisEbene);
-    virtual void sortPM(int *liste, int lange, int neueThreadsBisEbene, int messEbene) = 0;
+    void sortP(T *liste, int lange, int neueThreadsBisEbene);
+    virtual void sortPM(T *liste, int lange, int neueThreadsBisEbene, int messEbene) = 0;
     void sortPMA(int lange, int neueThreadsBisEbene);
 
 protected:
