@@ -5,7 +5,7 @@
       "name": "Starte Sortierverfahren",
       "type": "cppvsdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/Debug/Sortierverfahren.exe",
+      "program": "${workspaceFolder}/build/Release/Sortierverfahren.exe",
       "args": [
         "1200",
       ],
