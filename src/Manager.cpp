@@ -99,7 +99,7 @@ void Manager::parallelzeiten() {
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
         int t = static_cast<int>(std::pow(2, i - 1));
-        std::cout << "Laufzeit: " << dauer << " ms" << " threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
+        std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
     }
 
     // Quicksort
@@ -112,7 +112,7 @@ void Manager::parallelzeiten() {
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
         int t = static_cast<int>(std::pow(2, i - 1));
-        std::cout << "Laufzeit: " << dauer << " ms" << " threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
+        std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
     }
 };
 
@@ -133,22 +133,26 @@ void Manager::messeSortierzeitenP() {
         mergesort.sortPMA(lange, i);
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-        std::cout << "Laufzeit: " << dauer << " ms" << " threads : " << i << std::endl;
+        int t = static_cast<int>(std::pow(2, i - 1));
+        std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
         // gebe Speicher frei da 10Gb bei Aray von 40'000'000
         Sortierverfaren::resetMessDaten();
         Sortierverfaren::initMessDaten(lange);
     }
 
-    // // gebe Speicher frei da 10Gb bei Aray von 40'000'000
-    // Sortierverfaren::resetMessDaten();
-    // Sortierverfaren::initMessDaten(lange);
-    // liste = listenersteler.erstelleListe(lange);
-
-    // // Quicksort
-    // Quicksort quicksort;
-    // start = std::chrono::high_resolution_clock::now();
-    // quicksort.sortMA(lange);
-    // stop = std::chrono::high_resolution_clock::now();
-    // dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    // std::cout << "Laufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
+    // Quicksort
+    std::cout << "Quicksort :" << std::endl;
+    for (int i : t) {
+        Quicksort quicksort;
+        int *liste = listenersteler.erstelleListe(lange);
+        std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+        quicksort.sortPMA(lange, i);
+        std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+        long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+        int t = static_cast<int>(std::pow(2, i - 1));
+        std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
+        // gebe Speicher frei da 10Gb bei Aray von 40'000'000
+        Sortierverfaren::resetMessDaten();
+        Sortierverfaren::initMessDaten(lange);
+    }
 };
