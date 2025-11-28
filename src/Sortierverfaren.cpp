@@ -2,23 +2,6 @@
 #include "Sortierverfaren.h"
 #include "Listenersteler.h"
 
-// Definition der statischen Member
-std::vector<std::vector<std::unique_ptr<Position>>> Sortierverfaren::messDaten;
-std::mutex Sortierverfaren::mutex;
-
-void Sortierverfaren::initMessDaten(int arrayGroesse) {
-    // Berechne maximale Tiefe eines binaren Baums für die gegebene Array-Lange
-    int maxEbene = static_cast<int>(std::ceil(std::log2(arrayGroesse))) + 1;
-
-    Sortierverfaren::messDaten.resize(maxEbene);
-
-    // Berechne ungefahre Anzahl Positionen pro Ebene (z.B. 2^ebene)
-    for (int ebene = 0; ebene < maxEbene; ebene++) {
-        int anzahlPositionen = static_cast<int>(std::pow(2, ebene - 1));
-        Sortierverfaren::messDaten[ebene].resize(anzahlPositionen);
-    }
-};
-
 void Sortierverfaren::sortMA(int lange) {
     Listenersteler listenersteler;
     int *liste;

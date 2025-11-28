@@ -56,7 +56,7 @@ void Quicksort::quicksort(int *liste, int links, int rechts, int aktuelleEbene, 
 };
 
 void Quicksort::quicksortM(int *liste, int links, int rechts, int aktuelleEbene) {
-    Position *pos = new Position();
+    Messdaten *pos = new Messdaten();
     pos->start1 = std::chrono::high_resolution_clock::now();
     if (links < rechts) {
         int ml, mr;
@@ -67,7 +67,7 @@ void Quicksort::quicksortM(int *liste, int links, int rechts, int aktuelleEbene)
         pos->ende2 = std::chrono::high_resolution_clock::now();
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
-    addMessDaten(aktuelleEbene, pos);
+    Messdaten::addMessDaten(aktuelleEbene, pos);
 };
 
 void Quicksort::quicksortP(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene) {
@@ -121,7 +121,7 @@ void Quicksort::quicksortP(int *liste, int links, int rechts, int aktuelleEbene,
 };
 
 void Quicksort::quicksortPM(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene) {
-    Position *pos = new Position();
+    Messdaten *pos = new Messdaten();
     pos->start1 = std::chrono::high_resolution_clock::now();
     if (links < rechts) {
         int ml, mr;
@@ -142,7 +142,7 @@ void Quicksort::quicksortPM(int *liste, int links, int rechts, int aktuelleEbene
         pos->ende2 = std::chrono::high_resolution_clock::now();
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
-    addMessDaten(aktuelleEbene, pos);
+    Messdaten::addMessDaten(aktuelleEbene, pos);
 };
 
 void Quicksort::partitioniere(int *liste, int links, int rechts, int &ml, int &mr) {

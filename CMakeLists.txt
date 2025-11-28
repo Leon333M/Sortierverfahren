@@ -21,5 +21,6 @@ add_executable(Sortierverfahren
      src/Mergesort.cpp
      src/Quicksort.cpp
      src/MiniSort.cpp
+     src/Messdaten.cpp
 )
 

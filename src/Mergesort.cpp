@@ -4,8 +4,6 @@
 #include <thread>
 #include <vector>
 
-// #include <iostream>
-
 Mergesort::Mergesort() {};
 
 void Mergesort::sortG(int *liste, int lange) {
@@ -57,7 +55,7 @@ void Mergesort::mergesort(int *liste, const int links, const int rechts, const i
 };
 
 void Mergesort::mergesortM(int *liste, const int links, const int rechts, const int aktuelleEbene) {
-    Position *pos = new Position();
+    Messdaten *pos = new Messdaten();
     pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts + 1 - links;
     if (lange > 1) {
@@ -69,7 +67,7 @@ void Mergesort::mergesortM(int *liste, const int links, const int rechts, const 
         mischen(liste, links, mitte, rechts, lange);
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
-    addMessDaten(aktuelleEbene, pos);
+    Messdaten::addMessDaten(aktuelleEbene, pos);
 };
 
 void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
@@ -125,7 +123,7 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
 };
 
 void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
-    Position *pos = new Position();
+    Messdaten *pos = new Messdaten();
     pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts + 1 - links;
     if (lange > 1) {
@@ -147,7 +145,7 @@ void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const
         mischen(liste, links, mitte, rechts, lange);
     }
     pos->ende1 = std::chrono::high_resolution_clock::now();
-    addMessDaten(aktuelleEbene, pos);
+    Messdaten::addMessDaten(aktuelleEbene, pos);
 };
 
 void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {

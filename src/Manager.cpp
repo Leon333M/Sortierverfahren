@@ -59,7 +59,7 @@ void Manager::messeSortierzeiten() {
     // init
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
-    Sortierverfaren::initMessDaten(lange);
+    Messdaten::initMessDaten(lange);
     int *liste = listenersteler.erstelleListe(lange);
 
     // Mergesort
@@ -71,8 +71,8 @@ void Manager::messeSortierzeiten() {
     std::cout << "Laufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
 
     // gebe Speicher frei da 10Gb bei Aray von 40'000'000
-    Sortierverfaren::resetMessDaten();
-    Sortierverfaren::initMessDaten(lange);
+    Messdaten::resetMessDaten();
+    Messdaten::initMessDaten(lange);
     liste = listenersteler.erstelleListe(lange);
 
     // Quicksort
@@ -125,8 +125,8 @@ void Manager::messeSortierzeitenP() {
     int t[] = {1, 2, 4, 8, 16, 32, 64, 128, 256};
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
-    Sortierverfaren::resetMessDaten();
-    Sortierverfaren::initMessDaten(lange);
+    Messdaten::resetMessDaten();
+    Messdaten::initMessDaten(lange);
 
     // Mergesort
     std::cout << "Mergesort :" << std::endl;
@@ -140,8 +140,8 @@ void Manager::messeSortierzeitenP() {
         int t = static_cast<int>(std::pow(2, i - 1));
         std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
         // gebe Speicher frei da 10Gb bei Aray von 40'000'000
-        Sortierverfaren::resetMessDaten();
-        Sortierverfaren::initMessDaten(lange);
+        Messdaten::resetMessDaten();
+        Messdaten::initMessDaten(lange);
     }
 
     // Quicksort
@@ -156,8 +156,8 @@ void Manager::messeSortierzeitenP() {
         int t = static_cast<int>(std::pow(2, i - 1));
         std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
         // gebe Speicher frei da 10Gb bei Aray von 40'000'000
-        Sortierverfaren::resetMessDaten();
-        Sortierverfaren::initMessDaten(lange);
+        Messdaten::resetMessDaten();
+        Messdaten::initMessDaten(lange);
     }
 };
 
