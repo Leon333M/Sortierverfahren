@@ -16,6 +16,9 @@ public:
     std::chrono::time_point<std::chrono::high_resolution_clock> ende1;
 
     // static
+    static int arrayLange;
+    static std::string arrayTyp; // Zufall, Sortiert, InvertiertSortiert, FastSortiert, Dupliziert
+    static std::string arrayArt; // int, std::string
     static std::vector<std::vector<std::unique_ptr<Messdaten>>> messDaten;
     static std::mutex mutex; // Sperre fur Thread-Sicherheit
 
