@@ -18,12 +18,12 @@ public:
 
 private:
     // Funktionen
-    static void quicksort(int *liste, int links, int rechts);
-    static void quicksort(int *liste, int links, int rechts, int aktuelleEbene, int messEbene);
-    static void quicksortM(int *liste, int links, int rechts, int aktuelleEbene);
-    static void quicksortP(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene);
-    static void quicksortP(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene, int messEbene);
-    static void quicksortPM(int *liste, int links, int rechts, int aktuelleEbene, const int neueThreadsBisEbene);
-    static void partitioniere(int *liste, int links, int rechts, int &ml, int &mr);
-    static void vertausche(int *liste, int a, int b);
+    static void quicksort(int *liste, const int links, const int rechts);
+    static void quicksort(int *liste, const int links, const int rechts, const int aktuelleEbene, const int messEbene);
+    static void quicksortM(int *liste, const int links, const int rechts, const int aktuelleEbene);
+    static void quicksortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene);
+    static void quicksortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene);
+    static void quicksortPM(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene);
+    static void partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr);
+    static void vertausche(int *liste, const int a, const int b);
 };
