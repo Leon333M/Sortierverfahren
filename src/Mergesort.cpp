@@ -34,8 +34,8 @@ void Mergesort::mergesort(int *liste, const int links, const int rechts) {
     int lange = rechts + 1 - links;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
-        mergesort(liste, links, mitte);
-        mergesort(liste, mitte + 1, rechts);
+        mergesort(liste, links, mitte);      // A
+        mergesort(liste, mitte + 1, rechts); // B
         mischen(liste, links, mitte, rechts, lange);
     }
 };

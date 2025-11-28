@@ -21,6 +21,7 @@ int *Listenersteler::erstelleListe(int lange) {
 
     Messdaten::arrayTyp = "Zufall";
     Messdaten::arrayArt = "int";
+    Messdaten::arrayLange = lange;
 
     return liste.get();
 };
@@ -36,6 +37,7 @@ int *Listenersteler::erstelleZufallsListe(int lange) {
 
     Messdaten::arrayTyp = "Zufall";
     Messdaten::arrayArt = "int";
+    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
@@ -50,6 +52,7 @@ int *Listenersteler::erstelleSortierteListe(int lange) {
 
     Messdaten::arrayTyp = "Sortiert";
     Messdaten::arrayArt = "int";
+    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
@@ -64,6 +67,7 @@ int *Listenersteler::erstelleInvertierteListe(int lange) {
 
     Messdaten::arrayTyp = "InvertSortiert";
     Messdaten::arrayArt = "int";
+    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
@@ -89,6 +93,7 @@ int *Listenersteler::erstelleFastSortierteListe(int lange, int swaps) {
 
     Messdaten::arrayTyp = "FastSortiert";
     Messdaten::arrayArt = "int";
+    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
@@ -104,6 +109,7 @@ int *Listenersteler::erstelleDuplizierteListe(int lange, int uniqueValues) {
 
     Messdaten::arrayTyp = "Dupliziert";
     Messdaten::arrayArt = "int";
+    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
