@@ -75,18 +75,13 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
         int lange = rechts + 1 - links;
         if (lange > 1) {
             int mitte = (links + rechts) / 2;
-            std::vector<std::thread> threads;
             // mergesort(liste, links, mitte);
-            threads.emplace_back(
+            std::thread thread(
                 static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
                 liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene);
             // mergesort(liste, mitte + 1, rechts);
-            threads.emplace_back(
-                static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
-                liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
-            for (std::thread &thread : threads) {
-                thread.join();
-            }
+            mergesortP(liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+            thread.join();
             mischen(liste, links, mitte, rechts, lange);
         }
     } else {
@@ -102,18 +97,13 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
             int lange = rechts + 1 - links;
             if (lange > 1) {
                 int mitte = (links + rechts) / 2;
-                std::vector<std::thread> threads;
                 // mergesort(liste, links, mitte);
-                threads.emplace_back(
+                std::thread thread(
                     static_cast<void (*)(int *, const int, const int, const int, const int, const int)>(&Mergesort::mergesortP),
                     liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene, messEbene);
                 // mergesort(liste, mitte + 1, rechts);
-                threads.emplace_back(
-                    static_cast<void (*)(int *, const int, const int, const int, const int, const int)>(&Mergesort::mergesortP),
-                    liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene, messEbene);
-                for (std::thread &thread : threads) {
-                    thread.join();
-                }
+                mergesortP(liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene, messEbene);
+                thread.join();
                 mischen(liste, links, mitte, rechts, lange);
             }
         }
@@ -128,19 +118,14 @@ void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const
     int lange = rechts + 1 - links;
     if (lange > 1) {
         int mitte = (links + rechts) / 2;
-        std::vector<std::thread> threads;
         pos->start2 = std::chrono::high_resolution_clock::now();
         // mergesort(liste, links, mitte);
-        threads.emplace_back(
+        std::thread thread(
             static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
             liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene);
         // mergesort(liste, mitte + 1, rechts);
-        threads.emplace_back(
-            static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
-            liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
-        for (std::thread &thread : threads) {
-            thread.join();
-        }
+        Mergesort::mergesortP(liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+        thread.join();
         pos->ende2 = std::chrono::high_resolution_clock::now();
         mischen(liste, links, mitte, rechts, lange);
     }
