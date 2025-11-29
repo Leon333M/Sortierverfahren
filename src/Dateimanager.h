@@ -26,12 +26,12 @@ class Dateimanager {
 
 private:
     // Vaibalen
-    std::string path;
+    std::string originalPath;
 
 public:
     // Funktionen
     Dateimanager();
-    void exportMessData();
+    void exportMessData(int threadAnzahl);
 
     static Statistik berechneDauerStatistik1(const std::vector<std::unique_ptr<Messdaten>> &md);
     static Statistik berechneDauerStatistik2(const std::vector<std::unique_ptr<Messdaten>> &md);

@@ -10,23 +10,26 @@ MessdatenStatistik::MessdatenStatistik(const std::vector<std::unique_ptr<Messdat
     dauer1m2 = Dateimanager::berechneDauerStatistik1m2(md);
 };
 
-void Dateimanager::exportMessData() {
-    std::ofstream myConfigurationFile(path);
+void Dateimanager::exportMessData(int threadAnzahl) {
+    std::string path = originalPath;
     path += " " + Messdaten::arrayArt;
     path += " " + Messdaten::arrayTyp;
     path += " " + Messdaten::arrayLange;
+    path += " " + threadAnzahl;
 
+    // werte Messdaten aus
     std::vector<std::vector<std::unique_ptr<Messdaten>>> &messDaten = Messdaten::messDaten;
+    std::vector<MessdatenStatistik> mdsv;
+    mdsv.reserve(messDaten.size());
     for (int i = 1; i < messDaten.size(); i++) {
         std::vector<std::unique_ptr<Messdaten>> &md = messDaten[i];
-        int mdAnzahl = md.size();
-        Statistik dauer1 = berechneDauerStatistik1(md);
-        Statistik dauer2 = berechneDauerStatistik2(md);
-        Statistik dauer1m2 = berechneDauerStatistik1m2(md);
+        MessdatenStatistik mds(md);
+        mdsv.push_back(mds);
     }
-    // myConfigurationFile << i << ":" << getSliderValue(static_cast<SliderId::ids>(i)) << std::endl;
 
-    myConfigurationFile.close();
+    // std::ofstream myConfigurationFile(path);
+    // myConfigurationFile << i << ":" << getSliderValue(static_cast<SliderId::ids>(i)) << std::endl;
+    // myConfigurationFile.close();
 }
 
 // private Funktionen
