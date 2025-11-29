@@ -80,7 +80,7 @@ void Manager::messeSortierzeiten() {
     mergesort.sortMA(lange);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    std::cout << "Laufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
+    std::cout << "Gesamtlaufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
     dateimanager.exportMessData("Mergesort", 1);
 
     // gebe Speicher frei da 10Gb bei Aray von 40'000'000
@@ -94,7 +94,7 @@ void Manager::messeSortierzeiten() {
     quicksort.sortMA(lange);
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    std::cout << "Laufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
+    std::cout << "Gesamtlaufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
     dateimanager.exportMessData("Quicksort", 1);
 };
 
