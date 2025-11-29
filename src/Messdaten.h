@@ -51,6 +51,10 @@ public:
         }
     };
 
+    static int berechneDurchschnitt(const std::vector<long long> &werte);
+    static int berechneMedian(std::vector<long long> &werte);
+    static int berechneStandardabweichung(const std::vector<long long> &werte);
+
     // Funktionen
     Messdaten() {};
 
