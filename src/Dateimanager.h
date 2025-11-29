@@ -26,11 +26,12 @@ class Dateimanager {
 
 private:
     // Vaibalen
-    std::string originalPath;
+    std::string originalPath = "E:/Code/Sortierverfahren/Messdaten/";
+    std::string dateiendung = ".txt";
 
 public:
     // Funktionen
-    Dateimanager();
+    Dateimanager() {};
     void exportMessData(int threadAnzahl);
 
     static Statistik berechneDauerStatistik1(const std::vector<std::unique_ptr<Messdaten>> &md);
@@ -43,4 +44,6 @@ private:
     static Statistik berechneDauerStatistik(
         const std::vector<std::unique_ptr<Messdaten>> &md,
         std::function<long long(const Messdaten &)> dauerFunktion);
+    static void schreibeMessdatenInDatei(std::ostream &outFile, const std::vector<MessdatenStatistik> &mdsv);
+    static void schreibeStatistik(std::ostream &outFile, const std::string &name, const Statistik &s);
 };

@@ -1,5 +1,6 @@
 // Manager.h
 #pragma once
+#include "Dateimanager.h"
 #include "Listenersteler.h"
 
 class Manager {
@@ -7,6 +8,7 @@ private:
     // Vaibalen
     int lange = 10;
     Listenersteler listenersteler;
+    Dateimanager dateimanager;
 
 public:
     // Funktionen

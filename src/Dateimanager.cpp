@@ -2,6 +2,7 @@
 #include "Dateimanager.h"
 #include <algorithm>
 #include <fstream>
+#include <iostream>
 
 MessdatenStatistik::MessdatenStatistik(const std::vector<std::unique_ptr<Messdaten>> &md) {
     mdAnzahl = md.size();
@@ -14,8 +15,9 @@ void Dateimanager::exportMessData(int threadAnzahl) {
     std::string path = originalPath;
     path += " " + Messdaten::arrayArt;
     path += " " + Messdaten::arrayTyp;
-    path += " " + Messdaten::arrayLange;
-    path += " " + threadAnzahl;
+    path += " " + std::to_string(Messdaten::arrayLange);
+    path += " " + std::to_string(threadAnzahl);
+    path += dateiendung;
 
     // werte Messdaten aus
     std::vector<std::vector<std::unique_ptr<Messdaten>>> &messDaten = Messdaten::messDaten;
@@ -27,9 +29,13 @@ void Dateimanager::exportMessData(int threadAnzahl) {
         mdsv.push_back(mds);
     }
 
-    // std::ofstream myConfigurationFile(path);
-    // myConfigurationFile << i << ":" << getSliderValue(static_cast<SliderId::ids>(i)) << std::endl;
-    // myConfigurationFile.close();
+    std::ofstream outFile(path);
+    if (!outFile) {
+        std::cerr << "Fehler beim Offnen der Datei: " << path << std::endl;
+        return;
+    }
+    schreibeMessdatenInDatei(outFile, mdsv);
+    // schreibeMessdatenInDatei(std::cout, mdsv);
 }
 
 // private Funktionen
@@ -65,6 +71,9 @@ Statistik Dateimanager::berechneDauerStatistik(
 
     std::transform(md.begin(), md.end(), werte.begin(),
                    [&](const std::unique_ptr<Messdaten> &m) {
+                       if (!m) {
+                           return 0LL;
+                       }
                        return dauerFunktion(*m);
                    });
 
@@ -81,4 +90,29 @@ Statistik Dateimanager::berechneDauerStatistik2(const std::vector<std::unique_pt
 
 Statistik Dateimanager::berechneDauerStatistik1m2(const std::vector<std::unique_ptr<Messdaten>> &md) {
     return berechneDauerStatistik(md, [](const Messdaten &m) { return m.dauer1m2(); });
+}
+
+void Dateimanager::schreibeMessdatenInDatei(std::ostream &outFile, const std::vector<MessdatenStatistik> &mdsv) {
+
+    for (size_t i = 0; i < mdsv.size(); ++i) {
+        const auto &mds = mdsv[i];
+        outFile << "Messebene: " << i + 1 << std::endl;
+        outFile << "Anzahl Messungen: " << mds.mdAnzahl << std::endl;
+        outFile << std::endl;
+
+        schreibeStatistik(outFile, "Dauer1", mds.dauer1);
+        schreibeStatistik(outFile, "Dauer2", mds.dauer2);
+        schreibeStatistik(outFile, "Dauer1-2", mds.dauer1m2);
+        outFile << std::endl;
+    }
+}
+
+void Dateimanager::schreibeStatistik(std::ostream &outFile, const std::string &name, const Statistik &s) {
+    outFile << name << ":" << std::endl
+            << "Median: " << s.median << std::endl
+            << "Durchschnitt: " << s.durchschnitt << std::endl
+            << "StdAbw: " << s.standardabweichung << std::endl
+            << "Min: " << s.minimum << std::endl
+            << "Max: " << s.maximum << std::endl
+            << std::endl;
 }

@@ -7,7 +7,7 @@
 #include <string>
 
 Manager::Manager(int argc, char *argv[]) {
-    char variante = 'p';
+    char variante = 'm';
     if (argc >= 2) {
         lange = std::stoi(argv[1]);
     }
@@ -81,6 +81,7 @@ void Manager::messeSortierzeiten() {
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
+    dateimanager.exportMessData(1);
 
     // gebe Speicher frei da 10Gb bei Aray von 40'000'000
     Messdaten::resetMessDaten();
@@ -94,6 +95,7 @@ void Manager::messeSortierzeiten() {
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
+    dateimanager.exportMessData(1);
 };
 
 void Manager::parallelzeiten() {
