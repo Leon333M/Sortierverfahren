@@ -7,7 +7,7 @@
 #include <string>
 
 Manager::Manager(int argc, char *argv[]) {
-    char variante = 'a';
+    char variante = 'p';
     if (argc >= 2) {
         lange = std::stoi(argv[1]);
     }
@@ -18,13 +18,13 @@ Manager::Manager(int argc, char *argv[]) {
     if (variante == 'g' || variante == 'a') {
         grundzeiten();
     }
-    if (variante == 'm' /*|| variante == 'a'*/) {
+    if (variante == 'm' || variante == 'a') {
         messeSortierzeiten();
     }
     if (variante == 'p' || variante == 'a') {
         parallelzeiten();
     }
-    if (variante == 'o' /*|| variante == 'a'*/) {
+    if (variante == 'o' || variante == 'a') {
         messeSortierzeitenP();
     }
 
@@ -44,6 +44,12 @@ void Manager::grundzeiten() {
     std::cout << "Laufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
     istSortiert();
 
+    Messdaten *md = new Messdaten();
+    md->start1 = start;
+    md->ende1 = stop;
+    Messdaten::addMessDaten(0, md);
+    Messdaten::resetMessDaten();
+
     // Quicksort
     liste = listenersteler.erstelleListe(lange);
     Quicksort quicksort;
@@ -53,6 +59,12 @@ void Manager::grundzeiten() {
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Laufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
     istSortiert();
+
+    md = new Messdaten();
+    md->start1 = start;
+    md->ende1 = stop;
+    Messdaten::addMessDaten(0, md);
+    Messdaten::resetMessDaten();
 };
 
 void Manager::messeSortierzeiten() {
@@ -103,7 +115,12 @@ void Manager::parallelzeiten() {
         int t = static_cast<int>(std::pow(2, i - 1));
         std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
         istSortiert();
+        Messdaten *md = new Messdaten();
+        md->start1 = start;
+        md->ende1 = stop;
+        Messdaten::addMessDaten(0, md);
     }
+    Messdaten::resetMessDaten();
 
     // Quicksort
     std::cout << "Quicksort :" << std::endl;
@@ -117,6 +134,10 @@ void Manager::parallelzeiten() {
         int t = static_cast<int>(std::pow(2, i - 1));
         std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
         istSortiert();
+        Messdaten *md = new Messdaten();
+        md->start1 = start;
+        md->ende1 = stop;
+        Messdaten::addMessDaten(0, md);
     }
 };
 
