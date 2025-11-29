@@ -57,6 +57,9 @@ public:
 
     // Funktionen
     Messdaten() {};
+    long long dauer1() const;
+    long long dauer2() const;
+    long long dauer1m2() const;
 
 private:
     // Funktionen

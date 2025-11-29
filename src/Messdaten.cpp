@@ -43,3 +43,15 @@ int Messdaten::berechneStandardabweichung(const std::vector<long long> &werte) {
     double varianz = sumVar / werte.size();
     return static_cast<int>(std::sqrt(varianz));
 };
+
+long long Messdaten::dauer1() const {
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(ende1 - start1).count();
+}
+
+long long Messdaten::dauer2() const {
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(ende2 - start2).count();
+}
+
+long long Messdaten::dauer1m2() const {
+    return dauer1() - dauer2();
+}
