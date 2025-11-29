@@ -42,7 +42,7 @@ void Mergesort::mergesort(int *liste, const int links, const int rechts) {
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts, const int aktuelleEbene, const int messEbene) {
     if (aktuelleEbene == messEbene) {
-        mergesortM(liste, links, rechts, aktuelleEbene + 1);
+        mergesortM(liste, links, rechts, aktuelleEbene);
     } else {
         int lange = rechts + 1 - links;
         if (lange > 1) {
@@ -92,7 +92,7 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
 void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene) {
     if (aktuelleEbene < neueThreadsBisEbene) {
         if (aktuelleEbene == messEbene) {
-            mergesortPM(liste, links, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+            mergesortPM(liste, links, rechts, aktuelleEbene, neueThreadsBisEbene);
         } else {
             int lange = rechts + 1 - links;
             if (lange > 1) {

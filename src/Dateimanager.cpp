@@ -11,8 +11,9 @@ MessdatenStatistik::MessdatenStatistik(const std::vector<std::unique_ptr<Messdat
     dauer1m2 = Dateimanager::berechneDauerStatistik1m2(md);
 };
 
-void Dateimanager::exportMessData(int threadAnzahl) {
+void Dateimanager::exportMessData(std::string sortieralgorithmus, int threadAnzahl) {
     std::string path = originalPath;
+    path += sortieralgorithmus;
     path += " " + Messdaten::arrayArt;
     path += " " + Messdaten::arrayTyp;
     path += " " + std::to_string(Messdaten::arrayLange);
