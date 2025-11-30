@@ -22,4 +22,6 @@ private:
     void messeSortierzeiten();
     void messeSortierzeitenP();
     void istSortiert() const;
+    void messeAlles();
+    void messeZeiten();
 };

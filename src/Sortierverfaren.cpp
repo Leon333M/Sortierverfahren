@@ -18,6 +18,6 @@ void Sortierverfaren::sortPMA(char listeVariante, int lange, int neueThreadsBisE
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     for (int ebene = 1; ebene < (maxEbene + 1); ebene++) {
         liste = listenersteler.erstelleListe(listeVariante, lange);
-        sortPM(liste, lange, ebene, neueThreadsBisEbene);
+        sortPM(liste, lange, neueThreadsBisEbene, ebene);
     }
 };

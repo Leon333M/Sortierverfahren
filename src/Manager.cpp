@@ -19,6 +19,9 @@ Manager::Manager(int argc, char *argv[]) {
     if (argc >= 4) {
         listeVariante = argv[3][0];
     }
+    if (argc >= 5) {
+        messeAlles();
+    }
 
     if (variante == 'g' || variante == 'a') {
         grundzeiten();
@@ -197,4 +200,33 @@ void Manager::istSortiert() const {
     if (!listenersteler.istSortiert()) {
         std::cout << "ist nicht Sortiert" << std::endl;
     }
+};
+
+void Manager::messeAlles() {
+    // 10 - 40'000'000
+    int langen[] = {
+        10,
+        100,
+        1000,
+        1200,
+        4000,
+        40000,
+        400000,
+        4000000,
+        40000000};
+    char listeVarianten[] = {'z', 's', 'i', 'f', 'd'};
+    for (int l : langen) {
+        lange = l;
+        for (char lv : listeVarianten) {
+            listeVariante = lv;
+            messeZeiten();
+        }
+    }
+};
+
+void Manager::messeZeiten() {
+    grundzeiten();
+    parallelzeiten();
+    messeSortierzeiten();
+    messeSortierzeitenP();
 };
