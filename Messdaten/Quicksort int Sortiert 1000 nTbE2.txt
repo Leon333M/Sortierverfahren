@@ -1,0 +1,275 @@
+Messebene: 1
+Anzahl Messungen: 1
+
+Dauer1:
+Median: 227400
+Durchschnitt: 227400
+StdAbw: 0
+Min: 227400
+Max: 227400
+
+Dauer2:
+Median: 227200
+Durchschnitt: 227200
+StdAbw: 0
+Min: 227200
+Max: 227200
+
+Dauer1-2:
+Median: 200
+Durchschnitt: 200
+StdAbw: 0
+Min: 200
+Max: 200
+
+
+Messebene: 2
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 69500
+Durchschnitt: 69500
+StdAbw: 69400
+Min: 100
+Max: 138900
+
+Dauer2:
+Median: 69300
+Durchschnitt: 69300
+StdAbw: 69300
+Min: 0
+Max: 138600
+
+Dauer1-2:
+Median: 200
+Durchschnitt: 200
+StdAbw: 100
+Min: 100
+Max: 300
+
+
+Messebene: 3
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 68900
+Durchschnitt: 68900
+StdAbw: 68900
+Min: 0
+Max: 137800
+
+Dauer2:
+Median: 68700
+Durchschnitt: 68700
+StdAbw: 68700
+Min: 0
+Max: 137400
+
+Dauer1-2:
+Median: 200
+Durchschnitt: 200
+StdAbw: 200
+Min: 0
+Max: 400
+
+
+Messebene: 4
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 71900
+Durchschnitt: 71900
+StdAbw: 71900
+Min: 0
+Max: 143800
+
+Dauer2:
+Median: 71750
+Durchschnitt: 71750
+StdAbw: 71750
+Min: 0
+Max: 143500
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 5
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 70600
+Durchschnitt: 70600
+StdAbw: 70600
+Min: 0
+Max: 141200
+
+Dauer2:
+Median: 70400
+Durchschnitt: 70400
+StdAbw: 70400
+Min: 0
+Max: 140800
+
+Dauer1-2:
+Median: 200
+Durchschnitt: 200
+StdAbw: 200
+Min: 0
+Max: 400
+
+
+Messebene: 6
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 68450
+Durchschnitt: 68450
+StdAbw: 68450
+Min: 0
+Max: 136900
+
+Dauer2:
+Median: 68250
+Durchschnitt: 68250
+StdAbw: 68250
+Min: 0
+Max: 136500
+
+Dauer1-2:
+Median: 200
+Durchschnitt: 200
+StdAbw: 200
+Min: 0
+Max: 400
+
+
+Messebene: 7
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 68450
+Durchschnitt: 68450
+StdAbw: 68450
+Min: 0
+Max: 136900
+
+Dauer2:
+Median: 68300
+Durchschnitt: 68300
+StdAbw: 68300
+Min: 0
+Max: 136600
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 8
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 70850
+Durchschnitt: 70850
+StdAbw: 70850
+Min: 0
+Max: 141700
+
+Dauer2:
+Median: 70750
+Durchschnitt: 70750
+StdAbw: 70750
+Min: 0
+Max: 141500
+
+Dauer1-2:
+Median: 100
+Durchschnitt: 100
+StdAbw: 100
+Min: 0
+Max: 200
+
+
+Messebene: 9
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 67750
+Durchschnitt: 67750
+StdAbw: 67750
+Min: 0
+Max: 135500
+
+Dauer2:
+Median: 67600
+Durchschnitt: 67600
+StdAbw: 67600
+Min: 0
+Max: 135200
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 10
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 84900
+Durchschnitt: 84900
+StdAbw: 84900
+Min: 0
+Max: 169800
+
+Dauer2:
+Median: 84750
+Durchschnitt: 84750
+StdAbw: 84750
+Min: 0
+Max: 169500
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 11
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 68800
+Durchschnitt: 68800
+StdAbw: 68800
+Min: 0
+Max: 137600
+
+Dauer2:
+Median: 68650
+Durchschnitt: 68650
+StdAbw: 68650
+Min: 0
+Max: 137300
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+

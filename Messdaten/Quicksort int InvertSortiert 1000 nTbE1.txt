@@ -1,0 +1,275 @@
+Messebene: 1
+Anzahl Messungen: 1
+
+Dauer1:
+Median: 117900
+Durchschnitt: 117900
+StdAbw: 0
+Min: 117900
+Max: 117900
+
+Dauer2:
+Median: 117600
+Durchschnitt: 117600
+StdAbw: 0
+Min: 117600
+Max: 117600
+
+Dauer1-2:
+Median: 300
+Durchschnitt: 300
+StdAbw: 0
+Min: 300
+Max: 300
+
+
+Messebene: 2
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 57150
+Durchschnitt: 57150
+StdAbw: 57150
+Min: 0
+Max: 114300
+
+Dauer2:
+Median: 57050
+Durchschnitt: 57050
+StdAbw: 57050
+Min: 0
+Max: 114100
+
+Dauer1-2:
+Median: 100
+Durchschnitt: 100
+StdAbw: 100
+Min: 0
+Max: 200
+
+
+Messebene: 3
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 57050
+Durchschnitt: 57050
+StdAbw: 56950
+Min: 100
+Max: 114000
+
+Dauer2:
+Median: 56850
+Durchschnitt: 56850
+StdAbw: 56850
+Min: 0
+Max: 113700
+
+Dauer1-2:
+Median: 200
+Durchschnitt: 200
+StdAbw: 100
+Min: 100
+Max: 300
+
+
+Messebene: 4
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 56850
+Durchschnitt: 56850
+StdAbw: 56850
+Min: 0
+Max: 113700
+
+Dauer2:
+Median: 56700
+Durchschnitt: 56700
+StdAbw: 56700
+Min: 0
+Max: 113400
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 5
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 56750
+Durchschnitt: 56750
+StdAbw: 56750
+Min: 0
+Max: 113500
+
+Dauer2:
+Median: 56600
+Durchschnitt: 56600
+StdAbw: 56600
+Min: 0
+Max: 113200
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 6
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 59550
+Durchschnitt: 59550
+StdAbw: 59550
+Min: 0
+Max: 119100
+
+Dauer2:
+Median: 59450
+Durchschnitt: 59450
+StdAbw: 59450
+Min: 0
+Max: 118900
+
+Dauer1-2:
+Median: 100
+Durchschnitt: 100
+StdAbw: 100
+Min: 0
+Max: 200
+
+
+Messebene: 7
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 56750
+Durchschnitt: 56750
+StdAbw: 56650
+Min: 100
+Max: 113400
+
+Dauer2:
+Median: 56550
+Durchschnitt: 56550
+StdAbw: 56550
+Min: 0
+Max: 113100
+
+Dauer1-2:
+Median: 200
+Durchschnitt: 200
+StdAbw: 100
+Min: 100
+Max: 300
+
+
+Messebene: 8
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 56500
+Durchschnitt: 56500
+StdAbw: 56500
+Min: 0
+Max: 113000
+
+Dauer2:
+Median: 56350
+Durchschnitt: 56350
+StdAbw: 56350
+Min: 0
+Max: 112700
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 9
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 56350
+Durchschnitt: 56350
+StdAbw: 56350
+Min: 0
+Max: 112700
+
+Dauer2:
+Median: 56200
+Durchschnitt: 56200
+StdAbw: 56200
+Min: 0
+Max: 112400
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 10
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 56250
+Durchschnitt: 56250
+StdAbw: 56250
+Min: 0
+Max: 112500
+
+Dauer2:
+Median: 56100
+Durchschnitt: 56100
+StdAbw: 56100
+Min: 0
+Max: 112200
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 150
+Min: 0
+Max: 300
+
+
+Messebene: 11
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 56100
+Durchschnitt: 56100
+StdAbw: 56100
+Min: 0
+Max: 112200
+
+Dauer2:
+Median: 56000
+Durchschnitt: 56000
+StdAbw: 56000
+Min: 0
+Max: 112000
+
+Dauer1-2:
+Median: 100
+Durchschnitt: 100
+StdAbw: 100
+Min: 0
+Max: 200
+
+

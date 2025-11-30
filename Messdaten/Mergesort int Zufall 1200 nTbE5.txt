@@ -1,262 +1,287 @@
 Messebene: 1
-Anzahl Messungen: 0
+Anzahl Messungen: 1
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
+Median: 561700
+Durchschnitt: 561700
 StdAbw: 0
-Min: 0
-Max: 0
+Min: 561700
+Max: 561700
 
 Dauer2:
-Median: 0
-Durchschnitt: 0
+Median: 556200
+Durchschnitt: 556200
 StdAbw: 0
-Min: 0
-Max: 0
+Min: 556200
+Max: 556200
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
+Median: 5500
+Durchschnitt: 5500
 StdAbw: 0
-Min: 0
-Max: 0
+Min: 5500
+Max: 5500
 
 
 Messebene: 2
-Anzahl Messungen: 0
+Anzahl Messungen: 2
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 492400
+Durchschnitt: 492400
+StdAbw: 8400
+Min: 484000
+Max: 500800
 
 Dauer2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 489300
+Durchschnitt: 489300
+StdAbw: 8200
+Min: 481100
+Max: 497500
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 3100
+Durchschnitt: 3100
+StdAbw: 200
+Min: 2900
+Max: 3300
 
 
 Messebene: 3
-Anzahl Messungen: 0
+Anzahl Messungen: 4
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 396400
+Durchschnitt: 376625
+StdAbw: 41547
+Min: 305300
+Max: 408400
 
 Dauer2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 394300
+Durchschnitt: 374350
+StdAbw: 41604
+Min: 302900
+Max: 405900
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 2300
+Durchschnitt: 2275
+StdAbw: 192
+Min: 2000
+Max: 2500
 
 
 Messebene: 4
-Anzahl Messungen: 0
+Anzahl Messungen: 8
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 256900
+Durchschnitt: 256325
+StdAbw: 57395
+Min: 182300
+Max: 365000
 
 Dauer2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 255600
+Durchschnitt: 254612
+StdAbw: 56944
+Min: 181300
+Max: 363100
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 1350
+Durchschnitt: 1712
+StdAbw: 837
+Min: 1000
+Max: 3800
 
 
 Messebene: 5
-Anzahl Messungen: 192
+Anzahl Messungen: 16
 
 Dauer1:
-Median: 629350
-Durchschnitt: 7908624
-StdAbw: 12450211
-Min: 4000
-Max: 37885300
+Median: 8100
+Durchschnitt: 7575
+StdAbw: 1689
+Min: 5100
+Max: 9700
 
 Dauer2:
-Median: 628200
-Durchschnitt: 7906883
-StdAbw: 12449239
-Min: 3800
-Max: 37883000
+Median: 7550
+Durchschnitt: 7087
+StdAbw: 1581
+Min: 4800
+Max: 9100
 
 Dauer1-2:
-Median: 800
-Durchschnitt: 1740
-StdAbw: 6404
-Min: 200
-Max: 75700
+Median: 450
+Durchschnitt: 487
+StdAbw: 153
+Min: 300
+Max: 800
 
 
 Messebene: 6
-Anzahl Messungen: 0
+Anzahl Messungen: 32
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 2800
+Durchschnitt: 2775
+StdAbw: 526
+Min: 2100
+Max: 4000
 
 Dauer2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 2500
+Durchschnitt: 2440
+StdAbw: 440
+Min: 1900
+Max: 3600
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 300
+Durchschnitt: 334
+StdAbw: 181
+Min: 200
+Max: 1100
 
 
 Messebene: 7
-Anzahl Messungen: 0
+Anzahl Messungen: 64
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 1100
+Durchschnitt: 1256
+StdAbw: 369
+Min: 900
+Max: 2500
 
 Dauer2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 900
+Durchschnitt: 1081
+StdAbw: 339
+Min: 700
+Max: 2200
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
+Median: 200
+Durchschnitt: 175
+StdAbw: 81
 Min: 0
-Max: 0
+Max: 400
 
 
 Messebene: 8
-Anzahl Messungen: 0
+Anzahl Messungen: 128
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 500
+Durchschnitt: 567
+StdAbw: 220
+Min: 400
+Max: 1200
 
 Dauer2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 400
+Durchschnitt: 445
+StdAbw: 182
+Min: 300
+Max: 1000
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
+Median: 100
+Durchschnitt: 121
+StdAbw: 121
 Min: 0
-Max: 0
+Max: 800
 
 
 Messebene: 9
-Anzahl Messungen: 0
+Anzahl Messungen: 256
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 200
+Durchschnitt: 287
+StdAbw: 162
+Min: 100
+Max: 1700
 
 Dauer2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
-Min: 0
-Max: 0
+Median: 200
+Durchschnitt: 192
+StdAbw: 153
+Min: 100
+Max: 1600
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
+Median: 100
+Durchschnitt: 94
+StdAbw: 62
 Min: 0
-Max: 0
+Max: 400
 
 
 Messebene: 10
-Anzahl Messungen: 0
+Anzahl Messungen: 512
 
 Dauer1:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
+Median: 100
+Durchschnitt: 143
+StdAbw: 106
 Min: 0
-Max: 0
+Max: 1000
 
 Dauer2:
 Median: 0
-Durchschnitt: 0
-StdAbw: 0
+Durchschnitt: 55
+StdAbw: 89
 Min: 0
-Max: 0
+Max: 900
 
 Dauer1-2:
-Median: 0
-Durchschnitt: 0
-StdAbw: 0
+Median: 100
+Durchschnitt: 88
+StdAbw: 71
 Min: 0
-Max: 0
+Max: 1000
 
 
 Messebene: 11
-Anzahl Messungen: 0
+Anzahl Messungen: 1024
 
 Dauer1:
 Median: 0
-Durchschnitt: 0
-StdAbw: 0
+Durchschnitt: 40
+StdAbw: 75
 Min: 0
-Max: 0
+Max: 700
+
+Dauer2:
+Median: 0
+Durchschnitt: 4
+StdAbw: 21
+Min: 0
+Max: 100
+
+Dauer1-2:
+Median: 0
+Durchschnitt: 35
+StdAbw: 71
+Min: 0
+Max: 700
+
+
+Messebene: 12
+Anzahl Messungen: 352
+
+Dauer1:
+Median: 0
+Durchschnitt: 19
+StdAbw: 39
+Min: 0
+Max: 100
 
 Dauer2:
 Median: 0
@@ -267,9 +292,9 @@ Max: 0
 
 Dauer1-2:
 Median: 0
-Durchschnitt: 0
-StdAbw: 0
+Durchschnitt: 19
+StdAbw: 39
 Min: 0
-Max: 0
+Max: 100
 
 

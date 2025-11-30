@@ -1,0 +1,200 @@
+Messebene: 1
+Anzahl Messungen: 1
+
+Dauer1:
+Median: 86100
+Durchschnitt: 86100
+StdAbw: 0
+Min: 86100
+Max: 86100
+
+Dauer2:
+Median: 85900
+Durchschnitt: 85900
+StdAbw: 0
+Min: 85900
+Max: 85900
+
+Dauer1-2:
+Median: 200
+Durchschnitt: 200
+StdAbw: 0
+Min: 200
+Max: 200
+
+
+Messebene: 2
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 900
+Durchschnitt: 900
+StdAbw: 900
+Min: 0
+Max: 1800
+
+Dauer2:
+Median: 850
+Durchschnitt: 850
+StdAbw: 850
+Min: 0
+Max: 1700
+
+Dauer1-2:
+Median: 50
+Durchschnitt: 50
+StdAbw: 50
+Min: 0
+Max: 100
+
+
+Messebene: 3
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 900
+Durchschnitt: 900
+StdAbw: 900
+Min: 0
+Max: 1800
+
+Dauer2:
+Median: 850
+Durchschnitt: 850
+StdAbw: 850
+Min: 0
+Max: 1700
+
+Dauer1-2:
+Median: 50
+Durchschnitt: 50
+StdAbw: 50
+Min: 0
+Max: 100
+
+
+Messebene: 4
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 900
+Durchschnitt: 900
+StdAbw: 900
+Min: 0
+Max: 1800
+
+Dauer2:
+Median: 800
+Durchschnitt: 800
+StdAbw: 800
+Min: 0
+Max: 1600
+
+Dauer1-2:
+Median: 100
+Durchschnitt: 100
+StdAbw: 100
+Min: 0
+Max: 200
+
+
+Messebene: 5
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 550
+Durchschnitt: 550
+StdAbw: 550
+Min: 0
+Max: 1100
+
+Dauer2:
+Median: 450
+Durchschnitt: 450
+StdAbw: 450
+Min: 0
+Max: 900
+
+Dauer1-2:
+Median: 100
+Durchschnitt: 100
+StdAbw: 100
+Min: 0
+Max: 200
+
+
+Messebene: 6
+Anzahl Messungen: 2
+
+Dauer1:
+Median: 700
+Durchschnitt: 700
+StdAbw: 100
+Min: 600
+Max: 800
+
+Dauer2:
+Median: 550
+Durchschnitt: 550
+StdAbw: 150
+Min: 400
+Max: 700
+
+Dauer1-2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 50
+Min: 100
+Max: 200
+
+
+Messebene: 7
+Anzahl Messungen: 4
+
+Dauer1:
+Median: 300
+Durchschnitt: 325
+StdAbw: 178
+Min: 100
+Max: 600
+
+Dauer2:
+Median: 150
+Durchschnitt: 225
+StdAbw: 163
+Min: 100
+Max: 500
+
+Dauer1-2:
+Median: 100
+Durchschnitt: 100
+StdAbw: 70
+Min: 0
+Max: 200
+
+
+Messebene: 8
+Anzahl Messungen: 8
+
+Dauer1:
+Median: 200
+Durchschnitt: 200
+StdAbw: 165
+Min: 0
+Max: 500
+
+Dauer2:
+Median: 150
+Durchschnitt: 150
+StdAbw: 122
+Min: 0
+Max: 400
+
+Dauer1-2:
+Median: 50
+Durchschnitt: 50
+StdAbw: 50
+Min: 0
+Max: 100
+
+
