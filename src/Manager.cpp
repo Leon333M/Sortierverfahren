@@ -7,7 +7,7 @@
 #include <string>
 
 Manager::Manager(int argc, char *argv[]) {
-    char variante = 'm';
+    char variante = 'a';
     listeVariante = 'z';
 
     if (argc >= 2) {
@@ -146,11 +146,13 @@ void Manager::parallelzeiten() {
         md->ende1 = stop;
         Messdaten::addMessDaten(0, md);
     }
+    Messdaten::resetMessDaten();
 };
 
 void Manager::messeSortierzeitenP() {
     // init
-    int t[] = {1, 2, 4, 8, 16, 32, 64, 128, 256};
+    // int t[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 1024, 4096};
+    int te[] = {1, 2, 3, 4, 5, 6, 7 /*, 8, 9, 10, 11, 12, 13, 14, 15*/};
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
     Messdaten::resetMessDaten();
@@ -158,7 +160,7 @@ void Manager::messeSortierzeitenP() {
 
     // Mergesort
     std::cout << "Mergesort :" << std::endl;
-    for (int i : t) {
+    for (int i : te) {
         Mergesort mergesort;
         int *liste = listenersteler.erstelleListe(listeVariante, lange);
         std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
@@ -166,7 +168,8 @@ void Manager::messeSortierzeitenP() {
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
         int t = static_cast<int>(std::pow(2, i - 1));
-        std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
+        std::cout << "Gesamtlaufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
+        dateimanager.exportMessData("Mergesort", "nTbE" + std::to_string(i));
         // gebe Speicher frei da 10Gb bei Aray von 40'000'000
         Messdaten::resetMessDaten();
         Messdaten::initMessDaten(lange);
@@ -174,7 +177,7 @@ void Manager::messeSortierzeitenP() {
 
     // Quicksort
     std::cout << "Quicksort :" << std::endl;
-    for (int i : t) {
+    for (int i : te) {
         Quicksort quicksort;
         int *liste = listenersteler.erstelleListe(listeVariante, lange);
         std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
@@ -182,7 +185,8 @@ void Manager::messeSortierzeitenP() {
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
         int t = static_cast<int>(std::pow(2, i - 1));
-        std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
+        std::cout << "Gesamtlaufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
+        dateimanager.exportMessData("Quicksort", "nTbE" + std::to_string(i));
         // gebe Speicher frei da 10Gb bei Aray von 40'000'000
         Messdaten::resetMessDaten();
         Messdaten::initMessDaten(lange);
