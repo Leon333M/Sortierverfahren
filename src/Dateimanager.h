@@ -32,7 +32,7 @@ private:
 public:
     // Funktionen
     Dateimanager() {};
-    void exportMessData(std::string sortieralgorithmus, int threadAnzahl);
+    void exportMessData(std::string sortieralgorithmus, std::string threadAnzahlVariante);
 
     static Statistik berechneDauerStatistik1(const std::vector<std::unique_ptr<Messdaten>> &md);
     static Statistik berechneDauerStatistik2(const std::vector<std::unique_ptr<Messdaten>> &md);
