@@ -7,6 +7,7 @@ class Manager {
 private:
     // Vaibalen
     int lange = 10;
+    char listeVariante;
     Listenersteler listenersteler;
     Dateimanager dateimanager;
 

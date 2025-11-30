@@ -8,11 +8,16 @@
 
 Manager::Manager(int argc, char *argv[]) {
     char variante = 'm';
+    listeVariante = 'z';
+
     if (argc >= 2) {
         lange = std::stoi(argv[1]);
     }
     if (argc >= 3) {
         variante = argv[2][0];
+    }
+    if (argc >= 4) {
+        listeVariante = argv[3][0];
     }
 
     if (variante == 'g' || variante == 'a') {
@@ -35,7 +40,7 @@ Manager::Manager(int argc, char *argv[]) {
 void Manager::grundzeiten() {
 
     // Mergesort
-    int *liste = listenersteler.erstelleListe(lange);
+    int *liste = listenersteler.erstelleListe(listeVariante, lange);
     Mergesort mergesort;
     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
     mergesort.sortG(liste, lange);
@@ -51,7 +56,7 @@ void Manager::grundzeiten() {
     Messdaten::resetMessDaten();
 
     // Quicksort
-    liste = listenersteler.erstelleListe(lange);
+    liste = listenersteler.erstelleListe(listeVariante, lange);
     Quicksort quicksort;
     start = std::chrono::high_resolution_clock::now();
     quicksort.sortG(liste, lange);
@@ -72,12 +77,12 @@ void Manager::messeSortierzeiten() {
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
     Messdaten::initMessDaten(lange);
-    int *liste = listenersteler.erstelleListe(lange);
+    int *liste = listenersteler.erstelleListe(listeVariante, lange);
 
     // Mergesort
     Mergesort mergesort;
     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-    mergesort.sortMA(lange);
+    mergesort.sortMA(listeVariante, lange);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Gesamtlaufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
@@ -86,12 +91,12 @@ void Manager::messeSortierzeiten() {
     // gebe Speicher frei da 10Gb bei Aray von 40'000'000
     Messdaten::resetMessDaten();
     Messdaten::initMessDaten(lange);
-    liste = listenersteler.erstelleListe(lange);
+    liste = listenersteler.erstelleListe(listeVariante, lange);
 
     // Quicksort
     Quicksort quicksort;
     start = std::chrono::high_resolution_clock::now();
-    quicksort.sortMA(lange);
+    quicksort.sortMA(listeVariante, lange);
     stop = std::chrono::high_resolution_clock::now();
     dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Gesamtlaufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
@@ -109,7 +114,7 @@ void Manager::parallelzeiten() {
     std::cout << "Mergesort :" << std::endl;
     for (int i : te) {
         Mergesort mergesort;
-        int *liste = listenersteler.erstelleListe(lange);
+        int *liste = listenersteler.erstelleListe(listeVariante, lange);
         std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
         mergesort.sortP(liste, lange, i);
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
@@ -128,7 +133,7 @@ void Manager::parallelzeiten() {
     std::cout << "Quicksort :" << std::endl;
     for (int i : te) {
         Quicksort quicksort;
-        int *liste = listenersteler.erstelleListe(lange);
+        int *liste = listenersteler.erstelleListe(listeVariante, lange);
         std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
         quicksort.sortP(liste, lange, i);
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
@@ -155,9 +160,9 @@ void Manager::messeSortierzeitenP() {
     std::cout << "Mergesort :" << std::endl;
     for (int i : t) {
         Mergesort mergesort;
-        int *liste = listenersteler.erstelleListe(lange);
+        int *liste = listenersteler.erstelleListe(listeVariante, lange);
         std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-        mergesort.sortPMA(lange, i);
+        mergesort.sortPMA(listeVariante, lange, i);
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
         int t = static_cast<int>(std::pow(2, i - 1));
@@ -171,9 +176,9 @@ void Manager::messeSortierzeitenP() {
     std::cout << "Quicksort :" << std::endl;
     for (int i : t) {
         Quicksort quicksort;
-        int *liste = listenersteler.erstelleListe(lange);
+        int *liste = listenersteler.erstelleListe(listeVariante, lange);
         std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-        quicksort.sortPMA(lange, i);
+        quicksort.sortPMA(listeVariante, lange, i);
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
         int t = static_cast<int>(std::pow(2, i - 1));

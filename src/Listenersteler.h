@@ -12,7 +12,7 @@ private:
 public:
     // Funktionen
     Listenersteler();
-    int *erstelleListe(int lange);
+    int *erstelleListe(char listeVariante, int lange);
     int *erstelleZufallsListe(int lange);
     int *erstelleSortierteListe(int lange);
     int *erstelleInvertierteListe(int lange);

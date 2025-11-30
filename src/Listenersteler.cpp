@@ -6,7 +6,31 @@
 
 Listenersteler::Listenersteler() {};
 
-int *Listenersteler::erstelleListe(int lange) {
+int *Listenersteler::erstelleListe(char listeVariante, int lange) {
+    int *liste;
+    switch (listeVariante) {
+        case 'z':
+            liste = erstelleZufallsListe(lange);
+            break;
+        case 's':
+            liste = erstelleSortierteListe(lange);
+            break;
+        case 'i':
+            liste = erstelleInvertierteListe(lange);
+            break;
+        case 'f':
+            liste = erstelleFastSortierteListe(lange);
+            break;
+        case 'd':
+            liste = erstelleDuplizierteListe(lange);
+            break;
+        default:
+            liste = erstelleZufallsListe(lange);
+    }
+    return liste;
+};
+
+int *Listenersteler::erstelleZufallsListe(int lange) {
     listenLange = lange;
     liste = std::make_unique<int[]>(listenLange);
 
@@ -14,24 +38,8 @@ int *Listenersteler::erstelleListe(int lange) {
     // std::random_device rd;
     // std::mt19937 gen(rd());
     std::mt19937 gen(seed);
+    std::uniform_int_distribution<> dis(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
     // std::uniform_int_distribution<> dis(0, 9);
-    std::uniform_int_distribution<> dis(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
-
-    std::generate_n(liste.get(), lange, [&]() { return dis(gen); });
-
-    Messdaten::arrayTyp = "Zufall";
-    Messdaten::arrayArt = "int";
-    Messdaten::arrayLange = lange;
-
-    return liste.get();
-};
-
-int *Listenersteler::erstelleZufallsListe(int lange) {
-    listenLange = lange;
-    liste = std::make_unique<int[]>(listenLange);
-
-    std::mt19937 gen(seed);
-    std::uniform_int_distribution<> dis(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
 
     std::generate_n(liste.get(), lange, [&]() { return dis(gen); });
 
