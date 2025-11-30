@@ -20,6 +20,7 @@ Manager::Manager(int argc, char *argv[]) {
         listeVariante = argv[3][0];
     }
     if (argc >= 5) {
+        std::cout << "messe Alles" << std::endl;
         messeAlles();
     }
 
@@ -217,8 +218,10 @@ void Manager::messeAlles() {
     char listeVarianten[] = {'z', 's', 'i', 'f', 'd'};
     for (int l : langen) {
         lange = l;
+        std::cout << "lange :" << lange << std::endl;
         for (char lv : listeVarianten) {
             listeVariante = lv;
+            std::cout << "listeVariante :" << listeVariante << std::endl;
             messeZeiten();
         }
     }
@@ -226,7 +229,7 @@ void Manager::messeAlles() {
 
 void Manager::messeZeiten() {
     grundzeiten();
-    parallelzeiten();
+    // parallelzeiten();
     messeSortierzeiten();
-    messeSortierzeitenP();
+    // messeSortierzeitenP();
 };
