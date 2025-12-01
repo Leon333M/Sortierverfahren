@@ -4,7 +4,7 @@
 #include <thread>
 #include <vector>
 
-#include <iostream>
+#include "WorkerPool.h"
 
 Quicksort::Quicksort() {};
 
@@ -129,6 +129,22 @@ void Quicksort::quicksortPM(int *liste, const int links, const int rechts, const
     pos->ende1 = std::chrono::high_resolution_clock::now();
     Messdaten::addMessDaten(aktuelleEbene, pos);
 };
+
+void Quicksort::quicksortW(int *liste, int links, int rechts, int workerCount) {
+    WorkerPool pool(workerCount);
+
+    pool.taskHandler = [](int *liste, int links, int rechts, WorkerPool &pool) {
+        if (links < rechts) {
+            int ml, mr;
+            Quicksort::partitioniere(liste, links, rechts, ml, mr);
+            pool.addTask({liste, links, ml});
+            pool.addTask({liste, mr, rechts});
+        }
+    };
+
+    pool.addTask({liste, links, rechts});
+    pool.waitUntilDone();
+}
 
 void Quicksort::partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr) {
     int i = links;
