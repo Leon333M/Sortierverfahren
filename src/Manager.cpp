@@ -216,7 +216,8 @@ void Manager::messeAlles() {
         40000,
         400000,
         4000000,
-        40000000};
+        // 40000000,
+    };
     char listeVarianten[] = {'z', 's', 'i', 'f', 'd'};
     for (int l : langen) {
         lange = l;
