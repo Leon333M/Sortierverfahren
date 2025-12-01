@@ -1,3 +1,4 @@
+Debug:
 Laufzeit: 0 ms
 Laufzeit: 0 ms
 lange : 1200 init Zeit : 0 ms
