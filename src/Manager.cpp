@@ -22,6 +22,7 @@ Manager::Manager(int argc, char *argv[]) {
     if (argc >= 5) {
         std::cout << "messe Alles" << std::endl;
         messeAlles();
+        variante = 'l';
     }
 
     if (variante == 'g' || variante == 'a') {
@@ -80,6 +81,7 @@ void Manager::messeSortierzeiten() {
     // init
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
+    Messdaten::resetMessDaten();
     Messdaten::initMessDaten(lange);
     int *liste = listenersteler.erstelleListe(listeVariante, lange);
 
@@ -229,7 +231,7 @@ void Manager::messeAlles() {
 
 void Manager::messeZeiten() {
     grundzeiten();
-    // parallelzeiten();
+    parallelzeiten();
     messeSortierzeiten();
-    // messeSortierzeitenP();
+    messeSortierzeitenP();
 };

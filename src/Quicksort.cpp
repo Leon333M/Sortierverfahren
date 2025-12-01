@@ -133,7 +133,8 @@ void Quicksort::quicksortPM(int *liste, const int links, const int rechts, const
 void Quicksort::partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr) {
     int i = links;
     int j = rechts;
-    int p = liste[rechts];
+    int mitte = links + (rechts - links) / 2;
+    int p = liste[mitte];
     while (i <= j) {
         while (liste[i] < p) {
             i++;
