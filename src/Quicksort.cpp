@@ -1,10 +1,9 @@
 // Quicksort.cpp
 #include "Quicksort.h"
+#include "WorkerPool.h"
 #include <chrono>
 #include <thread>
 #include <vector>
-
-#include "WorkerPool.h"
 
 Quicksort::Quicksort() {};
 

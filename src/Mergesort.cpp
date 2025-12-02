@@ -1,10 +1,9 @@
 // Mergesort.cpp
 #include "Mergesort.h"
+#include "MergeWorkerPool.h"
 #include <memory>
 #include <thread>
 #include <vector>
-
-#include "WorkerPool.h"
 
 Mergesort::Mergesort() {};
 
@@ -30,6 +29,12 @@ void Mergesort::sortPM(int *liste, int lange, int neueThreadsBisEbene, int messE
     int links = 0;
     int rechts = lange - 1;
     mergesortP(liste, links, rechts, 1, neueThreadsBisEbene, messEbene);
+};
+
+void Mergesort::sortW(int *liste, int lange, int workerThreads) {
+    int links = 0;
+    int rechts = lange - 1;
+    mergesortW(liste, links, rechts, workerThreads);
 };
 
 void Mergesort::mergesort(int *liste, const int links, const int rechts) {
@@ -136,30 +141,25 @@ void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const
 };
 
 void Mergesort::mergesortW(int *liste, int links, int rechts, int workerThreads) {
-    WorkerPool pool(workerThreads);
+    MergeWorkerPool pool(workerThreads);
 
-    pool.taskHandler = [](int *liste, int links, int rechts, WorkerPool &pool) {
+    pool.taskHandler = [&](int *liste, int links, int rechts, MergeWorkerPool &pool) {
         if (links < rechts) {
             int lange = rechts - links + 1;
-
             if (lange < Sortierverfaren::mindestLange) {
-                Mergesort::mergesort(liste, links, rechts); // lokal sortieren
-                return;
+                mergesort(liste, links, rechts);
+            } else {
+                int mitte = links + (rechts - links) / 2;
+                auto leftHandle = pool.addTaskSmart({liste, links, mitte});
+                pool.taskHandler(liste, mitte + 1, rechts, pool);
+                leftHandle.wait();
+                mischen(liste, links, mitte, rechts, lange);
             }
-            int mitte = links + (rechts - links) / 2;
-            pool.addTask({liste, links, mitte});
-            pool.taskHandler(liste, mitte + 1, rechts, pool);
-
-            // Warten bis linker Bereich fertig ist
-            pool.waitUntilDone();
-
-            // Danach merge
-            mischen(liste, links, mitte, rechts, lange);
         }
     };
 
-    pool.addTask({liste, links, rechts});
-    pool.waitUntilDone();
+    // Starttask
+    pool.taskHandler(liste, links, rechts, pool);
 }
 
 void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {

@@ -13,6 +13,7 @@ public:
     void sortM(int *liste, int lange, int messEbene);
     void sortP(int *liste, int lange, int neueThreadsBisEbene);
     void sortPM(int *liste, int lange, int neueThreadsBisEbene, int messEbene);
+    void sortW(int *liste, int lange, int workerThreads);
 
 private:
     // Funktionen
