@@ -3,6 +3,9 @@
 #include "Messdaten.h"
 
 class Sortierverfaren {
+public:
+    static const int mindestLange = 4000;
+
 protected:
     // Vaibalen
 

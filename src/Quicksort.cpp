@@ -141,8 +141,7 @@ void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads)
 
     pool.taskHandler = [](int *liste, int links, int rechts, WorkerPool &pool) {
         if (links < rechts) {
-            const int mindestLange = 4000;
-            if (rechts - links < mindestLange) {
+            if (rechts - links < Sortierverfaren::mindestLange) {
                 quicksort(liste, links, rechts);
             } else {
                 int ml, mr;

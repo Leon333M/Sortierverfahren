@@ -4,6 +4,8 @@
 #include <thread>
 #include <vector>
 
+#include "WorkerPool.h"
+
 Mergesort::Mergesort() {};
 
 void Mergesort::sortG(int *liste, int lange) {
@@ -132,6 +134,33 @@ void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const
     pos->ende1 = std::chrono::high_resolution_clock::now();
     Messdaten::addMessDaten(aktuelleEbene, pos);
 };
+
+void Mergesort::mergesortW(int *liste, int links, int rechts, int workerThreads) {
+    WorkerPool pool(workerThreads);
+
+    pool.taskHandler = [](int *liste, int links, int rechts, WorkerPool &pool) {
+        if (links < rechts) {
+            int lange = rechts - links + 1;
+
+            if (lange < Sortierverfaren::mindestLange) {
+                Mergesort::mergesort(liste, links, rechts); // lokal sortieren
+                return;
+            }
+            int mitte = links + (rechts - links) / 2;
+            pool.addTask({liste, links, mitte});
+            pool.taskHandler(liste, mitte + 1, rechts, pool);
+
+            // Warten bis linker Bereich fertig ist
+            pool.waitUntilDone();
+
+            // Danach merge
+            mischen(liste, links, mitte, rechts, lange);
+        }
+    };
+
+    pool.addTask({liste, links, rechts});
+    pool.waitUntilDone();
+}
 
 void Mergesort::mischen(int *liste, int links, const int mitte, const int rechts, const int lange) {
     int *listeB = new int[lange];
