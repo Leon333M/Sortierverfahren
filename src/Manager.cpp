@@ -49,6 +49,7 @@ Manager::Manager(int argc, char *argv[]) {
 };
 
 void Manager::grundzeiten() {
+    Messdaten::resetMessDaten();
 
     // Mergesort
     int *liste = listenersteler.erstelleListe(listeVariante, lange);
@@ -64,6 +65,7 @@ void Manager::grundzeiten() {
     md->start1 = start;
     md->ende1 = stop;
     Messdaten::addMessDaten(1, md);
+    dateimanager.exportMessData("Mergesort", "g");
     Messdaten::resetMessDaten();
 
     // Quicksort
@@ -80,6 +82,7 @@ void Manager::grundzeiten() {
     md->start1 = start;
     md->ende1 = stop;
     Messdaten::addMessDaten(1, md);
+    dateimanager.exportMessData("Quicksort", "g");
     Messdaten::resetMessDaten();
 };
 
@@ -117,6 +120,7 @@ void Manager::messeSortierzeiten() {
 
 void Manager::parallelzeiten() {
     // init
+    Messdaten::resetMessDaten();
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
 
@@ -136,8 +140,9 @@ void Manager::parallelzeiten() {
         md->start1 = start;
         md->ende1 = stop;
         Messdaten::addMessDaten(1, md);
+        dateimanager.exportMessData("Mergesort", "p" + std::to_string(i));
+        Messdaten::resetMessDaten();
     }
-    Messdaten::resetMessDaten();
 
     // Quicksort
     std::cout << "Quicksort :" << std::endl;
@@ -155,12 +160,14 @@ void Manager::parallelzeiten() {
         md->start1 = start;
         md->ende1 = stop;
         Messdaten::addMessDaten(1, md);
+        dateimanager.exportMessData("Quicksort", "p" + std::to_string(i));
+        Messdaten::resetMessDaten();
     }
-    Messdaten::resetMessDaten();
 };
 
 void Manager::workerZeiten() {
     // init
+    Messdaten::resetMessDaten();
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
 
@@ -180,8 +187,9 @@ void Manager::workerZeiten() {
         md->start1 = start;
         md->ende1 = stop;
         Messdaten::addMessDaten(1, md);
+        dateimanager.exportMessData("Mergesort", "w" + std::to_string(i));
+        Messdaten::resetMessDaten();
     }
-    Messdaten::resetMessDaten();
 
     // Quicksort
     std::cout << "Quicksort :" << std::endl;
@@ -198,8 +206,9 @@ void Manager::workerZeiten() {
         md->start1 = start;
         md->ende1 = stop;
         Messdaten::addMessDaten(1, md);
+        dateimanager.exportMessData("Quicksort", "w" + std::to_string(i));
+        Messdaten::resetMessDaten();
     }
-    Messdaten::resetMessDaten();
 };
 
 void Manager::messeSortierzeitenP() {
