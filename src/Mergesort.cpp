@@ -40,7 +40,7 @@ void Mergesort::sortW(int *liste, int lange, int workerThreads) {
 void Mergesort::mergesort(int *liste, const int links, const int rechts) {
     int lange = rechts - links + 1;
     if (lange > 1) {
-        int mitte = links + (rechts - links) / 2;
+        int mitte = links + ((rechts - links) / 2);
         mergesort(liste, links, mitte);      // A
         mergesort(liste, mitte + 1, rechts); // B
         mischen(liste, links, mitte, rechts, lange);
@@ -53,7 +53,7 @@ void Mergesort::mergesort(int *liste, const int links, const int rechts, const i
     } else {
         int lange = rechts - links + 1;
         if (lange > 1) {
-            int mitte = links + (rechts - links) / 2;
+            int mitte = links + ((rechts - links) / 2);
             mergesort(liste, links, mitte, aktuelleEbene + 1, messEbene);
             mergesort(liste, mitte + 1, rechts, aktuelleEbene + 1, messEbene);
             mischen(liste, links, mitte, rechts, lange);
@@ -66,7 +66,7 @@ void Mergesort::mergesortM(int *liste, const int links, const int rechts, const 
     pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts - links + 1;
     if (lange > 1) {
-        int mitte = links + (rechts - links) / 2;
+        int mitte = links + ((rechts - links) / 2);
         pos->start2 = std::chrono::high_resolution_clock::now();
         mergesort(liste, links, mitte);
         mergesort(liste, mitte + 1, rechts);
@@ -81,7 +81,7 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
     if (aktuelleEbene < neueThreadsBisEbene) {
         int lange = rechts - links + 1;
         if (lange > 1) {
-            int mitte = links + (rechts - links) / 2;
+            int mitte = links + ((rechts - links) / 2);
             // mergesort(liste, links, mitte);
             std::thread thread(
                 static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
@@ -103,7 +103,7 @@ void Mergesort::mergesortP(int *liste, const int links, const int rechts, const 
         } else {
             int lange = rechts - links + 1;
             if (lange > 1) {
-                int mitte = links + (rechts - links) / 2;
+                int mitte = links + ((rechts - links) / 2);
                 // mergesort(liste, links, mitte);
                 std::thread thread(
                     static_cast<void (*)(int *, const int, const int, const int, const int, const int)>(&Mergesort::mergesortP),
@@ -124,7 +124,7 @@ void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const
     pos->start1 = std::chrono::high_resolution_clock::now();
     int lange = rechts - links + 1;
     if (lange > 1) {
-        int mitte = links + (rechts - links) / 2;
+        int mitte = links + ((rechts - links) / 2);
         pos->start2 = std::chrono::high_resolution_clock::now();
         // mergesort(liste, links, mitte);
         std::thread thread(
@@ -149,7 +149,7 @@ void Mergesort::mergesortW(int *liste, int links, int rechts, int workerThreads)
             if (lange < Sortierverfaren::mindestLange) {
                 mergesort(liste, links, rechts);
             } else {
-                int mitte = links + (rechts - links) / 2;
+                int mitte = links + ((rechts - links) / 2);
                 auto leftHandle = pool.addTaskSmart({liste, links, mitte});
                 pool.taskHandler(liste, mitte + 1, rechts, pool);
                 leftHandle.wait();

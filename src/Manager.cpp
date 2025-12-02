@@ -6,8 +6,8 @@
 #include <iostream>
 #include <string>
 
-int t[] = {1, 2, 4, 8, 15, 16, 17, 18, 32, 64, 128, 256, 1024, 4096, 8192, 16384};
-int te[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+const int t[] = {1, 2, 4, 8, 15, 16, 17, 18, 32, 64, 128, 256, 1024, 4096, 8192, 16384};
+const int te[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
 Manager::Manager(int argc, char *argv[]) {
     char variante = 'a';
@@ -266,13 +266,13 @@ void Manager::messeAlles() {
         200000,
         400000,
         800000,
-        2000000,
-        4000000,
-        8000000,
-        40000000,
-        400000000,
+        // 2000000,
+        // 4000000,
+        // 8000000,
+        // 40000000,
+        // 400000000,
     };
-    char listeVarianten[] = {'z', 's', 'i', 'f', 'd'};
+    const char listeVarianten[] = {'z', 's', 'i', 'f', 'd'};
     for (int l : langen) {
         lange = l;
         std::cout << "lange :" << lange << std::endl;
