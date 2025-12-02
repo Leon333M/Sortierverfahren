@@ -25,4 +25,5 @@ private:
     void istSortiert() const;
     void messeAlles();
     void messeZeiten();
+    void incArray();
 };

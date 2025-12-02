@@ -43,6 +43,9 @@ Manager::Manager(int argc, char *argv[]) {
     if (variante == 'w' || variante == 'a') {
         workerZeiten();
     }
+    if (variante == 'i' || variante == 'a') {
+        workerZeiten();
+    }
 
     // Ende
     std::cout << "Ende" << std::endl;
@@ -260,6 +263,7 @@ void Manager::istSortiert() const {
 };
 
 void Manager::messeAlles() {
+    auto start = std::chrono::high_resolution_clock::now();
     // 10 - 40'000'000
     int langen[] = {
         10,
@@ -291,6 +295,9 @@ void Manager::messeAlles() {
             messeZeiten();
         }
     }
+    auto stop = std::chrono::high_resolution_clock::now();
+    long long dauer = std::chrono::duration_cast<std::chrono::seconds>(stop - start).count();
+    std::cout << "Gesamtlaufzeit: " << dauer << " s" << " aller Messungen zusammen." << std::endl;
 };
 
 void Manager::messeZeiten() {
