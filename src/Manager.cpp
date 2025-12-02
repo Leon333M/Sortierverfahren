@@ -285,6 +285,7 @@ void Manager::messeAlles() {
         // 40000000,
         // 400000000,
     };
+    // Gesamtlaufzeit: 989 s aller Messungen zusammen. 10 - 800000
     const char listeVarianten[] = {'z', 's', 'i', 'f', 'd'};
     for (int l : langen) {
         lange = l;
