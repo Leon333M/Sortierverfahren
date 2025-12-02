@@ -33,6 +33,12 @@ void Quicksort::sortPM(int *liste, int lange, int neueThreadsBisEbene, int messE
     quicksortP(liste, links, rechts, 1, neueThreadsBisEbene, messEbene);
 };
 
+void Quicksort::sortW(int *liste, int lange, int workerThreads) {
+    int links = 0;
+    int rechts = lange - 1;
+    quicksortW(liste, links, rechts, workerThreads);
+};
+
 void Quicksort::quicksort(int *liste, const int links, const int rechts) {
     if (links < rechts) {
         int ml, mr;
@@ -130,15 +136,20 @@ void Quicksort::quicksortPM(int *liste, const int links, const int rechts, const
     Messdaten::addMessDaten(aktuelleEbene, pos);
 };
 
-void Quicksort::quicksortW(int *liste, int links, int rechts, int workerCount) {
-    WorkerPool pool(workerCount);
+void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads) {
+    WorkerPool pool(workerThreads);
 
     pool.taskHandler = [](int *liste, int links, int rechts, WorkerPool &pool) {
         if (links < rechts) {
-            int ml, mr;
-            Quicksort::partitioniere(liste, links, rechts, ml, mr);
-            pool.addTask({liste, links, ml});
-            pool.addTask({liste, mr, rechts});
+            const int mindestLange = 4000;
+            if (rechts - links < mindestLange) {
+                quicksort(liste, links, rechts);
+            } else {
+                int ml, mr;
+                Quicksort::partitioniere(liste, links, rechts, ml, mr);
+                pool.addTask({liste, links, ml});
+                pool.taskHandler(liste, mr, rechts, pool);
+            }
         }
     };
 

@@ -37,6 +37,9 @@ Manager::Manager(int argc, char *argv[]) {
     if (variante == 'o' || variante == 'a') {
         messeSortierzeitenP();
     }
+    if (variante == 'w' || variante == 'a') {
+        workerZeiten();
+    }
 
     // Ende
     std::cout << "Ende" << std::endl;
@@ -146,6 +149,52 @@ void Manager::parallelzeiten() {
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
         int t = static_cast<int>(std::pow(2, i - 1));
         std::cout << "Laufzeit: " << dauer << " ms" << " neue threads bis Ebene: " << i << " rund Threads: " << t << std::endl;
+        istSortiert();
+        Messdaten *md = new Messdaten();
+        md->start1 = start;
+        md->ende1 = stop;
+        Messdaten::addMessDaten(0, md);
+    }
+    Messdaten::resetMessDaten();
+};
+
+void Manager::workerZeiten() {
+    // init
+    int t[] = {1, 2, 4, 8, 16, 32, 64 /*, 128, 256, 1024, 4096*/};
+    // int t[] = {4};
+    // int te[] = {1, 2, 3, 4, 5, 6, 7 /*, 8, 9, 10, 11, 12, 13, 14, 15*/};
+    int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
+    std::cout << "maxEbene : " << maxEbene << std::endl;
+
+    // // Mergesort
+    // std::cout << "Mergesort :" << std::endl;
+    // for (int i : te) {
+    //     Mergesort mergesort;
+    //     int *liste = listenersteler.erstelleListe(listeVariante, lange);
+    //     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+    //     mergesort.sortP(liste, lange, i);
+    //     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+    //     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    //     int t = static_cast<int>(std::pow(2, i - 1));
+    //     std::cout << "Laufzeit: " << dauer << " ms" << " workerThreads: " << i << std::endl;
+    //     istSortiert();
+    //     Messdaten *md = new Messdaten();
+    //     md->start1 = start;
+    //     md->ende1 = stop;
+    //     Messdaten::addMessDaten(0, md);
+    // }
+    // Messdaten::resetMessDaten();
+
+    // Quicksort
+    std::cout << "Quicksort :" << std::endl;
+    for (int i : t) {
+        Quicksort quicksort;
+        int *liste = listenersteler.erstelleListe(listeVariante, lange);
+        std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+        quicksort.sortW(liste, lange, i);
+        std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+        long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+        std::cout << "Laufzeit: " << dauer << " ms" << " workerThreads: " << i << std::endl;
         istSortiert();
         Messdaten *md = new Messdaten();
         md->start1 = start;

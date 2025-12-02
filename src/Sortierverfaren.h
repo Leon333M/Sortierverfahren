@@ -15,6 +15,7 @@ public:
     void sortP(int *liste, int lange, int neueThreadsBisEbene);
     virtual void sortPM(int *liste, int lange, int neueThreadsBisEbene, int messEbene) = 0;
     void sortPMA(char listeVariante, int lange, int neueThreadsBisEbene);
+    void sortW(int *liste, int lange, int workerThreads);
 
 protected:
     // Funktionen

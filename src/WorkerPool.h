@@ -14,6 +14,17 @@ struct Task {
 };
 
 class WorkerPool {
+private:
+    std::vector<std::thread> threads;
+    std::queue<Task> taskQueue;
+    std::mutex mutex;
+    std::condition_variable cv;
+    std::atomic<int> activeTasks;
+    bool finished;
+
+public:
+    std::function<void(int *, int, int, WorkerPool &)> taskHandler;
+
 public:
     WorkerPool(int numThreads) : finished(false), activeTasks(0) {
         for (int i = 0; i < numThreads; ++i)
@@ -44,16 +55,7 @@ public:
         cv.wait(lock, [this] { return activeTasks == 0; });
     }
 
-    std::function<void(int *, int, int, WorkerPool &)> taskHandler;
-
 private:
-    std::vector<std::thread> threads;
-    std::queue<Task> taskQueue;
-    std::mutex mutex;
-    std::condition_variable cv;
-    std::atomic<int> activeTasks;
-    bool finished;
-
     void worker() {
         while (true) {
             Task task;
@@ -71,8 +73,9 @@ private:
             }
 
             // Task bearbeiten
-            if (taskHandler)
+            if (taskHandler) {
                 taskHandler(task.liste, task.links, task.rechts, *this);
+            }
 
             activeTasks--;
             cv.notify_all();

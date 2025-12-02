@@ -19,6 +19,7 @@ private:
     // Funktionen
     void grundzeiten();
     void parallelzeiten();
+    void workerZeiten();
     void messeSortierzeiten();
     void messeSortierzeitenP();
     void istSortiert() const;
