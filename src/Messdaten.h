@@ -4,6 +4,12 @@
 #include <mutex>
 #include <vector>
 
+struct MessWerte {
+    int threads;
+    long long dauer;
+    int lange;
+};
+
 class Messdaten {
 private:
     // Vaibalen

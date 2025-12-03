@@ -26,4 +26,6 @@ private:
     void messeAlles();
     void messeZeiten();
     void incArray();
+    void incArrayMT(volatile int *liste, long long lange, int threadCount);
+    void benchmarkIncThreads(int lange, std::vector<int> &thrads, std::vector<MessWerte> &messWerte, bool messeAlles);
 };

@@ -33,6 +33,7 @@ public:
     // Funktionen
     Dateimanager() {};
     void exportMessData(std::string sortieralgorithmus, std::string threadAnzahlVariante);
+    void writeMesswerteToFile(const std::string &filename, const std::vector<MessWerte> messWerte1, const std::vector<MessWerte> messWerte2);
 
     static Statistik berechneDauerStatistik1(const std::vector<std::unique_ptr<Messdaten>> &md);
     static Statistik berechneDauerStatistik2(const std::vector<std::unique_ptr<Messdaten>> &md);
@@ -46,4 +47,6 @@ private:
         std::function<long long(const Messdaten &)> dauerFunktion);
     static void schreibeMessdatenInDatei(std::ostream &outFile, const std::vector<MessdatenStatistik> &mdsv);
     static void schreibeStatistik(std::ostream &outFile, const std::string &name, const Statistik &s);
+    static void writeBlock(std::ostream &file, const std::vector<MessWerte> &werte);
+    static void sortByThreads(std::vector<MessWerte> &mw);
 };
