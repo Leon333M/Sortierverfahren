@@ -32,7 +32,7 @@ void Quicksort::sortPM(int *liste, int lange, int neueThreadsBisEbene, int messE
     quicksortP(liste, links, rechts, 1, neueThreadsBisEbene, messEbene);
 };
 
-void Quicksort::sortW(int *liste, int lange, int workerThreads) {
+void Quicksort::sortW(int *liste, const int lange, const int workerThreads) {
     int links = 0;
     int rechts = lange - 1;
     quicksortW(liste, links, rechts, workerThreads);
