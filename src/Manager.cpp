@@ -30,6 +30,8 @@ Manager::Manager(int argc, char *argv[]) {
         } else {
             lvn.push_back(listeVariante);
         }
+    } else {
+        lvn.push_back(listeVariante);
     }
     if (argc >= 5) {
         std::cout << "messe Alles" << std::endl;
