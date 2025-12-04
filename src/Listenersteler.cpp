@@ -7,6 +7,7 @@
 Listenersteler::Listenersteler() {};
 
 int *Listenersteler::erstelleListe(char listeVariante, int lange) {
+    Messdaten::arrayArt = "int";
     int *liste;
     switch (listeVariante) {
         case 'z':
@@ -44,7 +45,6 @@ int *Listenersteler::erstelleZufallsListe(int lange) {
     std::generate_n(liste.get(), lange, [&]() { return dis(gen); });
 
     Messdaten::arrayTyp = "Zufall";
-    Messdaten::arrayArt = "int";
     Messdaten::arrayLange = lange;
 
     return liste.get();
@@ -59,7 +59,6 @@ int *Listenersteler::erstelleSortierteListe(int lange) {
     }
 
     Messdaten::arrayTyp = "Sortiert";
-    Messdaten::arrayArt = "int";
     Messdaten::arrayLange = lange;
 
     return liste.get();
@@ -74,7 +73,6 @@ int *Listenersteler::erstelleInvertierteListe(int lange) {
     }
 
     Messdaten::arrayTyp = "InvertSortiert";
-    Messdaten::arrayArt = "int";
     Messdaten::arrayLange = lange;
 
     return liste.get();
@@ -100,7 +98,6 @@ int *Listenersteler::erstelleFastSortierteListe(int lange, int swaps) {
     }
 
     Messdaten::arrayTyp = "FastSortiert";
-    Messdaten::arrayArt = "int";
     Messdaten::arrayLange = lange;
 
     return liste.get();
@@ -116,7 +113,6 @@ int *Listenersteler::erstelleDuplizierteListe(int lange, int uniqueValues) {
     std::generate_n(liste.get(), lange, [&]() { return dis(gen); });
 
     Messdaten::arrayTyp = "Dupliziert";
-    Messdaten::arrayArt = "int";
     Messdaten::arrayLange = lange;
 
     return liste.get();

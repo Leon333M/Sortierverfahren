@@ -8,8 +8,9 @@
       "program": "${workspaceFolder}/build/Release/Sortierverfahren.exe",
       "args": [
         "1200",
-        "a",
+        "g",
         "z",
+        "s",
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
@@ -22,7 +23,9 @@
       "program": "${workspaceFolder}/build/Debug/Sortierverfahren.exe",
       "args": [
         "1200",
-        "w",
+        "g",
+        "z",
+        "s",
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
