@@ -1,6 +1,7 @@
 // Dateimanager.cpp
 #include "Dateimanager.h"
 #include <algorithm>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 
@@ -13,10 +14,10 @@ MessdatenStatistik::MessdatenStatistik(const std::vector<std::unique_ptr<Messdat
 
 void Dateimanager::exportMessData(std::string sortieralgorithmus, std::string threadAnzahlVariante) {
     std::string path = originalPath;
-    path += sortieralgorithmus;
+    path += std::to_string(Messdaten::arrayLange) + "/";
+    path += " " + sortieralgorithmus;
     path += " " + Messdaten::arrayArt;
     path += " " + Messdaten::arrayTyp;
-    path += " " + std::to_string(Messdaten::arrayLange);
     path += " " + threadAnzahlVariante;
     path += dateiendung;
 
@@ -32,8 +33,12 @@ void Dateimanager::exportMessData(std::string sortieralgorithmus, std::string th
 
     std::ofstream outFile(path);
     if (!outFile) {
-        std::cerr << "Fehler beim Offnen der Datei: " << path << std::endl;
-        return;
+        std::filesystem::create_directories(path);
+        outFile = std::ofstream(path);
+        if (!outFile) {
+            std::cerr << "Fehler beim Offnen der Datei: " << path << std::endl;
+            return;
+        }
     }
     schreibeMessdatenInDatei(outFile, mdsv);
     // schreibeMessdatenInDatei(std::cout, mdsv);
