@@ -14,11 +14,11 @@ MessdatenStatistik::MessdatenStatistik(const std::vector<std::unique_ptr<Messdat
 
 void Dateimanager::exportMessData(std::string sortieralgorithmus, std::string threadAnzahlVariante) {
     std::string path = originalPath;
+    path += Messdaten::arrayArt + "/";
     path += std::to_string(Messdaten::arrayLange) + "/";
+    path += Messdaten::arrayTyp + "/";
     std::filesystem::create_directories(path);
     path += sortieralgorithmus;
-    path += " " + Messdaten::arrayArt;
-    path += " " + Messdaten::arrayTyp;
     path += " " + threadAnzahlVariante;
     path += dateiendung;
 
