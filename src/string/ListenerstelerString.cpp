@@ -1,6 +1,5 @@
 // ListenerstelerString.cpp
 #include "ListenerstelerString.h"
-#include <algorithm>
 #include <random>
 
 ListenerstelerString::ListenerstelerString() {}

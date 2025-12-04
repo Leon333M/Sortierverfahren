@@ -22,5 +22,10 @@ add_executable(Sortierverfahren
      src/Quicksort.cpp
      src/MiniSort.cpp
      src/Messdaten.cpp
+     src/string/ManagerString.cpp
+     src/string/ListenerstelerString.cpp
+     src/string/SortierverfarenString.cpp
+     src/string/MergesortString.cpp
+     src/string/QuicksortString.cpp
 )
 
