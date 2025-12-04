@@ -15,7 +15,8 @@ MessdatenStatistik::MessdatenStatistik(const std::vector<std::unique_ptr<Messdat
 void Dateimanager::exportMessData(std::string sortieralgorithmus, std::string threadAnzahlVariante) {
     std::string path = originalPath;
     path += std::to_string(Messdaten::arrayLange) + "/";
-    path += " " + sortieralgorithmus;
+    std::filesystem::create_directories(path);
+    path += sortieralgorithmus;
     path += " " + Messdaten::arrayArt;
     path += " " + Messdaten::arrayTyp;
     path += " " + threadAnzahlVariante;
@@ -33,12 +34,8 @@ void Dateimanager::exportMessData(std::string sortieralgorithmus, std::string th
 
     std::ofstream outFile(path);
     if (!outFile) {
-        std::filesystem::create_directories(path);
-        outFile = std::ofstream(path);
-        if (!outFile) {
-            std::cerr << "Fehler beim Offnen der Datei: " << path << std::endl;
-            return;
-        }
+        std::cerr << "Fehler beim Offnen der Datei: " << path << std::endl;
+        return;
     }
     schreibeMessdatenInDatei(outFile, mdsv);
     // schreibeMessdatenInDatei(std::cout, mdsv);
