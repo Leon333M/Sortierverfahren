@@ -34,7 +34,7 @@ Manager::Manager(int argc, char *argv[]) {
     if (argc >= 5) {
         std::cout << "messe Alles" << std::endl;
         messeAlles();
-        variante = 'l';
+        variante = 'i';
     }
 
     for (char lv : lvn) {
