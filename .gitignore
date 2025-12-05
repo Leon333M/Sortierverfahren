@@ -8,3 +8,5 @@ build/Debug/Sortierverfahren.pdb
 !build/Release/
 !build/Release/Sortierverfahren.exe
 Messdaten/*
+Bachelorarbeit/build/*
+!Bachelorarbeit/build/main.pdf

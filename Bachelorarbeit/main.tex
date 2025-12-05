@@ -1,0 +1,56 @@
+% Bachelorarbeit LaTeX Template
+% Kompatibel mit VS Code + LaTeX Workshop
+
+\documentclass[a4paper,12pt]{article}
+
+% Pakete
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{amsmath, amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Code-Style
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible
+}
+
+% Titelinformationen
+\title{Untersuchung der Skalierbarkeit von parallelem Sortieren\newline auf einem Multicore-Prozessor5}
+\author{Leon Zoerner}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Einleitung}
+Hier beginnt die Einleitung.
+
+\section{Grundlagen}
+% Beschreibung Multicore, Threads, Synchronisation
+
+\section{Sortierverfahren}
+% Quicksort, Mergesort, parallel, Worker-Threads
+
+\section{Implementierung}
+% Deine C++ Struktur, Thread-Handling, Benchmarks
+
+\section{Messungen und Ergebnisse}
+% Plots, Tabellen, Auswertung
+
+\section{Fazit}
+
+\end{document}
