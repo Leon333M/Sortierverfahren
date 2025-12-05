@@ -1,56 +1,151 @@
 % Bachelorarbeit LaTeX Template
 % Kompatibel mit VS Code + LaTeX Workshop
-
 \documentclass[a4paper,12pt]{article}
 
+% ----------------------
 % Pakete
-\usepackage[ngerman]{babel}
+% ----------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{geometry}
-\geometry{a4paper, margin=2.5cm}
-\usepackage{setspace}
+\usepackage[ngerman]{babel}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{csquotes}
 \usepackage{amsmath, amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{geometry}
 \usepackage{listings}
-\usepackage{xcolor}
+\usepackage{float}
 
-% Code-Style
-\lstset{
-  basicstyle=\ttfamily\small,
-  breaklines=true,
-  frame=single,
-  columns=fullflexible
+% ----------------------
+% Seitenränder
+% ----------------------
+\geometry{
+    a4paper,
+    left=30mm,
+    right=30mm,
+    top=25mm,
+    bottom=25mm
 }
 
-% Titelinformationen
-\title{Untersuchung der Skalierbarkeit von parallelem Sortieren\newline auf einem Multicore-Prozessor5}
-\author{Leon Zoerner}
-\date{\today}
+% ----------------------
+% C++ Code Settings
+% ----------------------
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    frame=single,
+    breaklines=true,
+    showstringspaces=false
+}
 
+% ----------------------
+% Dokumentbeginn
+% ----------------------
 \begin{document}
 
-\maketitle
+% Titelseite
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    {\LARGE\textbf{Untersuchung der Skalierbarkeit von parallelem Sortieren auf einem Multicore-Prozessor}}\\[1.5cm]
+    {\large Bachelorarbeit}\\[0.5cm]
+    {\large Studiengang: Informatik}\\[0.5cm]
+    {\large Bearbeiter: Leon Zoerner}\\[2cm]
+    \vfill
+    \today
+\end{titlepage}
+
+% Inhaltsverzeichnis
 \tableofcontents
 \newpage
 
+% ----------------------
+% 1. Einleitung
+% ----------------------
 \section{Einleitung}
-Hier beginnt die Einleitung.
+\subsection{Motivation}
+% Hier Motivation einfügen
 
-\section{Grundlagen}
-% Beschreibung Multicore, Threads, Synchronisation
+\subsection{Zielsetzung und Forschungsfrage}
+% Hier Zielsetzung und Forschungsfrage einfügen
 
-\section{Sortierverfahren}
-% Quicksort, Mergesort, parallel, Worker-Threads
+% ----------------------
+% 2. Theoretische Grundlagen
+% ----------------------
+\section{Theoretische Grundlagen}
+\subsection{Sortieralgorithmen: Quicksort \& Merge Sort}
+% Theorie zu Quicksort und Merge Sort
 
-\section{Implementierung}
-% Deine C++ Struktur, Thread-Handling, Benchmarks
+\subsection{Grundlagen der Parallelisierung}
+% Parallele Programmierung, Skalierungsgesetze, Overheads
 
-\section{Messungen und Ergebnisse}
-% Plots, Tabellen, Auswertung
+\subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}
+% Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
 
-\section{Fazit}
+% ----------------------
+% 3. Methodik und Versuchsaufbau
+% ----------------------
+\section{Methodik und Versuchsaufbau}
+\subsection{Messumgebung und Hardware}
+% Hardware und Umgebung beschreiben
 
+\subsection{Testaufbau und Implementierungsvarianten}
+% Quicksort/Merge Sort Varianten, Threading-Strategien
+
+\subsection{Messmethodik}
+% Vorgehensweise zur Laufzeitmessung, Datenerhebung
+
+% ----------------------
+% 4. Ergebnisse und Analyse
+% ----------------------
+\section{Ergebnisse und Analyse}
+\subsection{Laufzeitmessungen}
+% Messergebnisse darstellen
+
+\subsection{Einfluss der Variablen %(Threadanzahl, Arraygröße, Thread-Strategien)}
+% Analysen zu Parametern
+
+\subsection{Bewertung der Parallelisierungseffizienz}
+% Effizienz-Analyse
+
+%\subsection{Vergleich mit Python} % optional
+% Optionaler Vergleich mit Python
+
+\subsection{Grenzen und Fehlerbetrachtung}
+% Diskussion von Limitationen
+
+% ----------------------
+% 5. Diskussion und Fazit
+% ----------------------
+\section{Diskussion und Fazit}
+\subsection{Interpretation der Ergebnisse}
+% Ergebnisse interpretieren
+
+\subsection{Beantwortung der Forschungsfrage}
+% Forschungsfrage beantworten
+
+\subsection{Zusammenfassung}
+% Kurze Zusammenfassung der Arbeit
+
+% ----------------------
+% 6. Anhang
+% ----------------------
+\section{Anhang}
+\subsection{Code}
+% Link oder Verweis auf Repository
+
+\subsection{Exakte Hardware-Spezifikationen}
+% Hardware genau dokumentieren
+
+% ----------------------
+% Dokumentende
+% ----------------------
 \end{document}
