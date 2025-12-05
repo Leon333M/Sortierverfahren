@@ -139,5 +139,30 @@
   "latex-workshop.latex.outDir": "build",
   "[latex]": {
     "editor.formatOnSave": true,
+  },
+  "cSpell.language": "de,en",
+  "cSpell.enabled": true,
+  "ltex.language": "de-DE",
+  "ltex.enabled": true,
+  "ltex.documentTypes": [
+    "latex"
+  ],
+  "ltex.dictionary": {
+    "de-DE": [
+      "Parallelisierung",
+      "Workerthreads",
+      "Threadanzahl",
+      "Overhead",
+      "Skalierbarkeit",
+      "Benchmark",
+      "Multicore",
+      "Quicksort",
+      "Mergesort",
+      "Initialisierung",
+      "Bachelorarbeit"
+    ]
+  },
+  "[latex]": {
+    "editor.wordWrap": "on"
   }
 }

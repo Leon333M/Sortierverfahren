@@ -1,0 +1,10 @@
+Skalierungsgrenzen
+Parallelisierungseffizienz
+Zoerner
+basicstyle
+keywordstyle
+commentstyle
+stringstyle
+Threadingstrategien
+Threading-
+Performanceunterschied

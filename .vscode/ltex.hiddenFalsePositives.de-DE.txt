@@ -1,0 +1,4 @@
+{"rule":"DE_AGREEMENT","sentence":"^\\QWelchen Performance unterschied, es macht bereits initialisierte Workerthreads zu nutzen Vs neue Threads.\\E$"}
+{"rule":"DE_AGREEMENT","sentence":"^\\QWelchen Performance unterschied, es macht bereits initialisierte Workerthreads zu nutzen in Vergleich zu neuen Threads.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlanguage=C++, basicstyle=, keywordstyle=, commentstyle=, stringstyle=, numbers=left, numberstyle=, stepnumber=1, numbersep=5pt, frame=single, breaklines=true, showstringspaces=false\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\Qlanguage=C++, basicstyle=, keywordstyle=, commentstyle=, stringstyle=, numbers=left, numberstyle=, stepnumber=1, numbersep=5pt, frame=single, breaklines=true, showstringspaces=false\\E$"}

@@ -73,15 +73,27 @@
 \section{Einleitung}
 \subsection{Motivation}
 % Hier Motivation einfügen
+Ziel dieser Arbeit ist es, die Grenzen von Threads und Parallelisierung aufzuzeigen. Dabei soll insbesondere untersucht werden, wie groß der Overhead durch Threads ist und welchen Performanceunterschied es macht, bereits initialisierte Workerthreads zu verwenden, im Vergleich zur Erstellung neuer Threads.
+Da sich für diese Untersuchungen ein geeigneter, leicht verständlicher und programmierbarer Anwendungsfall anbietet, habe ich mich für Sortieralgorithmen entschieden, die sich zudem sehr gut parallelisieren lassen.
 
 \subsection{Zielsetzung und Forschungsfrage}
 % Hier Zielsetzung und Forschungsfrage einfügen
+Ziel dieser Bachelorarbeit ist die systematische Analyse der Laufzeitentwicklung paralleler Sortierverfahren. Dabei soll untersucht werden, wie sich parallele Implementierungen von Quicksort und Mergesort im Vergleich zu ihren sequentiellen Varianten verhalten.
+Im Fokus stehen insbesondere folgende Punkte:
+\begin{itemize}
+    \item der Einfluss verschiedener Threadingstrategien auf die Laufzeit,
+    \item die Frage, ab welcher Eingangsgröße und bei welcher Anzahl von Threads ein messbarer Geschwindigkeitsvorteil entsteht,
+    \item sowie die Identifikation von Thread-Management-Techniken, die für Sortieralgorithmen die besten Laufzeiten erzielen.
+\end{itemize}
+Aus diesen Aspekten ergibt sich die zentrale Forschungsfrage dieser Arbeit:
+\textbf{Unter welchen Bedingungen liefern parallele Sortieralgorithmen anhand von Quicksort und Mergesort einen signifikanten Laufzeitvorteil gegenüber der sequentiellen Ausführung, und welche Threadingstrategien führen dabei zur besten Laufzeit?}
+
 
 % ----------------------
 % 2. Theoretische Grundlagen
 % ----------------------
 \section{Theoretische Grundlagen}
-\subsection{Sortieralgorithmen: Quicksort und Merge Sort}
+\subsection{Sortieralgorithmen: Quicksort und Mergesort}
 % Theorie zu Quicksort und Merge Sort
 
 \subsection{Grundlagen der Parallelisierung}
@@ -110,7 +122,7 @@
 \subsection{Laufzeitmessungen}
 % Messergebnisse darstellen
 
-\subsection{Einfluss der Variablen }%(Threadanzahl, Arraygröße, Thread-Strategien)}
+\subsection{Einfluss der Variablen} %(Threadanzahl, Arraygröße, Thread-Strategien)}
 % Analysen zu Parametern
 
 \subsection{Bewertung der Parallelisierungseffizienz}
