@@ -5,9 +5,9 @@
 #include <vector>
 
 struct MessWerte {
-    int threads;
+    long long threads;
     long long dauer;
-    int lange;
+    long long lange;
 };
 
 class Messdaten {
@@ -22,7 +22,7 @@ public:
     std::chrono::time_point<std::chrono::high_resolution_clock> ende1;
 
     // static
-    static int arrayLange;
+    static long long arrayLange;
     static std::string arrayTyp; // Zufall, Sortiert, InvertiertSortiert, FastSortiert, Dupliziert
     static std::string arrayArt; // int, std::string
     static std::vector<std::vector<std::unique_ptr<Messdaten>>> messDaten;
@@ -46,20 +46,20 @@ public:
 
     static void initMessDaten(int arrayGroesse) {
         // Berechne maximale Tiefe eines binaren Baums für die gegebene Array-Lange
-        int maxEbene = static_cast<int>(std::ceil(std::log2(arrayGroesse))) + 1;
+        long long maxEbene = static_cast<int>(std::ceil(std::log2(arrayGroesse))) + 1;
 
         Messdaten::messDaten.resize(maxEbene);
 
         // Berechne ungefahre Anzahl Positionen pro Ebene (z.B. 2^ebene)
-        for (int ebene = 0; ebene < maxEbene; ebene++) {
-            int anzahlPositionen = static_cast<int>(std::pow(2, ebene - 1));
+        for (long long ebene = 0; ebene < maxEbene; ebene++) {
+            long long anzahlPositionen = static_cast<long long>(std::pow(2, ebene - 1));
             Messdaten::messDaten[ebene].reserve(anzahlPositionen);
         }
     };
 
-    static int berechneDurchschnitt(const std::vector<long long> &werte);
-    static int berechneMedian(std::vector<long long> &werte);
-    static int berechneStandardabweichung(const std::vector<long long> &werte);
+    static long long berechneDurchschnitt(const std::vector<long long> &werte);
+    static long long berechneMedian(std::vector<long long> &werte);
+    static long long berechneStandardabweichung(const std::vector<long long> &werte);
 
     // Funktionen
     Messdaten() {};

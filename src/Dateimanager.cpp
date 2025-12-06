@@ -26,7 +26,7 @@ void Dateimanager::exportMessData(std::string sortieralgorithmus, std::string th
     std::vector<std::vector<std::unique_ptr<Messdaten>>> &messDaten = Messdaten::messDaten;
     std::vector<MessdatenStatistik> mdsv;
     mdsv.reserve(messDaten.size());
-    for (int i = 1; i < messDaten.size(); i++) {
+    for (long long i = 1; i < messDaten.size(); i++) {
         std::vector<std::unique_ptr<Messdaten>> &md = messDaten[i];
         MessdatenStatistik mds(md);
         mdsv.push_back(mds);
@@ -75,8 +75,8 @@ Statistik Dateimanager::berechneStatistik(std::vector<long long> &werte) {
 
     // Min & Max
     auto [minIt, maxIt] = std::minmax_element(werte.begin(), werte.end());
-    s.minimum = static_cast<int>(*minIt);
-    s.maximum = static_cast<int>(*maxIt);
+    s.minimum = static_cast<long long>(*minIt);
+    s.maximum = static_cast<long long>(*maxIt);
 
     // Durchschnitt
     s.durchschnitt = Messdaten::berechneDurchschnitt(werte);

@@ -7,15 +7,15 @@
 #include <vector>
 
 struct Statistik {
-    int median = 0;
-    int durchschnitt = 0;
-    int standardabweichung = 0;
-    int minimum = 0;
-    int maximum = 0;
+    long long median = 0;
+    long long durchschnitt = 0;
+    long long standardabweichung = 0;
+    long long minimum = 0;
+    long long maximum = 0;
 };
 
 struct MessdatenStatistik {
-    int mdAnzahl;
+    long long mdAnzahl;
     Statistik dauer1;
     Statistik dauer2;
     Statistik dauer1m2;
