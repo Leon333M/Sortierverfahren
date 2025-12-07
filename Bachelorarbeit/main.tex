@@ -63,7 +63,7 @@
     \today
 \end{titlepage}
 
-% Inhaltsverzeichnis
+% Inhaltsverzeichnis / Gliederung
 \tableofcontents
 \newpage
 
@@ -71,6 +71,7 @@
 % 1. Einleitung
 % ----------------------
 \section{Einleitung}
+
 \subsection{Motivation}
 % Hier Motivation einfügen
 Ziel dieser Arbeit ist es, die Grenzen von Threads und Parallelisierung aufzuzeigen. Dabei soll insbesondere untersucht werden, wie groß der Overhead durch Threads ist und welchen Performanceunterschied es macht, bereits initialisierte Workerthreads zu verwenden, im Vergleich zur Erstellung neuer Threads.
@@ -86,74 +87,104 @@ Im Fokus stehen insbesondere folgende Punkte:
     \item sowie die Identifikation von Thread-Management-Techniken, die für Sortieralgorithmen die besten Laufzeiten erzielen.
 \end{itemize}
 Aus diesen Aspekten ergibt sich die zentrale Forschungsfrage dieser Arbeit:
+\newline
 \textbf{Unter welchen Bedingungen liefern parallele Sortieralgorithmen anhand von Quicksort und Mergesort einen signifikanten Laufzeitvorteil gegenüber der sequentiellen Ausführung, und welche Threadingstrategien führen dabei zur besten Laufzeit?}
 
 
 % ----------------------
 % 2. Theoretische Grundlagen
 % ----------------------
+\newpage
 \section{Theoretische Grundlagen}
 \subsection{Sortieralgorithmen: Quicksort und Mergesort}
 % Theorie zu Quicksort und Merge Sort
-
 \subsection{Grundlagen der Parallelisierung}
-% Parallele Programmierung, Skalierungsgesetze, Overheads
-
+% Amdahl Law, Overheads, Threading
 \subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}
 % Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
 
 % ----------------------
 % 3. Methodik und Versuchsaufbau
 % ----------------------
+\newpage
 \section{Methodik und Versuchsaufbau}
 \subsection{Messumgebung und Hardware}
-% Hardware und Umgebung beschreiben
+% CPU, RAM, OS, Compiler
 
-\subsection{Testaufbau und Implementierungsvarianten}
-% Quicksort/Merge Sort Varianten, Threading-Strategien
+\subsection{Implementierungsvarianten}
+% Sequenziell, parallel, Workerthreads, neue Threads
 
 \subsection{Messmethodik}
 % Vorgehensweise zur Laufzeitmessung, Datenerhebung
 
+% Definiere Variablen
+\newcommand{\Messziel}{Messziel}
+\newcommand{\Erwartung}{Erwartung}
+\newcommand{\Diagramm}{Diagramm}
+\newcommand{\Analyse}{Analyse und Interpretation}
+
 % ----------------------
 % 4. Ergebnisse und Analyse
 % ----------------------
+\newpage
 \section{Ergebnisse und Analyse}
-\subsection{Laufzeitmessungen}
-% Messergebnisse darstellen
 
-\subsection{Einfluss der Variablen} %(Threadanzahl, Arraygröße, Thread-Strategien)}
-% Analysen zu Parametern
+\subsection{Grundlegende Laufzeiten abhängig von der Arraygröße}
+\subsubsection{Messziel}
+\subsubsection{Erwartung}
+\subsubsection{Diagramm}
+\subsubsection{Analyse und Interpretation}
 
-\subsection{Bewertung der Parallelisierungseffizienz}
-% Effizienz-Analyse
+\newpage
+\subsection{Vergleich der Threading-Methoden}
+\subsubsection{Messziel}
+\subsubsection{Erwartung}
+\subsubsection{Diagramm}
+\subsubsection{Analyse und Interpretation}
 
-%\subsection{Vergleich mit Python} % optional
-% Optionaler Vergleich mit Python
+\newpage
+\subsection{Einfluss der Arraygröße im Detail}
+\subsubsection{Messziel}
+\subsubsection{Erwartung}
+\subsubsection{Diagramm}
+\subsubsection{Analyse und Interpretation}
 
-\subsection{Grenzen und Fehlerbetrachtung}
-% Diskussion von Limitationen
+\newpage
+\subsection{Workerthreads vs. neu erzeugte Threads}
+\subsubsection{Messziel}
+\subsubsection{Erwartung}
+\subsubsection{Diagramm}
+\subsubsection{Analyse und Interpretation}
+\subsubsection{Overheads und Skalierungsgrenzen}
+
+\newpage
+\subsection{Exakter Einfluss des Listentyps}
+\subsubsection{Messziel}
+\subsubsection{Erwartung}
+\subsubsection{Diagramm}
+\subsubsection{Analyse und Interpretation}
+
+
 
 % ----------------------
 % 5. Diskussion und Fazit
 % ----------------------
+\newpage
 \section{Diskussion und Fazit}
-\subsection{Interpretation der Ergebnisse}
+%\subsection{Interpretation der Ergebnisse}
 % Ergebnisse interpretieren
-
 \subsection{Beantwortung der Forschungsfrage}
 % Forschungsfrage beantworten
-
 \subsection{Zusammenfassung}
 % Kurze Zusammenfassung der Arbeit
 
 % ----------------------
 % 6. Anhang
 % ----------------------
+\newpage
 \section{Anhang}
 \subsection{Code}
 % Link oder Verweis auf Repository
-
 \subsection{Exakte Hardware-Spezifikationen}
 % Hardware genau dokumentieren
 
