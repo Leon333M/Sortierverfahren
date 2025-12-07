@@ -8,3 +8,4 @@ stringstyle
 Threadingstrategien
 Threading-
 Performanceunterschied
+Arraygröße
