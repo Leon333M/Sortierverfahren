@@ -47,6 +47,12 @@
 }
 
 % ----------------------
+% Ausgelagerte Texte für die Bachelorarbeit
+% ----------------------
+% \input{commands.tex}
+\input{Kapitel/Kapitel.tex}
+
+% ----------------------
 % Dokumentbeginn
 % ----------------------
 \begin{document}
@@ -70,7 +76,7 @@
 % ----------------------
 % 1. Einleitung
 % ----------------------
-\section{Einleitung}
+\section{Einleitung123}
 
 \subsection{Motivation}
 % Hier Motivation einfügen
@@ -89,6 +95,9 @@ Im Fokus stehen insbesondere folgende Punkte:
 Aus diesen Aspekten ergibt sich die zentrale Forschungsfrage dieser Arbeit:
 \newline
 \textbf{Unter welchen Bedingungen liefern parallele Sortieralgorithmen anhand von Quicksort und Mergesort einen signifikanten Laufzeitvorteil gegenüber der sequentiellen Ausführung, und welche Threadingstrategien führen dabei zur besten Laufzeit?}
+
+\subsection{Threading anhand des einfachen Beispiels Inkrement-Array erklärt}
+% Inkrement-Array
 
 
 % ----------------------
@@ -136,9 +145,8 @@ Aus diesen Aspekten ergibt sich die zentrale Forschungsfrage dieser Arbeit:
 \subsubsection{Analyse und Interpretation}
 
 \newpage
-\subsection{Vergleich der Threading-Methoden}
+\subsection{Einfluss des Listentyps} % Listentyps: Zufall, Sortiert, InvertiertSortiert, FastSortiert, Dupliziert
 \subsubsection{Messziel} % Einleitung
-\subsubsection{Overheads und Skalierungsgrenzen}
 \subsubsection{Erwartung}
 \subsubsection{Diagramm}
 \subsubsection{Analyse und Interpretation}
@@ -151,14 +159,28 @@ Aus diesen Aspekten ergibt sich die zentrale Forschungsfrage dieser Arbeit:
 \subsubsection{Analyse und Interpretation}
 
 \newpage
-\subsection{Einfluss des Listentyps}
+\subsection{Tiefenbasierte Thread-Erzeugung}
 \subsubsection{Messziel} % Einleitung
 \subsubsection{Erwartung}
 \subsubsection{Diagramm}
 \subsubsection{Analyse und Interpretation}
 
 \newpage
-\subsection{Einfluss des Listenart}
+\subsection{Workerthreads}
+\subsubsection{Messziel} % Einleitung
+\subsubsection{Erwartung}
+\subsubsection{Diagramm}
+\subsubsection{Analyse und Interpretation}
+
+\newpage
+\subsection{Vergleich der Threading-Methoden}
+\subsubsection{Messziel} % Einleitung
+\subsubsection{Erwartung}
+\subsubsection{Diagramm}
+\subsubsection{Analyse und Interpretation}
+
+\newpage
+\subsection{Einfluss des Datentyps der Liste} % Listenart: int, string
 \subsubsection{Messziel} % Einleitung
 \subsubsection{Erwartung}
 \subsubsection{Diagramm}

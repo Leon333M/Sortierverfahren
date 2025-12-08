@@ -18,6 +18,36 @@
       "problemMatcher": [
         "$msCompile"
       ]
+    },
+    {
+      "label": "latexindent main.tex",
+      "type": "shell",
+      "command": "perl",
+      "args": [
+        "E:/Code/LaTeX/scripts/latexindent/latexindent.pl",
+        "main.tex",
+        "-l",
+        "build/indent.log",
+        "-c",
+        "build"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "pdflatex main.tex",
+      "type": "shell",
+      "command": "pdflatex",
+      "args": [
+        "-aux-directory=build",
+        "main.tex"
+      ],
+      "group": {
+        "kind": "build"
+      },
+      "problemMatcher": [
+        "$latex"
+      ]
     }
   ]
 }
