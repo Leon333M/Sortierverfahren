@@ -22,5 +22,28 @@
     \newline
     \textbf{Unter welchen Bedingungen liefern parallele Sortieralgorithmen anhand von Quicksort und Mergesort einen signifikanten Laufzeitvorteil gegenüber der sequentiellen Ausführung, und welche Threadingstrategien führen dabei zur besten Laufzeit?}
 }
+\newcommand{\MeinDatenDiagramm}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel={Thread-Anzahl},
+                ylabel={Dauer (in Mikrosekunden)},
+                title={Zeitpunkt der 50\% Geschwindigkeitssteigerung (incAray)},
+                xmin=2, xmax=17,
+                ymin=400000, ymax=1800000,
+                grid style=dashed,
+                legend pos=north west,
+            ]
+            \addplot[only marks, blue, mark=*] coordinates {
+                    (3, 1689700) (4, 819900) (5, 454600) (6, 700900) (7, 653000)
+                    (8, 643800) (9, 438900) (10, 679900) (11, 663300) (12, 636600)
+                    (13, 667300) (14, 649400) (15, 702000) (16, 746600)
+                };
+            \addlegendentry{Messwerte Dauer}
+        \end{axis}
+    \end{tikzpicture}%
+}
 
-\newcommand{\InkrementArray}{}
+\newcommand{\InkrementArray}{
+    % Inkrement-Array
+    \MeinDatenDiagramm
+}
