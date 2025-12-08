@@ -22,21 +22,28 @@
     \newline
     \textbf{Unter welchen Bedingungen liefern parallele Sortieralgorithmen anhand von Quicksort und Mergesort einen signifikanten Laufzeitvorteil gegenüber der sequentiellen Ausführung, und welche Threadingstrategien führen dabei zur besten Laufzeit?}
 }
+
 \newcommand{\MeinDatenDiagramm}{%
     \begin{tikzpicture}
         \begin{axis}[
                 xlabel={Thread-Anzahl},
-                ylabel={Dauer (in Mikrosekunden)},
+                ylabel={Arraygröße},
                 title={Zeitpunkt der 50\% Geschwindigkeitssteigerung (incAray)},
-                xmin=2, xmax=17,
-                ymin=400000, ymax=1800000,
+                xmin=1, xmax=18,
+                ymin=2^19, ymax=2^23,
                 grid style=dashed,
                 legend pos=north west,
+                ymode=log,
+                log basis y=2,
+                xtick={3,...,16},               % jeden Integer von 2 bis 17
+                ytick={2^20,2^21,2^22},      % gewünschte y-Werte
+                % yticklabels={\ensuremath{2^{19}},\ensuremath{2^{20}},\ensuremath{2^{21}},\ensuremath{2^{22}},\ensuremath{2^{23}}} % Beschriftung
             ]
             \addplot[only marks, blue, mark=*] coordinates {
-                    (3, 1689700) (4, 819900) (5, 454600) (6, 700900) (7, 653000)
-                    (8, 643800) (9, 438900) (10, 679900) (11, 663300) (12, 636600)
-                    (13, 667300) (14, 649400) (15, 702000) (16, 746600)
+                    (3,4194304) (4,2097152) (5,1048576) (6,2097152)
+                    (7,2097152) (8,2097152) (9,1048576) (10,2097152)
+                    (11,2097152) (12,2097152) (13,2097152) (14,2097152)
+                    (15,2097152) (16,2097152)
                 };
             \addlegendentry{Messwerte Dauer}
         \end{axis}
