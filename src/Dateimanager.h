@@ -33,7 +33,7 @@ public:
     // Funktionen
     Dateimanager() {};
     void exportMessData(std::string sortieralgorithmus, std::string threadAnzahlVariante);
-    void writeMesswerteToFile(const std::string &filename, const std::vector<MessWerte> messWerte1, const std::vector<MessWerte> messWerte2);
+    void writeMesswerteToFile(const std::string &filename, const std::vector<MessWerte> messWerte1, const std::vector<MessWerte> messWerte2, const std::vector<MessWerte> messWerte3);
 
     static Statistik berechneDauerStatistik1(const std::vector<std::unique_ptr<Messdaten>> &md);
     static Statistik berechneDauerStatistik2(const std::vector<std::unique_ptr<Messdaten>> &md);

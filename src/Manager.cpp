@@ -344,6 +344,7 @@ void Manager::incArray() {
     std::vector<int> thrads;
     std::vector<MessWerte> messWerte;
     std::vector<MessWerte> messWerte2;
+    std::vector<MessWerte> messWerte3;
     while (!fin) {
         benchmarkIncThreads(lange, thrads, messWerte, false);
         lange = lange * 2;
@@ -359,7 +360,10 @@ void Manager::incArray() {
     }
     thrads.clear();
     benchmarkIncThreads(maxLange, thrads, messWerte2, true);
-    dateimanager.writeMesswerteToFile("incArray", messWerte, messWerte2);
+    thrads.clear();
+    const int maxIntLange = std::numeric_limits<int>::max();
+    benchmarkIncThreads(maxIntLange, thrads, messWerte3, true);
+    dateimanager.writeMesswerteToFile("incArray", messWerte, messWerte2, messWerte3);
 };
 
 void Manager::incArrayMT(volatile int *liste, long long lange, int threadCount) {

@@ -41,7 +41,11 @@ void Dateimanager::exportMessData(std::string sortieralgorithmus, std::string th
     // schreibeMessdatenInDatei(std::cout, mdsv);
 };
 
-void Dateimanager::writeMesswerteToFile(const std::string &filename, std::vector<MessWerte> messWerte1, std::vector<MessWerte> messWerte2) {
+void Dateimanager::writeMesswerteToFile(
+    const std::string &filename,
+    std::vector<MessWerte> messWerte1,
+    std::vector<MessWerte> messWerte2,
+    std::vector<MessWerte> messWerte3) {
     std::string path = originalPath;
     path += filename;
     path += dateiendung;
@@ -59,6 +63,9 @@ void Dateimanager::writeMesswerteToFile(const std::string &filename, std::vector
         file << std::endl;
         file << "Messwerte (Messwerte bei maximaler Laenge aus Block 1):" << std::endl;
         writeBlock(file, messWerte2);
+        file << std::endl;
+        file << "Messwerte (Messwerte bei maximaler int Laenge):" << std::endl;
+        writeBlock(file, messWerte3);
     }
 
     file.close();
