@@ -408,7 +408,7 @@ void Manager::benchmarkIncThreads(int lange, std::vector<int> &thrads, std::vect
         orginlDauer = dauer;
     }
     // Multi-Thread Benchmark
-    for (int t = 2; t <= 16; t++) {
+    for (int t = 1; t <= 16; t++) {
         if (std::find(thrads.begin(), thrads.end(), t) == thrads.end() || messeAlles) {
             std::unique_ptr<int[]> liste(new int[lange]);
             volatile int *vptr = liste.get();

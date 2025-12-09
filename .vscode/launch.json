@@ -8,9 +8,9 @@
       "program": "${workspaceFolder}/build/Release/Sortierverfahren.exe",
       "args": [
         "1200",
-        "g",
+        "i",
         "z",
-        "s",
+        "i",
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",

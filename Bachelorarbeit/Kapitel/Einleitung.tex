@@ -23,34 +23,83 @@
     \textbf{Unter welchen Bedingungen liefern parallele Sortieralgorithmen anhand von Quicksort und Mergesort einen signifikanten Laufzeitvorteil gegenüber der sequentiellen Ausführung, und welche Threadingstrategien führen dabei zur besten Laufzeit?}
 }
 
-\newcommand{\MeinDatenDiagramm}{%
+\newcommand{\InkrementArrayDiagrammA}{%
     \begin{tikzpicture}
         \begin{axis}[
                 xlabel={Thread-Anzahl},
                 ylabel={Arraygröße},
                 title={Zeitpunkt der 50\% Geschwindigkeitssteigerung (incAray)},
                 xmin=1, xmax=18,
-                ymin=2^19, ymax=2^23,
+                ymin=2^19, ymax=2^22,
                 grid style=dashed,
                 legend pos=north west,
                 ymode=log,
                 log basis y=2,
                 xtick={3,...,16},               % jeden Integer von 2 bis 17
-                ytick={2^20,2^21,2^22},      % gewünschte y-Werte
+                ytick={2^20,2^21},      % gewünschte y-Werte
                 % yticklabels={\ensuremath{2^{19}},\ensuremath{2^{20}},\ensuremath{2^{21}},\ensuremath{2^{22}},\ensuremath{2^{23}}} % Beschriftung
             ]
             \addplot[only marks, blue, mark=*] coordinates {
-                    (3,4194304) (4,2097152) (5,1048576) (6,2097152)
-                    (7,2097152) (8,2097152) (9,1048576) (10,2097152)
-                    (11,2097152) (12,2097152) (13,2097152) (14,2097152)
-                    (15,2097152) (16,2097152)
+                    (1,2)
+                    (3,2097152)
+                    (4,2097152)
+                    (5,1048576)
+                    (6,1048576)
+                    (7,1048576)
+                    (8,1048576)
+                    (9,1048576)
+                    (10,1048576)
+                    (11,1048576)
+                    (12,1048576)
+                    (13,2097152)
+                    (14,2097152)
+                    (15,2097152)
+                    (16,2097152)
                 };
             \addlegendentry{Messwerte}
         \end{axis}
     \end{tikzpicture}%
 }
 
+\newcommand{\InkrementArrayDiagrammB}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel={Thread-Anzahl},
+                ylabel={Dauer in ns},
+                title={Laufzeit bei Arraygröße $2^{21}$},
+                xmin=0, xmax=17,
+                ymin=0.5*10^6, ymax=2*10^6,
+                grid style=dashed,
+                legend pos=north east,
+                xtick={1,...,16},
+                % ymode=log,
+            ]
+            \addplot[only marks, red, mark=*] coordinates {
+                    (1,1852600)
+                    (2,1524000)
+                    (3,1214400)
+                    (4,975200)
+                    (5,856500)
+                    (6,795800)
+                    (7,769500)
+                    (8,809800)
+                    (9,809400)
+                    (10,775200)
+                    (11,796400)
+                    (12,802000)
+                    (13,869400)
+                    (14,829300)
+                    (15,878800)
+                    (16,910300)
+                };
+            \addlegendentry{Messwerte Dauer}
+        \end{axis}
+    \end{tikzpicture}%
+}
+
 \newcommand{\InkrementArray}{
     % Inkrement-Array
-    \MeinDatenDiagramm
+    \InkrementArrayDiagrammA
+    \newline
+    \InkrementArrayDiagrammB
 }
