@@ -70,7 +70,7 @@ public:
             return h;
         }
 
-        // Worker frei → auf Queue legen
+        // Worker frei -> auf Queue legen
         MergeTaskHandle h;
         h.done = std::make_shared<std::atomic<bool>>(false);
         taskQueue.push(task);
