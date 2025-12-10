@@ -39,7 +39,7 @@ std::string *ListenerstelerString::erstelleZufallsListe(int lange) {
     std::uniform_int_distribution<> dis(0, 25); // Buchstaben A-Z
 
     for (int i = 0; i < lange; i++) {
-        int len = 5 + (dis(gen) % 10); // 5–14 Zeichen
+        int len = 5 + (dis(gen) % 10); // 5-14 Zeichen
         std::string s;
         s.reserve(len);
         for (int j = 0; j < len; j++)
