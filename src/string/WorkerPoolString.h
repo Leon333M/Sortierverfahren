@@ -55,6 +55,14 @@ public:
         cv.wait(lock, [this] { return activeTasks == 0; });
     }
 
+    void addTaskWaitUntilDone(const Task &task) {
+        std::unique_lock<std::mutex> lock(mutex);
+        taskQueue.push(task);
+        activeTasks++;
+        cv.notify_one();
+        cv.wait(lock, [this] { return activeTasks == 0; });
+    }
+
 private:
     void worker() {
         while (true) {

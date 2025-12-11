@@ -151,8 +151,7 @@ void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads)
         }
     };
 
-    pool.addTask({liste, links, rechts});
-    pool.waitUntilDone();
+    pool.addTaskWaitUntilDone({liste, links, rechts});
 }
 
 void Quicksort::partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr) {

@@ -151,8 +151,7 @@ void QuicksortString::quicksortStringW(std::string *liste, int links, int rechts
         }
     };
 
-    pool.addTask({liste, links, rechts});
-    pool.waitUntilDone();
+    pool.addTaskWaitUntilDone({liste, links, rechts});
 }
 
 void QuicksortString::partitioniere(std::string *liste, const int links, const int rechts, int &ml, int &mr) {
