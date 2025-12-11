@@ -26,9 +26,11 @@
 \newcommand{\InkrementArrayDiagrammA}{%
     \begin{tikzpicture}
         \begin{axis}[
+                width=0.5\textwidth,
+                height=0.5\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Arraygröße},
-                title={Zeitpunkt der 50\% Geschwindigkeitssteigerung (incAray)},
+                title={50\% Geschwindigkeitssteigerung}, % Zeitpunkt der 50\% Geschwindigkeitssteigerung (incAray)
                 xmin=1, xmax=18,
                 ymin=2^19, ymax=2^22,
                 grid style=dashed,
@@ -64,6 +66,8 @@
 \newcommand{\InkrementArrayDiagrammB}{%
     \begin{tikzpicture}
         \begin{axis}[
+                width=0.5\textwidth,
+                height=0.5\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
                 title={Laufzeit bei Arraygröße $2^{21}$},
@@ -100,6 +104,8 @@
 \newcommand{\InkrementArrayDiagrammC}{%
     \begin{tikzpicture}
         \begin{axis}[
+                width=0.5\textwidth,
+                height=0.5\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
                 title={Laufzeit bei Arraygröße $2^{31}$}, % ($2^{31}-1$)
@@ -135,6 +141,8 @@
 \newcommand{\InkrementArrayDiagrammD}{%
     \begin{tikzpicture}
         \begin{axis}[
+                width=0.5\textwidth,
+                height=0.5\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
                 title={Laufzeit bei Arraygröße 16},
@@ -170,10 +178,8 @@
 \newcommand{\InkrementArray}{
     % Inkrement-Array
     \InkrementArrayDiagrammA
+    \InkrementArrayDiagrammD
     \newline
     \InkrementArrayDiagrammB
-    \newline
     \InkrementArrayDiagrammC
-    \newline
-    \InkrementArrayDiagrammD
 }
