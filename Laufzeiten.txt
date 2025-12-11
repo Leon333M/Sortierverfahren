@@ -29,7 +29,7 @@ Laufzeit: 10 ms
 Laufzeit: 7816 ms
 
 
-Relise:
+Release:
 PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 8192 p 
 maxEbene : 14
 Mergesort :
@@ -214,3 +214,150 @@ Gesamtlaufzeit: 6979 ms neue threads bis Ebene: 15 rund Threads: 16384
 Gesamtlaufzeit: 802 s aller Messungen zusammen.
 Ende
 
+PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 40000 w s
+listeVariante :s
+maxEbene : 17
+Mergesort :
+Laufzeit: 1 ms workerThreads: 1
+Laufzeit: 1 ms workerThreads: 2
+Laufzeit: 0 ms workerThreads: 4
+Laufzeit: 0 ms workerThreads: 8
+Laufzeit: 1 ms workerThreads: 15
+Laufzeit: 1 ms workerThreads: 16
+Laufzeit: 1 ms workerThreads: 17
+Laufzeit: 1 ms workerThreads: 18
+Laufzeit: 1 ms workerThreads: 32
+Laufzeit: 2 ms workerThreads: 64
+Laufzeit: 4 ms workerThreads: 128
+Laufzeit: 10 ms workerThreads: 256
+Laufzeit: 46 ms workerThreads: 1024
+Laufzeit: 177 ms workerThreads: 4096
+Laufzeit: 393 ms workerThreads: 8192
+Laufzeit: 748 ms workerThreads: 16384
+Quicksort :
+Laufzeit: 0 ms workerThreads: 1
+Laufzeit: 0 ms workerThreads: 2
+Laufzeit: 0 ms workerThreads: 4
+Laufzeit: 0 ms workerThreads: 8
+Laufzeit: 0 ms workerThreads: 15
+Laufzeit: 0 ms workerThreads: 17
+Laufzeit: 0 ms workerThreads: 18
+Laufzeit: 1 ms workerThreads: 32
+Laufzeit: 2 ms workerThreads: 64
+Laufzeit: 4 ms workerThreads: 128
+Laufzeit: 9 ms workerThreads: 256
+Laufzeit: 42 ms workerThreads: 1024
+Laufzeit: 183 ms workerThreads: 4096
+Laufzeit: 364 ms workerThreads: 8192
+Laufzeit: 729 ms workerThreads: 16384
+Ende
+PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 40000 p s
+listeVariante :s
+maxEbene : 17
+Mergesort :
+Laufzeit: 2 ms neue threads bis Ebene: 1 rund Threads: 1
+Laufzeit: 1 ms neue threads bis Ebene: 2 rund Threads: 2
+Laufzeit: 0 ms neue threads bis Ebene: 3 rund Threads: 4
+Laufzeit: 0 ms neue threads bis Ebene: 4 rund Threads: 8
+Laufzeit: 0 ms neue threads bis Ebene: 5 rund Threads: 16
+Laufzeit: 1 ms neue threads bis Ebene: 6 rund Threads: 32
+Laufzeit: 2 ms neue threads bis Ebene: 7 rund Threads: 64
+Laufzeit: 4 ms neue threads bis Ebene: 8 rund Threads: 128
+Laufzeit: 8 ms neue threads bis Ebene: 9 rund Threads: 256
+Laufzeit: 17 ms neue threads bis Ebene: 10 rund Threads: 512
+Laufzeit: 34 ms neue threads bis Ebene: 11 rund Threads: 1024
+Laufzeit: 66 ms neue threads bis Ebene: 12 rund Threads: 2048
+Laufzeit: 132 ms neue threads bis Ebene: 13 rund Threads: 4096
+Laufzeit: 268 ms neue threads bis Ebene: 14 rund Threads: 8192
+Laufzeit: 548 ms neue threads bis Ebene: 15 rund Threads: 16384
+Quicksort :
+Laufzeit: 0 ms neue threads bis Ebene: 1 rund Threads: 1
+Laufzeit: 0 ms neue threads bis Ebene: 2 rund Threads: 2
+Laufzeit: 0 ms neue threads bis Ebene: 3 rund Threads: 4
+Laufzeit: 0 ms neue threads bis Ebene: 4 rund Threads: 8
+Laufzeit: 0 ms neue threads bis Ebene: 5 rund Threads: 16
+Laufzeit: 1 ms neue threads bis Ebene: 6 rund Threads: 32
+Laufzeit: 2 ms neue threads bis Ebene: 7 rund Threads: 64
+Laufzeit: 3 ms neue threads bis Ebene: 8 rund Threads: 128
+Laufzeit: 7 ms neue threads bis Ebene: 9 rund Threads: 256
+Laufzeit: 16 ms neue threads bis Ebene: 10 rund Threads: 512
+Laufzeit: 33 ms neue threads bis Ebene: 11 rund Threads: 1024
+Laufzeit: 68 ms neue threads bis Ebene: 12 rund Threads: 2048
+Laufzeit: 137 ms neue threads bis Ebene: 13 rund Threads: 4096
+Laufzeit: 279 ms neue threads bis Ebene: 14 rund Threads: 8192
+Laufzeit: 554 ms neue threads bis Ebene: 15 rund Threads: 16384
+Ende
+
+PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 400000000 w s
+listeVariante :s
+maxEbene : 30
+Mergesort :
+Laufzeit: 18144 ms workerThreads: 1
+Laufzeit: 13322 ms workerThreads: 2
+Laufzeit: 9619 ms workerThreads: 4
+Laufzeit: 8227 ms workerThreads: 8
+Laufzeit: 6771 ms workerThreads: 15
+Laufzeit: 6370 ms workerThreads: 16
+Laufzeit: 6641 ms workerThreads: 17
+Laufzeit: 6129 ms workerThreads: 18
+Laufzeit: 6129 ms workerThreads: 32
+Laufzeit: 5945 ms workerThreads: 64
+Laufzeit: 6293 ms workerThreads: 128
+Laufzeit: 6515 ms workerThreads: 256
+Laufzeit: 7464 ms workerThreads: 1024
+Laufzeit: 10955 ms workerThreads: 4096
+Laufzeit: 16449 ms workerThreads: 8192
+Laufzeit: 23640 ms workerThreads: 16384
+Quicksort :
+Laufzeit: 3276 ms workerThreads: 1
+Laufzeit: 1729 ms workerThreads: 2
+Laufzeit: 1018 ms workerThreads: 4
+Laufzeit: 845 ms workerThreads: 8
+Laufzeit: 806 ms workerThreads: 15
+Laufzeit: 761 ms workerThreads: 17
+Laufzeit: 768 ms workerThreads: 18
+Laufzeit: 795 ms workerThreads: 32
+Laufzeit: 723 ms workerThreads: 64
+Laufzeit: 736 ms workerThreads: 128
+Laufzeit: 758 ms workerThreads: 256
+Laufzeit: 886 ms workerThreads: 1024
+Laufzeit: 3046 ms workerThreads: 4096
+Laufzeit: 8189 ms workerThreads: 8192
+Laufzeit: 11921 ms workerThreads: 16384
+Ende
+PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 400000000 p s
+listeVariante :s
+maxEbene : 30
+Mergesort :
+Laufzeit: 28235 ms neue threads bis Ebene: 1 rund Threads: 1
+Laufzeit: 14993 ms neue threads bis Ebene: 2 rund Threads: 2
+Laufzeit: 8897 ms neue threads bis Ebene: 3 rund Threads: 4
+Laufzeit: 6526 ms neue threads bis Ebene: 4 rund Threads: 8
+Laufzeit: 5899 ms neue threads bis Ebene: 5 rund Threads: 16
+Laufzeit: 6024 ms neue threads bis Ebene: 6 rund Threads: 32
+Laufzeit: 7006 ms neue threads bis Ebene: 7 rund Threads: 64
+Laufzeit: 6723 ms neue threads bis Ebene: 8 rund Threads: 128
+Laufzeit: 6496 ms neue threads bis Ebene: 9 rund Threads: 256
+Laufzeit: 6517 ms neue threads bis Ebene: 10 rund Threads: 512
+Laufzeit: 6406 ms neue threads bis Ebene: 11 rund Threads: 1024
+Laufzeit: 6404 ms neue threads bis Ebene: 12 rund Threads: 2048
+Laufzeit: 6550 ms neue threads bis Ebene: 13 rund Threads: 4096
+Laufzeit: 6776 ms neue threads bis Ebene: 14 rund Threads: 8192
+Laufzeit: 7079 ms neue threads bis Ebene: 15 rund Threads: 16384
+Quicksort :
+Laufzeit: 3097 ms neue threads bis Ebene: 1 rund Threads: 1
+Laufzeit: 1627 ms neue threads bis Ebene: 2 rund Threads: 2
+Laufzeit: 977 ms neue threads bis Ebene: 3 rund Threads: 4
+Laufzeit: 751 ms neue threads bis Ebene: 4 rund Threads: 8
+Laufzeit: 657 ms neue threads bis Ebene: 5 rund Threads: 16
+Laufzeit: 667 ms neue threads bis Ebene: 6 rund Threads: 32
+Laufzeit: 662 ms neue threads bis Ebene: 7 rund Threads: 64
+Laufzeit: 718 ms neue threads bis Ebene: 8 rund Threads: 128
+Laufzeit: 688 ms neue threads bis Ebene: 9 rund Threads: 256
+Laufzeit: 707 ms neue threads bis Ebene: 10 rund Threads: 512
+Laufzeit: 721 ms neue threads bis Ebene: 11 rund Threads: 1024
+Laufzeit: 692 ms neue threads bis Ebene: 12 rund Threads: 2048
+Laufzeit: 735 ms neue threads bis Ebene: 13 rund Threads: 4096
+Laufzeit: 883 ms neue threads bis Ebene: 14 rund Threads: 8192
+Laufzeit: 1144 ms neue threads bis Ebene: 15 rund Threads: 16384
+Ende
