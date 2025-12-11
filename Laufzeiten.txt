@@ -102,3 +102,115 @@ Laufzeit: 17 ms neue threads bis Ebene: 5 rund Threads: 16
 Laufzeit: 14 ms neue threads bis Ebene: 6 rund Threads: 32
 Laufzeit: 13 ms neue threads bis Ebene: 7 rund Threads: 64
 
+PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 1200 i a a a a
+...
+listeVariante :d
+Laufzeit: 6 ms Mergesort
+Laufzeit: 1 ms Quicksort
+maxEbene : 18
+Mergesort :
+Laufzeit: 6 ms neue threads bis Ebene: 1 rund Threads: 1
+Laufzeit: 3 ms neue threads bis Ebene: 2 rund Threads: 2
+Laufzeit: 2 ms neue threads bis Ebene: 3 rund Threads: 4
+Laufzeit: 1 ms neue threads bis Ebene: 4 rund Threads: 8
+Laufzeit: 1 ms neue threads bis Ebene: 5 rund Threads: 16
+Laufzeit: 1 ms neue threads bis Ebene: 6 rund Threads: 32
+Laufzeit: 2 ms neue threads bis Ebene: 7 rund Threads: 64
+Laufzeit: 4 ms neue threads bis Ebene: 8 rund Threads: 128
+Laufzeit: 8 ms neue threads bis Ebene: 9 rund Threads: 256
+Laufzeit: 18 ms neue threads bis Ebene: 10 rund Threads: 512
+Laufzeit: 34 ms neue threads bis Ebene: 11 rund Threads: 1024
+Laufzeit: 69 ms neue threads bis Ebene: 12 rund Threads: 2048
+Laufzeit: 145 ms neue threads bis Ebene: 13 rund Threads: 4096
+Laufzeit: 271 ms neue threads bis Ebene: 14 rund Threads: 8192
+Laufzeit: 562 ms neue threads bis Ebene: 15 rund Threads: 16384
+Quicksort :
+Laufzeit: 1 ms neue threads bis Ebene: 1 rund Threads: 1
+Laufzeit: 1 ms neue threads bis Ebene: 2 rund Threads: 2
+Laufzeit: 1 ms neue threads bis Ebene: 3 rund Threads: 4
+Laufzeit: 1 ms neue threads bis Ebene: 4 rund Threads: 8
+Laufzeit: 1 ms neue threads bis Ebene: 5 rund Threads: 16
+Laufzeit: 1 ms neue threads bis Ebene: 6 rund Threads: 32
+Laufzeit: 2 ms neue threads bis Ebene: 7 rund Threads: 64
+Laufzeit: 3 ms neue threads bis Ebene: 8 rund Threads: 128
+Laufzeit: 8 ms neue threads bis Ebene: 9 rund Threads: 256
+Laufzeit: 16 ms neue threads bis Ebene: 10 rund Threads: 512
+Laufzeit: 32 ms neue threads bis Ebene: 11 rund Threads: 1024
+Laufzeit: 65 ms neue threads bis Ebene: 12 rund Threads: 2048
+Laufzeit: 134 ms neue threads bis Ebene: 13 rund Threads: 4096
+Laufzeit: 241 ms neue threads bis Ebene: 14 rund Threads: 8192
+Laufzeit: 387 ms neue threads bis Ebene: 15 rund Threads: 16384
+maxEbene : 18
+Mergesort :
+Laufzeit: 3 ms workerThreads: 1
+Laufzeit: 3 ms workerThreads: 2
+Laufzeit: 2 ms workerThreads: 4
+Laufzeit: 1 ms workerThreads: 8
+Laufzeit: 1 ms workerThreads: 15
+Laufzeit: 2 ms workerThreads: 16
+Laufzeit: 1 ms workerThreads: 17
+Laufzeit: 1 ms workerThreads: 18
+Laufzeit: 2 ms workerThreads: 32
+Laufzeit: 3 ms workerThreads: 64
+Laufzeit: 5 ms workerThreads: 128
+Laufzeit: 9 ms workerThreads: 256
+Laufzeit: 44 ms workerThreads: 1024
+Laufzeit: 183 ms workerThreads: 4096
+Laufzeit: 373 ms workerThreads: 8192
+Laufzeit: 742 ms workerThreads: 16384
+Quicksort :
+Laufzeit: 2 ms workerThreads: 1
+Laufzeit: 1 ms workerThreads: 2
+Laufzeit: 0 ms workerThreads: 4
+Laufzeit: 0 ms workerThreads: 8
+Laufzeit: 1 ms workerThreads: 15
+Laufzeit: 1 ms workerThreads: 16
+Laufzeit: 1 ms workerThreads: 17
+Laufzeit: 1 ms workerThreads: 18
+Laufzeit: 1 ms workerThreads: 32
+Laufzeit: 2 ms workerThreads: 64
+Laufzeit: 5 ms workerThreads: 128
+Laufzeit: 10 ms workerThreads: 256
+Laufzeit: 42 ms workerThreads: 1024
+Laufzeit: 177 ms workerThreads: 4096
+Laufzeit: 356 ms workerThreads: 8192
+Laufzeit: 727 ms workerThreads: 16384
+maxEbene : 18
+Gesamtlaufzeit: 126 ms Mergesort
+Gesamtlaufzeit: 44 ms Quicksort
+maxEbene : 18
+Mergesort :
+Gesamtlaufzeit: 125 ms neue threads bis Ebene: 1 rund Threads: 1
+Gesamtlaufzeit: 77 ms neue threads bis Ebene: 2 rund Threads: 2
+Gesamtlaufzeit: 55 ms neue threads bis Ebene: 3 rund Threads: 4
+Gesamtlaufzeit: 47 ms neue threads bis Ebene: 4 rund Threads: 8
+Gesamtlaufzeit: 49 ms neue threads bis Ebene: 5 rund Threads: 16
+Gesamtlaufzeit: 52 ms neue threads bis Ebene: 6 rund Threads: 32
+Gesamtlaufzeit: 64 ms neue threads bis Ebene: 7 rund Threads: 64
+Gesamtlaufzeit: 92 ms neue threads bis Ebene: 8 rund Threads: 128
+Gesamtlaufzeit: 155 ms neue threads bis Ebene: 9 rund Threads: 256
+Gesamtlaufzeit: 305 ms neue threads bis Ebene: 10 rund Threads: 512
+Gesamtlaufzeit: 604 ms neue threads bis Ebene: 11 rund Threads: 1024
+Gesamtlaufzeit: 1218 ms neue threads bis Ebene: 12 rund Threads: 2048
+Gesamtlaufzeit: 2412 ms neue threads bis Ebene: 13 rund Threads: 4096
+Gesamtlaufzeit: 4931 ms neue threads bis Ebene: 14 rund Threads: 8192
+Gesamtlaufzeit: 9924 ms neue threads bis Ebene: 15 rund Threads: 16384
+Quicksort :
+Gesamtlaufzeit: 45 ms neue threads bis Ebene: 1 rund Threads: 1
+Gesamtlaufzeit: 40 ms neue threads bis Ebene: 2 rund Threads: 2
+Gesamtlaufzeit: 30 ms neue threads bis Ebene: 3 rund Threads: 4
+Gesamtlaufzeit: 32 ms neue threads bis Ebene: 4 rund Threads: 8
+Gesamtlaufzeit: 28 ms neue threads bis Ebene: 5 rund Threads: 16
+Gesamtlaufzeit: 32 ms neue threads bis Ebene: 6 rund Threads: 32
+Gesamtlaufzeit: 45 ms neue threads bis Ebene: 7 rund Threads: 64
+Gesamtlaufzeit: 77 ms neue threads bis Ebene: 8 rund Threads: 128
+Gesamtlaufzeit: 148 ms neue threads bis Ebene: 9 rund Threads: 256
+Gesamtlaufzeit: 299 ms neue threads bis Ebene: 10 rund Threads: 512
+Gesamtlaufzeit: 580 ms neue threads bis Ebene: 11 rund Threads: 1024
+Gesamtlaufzeit: 1181 ms neue threads bis Ebene: 12 rund Threads: 2048
+Gesamtlaufzeit: 2415 ms neue threads bis Ebene: 13 rund Threads: 4096
+Gesamtlaufzeit: 4431 ms neue threads bis Ebene: 14 rund Threads: 8192
+Gesamtlaufzeit: 6979 ms neue threads bis Ebene: 15 rund Threads: 16384
+Gesamtlaufzeit: 802 s aller Messungen zusammen.
+Ende
+
