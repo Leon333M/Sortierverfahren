@@ -202,7 +202,6 @@ void ManagerString::workerZeiten() {
         mergesortString.sortW(liste, lange, i);
         std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
         long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-        int t = static_cast<int>(std::pow(2, i - 1));
         std::cout << "Laufzeit: " << dauer << " ms" << " workerThreads: " << i << std::endl;
         istSortiert();
         Messdaten *md = new Messdaten();

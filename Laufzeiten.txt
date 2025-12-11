@@ -292,39 +292,41 @@ PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 400000000 w s
 listeVariante :s
 maxEbene : 30
 Mergesort :
-Laufzeit: 18144 ms workerThreads: 1
-Laufzeit: 13322 ms workerThreads: 2
-Laufzeit: 9619 ms workerThreads: 4
-Laufzeit: 8227 ms workerThreads: 8
-Laufzeit: 6771 ms workerThreads: 15
-Laufzeit: 6370 ms workerThreads: 16
-Laufzeit: 6641 ms workerThreads: 17
-Laufzeit: 6129 ms workerThreads: 18
-Laufzeit: 6129 ms workerThreads: 32
-Laufzeit: 5945 ms workerThreads: 64
-Laufzeit: 6293 ms workerThreads: 128
-Laufzeit: 6515 ms workerThreads: 256
-Laufzeit: 7464 ms workerThreads: 1024
-Laufzeit: 10955 ms workerThreads: 4096
-Laufzeit: 16449 ms workerThreads: 8192
-Laufzeit: 23640 ms workerThreads: 16384
+Laufzeit: 15707 ms workerThreads: 1
+Laufzeit: 13311 ms workerThreads: 2
+Laufzeit: 10269 ms workerThreads: 4
+Laufzeit: 7964 ms workerThreads: 8
+Laufzeit: 6935 ms workerThreads: 15
+Laufzeit: 6507 ms workerThreads: 16
+Laufzeit: 6668 ms workerThreads: 17
+Laufzeit: 6798 ms workerThreads: 18
+Laufzeit: 5987 ms workerThreads: 32
+Laufzeit: 6066 ms workerThreads: 64
+Laufzeit: 6350 ms workerThreads: 128
+Laufzeit: 6541 ms workerThreads: 256
+Laufzeit: 7312 ms workerThreads: 1024
+Laufzeit: 11304 ms workerThreads: 4096
+Laufzeit: 15452 ms workerThreads: 8192
+Laufzeit: 22028 ms workerThreads: 16384
 Quicksort :
-Laufzeit: 3276 ms workerThreads: 1
-Laufzeit: 1729 ms workerThreads: 2
-Laufzeit: 1018 ms workerThreads: 4
-Laufzeit: 845 ms workerThreads: 8
-Laufzeit: 806 ms workerThreads: 15
-Laufzeit: 761 ms workerThreads: 17
-Laufzeit: 768 ms workerThreads: 18
-Laufzeit: 795 ms workerThreads: 32
-Laufzeit: 723 ms workerThreads: 64
-Laufzeit: 736 ms workerThreads: 128
-Laufzeit: 758 ms workerThreads: 256
-Laufzeit: 886 ms workerThreads: 1024
-Laufzeit: 3046 ms workerThreads: 4096
-Laufzeit: 8189 ms workerThreads: 8192
-Laufzeit: 11921 ms workerThreads: 16384
+Laufzeit: 3250 ms workerThreads: 1
+Laufzeit: 1756 ms workerThreads: 2
+Laufzeit: 1112 ms workerThreads: 4
+Laufzeit: 841 ms workerThreads: 8
+Laufzeit: 813 ms workerThreads: 15
+Laufzeit: 777 ms workerThreads: 16
+Laufzeit: 771 ms workerThreads: 17
+Laufzeit: 760 ms workerThreads: 18
+Laufzeit: 792 ms workerThreads: 32
+Laufzeit: 719 ms workerThreads: 64
+Laufzeit: 735 ms workerThreads: 128
+Laufzeit: 739 ms workerThreads: 256
+Laufzeit: 900 ms workerThreads: 1024
+Laufzeit: 2092 ms workerThreads: 4096
+Laufzeit: 4703 ms workerThreads: 8192
+Laufzeit: 10512 ms workerThreads: 16384
 Ende
+
 PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 400000000 p s
 listeVariante :s
 maxEbene : 30
