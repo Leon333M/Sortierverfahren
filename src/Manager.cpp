@@ -41,6 +41,7 @@ Manager::Manager(int argc, char *argv[]) {
 
     for (char lv : lvn) {
         listeVariante = lv;
+        std::cout << "listeVariante :" << listeVariante << std::endl;
         if (variante == 'g' || variante == 'a') {
             grundzeiten();
         }
