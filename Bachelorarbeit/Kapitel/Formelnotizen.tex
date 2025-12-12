@@ -34,10 +34,16 @@ Restproblem:
 T(n/2^e,1) -> seriel
 T(n/2^e,1) = (n/2^e)*log2( n/2^e ) + (n/2^e)
 
-e sind die anzahl ebenen die paralleisiert laufen (anzahl thrads t = 2^e)
+e sind die anzahl ebenen die paralleisiert laufen (anzahl Threads t = 2^e)
 T(n,e) = n * 2 ( 1 - 1 / ( 2 ^ e ) ) + (n/2^e)*log2( (n/2^e)) + (n/2^e)
 O(T(n,e)) = O(n+(n/2^e)*log2(n))
-T(n,unendlich) = 2*n
+T(n, unendlich) = 2*n
+
+eine theoretische Zeitersparnis von 80 Prozent bei 16 Threads bzw. e =5
+
+Theoretisch wenn mischen / partitioniere parallel auf unendlich viel Threads ist dann hat man:
+T(n, unendlich) = 2*n/unendlich = 0
+O(T(n, unendlich)) = 0
 
 Quicksort:
 Best Case Laufzeit = Mergesort Laufzeit
@@ -45,7 +51,7 @@ Best Case Laufzeit = Mergesort Laufzeit
 Worst Case Laufzeit:
 T(n) = n ( n + 1 ) / 2
 T(n) = ( 1 / 2 ) * ( n^2 + n )
-O(n) = O((1/2)*n^2) = O(n^2)
+O(T(n)) = O((1/2)*n^2) = O(n^2)
 
 Average Case Laufzeit:
 T(n) = 2 * q(n) + p(n)
