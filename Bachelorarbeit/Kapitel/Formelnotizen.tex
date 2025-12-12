@@ -36,7 +36,7 @@ T(n/2^e,1) = (n/2^e)*log2( n/2^e ) + (n/2^e)
 
 e sind die anzahl ebenen die paralleisiert laufen (anzahl thrads t = 2^e)
 T(n,e) = n * 2 ( 1 - 1 / ( 2 ^ e ) ) + (n/2^e)*log2( (n/2^e)) + (n/2^e)
-O(T(n,e)) = O(n+n/(2^e)*log2(n))
+O(T(n,e)) = O(n+(n/2^e)*log2(n))
 T(n,unendlich) = 2*n
 
 Quicksort:
