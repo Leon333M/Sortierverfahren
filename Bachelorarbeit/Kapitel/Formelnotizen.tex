@@ -39,8 +39,6 @@ T(n,e) = n * 2 ( 1 - 1 / ( 2 ^ e ) ) + (n/2^e)*log2( (n/2^e)) + (n/2^e)
 O(T(n,e)) = O(n+(n/2^e)*log2(n))
 T(n, unendlich) = 2*n
 
-eine theoretische Zeitersparnis von 80 Prozent bei 16 Threads bzw. e =5
-
 Theoretisch wenn mischen / partitioniere parallel auf unendlich viel Threads ist dann hat man:
 T(n, unendlich) = 2*n/unendlich = 0
 O(T(n, unendlich)) = 0
