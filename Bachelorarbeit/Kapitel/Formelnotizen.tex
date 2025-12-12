@@ -1,0 +1,54 @@
+
+Laufzeit analyse:
+Mergesort:
+
+die Idee:
+aber nur für dieses x
+jetzt versuche ich x varIabel zu machen.
+(x ist ja die rekurionsebne bzw Anzalh thrads t = 2^x)
+x = log2(n)
+T(n) = T(1) + summe von 1 bis x von (n/k) k ist der iterater des sumenzeichens und k kann nur element von 2^N sein . ok ja die Summe kan man als <= 2/n zusamenfassen.
+also
+
+Parallel:
+T(n) <= T(1) + 2n
+T(n) = T(n/2) + n
+
+Linear:
+T(n) = 2*T(n/2) + n
+T(n) = n*log2(n) + n
+
+Parallel bis Ebene:
+T(n,e) = ...
+T(n,1) = 2*T(n/2,1) + n
+T(n,2) = T(n/2,1) + n
+T(n,3) = T(n/2,2) + n
+und damit ist klar dass
+T(n,1) = 2*T(n/2,1) + n
+T(n,e) = T(n/2,e-1) + n wenn e=1 ausgeschlossen
+Summe der parallelisierten Ebenen:
+n+n/2+...+n/2^(e-1)
+über geometischre rehien
+= n * 2 ( 1 - 1 / ( 2 ^ e ) )
+Restproblem:
+T(n/2^e,1) -> seriel
+T(n/2^e,1) = (n/2^e)*log2( n/2^e ) + (n/2^e)
+
+e sind die anzahl ebenen die paralleisiert laufen (anzahl thrads t = 2^e)
+T(n,e) = n * 2 ( 1 - 1 / ( 2 ^ e ) ) + (n/2^e)*log2( (n/2^e)) + (n/2^e)
+O(T(n,e)) = O(n+n/(2^e)*log2(n))
+T(n,unendlich) = 2*n
+
+Quicksort:
+Best Case Laufzeit = Mergesort Laufzeit
+
+Worst Case Laufzeit:
+T(n) = n ( n + 1 ) / 2
+T(n) = ( 1 / 2 ) * ( n^2 + n )
+O(n) = O((1/2)*n^2) = O(n^2)
+
+Average Case Laufzeit:
+T(n) = 2 * q(n) + p(n)
+p(n) = n
+q(n) = T((Summe von allen N von 1 bis n-1)/ (n-1)) = T(n/2)
+T(n) = best case T(n)
