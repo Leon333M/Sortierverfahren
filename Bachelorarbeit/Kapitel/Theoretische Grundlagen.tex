@@ -15,15 +15,35 @@
 % % Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
 
 \newcommand{\SortieralgorithmenQuicksortMergesort}{
-    Sowel mergsort wie quksoert beruhen auf den Teilen und hersche prinzip und unterleien rekusif das Aray in 2 hälften.
+    Sowohl \textbf{Quicksort} als auch \textbf{Mergesort} basieren auf dem \emph{Teile-und-Herrsche}-Prinzip und sind rekursive Sortieralgorithmen. Dabei wird das zu sortierende Array wiederholt in kleinere Teilprobleme zerlegt, die unabhängig voneinander verarbeitet werden.
 
-    Das prinizp von mergsort ist das aus 2 Sortieren loiste eine wird. In mein Fall wird dafür die unsortierte Liste rekursif in exakt 2 fast glecihgroße heflten geteilt bis die Liste nur noch aus ein Elemt bestetz und anschilsend zu einer Sortierten lsite Zusamgefast. Da eine ein Elemtike teil lsite eine sortierte Teilsite ist komt an diser stlle dan der mischen schritt der dise 2 sortierte Teilsiten zu einer zusamenführt. Dafür werden aber beide teilisten kopert um sie besser verglecihen und direkt in die orgnilaiste richtig enfügen zu könen. Somit hatt der mischen stapp immer n verglecihe und 2n Lese und schreibzugriffe.
-    Die Laufzeit von mergsort ist T(n) = 2*T(n/2) + n wobei das +n die anzalh verglecuhe für den mischen stept ist.
-    Darazus ergibt sich dann T(n) = n*log2(n) was man auch öfter als O(T(n))=n*log(n) kent.
+    \subsubsection{Mergesort}
+    Das Grundprinzip von \textbf{Mergesort} besteht darin, aus zwei bereits sortierten Teillisten eine neue sortierte Liste zu erzeugen. In dieser Arbeit wird die unsortierte Ausgangsliste rekursiv in zwei möglichst gleich große Hälften geteilt, bis jede Teilliste nur noch aus einem einzelnen Element besteht. Da eine Liste mit einem Element per Definition sortiert ist, beginnt anschließend der sogenannte \emph{Merge-Schritt}. In diesem Schritt werden jeweils zwei sortierte Teillisten zu einer neuen sortierten Liste zusammengeführt.
+    \newline
+    Hierfür werden beide Teillisten sequenziell durchlaufen und die Elemente verglichen, wodurch pro Merge-Schritt \(n\) Vergleiche sowie \(2n\) Lese- und Schreibzugriffe erforderlich sind.
+    \newline
+    Die Laufzeit von Mergesort lässt sich durch die Rekurrenzgleichung
+    \[
+        T(n) = 2 \cdot T(n/2) + n
+    \]
+    beschreiben, wobei der Term \(+n\) den Aufwand des Merge-Schritts repräsentiert. Daraus ergibt sich eine Gesamtlaufzeit von
+    \[
+        T(n) = n \cdot \log_2(n)
+    \]
+    bzw.\ in asymptotischer Notation \(O(n \log n)\).
 
-    Bei Qiksort im prizib sher enlisch aufgebaut wie mergsort.
-    nur das bei qksort die liste nicht in exakt 2 glecih goße hälten aufgteilt wird und der partitioniere schrit vor die rekusifen sebstaufrufe agearbeitet wird. weswegen man Qiksort als als eine iterarive version schreiben kann.
-    Die Laufzeiten von Quksort sind in der tehorie sher änlich wie die von mergsort nur das man hier zwicehn Worscase Avrage und bestace laufzeiten unterscheiden muss.
-    Die serielle Worstaceh laufzeit von qiksort ist immer O(T(n)) = n^2.
-    Die bestcase und Avrage case lauzeit ist T(n) = 2*T(n/2) +n wobei das +n die anzalh vergleiche für den partitioniere stept ist, was man auch öfter als O(T(n))=n*log(n) kent. Und daher merkt man das die O(T(n)) laufzeit nur im Worscase schlchter ist als mergsort und  sorst nur glecih. Obwohl in der prxis qiksoert meisten dopelt so schenn fertig sit wie mergsort aber dazu später mer.
+    \subsubsection{Quicksort}
+    \textbf{Quicksort} ist im Grundaufbau ähnlich strukturiert, unterscheidet sich jedoch wesentlich im Ablauf. Die Liste wird nicht zwingend in zwei gleich große Hälften geteilt. Stattdessen wird zunächst ein sogenanntes \emph{Pivot-Element} gewählt, anhand dessen die Liste in einen kleineren und einen größeren Teil partitioniert wird. Dieser Partitionierungsschritt erfolgt \emph{vor} den rekursiven Selbstaufrufen, weshalb sich Quicksort auch als iterative Variante formulieren lässt.
+    Beim Partitionieren wird die Liste so umsortiert, dass alle Elemente, die kleiner als das Pivotelement sind, links davon stehen und alle Elemente, die größer sind, rechts davon stehen. Dabei werden die Elemente auf beiden Seiten entsprechend getauscht.
+    \newline
+    Die Laufzeit von Quicksort hängt stark von der Qualität der Partitionierung ab. Im \textbf{Worst-Case}, beispielsweise bei ungünstiger Pivot-Wahl, beträgt die serielle Laufzeit
+    \[
+        O(n^2).
+    \]
+    Im \textbf{Best-Case} sowie im \textbf{Average-Case} ergibt sich hingegen ebenfalls die Rekurrenzgleichung
+    \[
+        T(n) = 2 \cdot T(n/2) + n,
+    \]
+    woraus wiederum eine Laufzeit von \(O(n \log n)\) folgt. Damit ist Quicksort im Durchschnitt asymptotisch genauso effizient wie Mergesort, aber in der Praxis ist Quicksort oft doppelt so schnell wie Mergesort, doch dazu später mehr.
+
 }
