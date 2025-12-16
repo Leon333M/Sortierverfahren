@@ -14,6 +14,8 @@
 % \subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}
 % % Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
 
+% \subsection{Sortieralgorithmen: Quicksort und Mergesort}
+% % Theorie zu Quicksort und Merge Sort
 \newcommand{\SortieralgorithmenQuicksortMergesort}{
     Sowohl \textbf{Quicksort} als auch \textbf{Mergesort} basieren auf dem \emph{Teile-und-Herrsche}-Prinzip und sind rekursive Sortieralgorithmen. Dabei wird das zu sortierende Array wiederholt in kleinere Teilprobleme zerlegt, die unabhängig voneinander verarbeitet werden.
 
@@ -38,6 +40,9 @@
     \newline
     Die Laufzeit von Quicksort hängt stark von der Qualität der Partitionierung ab. Im \textbf{Worst-Case}, beispielsweise bei ungünstiger Pivot-Wahl, beträgt die serielle Laufzeit
     \[
+        T(n) = \frac{1}{2} \cdot ( n^2 + n ),
+    \]
+    \[
         O(n^2).
     \]
     Im \textbf{Best-Case} sowie im \textbf{Average-Case} ergibt sich hingegen ebenfalls die Rekurrenzgleichung
@@ -46,4 +51,16 @@
     \]
     woraus wiederum eine Laufzeit von \(O(n \log n)\) folgt. Damit ist Quicksort im Durchschnitt asymptotisch genauso effizient wie Mergesort, aber in der Praxis ist Quicksort oft doppelt so schnell wie Mergesort, doch dazu später mehr.
 
+}
+
+% \subsection{Grundlagen der Parallelisierung}
+% % Amdahl Law
+\newcommand{\GrundlagenDerParallelisierung}{
+    Parallelisierung beschreibt die gleichzeitige Ausführung mehrerer Programmteile mit dem Ziel, die Gesamtlaufzeit einer Berechnung zu reduzieren. Dabei wird eine ursprünglich serielle Aufgabe in mehrere Teilaufgaben zerlegt, die parallel auf mehreren Recheneinheiten verarbeitet werden können.
+    \newline
+    Der maximal erreichbare Geschwindigkeitsgewinn durch Parallelisierung ist jedoch begrenzt. Nach dem Amdahlschen Gesetz hängt die theoretische Beschleunigung davon ab, welcher Anteil eines Programms parallelisiert werden kann. Serielle Programmanteile sowie zusätzlicher Verwaltungsaufwand, beispielsweise durch Thread-Erzeugung, Synchronisation und Kommunikation, begrenzen die Skalierbarkeit.
+    \newline
+    In der Praxis führt Parallelisierung daher nicht zwangsläufig zu einer linearen Beschleunigung, insbesondere bei steigender Anzahl von Threads.
+    \newline
+    Einfach ausgedrückt bedeutet dies, dass Code mit seriellen Abhängigkeiten auch bei mehreren Threads nicht schneller ausgeführt wird. Daher sollte nur der Teil des Codes parallelisiert werden, der keine solchen Abhängigkeiten enthält.
 }
