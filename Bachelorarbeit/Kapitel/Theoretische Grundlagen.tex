@@ -2,3 +2,28 @@
 
 % Definiere Variablen
 % \newcommand{\Messziel}{Messziel}
+
+% ----------------------
+% 2. Theoretische Grundlagen
+% ----------------------
+% \section{Theoretische Grundlagen}
+% \subsection{Sortieralgorithmen: Quicksort und Mergesort}
+% % Theorie zu Quicksort und Merge Sort
+% \subsection{Grundlagen der Parallelisierung}
+% % Amdahl Law, Overheads, Threading
+% \subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}
+% % Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
+
+\newcommand{\SortieralgorithmenQuicksortMergesort}{
+    Sowel mergsort wie quksoert beruhen auf den Teilen und hersche prinzip und unterleien rekusif das Aray in 2 hälften.
+
+    Das prinizp von mergsort ist das aus 2 Sortieren loiste eine wird. In mein Fall wird dafür die unsortierte Liste rekursif in exakt 2 fast glecihgroße heflten geteilt bis die Liste nur noch aus ein Elemt bestetz und anschilsend zu einer Sortierten lsite Zusamgefast. Da eine ein Elemtike teil lsite eine sortierte Teilsite ist komt an diser stlle dan der mischen schritt der dise 2 sortierte Teilsiten zu einer zusamenführt. Dafür werden aber beide teilisten kopert um sie besser verglecihen und direkt in die orgnilaiste richtig enfügen zu könen. Somit hatt der mischen stapp immer n verglecihe und 2n Lese und schreibzugriffe.
+    Die Laufzeit von mergsort ist T(n) = 2*T(n/2) + n wobei das +n die anzalh verglecuhe für den mischen stept ist.
+    Darazus ergibt sich dann T(n) = n*log2(n) was man auch öfter als O(T(n))=n*log(n) kent.
+
+    Bei Qiksort im prizib sher enlisch aufgebaut wie mergsort.
+    nur das bei qksort die liste nicht in exakt 2 glecih goße hälten aufgteilt wird und der partitioniere schrit vor die rekusifen sebstaufrufe agearbeitet wird. weswegen man Qiksort als als eine iterarive version schreiben kann.
+    Die Laufzeiten von Quksort sind in der tehorie sher änlich wie die von mergsort nur das man hier zwicehn Worscase Avrage und bestace laufzeiten unterscheiden muss.
+    Die serielle Worstaceh laufzeit von qiksort ist immer O(T(n)) = n^2.
+    Die bestcase und Avrage case lauzeit ist T(n) = 2*T(n/2) +n wobei das +n die anzalh vergleiche für den partitioniere stept ist, was man auch öfter als O(T(n))=n*log(n) kent. Und daher merkt man das die O(T(n)) laufzeit nur im Worscase schlchter ist als mergsort und  sorst nur glecih. Obwohl in der prxis qiksoert meisten dopelt so schenn fertig sit wie mergsort aber dazu später mer.
+}
