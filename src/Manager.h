@@ -28,4 +28,6 @@ private:
     void incArray();
     void incArrayMT(volatile int *liste, long long lange, int threadCount);
     void benchmarkIncThreads(int lange, std::vector<int> &thrads, std::vector<MessWerte> &messWerte, bool messeAlles);
+    void benchmarkScalingDouble(int startLange, int maxThreads, std::vector<MessWerte> &messWerte);
+    void benchmarkDataScaling(int startLange, int konstanteThreads, int anzahlVerdopplungen, std::vector<MessWerte> &messWerte);
 };

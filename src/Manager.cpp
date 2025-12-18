@@ -347,6 +347,8 @@ void Manager::incArray() {
     std::vector<MessWerte> messWerte2;
     std::vector<MessWerte> messWerte3;
     std::vector<MessWerte> messWerte4;
+    std::vector<MessWerte> messWerte5;
+    std::vector<MessWerte> messWerte6;
     while (!fin) {
         benchmarkIncThreads(lange, thrads, messWerte, false);
         lange = lange * 2;
@@ -367,7 +369,9 @@ void Manager::incArray() {
     benchmarkIncThreads(maxIntLange, thrads, messWerte3, true);
     const int lowIntLange = 16;
     benchmarkIncThreads(lowIntLange, thrads, messWerte4, true);
-    dateimanager.writeMesswerteToFile("incArray", messWerte, messWerte2, messWerte3, messWerte4);
+    benchmarkScalingDouble(2 ^ 21, 16, messWerte5);
+    benchmarkDataScaling(21, 16, 2 ^ 21, messWerte6);
+    dateimanager.writeMesswerteToFile("incArray", messWerte, messWerte2, messWerte3, messWerte4, messWerte5, messWerte6);
 };
 
 void Manager::incArrayMT(volatile int *liste, long long lange, int threadCount) {
@@ -433,5 +437,34 @@ void Manager::benchmarkIncThreads(int lange, std::vector<int> &thrads, std::vect
                 messWerte.push_back({t, dauer, lange});
             }
         }
+    }
+};
+
+void Manager::benchmarkScalingDouble(int startLange, int maxThreads, std::vector<MessWerte> &messWerte) {
+    int aktuelleLange = startLange;
+    for (int t = 1; t <= maxThreads; t *= 2) {
+        // Speicher fur die vergroserte Last reservieren
+        std::unique_ptr<int[]> liste(new int[aktuelleLange]);
+        volatile int *vptr = liste.get();
+        auto start = std::chrono::high_resolution_clock::now();
+        incArrayMT(vptr, aktuelleLange, t);
+        auto stop = std::chrono::high_resolution_clock::now();
+        long long dauer = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start).count();
+        messWerte.push_back({t, dauer, aktuelleLange});
+        aktuelleLange *= 2;
+    }
+};
+
+void Manager::benchmarkDataScaling(int startLange, int konstanteThreads, int anzahlVerdopplungen, std::vector<MessWerte> &messWerte) {
+    int aktuelleLange = startLange;
+    for (int i = 0; i < anzahlVerdopplungen; i++) {
+        std::unique_ptr<int[]> liste(new int[aktuelleLange]);
+        volatile int *vptr = liste.get();
+        auto start = std::chrono::high_resolution_clock::now();
+        incArrayMT(vptr, aktuelleLange, konstanteThreads);
+        auto stop = std::chrono::high_resolution_clock::now();
+        long long dauer = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start).count();
+        messWerte.push_back({konstanteThreads, dauer, aktuelleLange});
+        aktuelleLange *= 2;
     }
 };

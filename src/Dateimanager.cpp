@@ -46,7 +46,9 @@ void Dateimanager::writeMesswerteToFile(
     std::vector<MessWerte> messWerte1,
     std::vector<MessWerte> messWerte2,
     std::vector<MessWerte> messWerte3,
-    std::vector<MessWerte> messWerte4) {
+    std::vector<MessWerte> messWerte4,
+    std::vector<MessWerte> messWerte5,
+    std::vector<MessWerte> messWerte6) {
     std::string path = originalPath;
     path += filename;
     path += dateiendung;
@@ -70,6 +72,12 @@ void Dateimanager::writeMesswerteToFile(
         file << std::endl;
         file << "Messwerte (Messwerte bei " << messWerte4[0].lange << " Laenge):" << std::endl;
         writeBlock(file, messWerte4);
+        file << std::endl;
+        file << "Messwerte und Threads verdoppeln (Messwerte ab " << messWerte4[0].lange << " Laenge):" << std::endl;
+        writeBlock(file, messWerte5);
+        file << std::endl;
+        file << "Messwerte verdoppeln und Threads konstant (Messwerte ab " << messWerte4[0].lange << " Laenge):" << std::endl;
+        writeBlock(file, messWerte6);
     }
 
     file.close();
