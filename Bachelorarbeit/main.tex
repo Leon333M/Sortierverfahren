@@ -6,7 +6,7 @@ a4paper,
 ngerman,                               % f�r Umlaute, Silbentrennung etc.
 titlepage,                             % es wird eine Titelseite verwendet
 bibliography=totoc,                    % Literaturverzeichnis im Inhaltsverzeichnis auff�hren
-listof=totoc,                          % Verzeichnisse im Inhaltsverzeichnis auff�hren
+% listof=totoc,                        % Verzeichnisse im Inhaltsverzeichnis auff�hren
 oneside,                               % einseitiges Dokument
 captions=nooneline,                    % einzeilige Gleitobjekttitel ohne Sonderbehandlung wie mehrzeilige Gleitobjekttitel behandeln
 numbers=noenddot,                      % �berschriften-??Nummerierung ohne Punkt am Ende
@@ -88,20 +88,25 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 \tableofcontents
 \newpage
 
+% \chapter
+% \section
+% \subsection
+% \subsubsection
+
 % ----------------------
 % 1. Einleitung
 % ----------------------
-\section{Einleitung}
+\chapter{Einleitung}
 
-\subsection{Motivation}
+\section{Motivation}
 % Hier Motivation einfügen
 \Motivation
 
-\subsection{Zielsetzung und Forschungsfrage}
+\section{Zielsetzung und Forschungsfrage}
 % Hier Zielsetzung und Forschungsfrage einfügen
 \ZielsetzungUndForschungsfrage
 
-\subsection{Threading anhand des einfachen Beispiels Inkrement-Array erklärt}
+\section{Threading anhand des einfachen Beispiels Inkrement-Array erklärt}
 % Inkrement-Array
 \InkrementArray
 
@@ -110,14 +115,14 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 % 2. Theoretische Grundlagen
 % ----------------------
 \newpage
-\section{Theoretische Grundlagen}
-\subsection{Sortieralgorithmen: Quicksort und Mergesort}
+\chapter{Theoretische Grundlagen}
+\section{Sortieralgorithmen: Quicksort und Mergesort}
 % Theorie zu Quicksort und Merge Sort
 \SortieralgorithmenQuicksortMergesort
-\subsection{Grundlagen der Parallelisierung}
+\section{Grundlagen der Parallelisierung}
 % Amdahl Law
 \GrundlagenDerParallelisierung
-\subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}
+\section{Thread-Modelle, Overheads und Skalierungsgrenzen}
 % Overheads, Threading, Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
 \ThreadModelleOverheadsUndSkalierungsgrenzen
 
@@ -125,95 +130,95 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 % 3. Methodik und Versuchsaufbau
 % ----------------------
 \newpage
-\section{Methodik und Versuchsaufbau}
-\subsection{Messumgebung und Hardware}
+\chapter{Methodik und Versuchsaufbau}
+\section{Messumgebung und Hardware}
 % CPU, RAM, OS, Compiler
 
-\subsection{Implementierungsvarianten}
+\section{Implementierungsvarianten}
 % Sequenziell, parallel, Workerthreads, neue Threads
 
-\subsection{Messmethodik}
+\section{Messmethodik}
 % Vorgehensweise zur Laufzeitmessung, Datenerhebung
 
 % ----------------------
 % 4. Ergebnisse und Analyse
 % ----------------------
 \newpage
-\section{Ergebnisse und Analyse}
+\chapter{Ergebnisse und Analyse}
 
-\subsection{Grundlegende Laufzeiten abhängig von der Arraygröße}
-\subsubsection{Messziel} % Einleitung
-\subsubsection{Erwartung}
-\subsubsection{Diagramm}
-\subsubsection{Analyse und Interpretation}
-
-\newpage
-\subsection{Einfluss des Listentyps} % Listentyps: Zufall, Sortiert, InvertiertSortiert, FastSortiert, Dupliziert
-\subsubsection{Messziel} % Einleitung
-\subsubsection{Erwartung}
-\subsubsection{Diagramm}
-\subsubsection{Analyse und Interpretation}
+\section{Grundlegende Laufzeiten abhängig von der Arraygröße}
+\subsection{Messziel} % Einleitung
+\subsection{Erwartung}
+\subsection{Diagramm}
+\subsection{Analyse und Interpretation}
 
 \newpage
-\subsection{Einfluss der Arraygröße im Detail}
-\subsubsection{Messziel} % Einleitung
-\subsubsection{Erwartung}
-\subsubsection{Diagramm}
-\subsubsection{Analyse und Interpretation}
+\section{Einfluss des Listentyps} % Listentyps: Zufall, Sortiert, InvertiertSortiert, FastSortiert, Dupliziert
+\subsection{Messziel} % Einleitung
+\subsection{Erwartung}
+\subsection{Diagramm}
+\subsection{Analyse und Interpretation}
 
 \newpage
-\subsection{Tiefenbasierte Thread-Erzeugung}
-\subsubsection{Messziel} % Einleitung
-\subsubsection{Erwartung}
-\subsubsection{Diagramm}
-\subsubsection{Analyse und Interpretation}
+\section{Einfluss der Arraygröße im Detail}
+\subsection{Messziel} % Einleitung
+\subsection{Erwartung}
+\subsection{Diagramm}
+\subsection{Analyse und Interpretation}
 
 \newpage
-\subsection{Workerthreads}
-\subsubsection{Messziel} % Einleitung
-\subsubsection{Erwartung}
-\subsubsection{Diagramm}
-\subsubsection{Analyse und Interpretation}
+\section{Tiefenbasierte Thread-Erzeugung}
+\subsection{Messziel} % Einleitung
+\subsection{Erwartung}
+\subsection{Diagramm}
+\subsection{Analyse und Interpretation}
 
 \newpage
-\subsection{Vergleich der Threading-Methoden}
-\subsubsection{Messziel} % Einleitung
-\subsubsection{Erwartung}
-\subsubsection{Diagramm}
-\subsubsection{Analyse und Interpretation}
+\section{Workerthreads}
+\subsection{Messziel} % Einleitung
+\subsection{Erwartung}
+\subsection{Diagramm}
+\subsection{Analyse und Interpretation}
 
 \newpage
-\subsection{Einfluss des Datentyps der Liste} % Listenart: int, string
-\subsubsection{Messziel} % Einleitung
-\subsubsection{Erwartung}
-\subsubsection{Diagramm}
-\subsubsection{Analyse und Interpretation}
+\section{Vergleich der Threading-Methoden}
+\subsection{Messziel} % Einleitung
+\subsection{Erwartung}
+\subsection{Diagramm}
+\subsection{Analyse und Interpretation}
 
-% \subsection{Debug Vs Release}
+\newpage
+\section{Einfluss des Datentyps der Liste} % Listenart: int, string
+\subsection{Messziel} % Einleitung
+\subsection{Erwartung}
+\subsection{Diagramm}
+\subsection{Analyse und Interpretation}
+
+% \section{Debug Vs Release}
 
 
 % ----------------------
 % 5. Diskussion und Fazit
 % ----------------------
 \newpage
-\section{Diskussion und Fazit}
-\subsection{Interpretation aller Ergebnisse}
+\chapter{Diskussion und Fazit}
+\section{Interpretation aller Ergebnisse}
 % Ergebnisse interpretieren
-\subsection{Beantwortung der Forschungsfrage}
+\section{Beantwortung der Forschungsfrage}
 % Forschungsfrage beantworten
-\subsection{Zusammenfassung}
+\section{Zusammenfassung}
 % Kurze Zusammenfassung der Arbeit
 
 % ----------------------
 % 6. Anhang
 % ----------------------
 \newpage
-\section{Anhang}
-\subsection{Hardware-Spezifikationen}
+\chapter{Anhang}
+\section{Hardware-Spezifikationen}
 % Hardware genau dokumentieren
 \HardwareSpezifikationen
 
-\subsection{Code}
+\section{Code}
 \Code
 % \lstinputlisting[language=C++,caption={Quicksort},label={lst:qs}]
 % {../../src/Quicksort.cpp}
