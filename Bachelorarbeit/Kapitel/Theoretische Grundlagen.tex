@@ -10,7 +10,7 @@
 % \subsection{Sortieralgorithmen: Quicksort und Mergesort}
 % % Theorie zu Quicksort und Merge Sort
 % \subsection{Grundlagen der Parallelisierung}
-% % Amdahl Law, Overheads, Threading
+% % Amdahl Law
 % \subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}
 % % Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
 
@@ -63,4 +63,17 @@
     In der Praxis führt Parallelisierung daher nicht zwangsläufig zu einer linearen Beschleunigung, insbesondere bei steigender Anzahl von Threads.
     \newline
     Einfach ausgedrückt bedeutet dies, dass Code mit seriellen Abhängigkeiten auch bei mehreren Threads nicht schneller ausgeführt wird. Daher sollte nur der Teil des Codes parallelisiert werden, der keine solchen Abhängigkeiten enthält.
+}
+
+% \subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}
+% % Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
+\newcommand{\ThreadModelleOverheadsUndSkalierungsgrenzen}{
+    Bei Thrahds gibt es in der prxis immer Overhads die dafür sorgen das man eine perfekte Zeitersparnis nicht ereichen kann.
+    Dise Overhads sind init-/join-zeiten, dekusturktor zeiten. Dazu komt das die Hardware auch in der Prxis genzen hatt was wider zu Overhads führt. Dise Hardware grenzen sind die thrad swaping zeiten, die begrantze kern anzahl (bei mir 8 kerne bzw 16 virtullle kerne), sowie kan es zu mer cach mises kommen wen man mehr thrads nutzt, da diser öfter benutzt wird. Dies führt widerum das mer Daten von Ram gelesen werden müssen was widerum dazu führen kann das man eher am Datenraten limit des ramcontolrers ist anstatt am rechenlimt der cpu kerne. Jetzt mus man auch bedekenden das man ziwcehen echten kerenen und virtuellen keren unterscheiden muss da ein virtuleer kern nicht so gut mit parelisung scalt wie ein echter aufgrund der begrenzeten hardware recurecen.
+
+    Dann gibt es auch noch andre Skalierungsgrenzen wie die Listen göße, da wen eine lsite mer speicher bracuht als der ganze ram biten kan disen speicher auslgern muss, und dier ausgelgerter speicher ist wesenlich langsamer im lesen schreben sowe in den latzenen dafür.
+
+    Dann gibt es natülich auch verschidene methoden wie man Code paraliseren kann. die einfachste ist den nicht sereien code immer in ein neuen thrad asuzulagern. Dise ist jedoch je nach anwedungs fall nicht immer sinnfoll, da man sonst zu vilee thrads erstellt die sich gegeseitetig duch thrads swoping oder gar duch den erhäteh ram verbrauch von den thrads selber gegseitig verlagsomern.
+    Daher begrent man in normal fall die Thrad anzal um sowas zu vermeiden, das ist denke ich für anfänger die beste startegie.
+    Dann kann man das genze natülich noch verbessern, indem man versucht die Thrad initzeiten nur eieinzigen mal für den geamten code vraucht, dise satatie gie wird dann mitels worker Trahds umgestetzt. Dise erstellt man einmal am anfang es codes und weisten ihnen imer wider neue aufgaben zu anstett wen sie fertig sind eichaf wider zu zerstören. Dann kan man das ganzie imer noch verändern in dem man die art und weise wie man diese workerrthads auszutz ändert, damit miene ich das man dise nur Aufgen zuwasien bracuht wen sie frei sind und anstat zu warten das sie frei werden im eigenen thrad direkt dise aufgbe zu erledigen. Dise startegie hat je nach anwedungsfall vor und nachteile, diese werde ich später mit messungen zeigen.
 }
