@@ -73,10 +73,10 @@ void Dateimanager::writeMesswerteToFile(
         file << "Messwerte (Messwerte bei " << messWerte4[0].lange << " Laenge):" << std::endl;
         writeBlock(file, messWerte4);
         file << std::endl;
-        file << "Messwerte und Threads verdoppeln (Messwerte ab " << messWerte4[0].lange << " Laenge):" << std::endl;
+        file << "Messwerte und Threads verdoppeln (Messwerte ab " << messWerte5[0].lange << " Laenge):" << std::endl;
         writeBlock(file, messWerte5);
         file << std::endl;
-        file << "Messwerte verdoppeln und Threads konstant (Messwerte ab " << messWerte4[0].lange << " Laenge):" << std::endl;
+        file << "Messwerte verdoppeln und Threads konstant (Messwerte ab " << messWerte6[0].lange << " Laenge):" << std::endl;
         writeBlock(file, messWerte6);
     }
 

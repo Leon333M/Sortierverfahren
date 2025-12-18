@@ -369,8 +369,9 @@ void Manager::incArray() {
     benchmarkIncThreads(maxIntLange, thrads, messWerte3, true);
     const int lowIntLange = 16;
     benchmarkIncThreads(lowIntLange, thrads, messWerte4, true);
-    benchmarkScalingDouble(2 ^ 21, 16, messWerte5);
-    benchmarkDataScaling(21, 16, 2 ^ 21, messWerte6);
+    const int lange2 = std::pow(2, 21);
+    benchmarkScalingDouble(lange2, 16, messWerte5);
+    benchmarkDataScaling(lange2, 16, 5, messWerte6);
     dateimanager.writeMesswerteToFile("incArray", messWerte, messWerte2, messWerte3, messWerte4, messWerte5, messWerte6);
 };
 
