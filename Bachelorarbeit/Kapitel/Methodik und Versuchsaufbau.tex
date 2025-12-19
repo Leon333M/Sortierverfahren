@@ -37,8 +37,13 @@
 % \section{Messmethodik}
 % % Vorgehensweise zur Laufzeitmessung, Datenerhebung
 \newcommand{\Messmethodik}{
-    zufälige listen imer mit gleciehn Seed erstelt damit imer repuduzier und bergleichbar. Es wurde mit \texttt{std::chrono} gemessen was bedeutet das ich nur auf die 100ns genau gemesen habe.
-    Die gemesenen Zeiten habe ich ebenalfas als ns gespeichert und als ns in die diagrame eingeziechet.
-    Hier kurz die umrechnung von ns: \(1\,\text{s} = 10^3\,\text{ms} = 10^9\,\text{ns}\).
-    Ich habe erst die liste erstellt danach die mesung gestett dirkt danch den Sortieralgoritums den ich messen will und sobald fertig dirket die messung gestopt. Und dach noch meisten automtisch geprüft das die resultierende lsite auch wiklich sortert ist.
+    Zur Laufzeitmessung wurden zufällig erzeugte Listen verwendet, die stets mit demselben Seed initialisiert wurden. Dadurch sind alle Messungen reproduzierbar und miteinander vergleichbar.
+    \newline
+    Die Zeitmessung erfolgte mithilfe der Bibliothek \texttt{chrono}. Die gemessenen Zeiten besitzen eine Auflösung von 100\,ns und wurden entsprechend in Nanosekunden gespeichert sowie in den Diagrammen dargestellt. Zur Einordnung gilt:
+    \(1\,\text{s} = 10^3\,\text{ms} = 10^9\,\text{ns}\).
+    \newline
+    Die Messung begann unmittelbar vor dem Aufruf des zu untersuchenden Sortieralgorithmus und endete direkt nach dessen Abschluss. Die Zeit für die Initialisierung der Testlisten wurde dabei selbstverständlich nicht mitgemessen.
+    \newline
+    Nach den meisten Messungen wurde überprüft, ob die resultierende Liste korrekt sortiert ist, um die funktionale Korrektheit der Implementierung sicherzustellen.
+
 }
