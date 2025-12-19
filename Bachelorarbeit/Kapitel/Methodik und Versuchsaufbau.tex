@@ -21,5 +21,24 @@
     Die relevanten Hardwarekomponenten werden im Anhang detailliert aufgelistet. Zusammenfassend wurden die Tests auf einem System mit einer 8-Kern-CPU durchgeführt (8 physische Kerne bzw. 16 logische Prozessoren) sowie mit 32~GB Arbeitsspeicher.
     \newline
     Als Betriebssystem kam Windows~10 in der Version~22H2 zum Einsatz. Der Code ist in der Programmiersprache \texttt{C++} implementiert und wurde mittels CMake mit dem MSVC-Compiler kompiliert. Die Ausführung der Tests erfolgte im integrierten Terminal von Visual Studio Code in einer Release-Konfiguration. Sollte hiervon abgewichen worden sein, wird dies an entsprechender Stelle gesondert angegeben.
+}
 
+% \section{Implementierungsvarianten}
+% % Sequenziell, parallel, Workerthreads, neue Threads
+\newcommand{\Implementierungsvarianten}{
+    Es wurden folgende Implementierungsvarianten umgesetzt:
+    \begin{itemize}
+        \item rekursiv sequenzielle Variante,
+        \item rekursive Variante mit neu erzeugten Threads bis zu einer Ebene mit einer unterstützten Thread-Anzahl von \(2^N\),
+        \item Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten Thread-Anzahl von \(N\), bei Quicksort als iterative Version umgesetzt.
+    \end{itemize}
+}
+
+% \section{Messmethodik}
+% % Vorgehensweise zur Laufzeitmessung, Datenerhebung
+\newcommand{\Messmethodik}{
+    zufälige listen imer mit gleciehn Seed erstelt damit imer repuduzier und bergleichbar. Es wurde mit \texttt{std::chrono} gemessen was bedeutet das ich nur auf die 100ns genau gemesen habe.
+    Die gemesenen Zeiten habe ich ebenalfas als ns gespeichert und als ns in die diagrame eingeziechet.
+    Hier kurz die umrechnung von ns: \(1\,\text{s} = 10^3\,\text{ms} = 10^9\,\text{ns}\).
+    Ich habe erst die liste erstellt danach die mesung gestett dirkt danch den Sortieralgoritums den ich messen will und sobald fertig dirket die messung gestopt. Und dach noch meisten automtisch geprüft das die resultierende lsite auch wiklich sortert ist.
 }
