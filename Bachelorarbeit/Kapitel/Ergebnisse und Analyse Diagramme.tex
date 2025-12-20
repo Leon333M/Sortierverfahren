@@ -1,0 +1,47 @@
+
+\newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                title style={yshift=1.5ex},
+                width=0.5\textwidth,
+                height=0.4\textwidth,
+                xlabel={Array-Länge},
+                ylabel={Dauer in ns},
+                title={Länge vergrößern},
+                xmin=0, xmax=5 * 10^8,
+                ymin=0*10^6, ymax=1*10^11,
+                grid style=dashed,
+                legend pos=north west,
+                xmode=log,
+                log basis x=10,
+                xtick=data,
+                ymode=log,
+                log basis y=10,
+                ytick=data,
+                % xtick={2^21,2^23,2^24,2^25},
+                % xticklabels={$2^{21}$, $2^{23}$, $2^{24}$, $2^{25}$},
+                % scaled x ticks=false,
+                % scaled y ticks=false,
+            ]
+            \addplot[blue, mark=*] coordinates {
+                    % (Arraylaenge, Dauer_in_ns)
+                    % (    ,    )
+                    (25000000,1609541400)
+                    (50000000,3314592200)
+                    (100000000,6854920900)
+                    (200000000,14495472700)
+                    (400000000,56441153000)
+                };
+            \addlegendentry{Mergesort}
+            % n*log2(n)
+            \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
+            \addlegendentry{$n \cdot \log_2 n$}
+            % % n
+            % \addplot[red, dashed,domain=1e7:4e8, samples=100] {x};
+            % \addlegendentry{$n$}
+            % % log2(n)
+            % \addplot[green, domain=1e7:4e8, samples=100] {log2(x)};
+            % \addlegendentry{$\log_2 n$}
+        \end{axis}
+    \end{tikzpicture}%
+}
