@@ -23,7 +23,7 @@
 }
 
 
-\newcommand{\MergesortMiniArrayVerdoppeln}{%
+\newcommand{\MergesortArrayVerdoppeln}{%
     \addplot[blue, mark=*] coordinates {
             (1,1000)
             (2,1300)
@@ -34,11 +34,15 @@
             (1000,97700)
             (2000,191700)
             (4000,354400)
+            (8000,898800)
+            (20000,1836000)
+            (40000,3717200)
+            (80000,7655300)
         };
-    \addlegendentry{Quicksort}
+    \addlegendentry{Mergesort}
 }
 
-\newcommand{\QuicksortMiniArrayVerdoppeln}{%
+\newcommand{\QuicksortArrayVerdoppeln}{%
     \addplot[green, mark=*] coordinates {
             (1,2700)
             (2,2800)
@@ -49,6 +53,10 @@
             (1000,34900)
             (2000,73100)
             (4000,148500)
+            (8000,323600)
+            (20000,826000)
+            (40000,1777200)
+            (80000,3888100)
         };
     \addlegendentry{Quicksort}
 }
@@ -62,7 +70,7 @@
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
                 title={Länge verdoppeln},
-                xmin=0, xmax=5 * 10^8,
+                xmin=0, xmax=4 * 10^8,
                 ymin=0*10^6, ymax=6*10^10,
                 grid=both,
                 grid style=dashed,
@@ -76,7 +84,7 @@
             \MergesortMaxArrayVerdoppelnMesswerte
             \QuicksortMaxArrayVerdoppelnMesswerte
             % n*log2(n)
-            \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
+            \addplot[black, dashed,domain=1:4e8, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
             % % n
             % \addplot[red, dashed,domain=1e7:4e8, samples=100] {x};
@@ -143,8 +151,8 @@
                 % scaled x ticks=false,
                 % scaled y ticks=false,
             ]
-            \MergesortMiniArrayVerdoppeln
-            \QuicksortMiniArrayVerdoppeln
+            \MergesortArrayVerdoppeln
+            \QuicksortArrayVerdoppeln
             % n*log2(n)
             \addplot[black, dashed,domain=1:4000, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
@@ -162,13 +170,13 @@
     \begin{tikzpicture}
         \begin{axis}[
                 title style={yshift=1.5ex},
-                width=0.5\textwidth,
+                width=1\textwidth,
                 height=0.4\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge verdoppeln},
-                xmin=0, xmax=4000,
-                ymin=0, ymax=1*10^6,
+                title={Länge vergrößern},
+                xmin=1, xmax=800000,
+                ymin=0, ymax=1*10^8,
                 grid=both,
                 grid style=dashed,
                 legend pos=south east,
@@ -184,11 +192,14 @@
                 % scaled x ticks=false,
                 % scaled y ticks=false,
             ]
-            \MergesortMiniArrayVerdoppeln
-            \QuicksortMiniArrayVerdoppeln
+            \MergesortArrayVerdoppeln
+            \QuicksortArrayVerdoppeln
             % n*log2(n)
-            \addplot[black, dashed,domain=1:4000, samples=100] {x*log2(x)};
+            \addplot[black, dashed,domain=1:800000, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
+            % n
+            \addplot[red, dashed,domain=1:800000, samples=1000] {32*x};
+            \addlegendentry{$32n$}
         \end{axis}
     \end{tikzpicture}%
 }
