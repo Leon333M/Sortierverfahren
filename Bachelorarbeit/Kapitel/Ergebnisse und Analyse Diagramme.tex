@@ -2,13 +2,24 @@
 
 \newcommand{\MergesortMesswerte}{%
     \addplot[blue, mark=*] coordinates {
-            (25000000,1609541400)
-            (50000000,3314592200)
-            (100000000,6854920900)
-            (200000000,14495472700)
+            (25000000,3017372600)
+            (50000000,6315632400)
+            (100000000,12777405700)
+            (200000000,27203738300)
             (400000000,56441153000)
         };
     \addlegendentry{Mergesort}
+}
+
+\newcommand{\QuicksortMesswerte}{%
+    \addplot[green, mark=*] coordinates {
+            (25000000,1528071600)
+            (50000000,3248990900)
+            (100000000,6653966800)
+            (200000000,13778762100)
+            (400000000,29074726600)
+        };
+    \addlegendentry{Quicksort}
 }
 
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
@@ -31,6 +42,7 @@
                 % scaled y ticks=false,
             ]
             \MergesortMesswerte
+            \QuicksortMesswerte
             % n*log2(n)
             \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
@@ -69,15 +81,10 @@
                 % scaled y ticks=false,
             ]
             \MergesortMesswerte
+            \QuicksortMesswerte
             % n*log2(n)
             \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
-            % % n
-            % \addplot[red, dashed,domain=1e7:4e8, samples=100] {x};
-            % \addlegendentry{$n$}
-            % % log2(n)
-            % \addplot[green, domain=1e7:4e8, samples=100] {log2(x)};
-            % \addlegendentry{$\log_2 n$}
         \end{axis}
     \end{tikzpicture}%
 }
