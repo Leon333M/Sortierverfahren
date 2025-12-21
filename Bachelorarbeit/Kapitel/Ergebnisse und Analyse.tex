@@ -77,12 +77,21 @@
     \newline
     \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC
 }
+
 % \subsection{Analyse und Interpretation}
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseAnalyse}{
-    In den ersten 2 Diagram sieht man die Lautzeit verändenderung wenn man Die Listengöße 5 mal verdopelt und bei der 2.5*10^7 startet.
-    Bei den 2ersn siht man Die achen logarimsich dargestetl wel es so einfacher ist die Lautzieten anzuzeigen und zu vergleichen.
-    Unter disen beiden digramm ist ein 3 wo man die gemese laufzeit Logarisch dargest sihct und für den gößen bereich 1-800000 abgezeigt wird.
-    An disen Diagrammen kan man deutlisch ablesen das Mergsot wie qiksortt wirklich eine laufzeit von O(T(n)) = n*log(n) haben.
-    Man sihet ebenfalss deutlisch das Mergsot rund dopelt solange braucht wie Qiksoert und das qiksort rund 2*n*log2(n) als laufzeit hatt. Aus disen rundungen kan man ableiten das artizoniren eigentich 2n als lautzietz hatt sowue das der Mergschrit eigentlich 4n als laufzeit hatt. Aber der einfachalb halber bleic ich bei beiden bei n.
-    Da man eine linare Laufzeit leichter auf einen blick interpetiren kann habe ich aich die funktion 32n eingezeichet. Und man kan daran ablesen das für ustern zahleberch 1-4*10^8 sogar enie genauere abschäötzung sit als nur n*log2(n).
+    In den ersten zwei Diagrammen ist die Laufzeitveränderung zu sehen, wenn die Listengröße fünfmal verdoppelt wird und bei \(2.5 \cdot 10^7\) startet.
+    In den ersten beiden Diagrammen sind die Achsen logarithmisch dargestellt, da es so einfacher ist, die Laufzeiten darzustellen und miteinander zu vergleichen.
+    \newline
+    Unter diesen beiden Diagrammen befindet sich ein drittes Diagramm, in dem die gemessenen Laufzeiten ebenfalls logarithmisch dargestellt sind und der Größenbereich von \(1\) bis \(800\,000\) betrachtet wird.
+    \newline
+    An diesen Diagrammen lässt sich deutlich ablesen, dass sowohl Mergesort als auch Quicksort tatsächlich eine Laufzeit von
+    \(O(n \log n)\) besitzen.
+    \newline
+    Es ist ebenfalls deutlich zu erkennen, dass Mergesort etwa doppelt so lange benötigt wie Quicksort und dass Quicksort näherungsweise eine Laufzeit von \(2 \cdot n \log_2(n)\) aufweist.
+    Aus diesen Beobachtungen lässt sich ableiten, dass der Partitionierungsschritt eine Laufzeit von etwa \(2n\) besitzt, während der Merge-Schritt näherungsweise eine Laufzeit von \(4n\) aufweist.
+    Der Einfachheit halber wird jedoch bei beiden Algorithmen weiterhin von \(n\) ausgegangen.
+    \newline
+    Da eine lineare Laufzeit auf einen Blick leichter zu interpretieren ist, wurde zusätzlich die Funktion \(32n\) eingezeichnet.
+    Anhand dieser Funktion lässt sich erkennen, dass sie im untersuchten Zahlenbereich von \(1\) bis \(4 \cdot 10^8\) teilweise sogar eine genauere Abschätzung liefert als \(n \log_2(n)\), was bedeutet, dass man von einer begründeten Mindestlaufzeit von \(32n\) ausgehen darf.
 }
