@@ -159,13 +159,19 @@
                 legend pos=south east,
                 xmode=log,
                 log basis x=10,
-                xtick=data,
-                % xticklabels={$2.5\cdot10^7$, $5\cdot10^7$, $10^8$, $2\cdot10^8$, $4\cdot10^8$},
+                %xtick=data,
+                xtick={1,2,4,8,16,100,1000,2000,4000,8000,20000,40000,80000,200000,800000},
+                xticklabels={
+                        $1$,$2$,$4$,$8$,$16$,
+                        $100$,$1k$,
+                        $2k$,$4k$,$8k$,
+                        $20k$,$40k$,$80k$,
+                        $200k$,$800k$
+                    },
                 ymode=log,
                 log basis y=10,
-                ytick=data,
-                % xtick={2^21,2^23,2^24,2^25},
-                % xticklabels={$2^{21}$, $2^{23}$, $2^{24}$, $2^{25}$},
+                ytick={1,10,10^2,10^3,10^4,10^5,10^6,10^7,10^8},
+                yticklabels={$1$,$10$,$10^{2}$,$10^{3}$,$10^{4}$,$10^{5}$,$10^{6}$,$10^{7}$,$10^{8}$},
                 % scaled x ticks=false,
                 % scaled y ticks=false,
             ]
@@ -177,6 +183,8 @@
             % n
             \addplot[red, dashed,domain=1:800000, samples=100] {32*x};
             \addlegendentry{$32n$}
+            \addlegendimage{empty legend}
+            \addlegendentry{$1k = 10^3$}
         \end{axis}
     \end{tikzpicture}%
 }
