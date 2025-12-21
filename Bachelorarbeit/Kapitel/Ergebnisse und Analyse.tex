@@ -80,20 +80,23 @@
 
 % \subsection{Analyse und Interpretation}
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseAnalyse}{
-    In den ersten zwei Diagrammen ist die Laufzeitveränderung zu sehen, wenn die Listengröße fünfmal verdoppelt wird und bei \(2.5 \cdot 10^7\) startet.
-    In den ersten beiden Diagrammen sind die Achsen logarithmisch dargestellt, da es so einfacher ist, die Laufzeiten darzustellen und miteinander zu vergleichen.
+    In den ersten zwei Diagrammen ist die Veränderung der Laufzeit zu sehen, wenn die Listengröße fünfmal verdoppelt wird und bei \(2.5 \cdot 10^7\) startet.
+    Beim zweiten Diagramm sind die Achsen logarithmisch dargestellt, da dies die Darstellung und den Vergleich der Laufzeiten erleichtert.
     \newline
     Unter diesen beiden Diagrammen befindet sich ein drittes Diagramm, in dem die gemessenen Laufzeiten ebenfalls logarithmisch dargestellt sind und der Größenbereich von \(1\) bis \(800\,000\) betrachtet wird.
     \newline
-    An diesen Diagrammen lässt sich deutlich ablesen, dass sowohl Mergesort als auch Quicksort tatsächlich eine Laufzeit von
+    Anhand dieser Diagramme ist deutlich erkennbar, dass sowohl Mergesort als auch Quicksort tatsächlich eine Laufzeit von
     \(O(n \log n)\) besitzen.
     \newline
-    Es ist ebenfalls deutlich zu erkennen, dass Mergesort etwa doppelt so lange benötigt wie Quicksort und dass Quicksort näherungsweise eine Laufzeit von \(2 \cdot n \log_2(n)\) aufweist.
+    Zudem ist erkennbar, dass Mergesort etwa doppelt so lange benötigt wie Quicksort und dass Quicksort näherungsweise eine Laufzeit von
+    \(2 \cdot n \log_2(n)\) aufweist.
     Aus diesen Beobachtungen lässt sich ableiten, dass der Partitionierungsschritt eine Laufzeit von etwa \(2n\) besitzt, während der Merge-Schritt näherungsweise eine Laufzeit von \(4n\) aufweist.
-    Der Einfachheit halber wird jedoch bei beiden Algorithmen weiterhin von \(n\) ausgegangen.
+    Zur Vereinfachung der Betrachtung wird jedoch bei beiden Algorithmen weiterhin von \(n\) ausgegangen.
     \newline
     Da eine lineare Laufzeit auf einen Blick leichter zu interpretieren ist, wurde zusätzlich die Funktion \(32n\) eingezeichnet.
-    Anhand dieser Funktion lässt sich erkennen, dass sie im untersuchten Zahlenbereich von \(1\) bis \(4 \cdot 10^8\) teilweise sogar eine genauere Abschätzung liefert als \(n \log_2(n)\), was bedeutet, dass man von einer begründeten Mindestlaufzeit von \(32n\) ausgehen darf.
+    Anhand dieser Funktion ist erkennbar, dass sie im untersuchten Zahlenbereich von \(1\) bis \(4 \cdot 10^8\) teilweise sogar eine genauere Abschätzung liefert als \(n \log_2(n)\).
+    Daraus folgt, dass von einer begründeten Mindestlaufzeit von \(32n\) ausgegangen werden kann.
     \newline
-    Ich möchte noch erwähnen, dass alle Messungen, die kleiner oder gleich \(10^4\,\text{ns}\) sind, aufgrund der Messtoleranz praktisch keine aussagekräftigen Ergebnisse liefern. Zwar kann mit \texttt{chrono} auf eine Auflösung von \(100\,\text{ns}\) genau gemessen werden, dennoch bleibt eine natürliche Schwankung bestehen, die insbesondere im Bereich von \(10^4\,\text{ns}\) einen erheblichen Einfluss auf die Messergebnisse hat.
+    Abschließend ist anzumerken, dass alle Messungen mit einer Laufzeit von kleiner oder gleich \(10^4\,\text{ns}\) aufgrund der Messtoleranz nur eine eingeschränkte Aussagekraft besitzen.
+    Zwar kann mit \texttt{chrono} auf eine Auflösung von \(100\,\text{ns}\) genau gemessen werden, dennoch verbleiben natürliche Schwankungen, die insbesondere im Bereich von \(10^4\,\text{ns}\) einen erheblichen Einfluss auf die Messergebnisse haben.
 }
