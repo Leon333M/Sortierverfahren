@@ -22,6 +22,17 @@
     \addlegendentry{Quicksort Zufall}
 }
 
+\newcommand{\QuicksortMaxArrayVerdoppelnMesswerteSortiert}{%
+    \addplot[green!60!black, mark=*] coordinates {
+            (25000000,1528071600)
+            (50000000,3248990900)
+            (100000000,6653966800)
+            (200000000,13778762100)
+            (400000000,14000747700)
+        };
+    \addlegendentry{Quicksort Sortiert}
+}
+
 
 \newcommand{\MergesortArrayVerdoppeln}{%
     \addplot[blue, mark=*] coordinates {
@@ -211,6 +222,7 @@
             ]
             \MergesortMaxArrayVerdoppelnMesswerte
             \QuicksortMaxArrayVerdoppelnMesswerte
+            \QuicksortMaxArrayVerdoppelnMesswerteSortiert
             % n*log2(n)
             \addplot[black, dashed,domain=1:4e8, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
@@ -246,6 +258,7 @@
             ]
             \MergesortMaxArrayVerdoppelnMesswerte
             \QuicksortMaxArrayVerdoppelnMesswerte
+            \QuicksortMaxArrayVerdoppelnMesswerteSortiert
             % n*log2(n)
             \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
