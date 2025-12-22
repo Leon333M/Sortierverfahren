@@ -22,18 +22,6 @@
     \addlegendentry{Quicksort Zufall}
 }
 
-\newcommand{\QuicksortMaxArrayVerdoppelnMesswerteSortiert}{%
-    \addplot[green!60!black, mark=*] coordinates {
-            (25000000,1528071600)
-            (50000000,3248990900)
-            (100000000,6653966800)
-            (200000000,13778762100)
-            (400000000,14000747700)
-        };
-    \addlegendentry{Quicksort Sortiert}
-}
-
-
 \newcommand{\MergesortArrayVerdoppeln}{%
     \addplot[blue, mark=*] coordinates {
             (1,1000)
@@ -77,6 +65,18 @@
         };
     \addlegendentry{Quicksort}
 }
+
+\newcommand{\QuicksortMaxArrayVerdoppelnMesswerteSortiert}{%
+    \addplot[green!60!black, mark=*] coordinates {
+            (25000000,165043900)
+            (50000000,340924200)
+            (100000000,726211400)
+            (200000000,1550396900)
+            (400000000,3130893200)
+        };
+    \addlegendentry{Quicksort Sortiert}
+}
+
 
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
     \begin{tikzpicture}
@@ -244,6 +244,7 @@
                 grid=both,
                 grid style=dashed,
                 legend pos=south east,
+                legend style={font=\tiny},
                 xmode=log,
                 log basis x=10,
                 xtick=data,
