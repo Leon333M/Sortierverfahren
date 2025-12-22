@@ -188,3 +188,67 @@
         \end{axis}
     \end{tikzpicture}%
 }
+
+\newcommand{\EinflussDesListentypsDiagrammA}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                title style={yshift=1.5ex},
+                width=0.5\textwidth,
+                height=0.4\textwidth,
+                xlabel={Array-Länge},
+                ylabel={Dauer in ns},
+                title={Länge verdoppeln},
+                xmin=0, xmax=4 * 10^8,
+                ymin=0, ymax=6*10^10,
+                grid=both,
+                grid style=dashed,
+                legend pos=north west,
+                ytick={1609541400,6854920900,14495472700,27203738300,56441153000},
+                % xtick={2^21,2^23,2^24,2^25},
+                % xticklabels={$2^{21}$, $2^{23}$, $2^{24}$, $2^{25}$},
+                % scaled x ticks=false,
+                % scaled y ticks=false,
+            ]
+            \MergesortMaxArrayVerdoppelnMesswerte
+            \QuicksortMaxArrayVerdoppelnMesswerte
+            % n*log2(n)
+            \addplot[black, dashed,domain=1:4e8, samples=100] {x*log2(x)};
+            \addlegendentry{$n \cdot \log_2 n$}
+        \end{axis}
+    \end{tikzpicture}%
+}
+
+\newcommand{\EinflussDesListentypsDiagrammB}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                title style={yshift=1.5ex},
+                width=0.5\textwidth,
+                height=0.4\textwidth,
+                xlabel={Array-Länge},
+                ylabel={Dauer in ns},
+                title={Länge verdoppeln},
+                xmin=2.5*10^7, xmax=4*10^8,
+                ymin=10^8, ymax=1*10^11,
+                grid=both,
+                grid style=dashed,
+                legend pos=south east,
+                xmode=log,
+                log basis x=10,
+                xtick=data,
+                xticklabels={$2.5\cdot10^7$, $5\cdot10^7$, $10^8$, $2\cdot10^8$, $4\cdot10^8$},
+                ymode=log,
+                log basis y=2,
+                ytick=data,
+                % xtick={2^21,2^23,2^24,2^25},
+                % xticklabels={$2^{21}$, $2^{23}$, $2^{24}$, $2^{25}$},
+                % scaled x ticks=false,
+                % scaled y ticks=false,
+            ]
+            \MergesortMaxArrayVerdoppelnMesswerte
+            \QuicksortMaxArrayVerdoppelnMesswerte
+            % n*log2(n)
+            \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
+            \addlegendentry{$n \cdot \log_2 n$}
+        \end{axis}
+    \end{tikzpicture}%
+}
