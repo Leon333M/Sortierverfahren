@@ -77,6 +77,18 @@
     \addlegendentry{Quicksort Sortiert}
 }
 
+\newcommand{\QuicksortMaxArrayVerdoppelnMesswerteWorstcase}{%
+    \addplot[green!60!black, mark=*] coordinates {
+            (25000000,165043900)
+            (50000000,340924200)
+            (100000000,726211400)
+            (200000000,1550396900)
+            (400000000,3130893200)
+        };
+    \addlegendentry{Quicksort Worstcase}
+}
+
+
 
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
     \begin{tikzpicture}
@@ -240,7 +252,7 @@
                 ylabel={Dauer in ns},
                 title={Länge verdoppeln},
                 xmin=2.5*10^7, xmax=4*10^8,
-                ymin=10^8, ymax=1*10^11,
+                ymin=10^8, ymax=1*10^17,
                 grid=both,
                 grid style=dashed,
                 legend pos=south east,
@@ -260,9 +272,13 @@
             \MergesortMaxArrayVerdoppelnMesswerte
             \QuicksortMaxArrayVerdoppelnMesswerte
             \QuicksortMaxArrayVerdoppelnMesswerteSortiert
+            \QuicksortMaxArrayVerdoppelnMesswerteWorstcase
             % n*log2(n)
             \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
+            % n^2
+            \addplot[red, dashed,domain=1e7:4e8, samples=100] {x*x};
+            \addlegendentry{$n \cdot n$}
         \end{axis}
     \end{tikzpicture}%
 }
