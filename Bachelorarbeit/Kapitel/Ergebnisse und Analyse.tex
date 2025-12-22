@@ -109,9 +109,16 @@
     Gleichzeitig dient diese Messung der Vollständigkeit, damit die Laufzeiten auch mit anderen,
     nicht von mir implementierten Sortieralgorithmen gut vergleichbar sind.
     Auch hierbei werden zunächst nur die seriellen Laufzeiten der Algorithmen gemessen.
+    Zur Vollständigkeit werden hierbei zusätzlich weitere Listentypen außer zufällig und sortiert betrachtet.
 }
 % \subsection{Erwartung}
-\newcommand{\EinflussDesListentypsErwartung}{}
+\newcommand{\EinflussDesListentypsErwartung}{
+    Ich erwarte, dass der Listentyp bei Mergesort nahezu keinen Einfluss hat und somit nur sehr geringe Laufzeitänderungen zu beobachten sind.
+    Bei Quicksort erwarte ich hingegen bei einer sortierten Liste exakt den Best-Case,
+    da als Pivotelement jeweils das mittlere Element gewählt wird.
+    Ebenso erwarte ich, dass bei Quicksort bei Wahl des jeweils ganz rechten Elements als Pivotelement
+    bei einer sortierten Liste der Worst-Case eintritt.
+}
 % \subsection{Diagramm}
 \newcommand{\EinflussDesListentypsDiagramm}{}
 % \subsection{Analyse und Interpretation}
