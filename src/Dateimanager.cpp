@@ -179,7 +179,9 @@ void Dateimanager::sortByThreads(std::vector<MessWerte> &mw) {
 };
 
 void Dateimanager::printAllMessWerte() {
-    auto pfade = getAllMessWerte();
+    const std::string variante = "Zufall";
+    const std::string targetFile = "Mergesort w8.txt";
+    auto pfade = getAllMessWerte(variante, targetFile);
     auto werte = leseArraygroesseUndMedian(pfade);
     for (const auto &[n, t] : werte) {
         std::cout << "(" << n << "," << t << ")," << std::endl;
@@ -200,10 +202,7 @@ static long long extractArraySize(const std::filesystem::path &p) {
     return -1; // sollte nie passieren
 }
 
-std::vector<std::string> Dateimanager::getAllMessWerte() {
-    const std::string variante = "Zufall";
-    const std::string targetFile = "Mergesort w8.txt";
-
+std::vector<std::string> Dateimanager::getAllMessWerte(std::string variante, std::string targetFile) {
     std::vector<std::filesystem::path> pfadeF;
 
     for (const auto &entry :

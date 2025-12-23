@@ -53,7 +53,7 @@ private:
     static void schreibeStatistik(std::ostream &outFile, const std::string &name, const Statistik &s);
     static void writeBlock(std::ostream &file, const std::vector<MessWerte> &werte);
     static void sortByThreads(std::vector<MessWerte> &mw);
-    std::vector<std::string> getAllMessWerte();
+    std::vector<std::string> getAllMessWerte(std::string variante, std::string targetFile);
     std::vector<long long> leseMedianWerte(const std::vector<std::string> &pfade);
     std::vector<std::pair<long long, long long>> leseArraygroesseUndMedian(const std::vector<std::string> &pfade);
 };
