@@ -182,7 +182,7 @@ void Dateimanager::printAllMessWerte(std::string variante, std::string targetFil
     auto pfade = getAllMessWerte(variante, targetFile);
     auto werte = leseArraygroesseUndMedian(pfade);
     for (const auto &[n, t] : werte) {
-        std::cout << "(" << n << "," << t << ")," << std::endl;
+        std::cout << "(" << n << "," << t << ")" << std::endl;
     }
 };
 
