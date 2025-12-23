@@ -143,6 +143,73 @@
     \addlegendentry{Quicksort Zufall}
 }
 
+\newcommand{\MergesortgSortiertG}{%
+    \addplot[blue!60!black, mark=*] coordinates {
+            (1,200)
+            (2,500)
+            (4,1100)
+            (8,1100)
+            (10,900)
+            (16,1600)
+            (100,9100)
+            (1000,63700)
+            (1200,61900)
+            (2000,109900)
+            (4000,246500)
+            (8000,502400)
+            (20000,1676800)
+            (40000,2321100)
+            (80000,4356400)
+            (200000,11443400)
+            (400000,27704700)
+            (800000,44349600)
+            (2000000,119394700)
+            (4000000,242919700)
+            (8000000,504358000)
+            (25000000,1609541400)
+            (40000000,2733965500)
+            (50000000,3314592200)
+            (100000000,6854920900)
+            (200000000,14495472700)
+            (400000000,28117911500)
+        };
+    \addlegendentry{Mergesort Sortiert}
+}
+
+\newcommand{\QuicksortSortiertG}{%
+    \addplot[green!60!black, mark=*] coordinates {
+            (1,200)
+            (2,300)
+            (4,200)
+            (8,200)
+            (10,200)
+            (16,300)
+            (100,1000)
+            (1000,4100)
+            (1200,4800)
+            (2000,8300)
+            (4000,14800)
+            (8000,34200)
+            (20000,85300)
+            (40000,179000)
+            (80000,384300)
+            (200000,1010200)
+            (400000,2636000)
+            (800000,4505800)
+            (2000000,10849000)
+            (4000000,22915200)
+            (8000000,46914400)
+            (25000000,165043900)
+            (40000000,263361000)
+            (50000000,340924200)
+            (100000000,726211400)
+            (200000000,1550396900)
+            (400000000,3130893200)
+        };
+    \addlegendentry{Quicksort Sortiert}
+}
+
+
 
 
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
@@ -339,35 +406,45 @@
         \begin{axis}[
                 title style={yshift=1.5ex},
                 width=1\textwidth,
-                height=0.4\textwidth,
+                height=1\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
                 title={Länge vergrößern},
                 xmin=1, xmax=400000000,
-                ymin=0.1, ymax=1*10^11,
+                ymin=100, ymax=1*10^11,
                 grid=both,
                 grid style=dashed,
-                legend pos=south east,
+                % legend pos=south east,
+                legend style={
+                        at={(0.5,-0.2)},
+                        anchor=north,
+                        legend columns=2
+                    },
                 xmode=log,
                 log basis x=10,
                 %xtick=data,
-                xtick={1,2,4,8,16,100,1000,2000,4000,8000,20000,40000,80000,200000,400000,800000},
+                xtick={1,2,4,8,16,100,1000,2000,4000,8000,20000,40000,80000,200000,400000,800000,2000000,4000000,8000000,20000000,40000000,80000000,200000000,400000000},
                 xticklabels={
                         $1$,$2$,$4$,$8$,$16$,
                         $100$,$1k$,
                         $2k$,$4k$,$8k$,
                         $20k$,$$,$80k$,
-                        $$,$400k$,$$
+                            $ $,$400k$,$ $,
+                            $ $,$4M$,$$,
+                        $$,$40M$,$$,
+                        $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
-                ytick={1,10,10^2,10^3,10^4,10^5,10^6,10^7,10^8,10^9,10^10},
-                yticklabels={$1$,$10$,$10^{2}$,$10^{3}$,$10^{4}$,$10^{5}$,$10^{6}$,$10^{7}$,$10^{8}$,$10^{9}$,$10^{10}$,,$10^{11}$}
+                ytick={1,10,10^2,10^3,10^4,10^5,10^6,10^7,10^8,10^9,10^10,10^11},
+                yticklabels={$1$,$10$,$10^{2}$,$10^{3}$,$10^{4}$,$10^{5}$,$10^{6}$,$10^{7}$,$10^{8}$,$10^{9}$,$10^{10}$,$10^{11}$}
                 % scaled x ticks=false,
                 % scaled y ticks=false,
             ]
             \MergesortgZufallG
             \QuicksortZufallG
+            \MergesortgSortiertG
+            \QuicksortSortiertG
             % n*log2(n)
             \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
