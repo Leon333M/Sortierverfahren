@@ -8,7 +8,7 @@
       "program": "${workspaceFolder}/build/Release/Sortierverfahren.exe",
       "args": [
         "1200",
-        "i",
+        "f",
         "z",
         "i",
       ],

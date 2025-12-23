@@ -177,3 +177,16 @@ void Dateimanager::sortByThreads(std::vector<MessWerte> &mw) {
                   return a.threads < b.threads;
               });
 };
+
+void Dateimanager::printAll() {
+    const std::string targetFile = "Mergesort w8.txt";
+    const std::string basePath = originalPath;
+    for (const auto &entry : std::filesystem::recursive_directory_iterator(basePath)) {
+        if (!entry.is_regular_file()) {
+            continue;
+        }
+        if (entry.path().filename() == targetFile) {
+            std::cout << entry.path().string() << std::endl;
+        }
+    }
+}

@@ -61,6 +61,9 @@ Manager::Manager(int argc, char *argv[]) {
     if (variante == 'i') {
         incArray();
     }
+    if (variante == 'f') {
+        dateimanager.printAll();
+    }
 
     // Ende
     std::cout << "Ende" << std::endl;
