@@ -41,7 +41,7 @@ public:
     static Statistik berechneDauerStatistik2(const std::vector<std::unique_ptr<Messdaten>> &md);
     static Statistik berechneDauerStatistik1m2(const std::vector<std::unique_ptr<Messdaten>> &md);
 
-    void printAllMessWerte();
+    void printAllMessWerte(std::string variante, std::string targetFile);
 
 private:
     // Funktionen

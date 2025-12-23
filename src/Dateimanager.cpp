@@ -178,9 +178,7 @@ void Dateimanager::sortByThreads(std::vector<MessWerte> &mw) {
               });
 };
 
-void Dateimanager::printAllMessWerte() {
-    const std::string variante = "Zufall";
-    const std::string targetFile = "Mergesort w8.txt";
+void Dateimanager::printAllMessWerte(std::string variante, std::string targetFile) {
     auto pfade = getAllMessWerte(variante, targetFile);
     auto werte = leseArraygroesseUndMedian(pfade);
     for (const auto &[n, t] : werte) {
