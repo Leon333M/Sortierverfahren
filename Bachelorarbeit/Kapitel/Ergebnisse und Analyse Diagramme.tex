@@ -77,17 +77,6 @@
     \addlegendentry{Quicksort Sortiert}
 }
 
-\newcommand{\QuicksortMaxArrayVerdoppelnMesswerteWorstcase}{%
-    \addplot[red!60!black, mark=*] coordinates {
-            (25000000,165043900)
-            (50000000,340924200)
-            (100000000,726211400)
-            (200000000,1550396900)
-            (400000000,3130893200)
-        };
-    \addlegendentry{Quicksort Worstcase}
-}
-
 \newcommand{\MergesortgZufallG}{%
     \addplot[blue!, mark=*] coordinates {
             (1,1000)
@@ -338,7 +327,6 @@
             \MergesortMaxArrayVerdoppelnMesswerte
             \QuicksortMaxArrayVerdoppelnMesswerte
             \QuicksortMaxArrayVerdoppelnMesswerteSortiert
-            \QuicksortMaxArrayVerdoppelnMesswerteWorstcase
             % n*log2(n)
             \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
