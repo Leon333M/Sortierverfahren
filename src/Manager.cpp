@@ -62,8 +62,10 @@ Manager::Manager(int argc, char *argv[]) {
         incArray();
     }
     if (variante == 'f') {
-        const std::string variante = "Zufall";
-        const std::string targetFile = "Mergesort w8.txt";
+        // const std::string variante = "Zufall";
+        // const std::string targetFile = "Mergesort w8.txt";
+        std::string variante = argv[3];
+        std::string targetFile = argv[4];
         dateimanager.printAllMessWerte(variante, targetFile);
     }
 

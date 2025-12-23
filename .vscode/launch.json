@@ -9,8 +9,8 @@
       "args": [
         "1200",
         "f",
-        "z",
-        "i",
+        "Zufall",
+        "Mergesort w16.txt",
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
