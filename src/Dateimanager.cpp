@@ -179,10 +179,10 @@ void Dateimanager::sortByThreads(std::vector<MessWerte> &mw) {
 };
 
 void Dateimanager::printAllMessWerte() {
-    std::vector<std::string> pfade = getAllMessWerte();
-    std::vector<long long> werte = leseMedianWerte(pfade);
-    for (auto wert : werte) {
-        std::cout << wert << std::endl;
+    auto pfade = getAllMessWerte();
+    auto werte = leseArraygroesseUndMedian(pfade);
+    for (const auto &[n, t] : werte) {
+        std::cout << "(" << n << "," << t << ")," << std::endl;
     }
 };
 
@@ -264,5 +264,33 @@ std::vector<long long> Dateimanager::leseMedianWerte(
         }
     }
 
+    return werte;
+}
+
+std::vector<std::pair<long long, long long>> Dateimanager::leseArraygroesseUndMedian(const std::vector<std::string> &pfade) {
+
+    std::vector<std::pair<long long, long long>> werte;
+    werte.reserve(pfade.size());
+
+    for (const auto &pfadStr : pfade) {
+        std::filesystem::path pfad(pfadStr);
+
+        long long arrayGroesse = extractArraySize(pfad);
+
+        std::ifstream file(pfadStr);
+        if (!file)
+            continue;
+
+        std::string line;
+        for (int i = 0; i < 5; ++i) {
+            if (!std::getline(file, line))
+                break;
+        }
+
+        // erwartet: "Median: 312100"
+        long long median = std::stoll(line.substr(line.find(':') + 1));
+
+        werte.emplace_back(arrayGroesse, median);
+    }
     return werte;
 }

@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include <filesystem>
+
 struct Statistik {
     long long median = 0;
     long long durchschnitt = 0;
@@ -53,4 +55,5 @@ private:
     static void sortByThreads(std::vector<MessWerte> &mw);
     std::vector<std::string> getAllMessWerte();
     std::vector<long long> leseMedianWerte(const std::vector<std::string> &pfade);
+    std::vector<std::pair<long long, long long>> leseArraygroesseUndMedian(const std::vector<std::string> &pfade);
 };
