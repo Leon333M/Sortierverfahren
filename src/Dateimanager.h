@@ -39,7 +39,7 @@ public:
     static Statistik berechneDauerStatistik2(const std::vector<std::unique_ptr<Messdaten>> &md);
     static Statistik berechneDauerStatistik1m2(const std::vector<std::unique_ptr<Messdaten>> &md);
 
-    void printAll();
+    void printAllMessWerte();
 
 private:
     // Funktionen
@@ -51,4 +51,5 @@ private:
     static void schreibeStatistik(std::ostream &outFile, const std::string &name, const Statistik &s);
     static void writeBlock(std::ostream &file, const std::vector<MessWerte> &werte);
     static void sortByThreads(std::vector<MessWerte> &mw);
+    std::vector<std::string> getAllMessWerte();
 };

@@ -178,15 +178,31 @@ void Dateimanager::sortByThreads(std::vector<MessWerte> &mw) {
               });
 };
 
-void Dateimanager::printAll() {
+void Dateimanager::printAllMessWerte() {
+    std::vector<std::string> pfade = getAllMessWerte();
+    for (auto p : pfade) {
+        std::cout << p << std::endl;
+    }
+};
+
+std::vector<std::string> Dateimanager::getAllMessWerte() {
+    const std::string variante = "Zufall";
     const std::string targetFile = "Mergesort w8.txt";
-    const std::string basePath = originalPath;
-    for (const auto &entry : std::filesystem::recursive_directory_iterator(basePath)) {
+    std::vector<std::string> pfade;
+    for (const auto &entry :
+         std::filesystem::recursive_directory_iterator(originalPath)) {
         if (!entry.is_regular_file()) {
             continue;
         }
-        if (entry.path().filename() == targetFile) {
-            std::cout << entry.path().string() << std::endl;
+        if (entry.path().filename() != targetFile) {
+            continue;
+        }
+        for (const auto &part : entry.path()) {
+            if (part == variante) {
+                pfade.push_back(entry.path().string());
+                break;
+            }
         }
     }
+    return pfade;
 }

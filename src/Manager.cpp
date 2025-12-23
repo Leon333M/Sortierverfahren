@@ -62,7 +62,7 @@ Manager::Manager(int argc, char *argv[]) {
         incArray();
     }
     if (variante == 'f') {
-        dateimanager.printAll();
+        dateimanager.printAllMessWerte();
     }
 
     // Ende
