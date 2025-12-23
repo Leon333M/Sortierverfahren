@@ -88,6 +88,72 @@
     \addlegendentry{Quicksort Worstcase}
 }
 
+\newcommand{\MergesortgZufallG}{%
+    \addplot[blue!, mark=*] coordinates {
+            (1,1000)
+            (2,1300)
+            (4,3100)
+            (8,3200)
+            (10,4800)
+            (16,3500)
+            (100,8700)
+            (1000,97700)
+            (1200,115900)
+            (2000,191700)
+            (4000,354400)
+            (8000,898800)
+            (20000,1836000)
+            (40000,3717200)
+            (80000,7655300)
+            (200000,19867700)
+            (400000,40483400)
+            (800000,83914700)
+            (2000000,214959100)
+            (4000000,441562800)
+            (8000000,927314800)
+            (25000000,3017372600)
+            (40000000,5011540100)
+            (50000000,6315632400)
+            (100000000,12777405700)
+            (200000000,27203738300)
+            (400000000,56441153000)
+        };
+    \addlegendentry{Mergesort Zufall}
+}
+
+\newcommand{\QuicksortZufallG}{%
+    \addplot[green, mark=*] coordinates {
+            (1,2700)
+            (2,2800)
+            (4,3100)
+            (8,3800)
+            (10,400)
+            (16,3300)
+            (100,3000)
+            (1000,34900)
+            (1200,42900)
+            (2000,73100)
+            (4000,148500)
+            (8000,323600)
+            (20000,826000)
+            (40000,1777200)
+            (80000,3888100)
+            (200000,9835400)
+            (400000,20598200)
+            (800000,41432600)
+            (2000000,108526800)
+            (4000000,218531900)
+            (8000000,466862300)
+            (25000000,1528071600)
+            (40000000,2510531800)
+            (50000000,3248990900)
+            (100000000,6653966800)
+            (200000000,13778762100)
+            (400000000,29074726600)
+        };
+    \addlegendentry{Quicksort Zufall}
+}
+
 
 
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
@@ -252,7 +318,7 @@
                 ylabel={Dauer in ns},
                 title={Länge verdoppeln},
                 xmin=2.5*10^7, xmax=4*10^8,
-                ymin=10^8, ymax=1*10^17,
+                ymin=10^8, ymax=6*10^10,
                 grid=both,
                 grid style=dashed,
                 legend pos=south east,
@@ -276,9 +342,50 @@
             % n*log2(n)
             \addplot[black, dashed,domain=1e7:4e8, samples=100] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
+        \end{axis}
+    \end{tikzpicture}%
+}
+
+\newcommand{\EinflussDesListentypsDiagrammC}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                title style={yshift=1.5ex},
+                width=1\textwidth,
+                height=0.4\textwidth,
+                xlabel={Array-Länge},
+                ylabel={Dauer in ns},
+                title={Länge vergrößern},
+                xmin=1, xmax=400000000,
+                ymin=0.1, ymax=1*10^11,
+                grid=both,
+                grid style=dashed,
+                legend pos=south east,
+                xmode=log,
+                log basis x=10,
+                %xtick=data,
+                xtick={1,2,4,8,16,100,1000,2000,4000,8000,20000,40000,80000,200000,400000,800000},
+                xticklabels={
+                        $1$,$2$,$4$,$8$,$16$,
+                        $100$,$1k$,
+                        $2k$,$4k$,$8k$,
+                        $20k$,$$,$80k$,
+                        $$,$400k$,$$
+                    },
+                ymode=log,
+                log basis y=10,
+                ytick={1,10,10^2,10^3,10^4,10^5,10^6,10^7,10^8,10^9,10^10},
+                yticklabels={$1$,$10$,$10^{2}$,$10^{3}$,$10^{4}$,$10^{5}$,$10^{6}$,$10^{7}$,$10^{8}$,$10^{9}$,$10^{10}$,,$10^{11}$}
+                % scaled x ticks=false,
+                % scaled y ticks=false,
+            ]
+            \MergesortgZufallG
+            \QuicksortZufallG
+            % n*log2(n)
+            \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
+            \addlegendentry{$n \cdot \log_2 n$}
             % n^2
-            \addplot[red, dashed,domain=1e7:4e8, samples=100] {x*x};
-            \addlegendentry{$n \cdot n$}
+            \addplot[red, dashed,domain=1:4e8, samples=100] {x*x};
+            \addlegendentry{$n^2$}
         \end{axis}
     \end{tikzpicture}%
 }
