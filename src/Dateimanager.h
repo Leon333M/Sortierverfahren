@@ -52,4 +52,5 @@ private:
     static void writeBlock(std::ostream &file, const std::vector<MessWerte> &werte);
     static void sortByThreads(std::vector<MessWerte> &mw);
     std::vector<std::string> getAllMessWerte();
+    std::vector<long long> leseMedianWerte(const std::vector<std::string> &pfade);
 };

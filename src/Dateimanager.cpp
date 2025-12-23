@@ -180,15 +180,32 @@ void Dateimanager::sortByThreads(std::vector<MessWerte> &mw) {
 
 void Dateimanager::printAllMessWerte() {
     std::vector<std::string> pfade = getAllMessWerte();
-    for (auto p : pfade) {
-        std::cout << p << std::endl;
+    std::vector<long long> werte = leseMedianWerte(pfade);
+    for (auto wert : werte) {
+        std::cout << wert << std::endl;
     }
 };
+
+static long long extractArraySize(const std::filesystem::path &p) {
+    bool nextIsNumber = false;
+
+    for (const auto &part : p) {
+        if (nextIsNumber) {
+            return std::stoll(part.string());
+        }
+        if (part == "int") {
+            nextIsNumber = true;
+        }
+    }
+    return -1; // sollte nie passieren
+}
 
 std::vector<std::string> Dateimanager::getAllMessWerte() {
     const std::string variante = "Zufall";
     const std::string targetFile = "Mergesort w8.txt";
-    std::vector<std::string> pfade;
+
+    std::vector<std::filesystem::path> pfadeF;
+
     for (const auto &entry :
          std::filesystem::recursive_directory_iterator(originalPath)) {
         if (!entry.is_regular_file()) {
@@ -199,10 +216,53 @@ std::vector<std::string> Dateimanager::getAllMessWerte() {
         }
         for (const auto &part : entry.path()) {
             if (part == variante) {
-                pfade.push_back(entry.path().string());
+                pfadeF.push_back(entry.path());
                 break;
             }
         }
     }
+
+    // Sortieren
+    std::sort(pfadeF.begin(), pfadeF.end(),
+              [](const auto &a, const auto &b) {
+                  return extractArraySize(a) < extractArraySize(b);
+              });
+
+    // Umwandlung in string
+    std::vector<std::string> pfade;
+    pfade.reserve(pfadeF.size());
+    for (const auto &p : pfadeF) {
+        pfade.push_back(p.string());
+    }
+
     return pfade;
+}
+
+std::vector<long long> Dateimanager::leseMedianWerte(
+    const std::vector<std::string> &pfade) {
+
+    std::vector<long long> werte;
+    werte.reserve(pfade.size());
+
+    for (const auto &pfad : pfade) {
+        std::ifstream file(pfad);
+        if (!file)
+            continue;
+
+        std::string line;
+        for (int i = 0; i < 5; ++i) {
+            if (!std::getline(file, line))
+                break;
+        }
+
+        // erwartet: "Median: 1000"
+        const std::string prefix = "Median:";
+        if (line.starts_with(prefix)) {
+            long long value =
+                std::stoll(line.substr(prefix.size()));
+            werte.push_back(value);
+        }
+    }
+
+    return werte;
 }
