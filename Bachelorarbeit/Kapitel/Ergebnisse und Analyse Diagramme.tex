@@ -500,8 +500,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -519,12 +519,19 @@
             % n*log2(n)
             \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
+            % 0.25*n*log2(n)
+            \addplot[black, dotted,domain=1:400000000, samples=1000] {0.25*x*log2(x)};
+            \addlegendentry{$0.25 \cdot n \cdot \log_2 n$}
             % n^2
             \addplot[red, dashed,domain=1:4e8, samples=100] {x*x};
             \addlegendentry{$n^2$}
             % n
             \addplot[blue!70!red, dashed,domain=1:4e8, samples=100] {x};
             \addlegendentry{$n$}
+            \addlegendimage{empty legend}
+            \addlegendentry{$1k = 10^3$}
+            \addlegendimage{empty legend}
+            \addlegendentry{$1M = 10^6$}
         \end{axis}
     \end{tikzpicture}%
 }
