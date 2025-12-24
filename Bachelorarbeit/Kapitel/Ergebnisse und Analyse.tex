@@ -141,11 +141,7 @@
 }
 % \subsection{Analyse und Interpretation}
 \newcommand{\EinflussDesListentypsAnalyse}{
-    Die gemesen daten zeigen deutlch das das der becase von qiksort in der prxis beser ist als \(n \log_2(n)\). Das ligt vermutlich daren das ich in der relise verion (mit compier optimirung) messe.
-    Da
-    In der Debug-Version (ohne Compiler-Optimierung) habe ich bei einem sortierten Array der Größe 400 Mio. eine Laufzeit von 14~s bei Quicksort gemessen, welche wiederum größer als \(n \log_2(n)\) ist.
-
-    Die Messungen zeigen, dass invertiert sortierte Arrays und sortierte Arrays nahezu identische Laufzeiten erzeugen. Die entsprechenden Kurven würden fast aufeinanderliegen, weshalb ich die grafische Darstellung der invertiert sortierten Arrays zur Übersicht nicht mit aufgenommen habe.
-
-    Dasselbe gilt für fastsortierte Arrays, weshalb ich diese ebenfalls nicht gesondert grafisch darstelle.
+    Die gemessenen Daten zeigen deutlich, dass der Best Case von Quicksort in der Praxis besser als \(n \log_2(n)\) ausfällt. Dies ist darauf zurückzuführen, dass die Messungen in der Release-Version mit aktivierten Compiler-Optimierungen durchgeführt wurden.
+    In der Debug-Version (ohne Compiler-Optimierungen) wurde bei einem sortierten Array der Größe von 400 Millionen Elementen hingegen eine Laufzeit von 14~s für Quicksort gemessen, welche wiederum oberhalb der erwarteten Laufzeit von \(n \log_2(n)\) liegt.
+    Die Messungen zeigen außerdem, dass sortierte, invertiert sortierte sowie fastsortierte Arrays nahezu identische Laufzeiten erzeugen. Die entsprechenden Kurven würden nahezu aufeinanderliegen, weshalb auf eine separate grafische Darstellung dieser Listentypen zugunsten der Übersichtlichkeit verzichtet wurde.
 }
