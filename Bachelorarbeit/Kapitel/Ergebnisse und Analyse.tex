@@ -155,14 +155,17 @@
 % \section{Tiefenbasierte Thread-Erzeugung}
 % \subsection{Messziel} % Einleitung
 \newcommand{\TiefenbasierteThreadErzeugungMessziel}{
-    Hier bei mesen wir die rekusove varinate die einen der beiden rekusiven selbst aufrufe in ein neuen thrad ausführt.
-    Dabei gibt es aber ein limit da jeder thrad selbst speicher bracuh und der RAM nicht unendlich große ist.
-    Hirbei soll gemesen werden welchen perfomance unterschid mehr thrads machen.
+    Hier messen wir die rekursive Variante, die einen der beiden rekursiven Selbstaufrufe in einem neuen Thread ausführt.
+    Dabei gibt es jedoch ein Limit, da jeder Thread selbst Speicher benötigt und der RAM nicht unendlich groß ist.
+    Hierbei soll gemessen werden, welchen Performance-Unterschied eine höhere Anzahl an Threads bewirkt.
 }
 % \subsection{Erwartung}
 \newcommand{\TiefenbasierteThreadErzeugungErwartung}{
-    Ich erwarte ein therosch liniaren perfomache zuwachs, solange kein hardware limti dazuschen komt.
-    Dazu erwarte in diser variante das mergsort beser sklairt als qiksort. Da qiksort nicht exakt die lsite in der mite teilt, sodnern dis nur tehorisch im duschnit macht. Aber der bestcase von qiksort solte imer noch wesetloch besre sien al der von mergsort da in disen fall auf qiskort imer die lsite perfekt in der mitte tielt.
+    Ich erwarte einen theoretisch linearen Performance-Zuwachs, solange kein Hardware-Limit dazwischenkommt.
+    Zudem erwarte ich in dieser Variante, dass Mergesort besser skaliert als Quicksort,
+    da Quicksort die Liste nicht exakt in der Mitte teilt, sondern nur dies theoretisch im Durchschnitt tut.
+    Der Best Case von Quicksort sollte jedoch immer noch wesentlich besser sein als der von Mergesort,
+    da Quicksort in diesem Fall die Liste immer perfekt in der Mitte teilt.
 }
 % \subsection{Diagramm}
 \newcommand{\TiefenbasierteThreadErzeugungDiagramm}{}
