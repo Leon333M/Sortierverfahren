@@ -537,3 +537,64 @@
         \end{axis}
     \end{tikzpicture}%
 }
+
+\newcommand{\TiefenbasierteThreadErzeugungDiagrammA}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                title style={yshift=1.5ex},
+                width=1\textwidth,
+                height=1\textwidth,
+                xlabel={Array-Länge},
+                ylabel={Dauer in ns},
+                title={Länge vergrößern},
+                xmin=1, xmax=400000000,
+                ymin=100, ymax=1*10^11,
+                grid=both,
+                grid style=dashed,
+                % legend pos=south east,
+                legend style={
+                        at={(0.5,-0.1)},
+                        anchor=north,
+                        legend columns=3
+                    },
+                xmode=log,
+                log basis x=10,
+                %xtick=data,
+                xtick={1,2,4,8,16,100,1000,2000,4000,8000,20000,40000,80000,200000,400000,800000,2000000,4000000,8000000,20000000,40000000,80000000,200000000,400000000},
+                xticklabels={
+                        $1$,$2$,$4$,$8$,$16$,
+                        $100$,$1k$,
+                        $2k$,$4k$,$8k$,
+                        $20k$,$$,$80k$,
+                            $ $,$400k$,$ $,
+                            $ $,$4M$,$$,
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
+                    },
+                ymode=log,
+                log basis y=10,
+                ytick={1,10,10^2,10^3,10^4,10^5,10^6,10^7,10^8,10^9,10^10,10^11},
+                yticklabels={$1$,$10$,$10^{2}$,$10^{3}$,$10^{4}$,$10^{5}$,$10^{6}$,$10^{7}$,$10^{8}$,$10^{9}$,$10^{10}$,$10^{11}$}
+                % scaled x ticks=false,
+                % scaled y ticks=false,
+            ]
+            \MergesortgZufallG
+            \QuicksortZufallG
+            \MergesortgSortiertG
+            \QuicksortSortiertG
+            % n*log2(n)
+            \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
+            \addlegendentry{$n \cdot \log_2 n$}
+            % n^2
+            \addplot[red, dashed,domain=1:4e8, samples=100] {x*x};
+            \addlegendentry{$n^2$}
+            % n
+            \addplot[blue!70!red, dashed,domain=1:4e8, samples=100] {x};
+            \addlegendentry{$n$}
+            \addlegendimage{empty legend}
+            \addlegendentry{$1k = 10^3$}
+            \addlegendimage{empty legend}
+            \addlegendentry{$1M = 10^6$}
+        \end{axis}
+    \end{tikzpicture}%
+}
