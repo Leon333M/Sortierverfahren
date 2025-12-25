@@ -38,6 +38,7 @@
         T(n,e)    & = n \cdot 2 \left( 1 - \frac{1}{2^e} \right) + \frac{n}{2^e} \cdot \log_2\left(\frac{n}{2^e}\right) + \frac{n}{2^e} &  & \\
         O(T(n,e)) & = O\left(n + \frac{n}{2^e} \cdot \log_2(n)\right)                                                                   &  &
     \end{flalign*}
+    Man muss jedoch auch beachten, dass für Quicksort im Worst-Case weiterhin \(O(n^2)\) gilt. Außerdem kann man nicht mehr Ebenen parallelisieren, als vorhanden sind, was bedeutet, dass \(e_{\max} = log_2(n)\) ist.
     Für die Work-Stealing-Variante lässt sich keine exakte Laufzeit vorhersagen, sondern nur abschätzen. Man kann jedoch gerundet von derselben Laufzeit ausgehen wie bei der tiefenbasierten Thread-Erzeugungs-Variante.
 }
 
