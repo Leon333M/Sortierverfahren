@@ -32,6 +32,13 @@
         \item rekursive Variante mit neu erzeugten Threads bis zu einer Ebene mit einer unterstützten Thread-Anzahl von \(2^N\),
         \item Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten Thread-Anzahl von \(N\), bei Quicksort als iterative Version umgesetzt.
     \end{itemize}
+    Für die Variante der tiefenbasierten Thread-Erzeugung kann man von folgender Gleichung ausgehen:
+    \begin{flalign*}
+        e         & = \log_2(\text{Thread-Anzahl})                                                                                      &  & \\
+        T(n,e)    & = n \cdot 2 \left( 1 - \frac{1}{2^e} \right) + \frac{n}{2^e} \cdot \log_2\left(\frac{n}{2^e}\right) + \frac{n}{2^e} &  & \\
+        O(T(n,e)) & = O\left(n + \frac{n}{2^e} \cdot \log_2(n)\right)                                                                   &  &
+    \end{flalign*}
+    Für die Work-Stealing-Variante lässt sich keine exakte Laufzeit vorhersagen, sondern nur abschätzen. Man kann jedoch gerundet von derselben Laufzeit ausgehen wie bei der tiefenbasierten Thread-Erzeugungs-Variante.
 }
 
 % \section{Messmethodik}
