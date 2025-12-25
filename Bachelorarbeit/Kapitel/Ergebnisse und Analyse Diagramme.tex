@@ -389,6 +389,64 @@
     \addlegendentry{Quicksort T16 Sortiert}
 }
 
+\newcommand{\MergesortFastSortiertSechzehnThreads}{%
+    \addplot[orange, dashed, mark=*] coordinates {
+            (10,365400)
+            (16,606000)
+            (100,583700)
+            (1000,599500)
+            (1200,555200)
+            (2000,598800)
+            (4000,583000)
+            (8000,594000)
+            (20000,667800)
+            (40000,878700)
+            (80000,1324500)
+            (200000,2638400)
+            (400000,5884600)
+            (800000,11399600)
+            (2000000,24971500)
+            (4000000,48312400)
+            (8000000,103352500)
+            (25000000,331426900)
+            (40000000,551960100)
+            (50000000,674324000)
+            (100000000,1425747800)
+            (200000000,2786237400)
+            (400000000,5812322100)
+        };
+    \addlegendentry{Mergesort T16 FastSortiert}
+}
+
+\newcommand{\QuicksortFastSortiertSechzehnThreads}{%
+    \addplot[yellow, dashed, mark=*] coordinates {
+            (10,315000)
+            (16,322200)
+            (100,578700)
+            (1000,526100)
+            (1200,535400)
+            (2000,558500)
+            (4000,565700)
+            (8000,587100)
+            (20000,635800)
+            (40000,624200)
+            (80000,598200)
+            (200000,705000)
+            (400000,821100)
+            (800000,1503500)
+            (2000000,3730500)
+            (4000000,6941600)
+            (8000000,12923300)
+            (25000000,34955000)
+            (40000000,60236700)
+            (50000000,81307600)
+            (100000000,161113800)
+            (200000000,341155900)
+            (400000000,665058900)
+        };
+    \addlegendentry{Quicksort T16 FastSortiert}
+}
+
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
     \begin{tikzpicture}
         \begin{axis}[
@@ -614,8 +672,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -680,8 +738,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -693,9 +751,11 @@
             \MergesortgZufallG
             \MergesortZufallSechzehnThreads
             \MergesortSortiertSechzehnThreads
+            % \MergesortFastSortiertSechzehnThreads
             \QuicksortZufallG
             \QuicksortZufallSechzehnThreads
             \QuicksortSortiertSechzehnThreads
+            % \QuicksortFastSortiertSechzehnThreads
             % n*log2(n)
             \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
