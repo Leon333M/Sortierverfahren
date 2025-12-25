@@ -275,7 +275,61 @@
     \addlegendentry{Quicksort Dupliziert}
 }
 
+\newcommand{\MergesortZufallSechzehnThreads}{%
+    \addplot[orange, mark=*] coordinates {
+            (10,354000)
+            (16,622300)
+            (100,545800)
+            (1000,609200)
+            (1200,713800)
+            (2000,593500)
+            (4000,594000)
+            (8000,662300)
+            (20000,870800)
+            (40000,1087600)
+            (80000,2306500)
+            (200000,4510500)
+            (400000,8740600)
+            (4000000,73832700)
+            (8000000,152378400)
+            (25000000,501599400)
+            (40000000,810861600)
+            (50000000,1037010900)
+            (100000000,2211188000)
+            (200000000,4209308100)
+            (400000000,8799988500)
+        };
+    \addlegendentry{Mergesort T16 Zufall}
+}
 
+\newcommand{\QuicksortZufallSechzehnThreads}{%
+    \addplot[yellow, mark=*] coordinates {
+            (10,377900)
+            (16,313700)
+            (100,524900)
+            (1000,524500)
+            (1200,578900)
+            (2000,583600)
+            (4000,574200)
+            (8000,686200)
+            (20000,758700)
+            (40000,1247000)
+            (80000,1893500)
+            (200000,4607900)
+            (400000,5819600)
+            (800000,18598000)
+            (2000000,32284600)
+            (4000000,96927600)
+            (8000000,122547100)
+            (25000000,821245500)
+            (40000000,848245300)
+            (50000000,1514323900)
+            (100000000,3122963800)
+            (200000000,5156190000)
+            (400000000,7499160500)
+        };
+    \addlegendentry{Quicksort T16 Zufall}
+}
 
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
     \begin{tikzpicture}
@@ -513,10 +567,10 @@
                 % scaled y ticks=false,
             ]
             \MergesortgZufallG
-            \QuicksortZufallG
             \MergesortgSortiertG
-            \QuicksortSortiertG
             \MergesortDupliziertG
+            \QuicksortZufallG
+            \QuicksortSortiertG
             \QuicksortDupliziertG
             % n*log2(n)
             \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
@@ -579,9 +633,11 @@
                 % scaled y ticks=false,
             ]
             \MergesortgZufallG
-            \QuicksortZufallG
             \MergesortgSortiertG
+            \MergesortZufallSechzehnThreads
+            \QuicksortZufallG
             \QuicksortSortiertG
+            \QuicksortZufallSechzehnThreads
             % n*log2(n)
             \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
