@@ -173,6 +173,13 @@
 }
 % \subsection{Analyse und Interpretation}
 \newcommand{\TiefenbasierteThreadErzeugungAnalyse}{
-    entgegen der erwarteung mese ich kein relevanten unterschod ischen einer sorteirten und einer fastsorterten liste. vermutlich ligt das an der kompier optimirung da wie ja sowie schon unter der erwartetn lauzet von \(n log_2(n)\) sind.
-    ICh mese aber deutliche permoomace verbesung in allen anderen berecihen.
+    Entgegen der Erwartung messe ich keinen relevanten Unterschied zwischen einer sortierten und einer fastsortierten Liste.
+    Vermutlich liegt dies an der Compiler-Optimierung und daran, dass dafür direkt am Anfang ein besonders schlechtes Pivotelement gewählt worden sein müsste.
+    Ich messe jedoch deutliche Performance-Verbesserungen in allen Bereichen, wie zu erwarten war.
+    Für ein unsortiertes Array der Größe 400 Millionen messe ich, dass Mergesort mit 16 Threads 16~\% der seriellen Laufzeit benötigt, während Quicksort 26~\% der seriellen Laufzeit erreicht. Mergsort hat eine sher konstant liniarwasnde laufzeit wärend bei qiksort die lautizer starkt schwankt. Und da Qikosrt weiterhin die glecihe worcase zeit besitz solte man ganz klar für goße Arays Mergsort nutzen statt qiksort. Davon abgesehen hat die 16 thrad varinte nur 85~\% der laufzeit von Mergsort wesegen hier ganz klar mergsot besser abscheodet.
+    Man sihet auhc ganz klar das erst ein perfomece verbung ab ein aray der göße 20k eintirt was an den Overhads der Thrads ligt.
+    Wenn man sich nicht die worcase lauziet von qiksort leiten kan dann ist man mit mergsort deulich besser bedint.
+    Für die meisten Listen ist Quicksort im Durchschnitt schneller als Mergesort.
+    Dennoch besitzt Quicksort weiterhin einen Worst-Case von \(O(n^2)\),
+    weshalb kein theoretisch garantiertes Leistungsplus besteht.
 }
