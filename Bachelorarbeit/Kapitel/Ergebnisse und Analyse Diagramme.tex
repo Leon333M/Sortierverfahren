@@ -447,6 +447,159 @@
     \addlegendentry{Quicksort T16 FastSortiert}
 }
 
+
+\newcommand{\MergesortZufallSechzehnWorkerThreads}{%
+    \addplot[orange, mark=*] coordinates {
+            (1,538700)
+            (2,650800)
+            (4,725700)
+            (8,584800)
+            (10,524200)
+            (16,527500)
+            (100,652400)
+            (128,664900)
+            (256,708300)
+            (400,666800)
+            (1000,724800)
+            (1024,713500)
+            (1200,810200)
+            (2000,835000)
+            (4000,749700)
+            (4096,977100)
+            (8000,736200)
+            (20000,923300)
+            (40000,1438000)
+            (80000,2309800)
+            (200000,10726200)
+            (400000,11975100)
+            (800000,18020200)
+            (2000000,41770600)
+            (4000000,83290400)
+            (8000000,176005100)
+            (25000000,533587600)
+            (40000000,888789800)
+            (50000000,1204652300)
+            (100000000,2379348500)
+            (200000000,5217021800)
+            (400000000,9551264300)
+        };
+    \addlegendentry{Mergesort WT16 Zufall}
+}
+
+\newcommand{\QuicksortZufallSechzehnWorkerThreads}{%
+    \addplot[yellow, mark=*] coordinates {
+            (1,575600)
+            (2,657500)
+            (4,648600)
+            (8,640600)
+            (10,532200)
+            (16,822100)
+            (100,657600)
+            (128,645200)
+            (256,538100)
+            (400,678900)
+            (1000,647600)
+            (1024,659300)
+            (1200,637400)
+            (2000,630100)
+            (4000,618400)
+            (4096,779800)
+            (8000,792800)
+            (20000,732100)
+            (40000,923300)
+            (80000,1325900)
+            (200000,2461700)
+            (400000,3817200)
+            (800000,7220000)
+            (2000000,17698800)
+            (4000000,32127800)
+            (8000000,64708400)
+            (25000000,198604300)
+            (40000000,327429200)
+            (50000000,437240700)
+            (100000000,866735700)
+            (200000000,1790304900)
+            (400000000,3836458700)
+        };
+    \addlegendentry{Quicksort WT16 Zufall}
+}
+
+\newcommand{\MergesortSortiertSechzehnWorkerThreads}{%
+    \addplot[blue!60!black, mark=*] coordinates {
+            (1,597600)
+            (2,686000)
+            (4,638200)
+            (8,633900)
+            (10,673700)
+            (16,576800)
+            (100,597400)
+            (128,614900)
+            (256,771500)
+            (400,664500)
+            (1000,635700)
+            (1024,815000)
+            (1200,648500)
+            (2000,645300)
+            (4000,882200)
+            (4096,676500)
+            (8000,812900)
+            (20000,794900)
+            (40000,1222300)
+            (80000,1697200)
+            (200000,3177300)
+            (400000,6329200)
+            (800000,11895200)
+            (2000000,26987400)
+            (4000000,52017300)
+            (8000000,105411200)
+            (25000000,325518700)
+            (40000000,565738600)
+            (50000000,793015400)
+            (100000000,1504939700)
+            (200000000,3105189300)
+            (400000000,6500211900)
+        };
+    \addlegendentry{Mergesort WT16 Sortiert}
+}
+
+\newcommand{\QuicksortSortiertSechzehnWorkerThreads}{%
+    \addplot[green!70!black, mark=*] coordinates {
+            (1,604400)
+            (2,590100)
+            (4,658600)
+            (8,654200)
+            (10,736600)
+            (16,524700)
+            (100,640700)
+            (128,739400)
+            (256,618400)
+            (400,625500)
+            (1000,594500)
+            (1024,619900)
+            (1200,822800)
+            (2000,671400)
+            (4000,659000)
+            (4096,664400)
+            (8000,626200)
+            (20000,628500)
+            (40000,771700)
+            (80000,718900)
+            (200000,947300)
+            (400000,1188400)
+            (800000,1371400)
+            (2000000,2813200)
+            (4000000,5369900)
+            (8000000,9791600)
+            (25000000,36718200)
+            (40000000,61933000)
+            (50000000,80577100)
+            (100000000,176064800)
+            (200000000,375860500)
+            (400000000,766518900)
+        };
+    \addlegendentry{Quicksort WT16 Sortiert}
+}
+
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
     \begin{tikzpicture}
         \begin{axis}[
@@ -756,6 +909,69 @@
             \QuicksortZufallSechzehnThreads
             \QuicksortSortiertSechzehnThreads
             % \QuicksortFastSortiertSechzehnThreads
+            % n*log2(n)
+            \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
+            \addlegendentry{$n \cdot \log_2 n$}
+            % n^2
+            \addplot[red, dashed,domain=1:4e8, samples=100] {x*x};
+            \addlegendentry{$n^2$}
+            % n
+            \addplot[blue!70!red, dashed,domain=1:4e8, samples=100] {x};
+            \addlegendentry{$n$}
+            \addlegendimage{empty legend}
+            \addlegendentry{$1k = 10^3$}
+            \addlegendimage{empty legend}
+            \addlegendentry{$1M = 10^6$}
+        \end{axis}
+    \end{tikzpicture}%
+}
+
+\newcommand{\WorkerthreadsDiagrammA}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                title style={yshift=1.5ex},
+                width=1\textwidth,
+                height=1\textwidth,
+                xlabel={Array-Länge},
+                ylabel={Dauer in ns},
+                title={Länge vergrößern},
+                xmin=1, xmax=400000000,
+                ymin=100, ymax=1*10^11,
+                grid=both,
+                grid style=dashed,
+                % legend pos=south east,
+                legend style={
+                        at={(0.5,-0.1)},
+                        anchor=north,
+                        legend columns=3
+                    },
+                xmode=log,
+                log basis x=10,
+                %xtick=data,
+                xtick={1,2,4,8,16,100,1000,2000,4000,8000,20000,40000,80000,200000,400000,800000,2000000,4000000,8000000,20000000,40000000,80000000,200000000,400000000},
+                xticklabels={
+                        $1$,$2$,$4$,$8$,$16$,
+                        $100$,$1k$,
+                        $2k$,$4k$,$8k$,
+                        $20k$,$$,$80k$,
+                            $ $,$400k$,$ $,
+                            $ $,$4M$,$$,
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
+                    },
+                ymode=log,
+                log basis y=10,
+                ytick={1,10,10^2,10^3,10^4,10^5,10^6,10^7,10^8,10^9,10^10,10^11},
+                yticklabels={$1$,$10$,$10^{2}$,$10^{3}$,$10^{4}$,$10^{5}$,$10^{6}$,$10^{7}$,$10^{8}$,$10^{9}$,$10^{10}$,$10^{11}$}
+                % scaled x ticks=false,
+                % scaled y ticks=false,
+            ]
+            \MergesortgZufallG
+            \MergesortZufallSechzehnWorkerThreads
+            \MergesortSortiertSechzehnWorkerThreads
+            \QuicksortZufallG
+            \QuicksortZufallSechzehnWorkerThreads
+            \QuicksortSortiertSechzehnWorkerThreads
             % n*log2(n)
             \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
