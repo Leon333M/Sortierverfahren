@@ -187,3 +187,24 @@
     Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die Worst-Case-Laufzeit von Quicksort nicht tolerierbar ist.
     Für typische, nicht degenerierte Listen zeigt Quicksort im Durchschnitt eine konstante und effiziente Leistungssteigerung, wobei die Best- und Worst-Case-Laufzeiten stets berücksichtigt werden sollten.
 }
+
+% \section{Workerthreads}
+% \subsection{Messziel} % Einleitung
+% \subsection{Erwartung}
+% \subsection{Diagramm}
+% \subsection{Analyse und Interpretation}
+
+% \section{Workerthreads}
+% \subsection{Messziel} % Einleitung
+\newcommand{\WorkerthreadsMessziel}{
+    Hier mesen wir die Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten
+    Thread-Anzahl von N , bei Quicksort als iterative Version umgesetzt.
+    Wir messen auber auch die zeit mit die die thrads zur initalisiung brauchen. Da wir in unserfall die Worker-Thread nach den sortierne nicht wider verwenden. ind der praxis würde man das aber wesegen das nicht ganz ganz fair gemesen ist.
+    Bei Worker-Thread-Variante habe ich auch eine misdstgöße von 4k für neune thrads eingeführt. aus den schlitweg eichfacn grund da sich sonst kein permormace vortel duch mer thrads ergibt da dann der oberhad zu groß ist.
+}
+% \subsection{Erwartung}
+\newcommand{\WorkerthreadsErwartung}{
+    Ich erwarte das Mergsort imer schlchtert abschidet als bei der Tiefenbasierte Thread Erzeugung varinte. Das ligt schlicht weg daren das sich die thrads fast nie perfekt die arbeit aufteilen so wie es in der anderen variante der fall ist.
+    Ich erwarte genauso das der best case bei qiksort schlechtet ist als ber der anderen varinte aus den glacihen grund wie bei mergsort.
+    Dafür erwarte ich aber das der avrage case besser ist, weil man so arbeit glaichmäsiger auf mere trhads auslagert.
+}
