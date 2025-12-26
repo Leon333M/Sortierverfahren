@@ -197,17 +197,24 @@
 % \section{Workerthreads}
 % \subsection{Messziel} % Einleitung
 \newcommand{\WorkerthreadsMessziel}{
-    Hier mesen wir die Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten
-    Thread-Anzahl von N , bei Quicksort als iterative Version umgesetzt.
-    Wir messen auber auch die zeit mit die die thrads zur initalisiung brauchen. Da wir in unserfall die Worker-Thread nach den sortierne nicht wider verwenden. ind der praxis würde man das aber wesegen das nicht ganz ganz fair gemesen ist.
-    Bei Worker-Thread-Variante habe ich auch eine misdstgöße von 4k für neune thrads eingeführt. aus den schlitweg eichfacn grund da sich sonst kein permormace vortel duch mer thrads ergibt da dann der oberhad zu groß ist.
+    Hier messen wir die Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten
+    Thread-Anzahl von \(N\), wobei Quicksort als iterative Version umgesetzt ist.
+    Zusätzlich messen wir die Zeit, die die Threads für ihre Initialisierung benötigen mit.
+    Da in unserem Fall die Worker-Threads nach dem Sortieren nicht wiederverwendet werden,
+    ist diese Messung nicht vollständig fair.
+    \newline
+    In der Praxis würde man die Threads weiterverwenden, wodurch dieser Overhead geringer ausfallen würde.
+    Bei der Worker-Thread-Variante wurde außerdem eine Mindestgröße von 4.000 Elementen für neue Threads eingeführt.
+    Dies geschieht aus dem schlichten Grund, dass sich andernfalls kein Performance-Vorteil durch zusätzliche Threads ergibt,
+    da der entstehende Overhead sonst zu groß ist.
 }
 % \subsection{Erwartung}
 \newcommand{\WorkerthreadsErwartung}{
-    Ich erwarte das Mergsort imer schlchtert abschidet als bei der Tiefenbasierte Thread Erzeugung varinte. Das ligt schlicht weg daren das sich die thrads fast nie perfekt die arbeit aufteilen so wie es in der anderen variante der fall ist.
-    Ich erwarte genauso das der best case bei qiksort schlechtet ist als ber der anderen varinte aus den glacihen grund wie bei mergsort.
-    Dafür erwarte ich aber das der avrage case besser ist, weil man so arbeit glaichmäsiger auf mere trhads auslagert.
+    Es wird erwartet, dass Mergesort in der Worker-Thread-Variante schlechtere Ergebnisse erzielt als bei der tiefenbasierten Thread-Erzeugung.
+    Dies ist darauf zurückzuführen, dass sich die Arbeit bei Mergesort in dieser Variante nur selten gleichmäßig auf die verfügbaren Threads verteilt.
     \newline
+    Ebenso wird erwartet, dass der Best-Case von Quicksort im Vergleich zur tiefenbasierten Variante schlechter ausfällt, da auch hier keine optimale Arbeitsaufteilung erreicht wird.
+    Für den Average-Case von Quicksort wird hingegen eine bessere Performance erwartet, da der Work-Stealing-Ansatz eine gleichmäßigere Lastverteilung über mehrere Threads ermöglicht.
 }
 % \subsection{Diagramm}
 \newcommand{\WorkerthreadsDiagramm}{
@@ -215,5 +222,5 @@
 }
 % \subsection{Analyse und Interpretation}
 \newcommand{\WorkerthreadsAnalyse}{
-    Es sind alle erwartungen eingetrerten.
+    Die Messergebnisse bestätigen die zuvor formulierten Erwartungen.
 }
