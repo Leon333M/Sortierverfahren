@@ -223,4 +223,8 @@
 % \subsection{Analyse und Interpretation}
 \newcommand{\WorkerthreadsAnalyse}{
     Die Messergebnisse bestätigen die zuvor formulierten Erwartungen.
+    Zu beachten ist, dass die vergleichsweise schlechte Laufzeit der Mergesort-Worker-Thread-Variante bei einer Array-Größe von 200.000 Elementen keinen Messfehler darstellt.
+    Sie ist durch das Mindestlimit von 4.000 Elementen für die Erzeugung neuer Threads bedingt.
+    Dieses Limit bewirkt, dass in dieser Variante bei der betrachteten Array-Größe lediglich die ersten beiden Ebenen parallel ausgeführt werden können.
+    Folglich werden effektiv nur 4 statt der maximal möglichen 16 Threads genutzt.
 }
