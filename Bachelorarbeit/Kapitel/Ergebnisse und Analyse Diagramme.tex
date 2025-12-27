@@ -600,6 +600,31 @@
     \addlegendentry{Quicksort WT16 Sortiert}
 }
 
+\newcommand{\MergesortZufallStrongScaling}{%
+    % 400M
+    \addplot[blue, mark=*] coordinates {
+            (1,31921522800)
+            (2,23800082300)
+            (4,18045015600)
+            (8,13205583900)
+            (15,9451432400)
+            (16,9551264300)
+        };
+    \addlegendentry{Mergesort Zufall}
+}
+
+\newcommand{\QuicksortZufallStrongScaling}{%
+    \addplot[green, mark=*] coordinates {
+            (1,28735107800)
+            (2,15226912200)
+            (4,8622861300)
+            (8,5325432800)
+            (15,3934768300)
+            (16,3836458700)
+        };
+    \addlegendentry{Quicksort Zufall}
+}
+
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
     \begin{tikzpicture}
         \begin{axis}[
@@ -825,8 +850,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -891,8 +916,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -956,8 +981,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -993,40 +1018,31 @@
     \begin{tikzpicture}
         \begin{axis}[
                 title style={yshift=1.5ex},
-                width=0.5\textwidth,
+                width=1\textwidth,
                 height=0.4\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
-                title={Laufzeit bei Arraygröße 16},
+                title={Laufzeit bei Arraygröße $400M$}, % Threads verdoppeln, Länge konstat, Strong Scaling
+                xmin=1, xmax=16,
+                ymin=1*10^9, ymax=4*10^10,
                 grid=both,
                 grid style=dashed,
-                xmin=0, xmax=16,
-                ymin=0, ymax=5*10^5,
-                grid style=dashed,
-                legend pos=north west,
-                xtick={1,...,16},
-                ytick={1*10^5,2*10^5,3*10^5,4*10^5,5*10^5},
-                xticklabels={$1$,$2$,$3$,$4$,$5$,$6$,$7$,$8$,$9$,$10$,$ $,$12$,$ $,$14$,$ $,$16$},
+                % legend pos=south east,
+                legend style={
+                        at={(0.5,-0.1)},
+                        anchor=north,
+                        legend columns=3
+                    },
+                xtick=data,
+                % xtick={1},
+                % ymode=log,
+                % log basis y=10,
+                ytick={10^9,1*10^10,2*10^10,3*10^10,4*10^10},
+                % scaled x ticks=false,
+                % scaled y ticks=false,
             ]
-            \addplot[blue, mark=*] coordinates {
-                    (1,200)
-                    (2,145900)
-                    (3,131500)
-                    (4,153200)
-                    (5,171200)
-                    (6,211400)
-                    (7,248900)
-                    (8,274200)
-                    (9,252300)
-                    (10,284400)
-                    (11,330400)
-                    (12,351600)
-                    (13,397200)
-                    (14,391100)
-                    (15,415000)
-                    (16,471400)
-                };
-            \addlegendentry{Messwerte}
+            \MergesortZufallStrongScaling
+            \QuicksortZufallStrongScaling
         \end{axis}
     \end{tikzpicture}%
 }
