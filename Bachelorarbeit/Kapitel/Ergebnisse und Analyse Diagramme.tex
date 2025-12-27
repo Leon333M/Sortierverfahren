@@ -600,7 +600,7 @@
     \addlegendentry{Quicksort WT16 Sortiert}
 }
 
-\newcommand{\MergesortZufallStrongScaling}{%
+\newcommand{\MergesortWZufallStrongScaling}{%
     % 400M
     \addplot[blue, mark=*] coordinates {
             (1,31921522800)
@@ -613,7 +613,7 @@
     \addlegendentry{Mergesort Zufall}
 }
 
-\newcommand{\QuicksortZufallStrongScaling}{%
+\newcommand{\QuicksortWZufallStrongScaling}{%
     % 400M
     \addplot[green, mark=*] coordinates {
             (1,28735107800)
@@ -669,6 +669,30 @@
             (2,2792193000)
             (4,3627494500)
             (8,9023601000)
+            (16,7499160500)
+        };
+    \addlegendentry{Quicksort Zufall}
+}
+
+\newcommand{\MergesortZufallStrongScaling}{%
+    % 400M
+    \addplot[blue, mark=*] coordinates {
+            (1,56291760800)
+            (2,29452091000)
+            (4,16471478900)
+            (8,10978147600)
+            (16,8799988500)
+        };
+    \addlegendentry{Mergesort Zufall}
+}
+
+\newcommand{\QuicksortZufallStrongScaling}{%
+    % 400M
+    \addplot[green, mark=*] coordinates {
+            (1,29150929400)
+            (2,16718432700)
+            (4,11842161000)
+            (8,11334038600)
             (16,7499160500)
         };
     \addlegendentry{Quicksort Zufall}
@@ -1157,8 +1181,8 @@
                 % scaled x ticks=false,
                 % scaled y ticks=false,
             ]
-            \MergesortZufallStrongScaling
-            \QuicksortZufallStrongScaling
+            \MergesortWZufallStrongScaling
+            \QuicksortWZufallStrongScaling
         \end{axis}
     \end{tikzpicture}%
 }
