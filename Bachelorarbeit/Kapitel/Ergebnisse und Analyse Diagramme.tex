@@ -614,12 +614,37 @@
 }
 
 \newcommand{\QuicksortZufallStrongScaling}{%
+    % 400M
     \addplot[green, mark=*] coordinates {
             (1,28735107800)
             (2,15226912200)
             (4,8622861300)
             (8,5325432800)
             (15,3934768300)
+            (16,3836458700)
+        };
+    \addlegendentry{Quicksort Zufall}
+}
+
+\newcommand{\MergesortZufallWeakScaling}{%
+    \addplot[blue, mark=*] coordinates {
+            % Threads und Länge verdoppeln
+            (1,1730686100)
+            (2,2700654100)
+            (4,4368366000)
+            (8,6172603500)
+            (16,9551264300)
+        };
+    \addlegendentry{Mergesort Zufall}
+}
+
+\newcommand{\QuicksortZufallWeakScaling}{%
+    % Threads und Länge verdoppeln
+    \addplot[green, mark=*] coordinates {
+            (1,1558438200)
+            (2,1700040600)
+            (4,1972159600)
+            (8,2201854900)
             (16,3836458700)
         };
     \addlegendentry{Quicksort Zufall}
@@ -1029,7 +1054,7 @@
                 grid style=dashed,
                 % legend pos=south east,
                 legend style={
-                        at={(0.5,-0.1)},
+                        at={(0.5,-0.3)},
                         anchor=north,
                         legend columns=3
                     },
@@ -1037,12 +1062,46 @@
                 % xtick={1},
                 % ymode=log,
                 % log basis y=10,
-                ytick={10^9,1*10^10,2*10^10,3*10^10,4*10^10},
+                ytick={10^9,0.5*10^10,1*10^10,1.5*10^10,2*10^10,2.5*10^10,3*10^10,3.5*10^10,4*10^10},
                 % scaled x ticks=false,
                 % scaled y ticks=false,
             ]
             \MergesortZufallStrongScaling
             \QuicksortZufallStrongScaling
+        \end{axis}
+    \end{tikzpicture}%
+}
+
+
+\newcommand{\WorkerthreadsDiagrammC}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                title style={yshift=1.5ex},
+                width=1\textwidth,
+                height=0.4\textwidth,
+                xlabel={Thread-Anzahl},
+                ylabel={Dauer in ns},
+                title={Weak Scaling {\small (Start-Größe $2.5 \cdot {10^7}$)}}, % Threads und Länge verdoppeln
+                xmin=1, xmax=16,
+                ymin=1*10^9, ymax=1*10^10,
+                grid=both,
+                grid style=dashed,
+                % legend pos=south east,
+                legend style={
+                        at={(0.5,-0.3)},
+                        anchor=north,
+                        legend columns=3
+                    },
+                xtick=data,
+                % xtick={1},
+                % ymode=log,
+                % log basis y=10,
+                ytick={0.1*10^10,0.2*10^10,0.3*10^10,0.4*10^10,0.5*10^10,0.6*10^10,0.7*10^10,0.8*10^10,0.9*10^10,1*10^10},
+                % scaled x ticks=false,
+                % scaled y ticks=false,
+            ]
+            \MergesortZufallWeakScaling
+            \QuicksortZufallWeakScaling
         \end{axis}
     \end{tikzpicture}%
 }
