@@ -141,7 +141,7 @@ void Mergesort::mergesortPM(int *liste, const int links, const int rechts, const
 };
 
 void Mergesort::mergesortW(int *liste, int links, int rechts, int workerThreads) {
-    MergeWorkerPool pool(workerThreads);
+    MergeWorkerPool pool(workerThreads - 1);
 
     pool.taskHandler = [&](int *liste, int links, int rechts, MergeWorkerPool &pool) {
         if (links < rechts) {

@@ -141,7 +141,7 @@ void MergesortString::mergesortStringPM(std::string *liste, const int links, con
 };
 
 void MergesortString::mergesortStringW(std::string *liste, int links, int rechts, int workerThreads) {
-    MergeWorkerPoolString pool(workerThreads);
+    MergeWorkerPoolString pool(workerThreads - 1);
 
     pool.taskHandler = [&](std::string *liste, int links, int rechts, MergeWorkerPoolString &pool) {
         if (links < rechts) {
