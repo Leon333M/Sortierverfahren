@@ -718,9 +718,9 @@
     \addlegendentry{Quicksort Zufall}
 }
 
-\newcommand{\TheorieStrongScaling}{%
+\newcommand{\TheorieStrongScaling}[1]{%
     \pgfmathsetmacro{\n}{400000000}
-    \pgfmathsetmacro{\faktor}{2.5}
+    \pgfmathsetmacro{\faktor}{#1} % 2.5
     \addplot[
         black,
         dashed,
@@ -748,9 +748,9 @@
     \addlegendentry{Theoretische Laufzeit ($\times \text{\faktor}$)}
 }
 
-\newcommand{\TheorieWeakScaling}{%
+\newcommand{\TheorieWeakScaling}[1]{%
     % \pgfmathsetmacro{\n}{2.5*10^7}
-    \pgfmathsetmacro{\faktor}{2.5}
+    \pgfmathsetmacro{\faktor}{#1} % 2.5
     \addplot[
         black,
         dashed,
@@ -1103,7 +1103,7 @@
                 ylabel={Dauer in ns},
                 title={Laufzeit bei Arraygröße $400M$}, % Threads verdoppeln, Länge konstat, Strong Scaling
                 xmin=1, xmax=16,
-                ymin=1*10^9, ymax=4*10^10,
+                ymin=1*10^9, ymax=6*10^10,
                 grid=both,
                 grid style=dashed,
                 % legend pos=south east,
@@ -1114,15 +1114,17 @@
                     },
                 xtick=data,
                 % xtick={1},
+                xmode=log,
+                log basis x=2,
                 % ymode=log,
                 % log basis y=10,
-                ytick={10^9,0.5*10^10,1*10^10,1.5*10^10,2*10^10,2.5*10^10,3*10^10,3.5*10^10,4*10^10},
+                ytick={10^9,0.5*10^10,1*10^10,1.5*10^10,2*10^10,2.5*10^10,3*10^10,3.5*10^10,4*10^10,4.5*10^10,5*10^10,5.5*10^10,6*10^10},
                 % scaled x ticks=false,
                 % scaled y ticks=false,
             ]
             \MergesortZufallStrongScaling
             \QuicksortZufallStrongScaling
-            % \TheorieStrongScaling
+            \TheorieStrongScaling{5}
         \end{axis}
     \end{tikzpicture}%
 }
@@ -1157,7 +1159,7 @@
             ]
             \MergesortZufallWeakScaling
             \QuicksortZufallWeakScaling
-            \TheorieWeakScaling
+            \TheorieWeakScaling{5}
         \end{axis}
     \end{tikzpicture}%
 }
@@ -1256,7 +1258,7 @@
             ]
             \MergesortWZufallStrongScaling
             \QuicksortWZufallStrongScaling
-            \TheorieStrongScaling
+            \TheorieStrongScaling{2.5}
         \end{axis}
     \end{tikzpicture}%
 }
@@ -1291,7 +1293,7 @@
             ]
             \MergesortWZufallWeakScaling
             \QuicksortWZufallWeakScaling
-            \TheorieWeakScaling
+            \TheorieWeakScaling{2.5}
         \end{axis}
     \end{tikzpicture}%
 }
