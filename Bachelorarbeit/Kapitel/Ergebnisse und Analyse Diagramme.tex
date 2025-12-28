@@ -745,7 +745,26 @@
             (8192, { (2*\n*(1-1/(2^13)) + (\n/(2^13))*ln(\n/(2^13))/ln(2) + (\n/(2^13)))*\faktor })
             (16384, { (2*\n*(1-1/(2^14)) + (\n/(2^14))*ln(\n/(2^14))/ln(2) + (\n/(2^14)))*\faktor })
         };
-    \addlegendentry{Theorie (um  $\times \faktor$ skaliert)}
+    \addlegendentry{Theoretische Laufzeit ($\times \text{\faktor}$)}
+}
+
+\newcommand{\TheorieWeakScaling}{%
+    % \pgfmathsetmacro{\n}{2.5*10^7}
+    \pgfmathsetmacro{\faktor}{2.5}
+    \addplot[
+        black,
+        dashed,
+        domain=1:16,
+        samples=100
+    ]
+    coordinates {
+            (1, 639385619 * \faktor)
+            (2, 689385619 * \faktor)
+            (4, 789385619 * \faktor)
+            (8, 989385619 * \faktor)
+            (16, 1389385619 * \faktor)
+        };
+    \addlegendentry{Theoretische Laufzeit ($\times \text{\faktor}$)}
 }
 
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
@@ -1036,11 +1055,11 @@
                         $1$,$2$,$4$,$8$,$16$,
                         $100$,$1k$,
                         $2k$,$4k$,$8k$,
-                        $20k$,$$,$80k$,
-                            $ $,$400k$,$ $,
-                            $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                        $20k$,$ $,$80k$,
+                        $ $,$400k$,$ $,
+                        $ $,$4M$,$ $,
+                        $ $,$40M$,$ $,
+                        $ $,$400M$,$ $
                     },
                 ymode=log,
                 log basis y=10,
@@ -1103,6 +1122,7 @@
             ]
             \MergesortZufallStrongScaling
             \QuicksortZufallStrongScaling
+            % \TheorieStrongScaling
         \end{axis}
     \end{tikzpicture}%
 }
@@ -1137,6 +1157,7 @@
             ]
             \MergesortZufallWeakScaling
             \QuicksortZufallWeakScaling
+            \TheorieWeakScaling
         \end{axis}
     \end{tikzpicture}%
 }
@@ -1270,6 +1291,7 @@
             ]
             \MergesortWZufallWeakScaling
             \QuicksortWZufallWeakScaling
+            \TheorieWeakScaling
         \end{axis}
     \end{tikzpicture}%
 }
