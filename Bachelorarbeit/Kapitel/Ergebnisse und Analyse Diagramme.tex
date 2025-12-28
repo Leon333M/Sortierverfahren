@@ -718,6 +718,36 @@
     \addlegendentry{Quicksort Zufall}
 }
 
+\newcommand{\TheorieStrongScaling}{%
+    \pgfmathsetmacro{\n}{400000000}
+    \pgfmathsetmacro{\faktor}{2.5}
+    \addplot[
+        black,
+        dashed,
+        domain=1:2^14,
+        samples=100
+    ]
+    % T(n,e) = n * 2 ( 1 - 1 / ( 2 ^ e ) ) + (n/2^e)*log2( (n/2^e)) + (n/2^e)
+    coordinates {
+            (1, { (2*\n*(1-1/(2^0)) + (\n/(2^0))*ln(\n/(2^0))/ln(2) + (\n/(2^0)))*\faktor })
+            (2, { (2*\n*(1-1/(2^1)) + (\n/(2^1))*ln(\n/(2^1))/ln(2) + (\n/(2^1)))*\faktor })
+            (4, { (2*\n*(1-1/(2^2)) + (\n/(2^2))*ln(\n/(2^2))/ln(2) + (\n/(2^2)))*\faktor })
+            (8, { (2*\n*(1-1/(2^3)) + (\n/(2^3))*ln(\n/(2^3))/ln(2) + (\n/(2^3)))*\faktor })
+            (16, { (2*\n*(1-1/(2^4)) + (\n/(2^4))*ln(\n/(2^4))/ln(2) + (\n/(2^4)))*\faktor })
+            (32, { (2*\n*(1-1/(2^5)) + (\n/(2^5))*ln(\n/(2^5))/ln(2) + (\n/(2^5)))*\faktor })
+            (64, { (2*\n*(1-1/(2^6)) + (\n/(2^6))*ln(\n/(2^6))/ln(2) + (\n/(2^6)))*\faktor })
+            (128, { (2*\n*(1-1/(2^7)) + (\n/(2^7))*ln(\n/(2^7))/ln(2) + (\n/(2^7)))*\faktor })
+            (256, { (2*\n*(1-1/(2^8)) + (\n/(2^8))*ln(\n/(2^8))/ln(2) + (\n/(2^8)))*\faktor })
+            (512, { (2*\n*(1-1/(2^9)) + (\n/(2^9))*ln(\n/(2^9))/ln(2) + (\n/(2^9)))*\faktor })
+            (1024, { (2*\n*(1-1/(2^10)) + (\n/(2^10))*ln(\n/(2^10))/ln(2) + (\n/(2^10)))*\faktor })
+            (2048, { (2*\n*(1-1/(2^11)) + (\n/(2^11))*ln(\n/(2^11))/ln(2) + (\n/(2^11)))*\faktor })
+            (4096, { (2*\n*(1-1/(2^12)) + (\n/(2^12))*ln(\n/(2^12))/ln(2) + (\n/(2^12)))*\faktor })
+            (8192, { (2*\n*(1-1/(2^13)) + (\n/(2^13))*ln(\n/(2^13))/ln(2) + (\n/(2^13)))*\faktor })
+            (16384, { (2*\n*(1-1/(2^14)) + (\n/(2^14))*ln(\n/(2^14))/ln(2) + (\n/(2^14)))*\faktor })
+        };
+    \addlegendentry{Theorie (um  $\times \faktor$ skaliert)}
+}
+
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
     \begin{tikzpicture}
         \begin{axis}[
@@ -1205,6 +1235,7 @@
             ]
             \MergesortWZufallStrongScaling
             \QuicksortWZufallStrongScaling
+            \TheorieStrongScaling
         \end{axis}
     \end{tikzpicture}%
 }
