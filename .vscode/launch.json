@@ -8,9 +8,8 @@
       "program": "${workspaceFolder}/build/Release/Sortierverfahren.exe",
       "args": [
         "1200",
-        "f",
-        "Zufall",
-        "Mergesort w16.txt",
+        "w",
+        "z",
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",

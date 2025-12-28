@@ -46,8 +46,8 @@ public:
             std::lock_guard<std::mutex> lock(mutex);
             taskQueue.push(task);
             activeTasks++;
+            cv.notify_one();
         }
-        cv.notify_one();
     }
 
     void waitUntilDone() {
