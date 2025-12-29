@@ -177,19 +177,19 @@
 }
 % \subsection{Analyse und Interpretation}
 \newcommand{\TiefenbasierteThreadErzeugungAnalyse}{
-    Entgegen der ursprünglichen Erwartung konnte kein signifikanter Unterschied zwischen einer vollständig sortierten und einer nahezu sortierten Liste festgestellt werden.
-    Dieses Verhalten ist vermutlich auf Compiler-Optimierungen zurückzuführen sowie darauf, dass in der Implementierung nicht systematisch ein besonders ungünstiges Pivot-Element gewählt wurde.
+    Entgegen der ursprünglichen Erwartung konnte kein signifikanter Performance Unterschied zwischen einer vollständig sortierten und einer nahezu sortierten Liste bei Quicksort festgestellt werden.
+    Dieses Verhalten ist vermutlich auf Compiler-Optimierungen zurückzuführen und darauf, dass in der Implementierung nicht systematisch ein besonders ungünstiges Pivot-Element gewählt wurde.
     \newline
     Deutliche Performance-Verbesserungen sind jedoch in allen Bereichen messbar, wie theoretisch zu erwarten war.
     Für ein unsortiertes Array der Größe \(400 \, \text{Mio.}\) zeigt sich, dass Mergesort mit 16 Threads lediglich etwa 16~\% der Laufzeit der seriellen Variante benötigt, während Quicksort 26~\% erreicht.
-    Die Laufzeit von Mergesort wächst dabei sehr konstant, während Quicksort im Durchschnitt ebenfalls eine konsistente Steigerung der Laufzeit zeigt, jedoch stärker schwankt.
-    Aufgrund der weiterhin bestehenden Worst-Case-Komplexität von Quicksort ist für sehr große Arrays die Verwendung von Mergesort eindeutig zu bevorzugen.
+    Die Laufzeit von Mergesort wächst dabei sehr konstant, während Quicksort im Durchschnitt ebenfalls eine konsistente Steigerung der Laufzeit zeigt, jedoch sher stark schwankt.
     \newline
-    Bemerkenswert ist, dass die 16-Thread-Variante von Quicksort nur rund 85~\% der Laufzeit von Mergesort erreicht, wodurch Mergesort insgesamt überlegen bleibt.
+    Bemerkenswert ist, dass die 16-Thread-Variante von Quicksort nur rund 85~\% der Laufzeit von Mergesort erreicht, wodurch Mergesort insgesamt überlegen ist.
     Außerdem wird deutlich, dass Performance-Vorteile erst ab einer Array-Größe von etwa 20.000 Elementen auftreten, was auf den Overhead der Thread-Erzeugung zurückzuführen ist.
     \newline
-    Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die Worst-Case-Laufzeit von Quicksort nicht tolerierbar ist.
-    Für typische, nicht degenerierte Listen zeigt Quicksort im Durchschnitt eine konstante und effiziente Leistungssteigerung, wobei die Best- und Worst-Case-Laufzeiten stets berücksichtigt werden sollten.
+    Die starken Lauziet schwakungen von Quicksort bei verschidenen lsiten sind auf die unglecihe lastverteiung auf die Thrads zurückzuführn.
+    Bei diser Quicksort variante wir ddie thradf last unglecih meistens inglech verteilt, was dazu fürht das die genutzen thrads über die lauzet imer weniger werden und so nicht mehr die gesamte Hardware ausnutzen.
+    Das sieht man auch wuder bar am Strong Scaling, dort sihet man das Qiksort bei dieser lsite imernoch an Perfomece zunimt obwohl die Trahdanzel die anzahl an logischn Przesoren übersteigt. Wo hingen man bei Mergsort sihet das es nur leicht schlechter als die Tehortisch zu erwartene lauzeit verbeung ist.
 }
 
 % \section{Workerthreads}
@@ -234,3 +234,8 @@
     Zu beachten ist, dass die Mergesort-Worker-Thread-Variante erst ab einer Array-Größe von 64.000 Elementen alle 16 Threads nutzt.
     Dies liegt am Mindestlimit von 4.000 Elementen für die Erzeugung neuer Threads.
 }
+
+% Aufgrund der weiterhin bestehenden Worst-Case-Komplexität von Quicksort ist für sehr große Arrays die Verwendung von Mergesort eindeutig zu bevorzugen.
+% \newline
+% Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die Worst-Case-Laufzeit von Quicksort nicht tolerierbar ist.
+% Für typische, nicht degenerierte Listen zeigt Quicksort im Durchschnitt eine konstante und effiziente Leistungssteigerung, wobei die Best- und Worst-Case-Laufzeiten stets berücksichtigt werden sollten.
