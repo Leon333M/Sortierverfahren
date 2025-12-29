@@ -191,6 +191,8 @@
     Die starken Laufzeitschwankungen von Quicksort bei verschiedenen Listen sind auf die ungleiche Lastverteilung auf die Threads zurückzuführen.
     Bei dieser Quicksort-Variante wird die Thread-Last meist ungleich verteilt, was dazu führt, dass die genutzten Threads über die Laufzeit hinweg immer weniger werden und somit die gesamte Hardware nicht mehr vollständig ausgenutzt wird.
     Dies ist auch deutlich im Strong Scaling zu erkennen: Dort sieht man, dass Quicksort bei dieser Liste weiterhin an Performance gewinnt, obwohl die Threadanzahl die Anzahl der logischen Prozessoren übersteigt. Wohingegen man bei Mergesort sieht, dass es nur leicht schlechter als die theoretisch zu erwartende Laufzeitverbesserung ist.
+    \newline
+    Interessant ist auch, dass man nahezu keine Performanceverschlechterung feststellt, wenn man deutlich mehr Threads verwendet, als effektiv genutzt werden können. Erst wenn so viele Threads erstellt werden, dass dafür mehr RAM benötigt wird, als vorhanden ist, lässt sich eine erhebliche Performanceverschlechterung beobachten.
 }
 
 % \section{Workerthreads}
