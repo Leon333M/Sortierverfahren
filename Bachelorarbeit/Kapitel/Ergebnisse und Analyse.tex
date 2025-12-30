@@ -252,9 +252,15 @@
 
 % \section{Einfluss des Datentyps der Liste} % Listenart: int, string
 % \subsection{Messziel} % Einleitung
-\newcommand{\EinflussDesDatentypsMessziel}{}
+\newcommand{\EinflussDesDatentypsMessziel}{
+    Hier wird die zeit gemesen die man zum sortieren von strings bracuht, da dies auch ein relaister anwdungfall ist.
+}
 % \subsection{Erwartung}
-\newcommand{\EinflussDesDatentypsErwartung}{}
+\newcommand{\EinflussDesDatentypsErwartung}{
+    Ich erwarte das das sorten länger dauert als bei int, weil ein string wesenltich aufwäderiger zu vegleichen ist, da dsier aus meren zeichen (char) besteht und somit auch mer speicher benötigt.
+    Deswgen erwarte ich auch das der enstehnde overhads duch die Thrads weiger einflus auf die gemse end zeit hat.
+    Was widerumg dazu führen solte das die Graphen im Strong Scaling und Weak Scaling besser abscheiden.
+}
 % \subsection{Diagramm}
 \newcommand{\EinflussDesDatentypsDiagramm}{}
 % \subsection{Analyse und Interpretation}
