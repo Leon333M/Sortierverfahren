@@ -270,7 +270,11 @@
     \EinflussDesDatentypsDiagrammA
 }
 % \subsection{Analyse und Interpretation}
-\newcommand{\EinflussDesDatentypsAnalyse}{}
+\newcommand{\EinflussDesDatentypsAnalyse}{
+    Man sihet bei den Graphen im Strong Scaling und Weak Scaling das Mergsort hier schlchter absneidet als bei int, wärend qiksort weitehin nur minimal schlchter als die thoritsche lauziet ist. Das Mergsot schlchter abscheidet ligt vermutlich daran das der aufwand zum kopertn der teilisten bei string gößer sit als bei ein int.
+    Wen man sich die gesamt lauftzeit anschaut sieht man auhc deutlch das der Gropf für eine sortierte lsite deultich langasmer ist als man erwarten würde. Das ligt an den Code den für die listengerirung nutze. Der macht nämich das eine sorterte lsite deulich gößere stings hat als eine zufälige lsite was dan widerum zu erhöten aufwadn in  vergleichen fürt das sich negativ auf die lauzeit auswirkt.
+    Aber Warum die Lauziet von Sortieren einer sortiten liste bei qiksort den ich als resprsentat für den bestacase nutze, so instabil ist, kann ich mir nicht erklären.
+}
 
 
 % Aufgrund der weiterhin bestehenden Worst-Case-Komplexität von Quicksort ist für sehr große Arrays die Verwendung von Mergesort eindeutig zu bevorzugen.
