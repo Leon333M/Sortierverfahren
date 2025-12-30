@@ -290,7 +290,12 @@ void ManagerString::messeAlles() {
     auto start = std::chrono::high_resolution_clock::now();
     // 10 - 40'000'000
     int langen[] = {
+        1,
+        2,
+        4,
+        8,
         10,
+        16,
         100,
         1000,
         1200,
@@ -300,16 +305,22 @@ void ManagerString::messeAlles() {
         20000,
         40000,
         80000,
-        // 200000,
-        // 400000,
-        // 800000,
-        // 2000000,
-        // 4000000,
-        // 8000000,
-        // 40000000,
-        // 400000000,
+        //
+        200000,
+        400000,
+        800000,
+        2000000,
+        4000000,
+        8000000,
+        2500000,
+        5000000,
+        10000000,
+        20000000,
+        40000000,
+        80000000,
     };
     // Gesamtlaufzeit: 786 s aller Messungen zusammen. 10 - 80000
+    // Gesamtlaufzeit: 5675 s aller Messungen zusammen. 1 - 80000000 (s,z)
     for (int l : langen) {
         lange = l;
         std::cout << "lange :" << lange << std::endl;
