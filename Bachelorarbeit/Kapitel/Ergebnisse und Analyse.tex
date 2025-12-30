@@ -271,9 +271,10 @@
 }
 % \subsection{Analyse und Interpretation}
 \newcommand{\EinflussDesDatentypsAnalyse}{
-    Man sihet bei den Graphen im Strong Scaling und Weak Scaling das Mergsort hier schlchter absneidet als bei int, wärend qiksort weitehin nur minimal schlchter als die thoritsche lauziet ist. Das Mergsot schlchter abscheidet ligt vermutlich daran das der aufwand zum kopertn der teilisten bei string gößer sit als bei ein int.
-    Wen man sich die gesamt lauftzeit anschaut sieht man auhc deutlch das der Gropf für eine sortierte lsite deultich langasmer ist als man erwarten würde. Das ligt an den Code den für die listengerirung nutze. Der macht nämich das eine sorterte lsite deulich gößere stings hat als eine zufälige lsite was dan widerum zu erhöten aufwadn in  vergleichen fürt das sich negativ auf die lauzeit auswirkt.
-    Aber Warum die Lauziet von Sortieren einer sortiten liste bei qiksort den ich als resprsentat für den bestacase nutze, so instabil ist, kann ich mir nicht erklären.
+    Bei den Graphen zu Strong Scaling und Weak Scaling ist zu erkennen, dass Mergesort hier schlechter abschneidet als bei Integer-Daten, während Quicksort weiterhin nur minimal schlechter als die theoretische Laufzeit ist.
+    Dass Mergesort schlechter abschneidet, liegt vermutlich daran, dass der Aufwand zum Kopieren der Teillisten bei Strings größer ist als bei Integern.
+    Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde. Dies liegt an dem Code zur Listengenerierung, der für sortierte Listen deutlich längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
+    Warum die Laufzeit beim Sortieren einer sortierten Liste mit Quicksort, den ich als Repräsentanten für den Best-Case nutze, so instabil ist, lässt sich nicht eindeutig erklären.
 }
 
 
