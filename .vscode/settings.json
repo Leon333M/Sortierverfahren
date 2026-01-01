@@ -125,12 +125,22 @@
         "-output-directory=./build",
         "%DOC%"
       ]
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": [
+        "build/%DOCFILE%"
+      ]
     }
   ],
   "latex-workshop.latex.recipes": [
     {
-      "name": "pdflatex",
+      "name": "pdflatex + bibtex",
       "tools": [
+        "pdflatex",
+        "bibtex",
+        "pdflatex",
         "pdflatex"
       ]
     }
