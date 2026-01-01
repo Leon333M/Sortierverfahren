@@ -102,8 +102,8 @@
     \newline
     Zudem ist erkennbar, dass Mergesort etwa doppelt so lange benötigt wie Quicksort und dass Quicksort näherungsweise eine Laufzeit von
     \(2 \cdot n \log_2(n)\) aufweist.
-    Aus diesen Beobachtungen lässt sich ableiten, dass der Partitionierungsschritt eine Laufzeit von etwa \(2n\) besitzt, während der Merge-Schritt näherungsweise eine Laufzeit von \(4n\) aufweist.
-    Zur Vereinfachung der Betrachtung wird jedoch bei beiden Algorithmen weiterhin von \(n\) ausgegangen.
+    % Aus diesen Beobachtungen lässt sich ableiten, dass der Partitionierungsschritt eine Laufzeit von etwa \(2n\) besitzt, während der Merge-Schritt näherungsweise eine Laufzeit von \(4n\) aufweist.
+    % Zur Vereinfachung der Betrachtung wird jedoch bei beiden Algorithmen weiterhin von \(n\) ausgegangen.
     \newline
     Da eine lineare Laufzeit auf einen Blick leichter zu interpretieren ist, wurde zusätzlich die Funktion \(32n\) eingezeichnet.
     Anhand dieser Funktion ist erkennbar, dass sie im untersuchten Zahlenbereich von \(1\) bis \(4 \cdot 10^8\) teilweise sogar eine genauere Abschätzung liefert als \(n \log_2(n)\).
@@ -276,9 +276,3 @@
     Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde. Dies liegt an dem Code zur Listengenerierung, der für sortierte Listen deutlich längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
     Warum die Laufzeit beim Sortieren einer sortierten Liste mit Quicksort, den ich als Repräsentanten für den Best-Case nutze, so instabil ist, lässt sich nicht eindeutig erklären.
 }
-
-
-% Aufgrund der weiterhin bestehenden Worst-Case-Komplexität von Quicksort ist für sehr große Arrays die Verwendung von Mergesort eindeutig zu bevorzugen.
-% \newline
-% Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die Worst-Case-Laufzeit von Quicksort nicht tolerierbar ist.
-% Für typische, nicht degenerierte Listen zeigt Quicksort im Durchschnitt eine konstante und effiziente Leistungssteigerung, wobei die Best- und Worst-Case-Laufzeiten stets berücksichtigt werden sollten.
