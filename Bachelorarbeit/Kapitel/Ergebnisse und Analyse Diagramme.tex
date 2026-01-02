@@ -982,7 +982,77 @@
             (8,1200469500)
             (16,1945039800)
         };
-    \addlegendentry{Quicksort W Zufall String}
+    \addlegendentry{Quicksort WT Zufall String}
+}
+
+\newcommand{\MergesortTInitZeiten}{%
+    % 16
+    \addplot[blue, mark=*] coordinates {
+            (1,2800)
+            (2,811700)
+            (4,209500)
+            (8,326800)
+            (16,622300)
+        };
+    \addlegendentry{Mergesort T Zufall}
+}
+
+\newcommand{\QuicksortTInitZeiten}{%
+    % 16
+    \addplot[green, mark=*] coordinates {
+            (1,500)
+            (2,91400)
+            (4,171200)
+            (8,306500)
+            (16,314600)
+        };
+    \addlegendentry{Quicksort T Sortiert}
+}
+
+\newcommand{\MergesortWTInitZeiten}{%
+    % 16
+    \addplot[orange, mark=*] coordinates {
+            (1,2500)
+            (2,118800)
+            (4,138600)
+            (8,284500)
+            % (15,459800)
+            (16,711700)
+            % (17,644600)
+            % (18,623600s)
+            (32,1198800)
+            (64,2273300)
+            (128,4874300)
+            (256,8935300)
+            (1024,41633200)
+            (4096,171494600)
+            (8192,326434900)
+            (16384,662938200)
+        };
+    \addlegendentry{Mergesort WT Zufall}
+}
+
+\newcommand{\QuicksortWTInitZeiten}{%
+    % 16
+    \addplot[yellow, mark=*] coordinates {
+            (1,133300)
+            (2,149400)
+            (4,258900)
+            (8,509000)
+            % (15,589600)
+            (16,822100)
+            % (17,904000)
+            % (18,768500)
+            (32,1458000)
+            (64,2998300)
+            (128,4966400)
+            (256,11230100)
+            (1024,43468700)
+            (4096,212968900)
+            (8192,361395500)
+            (16384,678190600)
+        };
+    \addlegendentry{Quicksort WT Zufall}
 }
 
 \newcommand{\TheorieStrongScaling}[2]{%
@@ -1283,8 +1353,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                            $$,$40M$,$$,
-                            $$,$400M$,$$
+                        $$,$40M$,$$,
+                        $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -1725,6 +1795,36 @@
             \QuicksortStringWZufallWeakScaling
             \TheorieWeakScalingB{26}
             \TheorieWeakScalingB{13}
+        \end{axis}
+    \end{tikzpicture}%
+}
+
+\newcommand{\initZeitenDiagrammA}{%
+    \begin{tikzpicture}
+        \begin{axis}[
+                title style={yshift=1.5ex},
+                width=1\textwidth,
+                height=0.4\textwidth,
+                xlabel={Thread-Anzahl},
+                ylabel={Dauer in ns},
+                title={Laufzeit bei Arraygröße 16},
+                grid=both,
+                grid style=dashed,
+                xmin=0, xmax=16,
+                ymin=1*10^2, ymax=1*10^6,
+                grid style=dashed,
+                legend pos=south east,
+                xtick=data,
+                xmode=log,
+                log basis x=2,
+                ymode=log,
+                log basis y=10,
+                ytick={1*10^2,1*10^3,1*10^4,1*10^5,1*10^6},
+            ]
+            \MergesortTInitZeiten
+            \QuicksortTInitZeiten
+            \MergesortWTInitZeiten
+            \QuicksortWTInitZeiten
         \end{axis}
     \end{tikzpicture}%
 }
