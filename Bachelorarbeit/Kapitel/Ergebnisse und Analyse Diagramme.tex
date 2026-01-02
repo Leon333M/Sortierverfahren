@@ -1353,8 +1353,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -1810,8 +1810,8 @@
                 title={Laufzeit bei Arraygröße 16},
                 grid=both,
                 grid style=dashed,
-                xmin=0, xmax=16,
-                ymin=1*10^2, ymax=1*10^6,
+                xmin=1, xmax=2^14,
+                ymin=1*10^2, ymax=1*10^9,
                 grid style=dashed,
                 legend pos=south east,
                 xtick=data,
@@ -1819,12 +1819,12 @@
                 log basis x=2,
                 ymode=log,
                 log basis y=10,
-                ytick={1*10^2,1*10^3,1*10^4,1*10^5,1*10^6},
+                ytick={1*10^2,1*10^3,1*10^4,1*10^5,1*10^6,1*10^7,1*10^8,1*10^9},
             ]
-            \MergesortTInitZeiten
-            \QuicksortTInitZeiten
             \MergesortWTInitZeiten
             \QuicksortWTInitZeiten
+            \MergesortTInitZeiten
+            \QuicksortTInitZeiten
         \end{axis}
     \end{tikzpicture}%
 }
