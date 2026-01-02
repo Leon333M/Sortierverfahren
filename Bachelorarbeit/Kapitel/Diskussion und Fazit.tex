@@ -2,7 +2,10 @@
 
 % Definiere Variablen
 % \newcommand{\Messziel}{Messziel}
-\newcommand{\InterpretationAllerErgebnisse}{
+\newcommand{\InterpretationAllerErgebnisse}{}
+%\section{Ausblick und weiterführende Überlegungen}
+% Ausblick und weiterführende Überlegungen
+\newcommand{\Ausblick}{
     Eine theoretische Variante könnte Mergesort als Grundalgorithmus verwenden und bei Teilarrays kleiner gleich 40k auf Quicksort wechseln. Dadurch lässt sich eine absehbare Worst-Case-Laufzeit gewährleisten, während die durchschnittliche Laufzeit gegenüber reinem Mergesort verbessert wird.
 
     Man kann ebenso die Worst-Case-Laufzeit von Quicksort unwahrscheinlicher machen. Ein Ansatz dafür ist, dass das Pivot-Element zufällig bestimmt wird.
@@ -10,6 +13,8 @@
     Die Anzahl der zufällig hinzugewählten Elemente könnte dabei abhängig von der Listengröße gewählt werden.
     Diese Methoden führen dazu, dass die Worst-Case-Laufzeit nur noch eine Frage der Wahrscheinlichkeit ist.
     Da die Wahrscheinlichkeit sinkt, je mehr Pivot-Elemente zufällig bestimmt werden, ist es in der Praxis dann extrem unwahrscheinlich, dass der Worst-Case jemals eintritt.
+
+    Es gibt auch Varainten die den partitionir und merge schrit Parelsiert haebn. Man kan dise Varainte auch noch mit der rekusoven paraliserten varainte kombinren um so immer von allen Tahdas profitern zu könen. Dis sorgt dan wider für eine noch bessere Laufzeit.
 }
 
 % Auf Paralel merge und PArtionire eingehen.
