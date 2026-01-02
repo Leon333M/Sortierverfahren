@@ -116,32 +116,22 @@
   },
   "latex-workshop.latex.tools": [
     {
-      "name": "pdflatex",
-      "command": "pdflatex",
+      "name": "latexmk",
+      "command": "latexmk",
       "args": [
-        "-synctex=1",
+        "-pdf",
         "-interaction=nonstopmode",
-        "-file-line-error",
-        "-output-directory=./build",
+        "-synctex=1",
+        "-outdir=build",
         "%DOC%"
-      ]
-    },
-    {
-      "name": "bibtex",
-      "command": "bibtex",
-      "args": [
-        "build/%DOCFILE%"
       ]
     }
   ],
   "latex-workshop.latex.recipes": [
     {
-      "name": "pdflatex + bibtex",
+      "name": "latexmk (pdf)",
       "tools": [
-        "pdflatex",
-        "bibtex",
-        "pdflatex",
-        "pdflatex"
+        "latexmk"
       ]
     }
   ],
