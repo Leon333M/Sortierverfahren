@@ -9,7 +9,9 @@
     Wenn man nun die entstehenden Overheads durch die Thread-Erzeugung mit den seriellen Laufzeiten vergleicht, erhält man einen guten Eindruck, ab wann Parallelisierung überhaupt einen Vorteil bietet.
     Um zum Beispiel 16 Threads effizient nutzen zu können, sollte eine Mindestlaufzeit von 1\,ms erreicht werden. Dies ist z.\,B. bei Quicksort der Fall, wenn ein \texttt{int}-Array die Mindestgröße von 20k hat.
     Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die \textit{Worst-Case}-Laufzeit von Quicksort nicht tolerierbar ist. Allerdings zeigt Quicksort für typische, nicht degenerierte Listen im Durchschnitt eine bessere Laufzeit, wobei die \textit{Best-} und \textit{Worst-Case}-Laufzeiten stets berücksichtigt werden sollten.
+    Wenn man nun von beiden Algorithmen die jeweils beste Variante miteinander vergleicht, stellt man fest, dass Quicksort nach der Parallelisierung im Durchschnittsfall immer noch doppelt so schnell wie Mergesort ist.
 }
+
 %\section{Ausblick und weiterführende Überlegungen}
 % Ausblick und weiterführende Überlegungen
 \newcommand{\Ausblick}{
