@@ -2,7 +2,17 @@
 
 % Definiere Variablen
 % \newcommand{\Messziel}{Messziel}
-\newcommand{\InterpretationAllerErgebnisse}{}
+\newcommand{\InterpretationAllerErgebnisse}{
+    Es sit eindeutig zu shen das Mergsort in der tiefenbasierte Thread-Erzeugung Varainte am besten perfomt, sowie dass Quicksort bei der
+    Worker-Thread-Variante nach einem Work-Stealing-Ansatz
+    die beste leuzeit erziehtlt. exakt wie zu erwarten war.
+    Es ist auch sher eindeutg das diese varainten nur leicht schlchter lauzeten erhilhen wie thrisch möglscih wäre.
+    Ich härte aleding auch erawtet das man stärker von der thrisch möglscihen lauzet abswichne würde.
+    Wenman jetzt die enteheden Overhads duch die trhad erzeugen mit den Sereilen lauzeten vergleciht erhält man ein guten eindruck ab wann paralsirung überahupt was bringen kan.
+    Um zum beipeil 16 Thrads profitern zu könen, solte eine midsetlauzeit von 1ms ereicht werden. Dis ist z.b. bei qiksort der fall wen ein int Aray die midest göße von 20k hat.
+    Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die Worst-Case-Laufzeit von Quicksort nicht tolerierbar ist. Alerdings für typische, nicht degenerierte Listen zeigt Quicksort im Durchschnitt eine konstante und effiziente Leistungssteigerung, wobei die Best- und Worst-Case-Laufzeiten stets berücksichtigt werden sollten.
+
+}
 %\section{Ausblick und weiterführende Überlegungen}
 % Ausblick und weiterführende Überlegungen
 \newcommand{\Ausblick}{
@@ -30,5 +40,4 @@
 
 % Aufgrund der weiterhin bestehenden Worst-Case-Komplexität von Quicksort ist für sehr große Arrays die Verwendung von Mergesort eindeutig zu bevorzugen.
 % \newline
-% Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die Worst-Case-Laufzeit von Quicksort nicht tolerierbar ist.
 % Für typische, nicht degenerierte Listen zeigt Quicksort im Durchschnitt eine konstante und effiziente Leistungssteigerung, wobei die Best- und Worst-Case-Laufzeiten stets berücksichtigt werden sollten.
