@@ -15,6 +15,8 @@
     Da die Wahrscheinlichkeit sinkt, je mehr Pivot-Elemente zufällig bestimmt werden, ist es in der Praxis dann extrem unwahrscheinlich, dass der Worst-Case jemals eintritt.
 
     Es gibt auch Varianten, die den Partitionierungs- und Merge-Schritt parallelisiert haben. Man kann diese Variante auch noch mit der rekursiv parallelisierten Variante kombinieren, um so immer von allen Threads profitieren zu können. Dies sorgt dann wieder für eine noch bessere Laufzeit.
+
+    Ich möchte noh erwänen das Moderste cpus auf ein mutli chpsatz disen basiern. Bei intel sind das alle cpus mit Perfomnce und efizet kernen zu gleich. Da diese kerne unerschidle takranten und lesiung erbingen könen erschewt dise die perfekte Paralsiung. Bei AMD besteh zum beipel der 7950X3D aus ein 7800X3D und ein 7800X. Dise beiden chips unterschiedn sich in der cashe göße, in der cahe latenz, und in der Taktrate. Der 7800X3D überhitzt auch architektoch bdeingt leicher da der 3d Cashe dirkt auf oder unter den kernen sitzt. Dis sorgt auch bei AMD dann dafür diese cpu nur sehr schwer perfekt paralsiern kan. Aus disen günden und wegen der Anfags genanten Overhads hatle ich es für moderste cpus unmöglsich dise noch perfekt zu paralsiren zu könen. Daher kan man dise sowieso nicht mer perfkt paralsiren und sich den PErfekt szenro nur noch anähren.
 }
 
 % Auf Paralel merge und PArtionire eingehen.
