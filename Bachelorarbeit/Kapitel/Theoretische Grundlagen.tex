@@ -24,15 +24,15 @@
     \newline
     Hierfür werden beide Teillisten sequenziell durchlaufen und die Elemente verglichen, wodurch pro Merge-Schritt \(n\) Vergleiche sowie \(2n\) Lese- und Schreibzugriffe erforderlich sind.
     \newline
-    Die Laufzeit von Mergesort lässt sich durch die Rekurrenzgleichung
+    Die Laufzeit von Mergesort lässt sich durch die Rekursionsgleichung
     \[
-        T(n) = 2 \cdot T(n/2) + n
+        T(n) = 2 \cdot T(\frac{n}{2}) + n
     \]
     beschreiben, wobei der Term \(+n\) den Aufwand des Merge-Schritts repräsentiert. Daraus ergibt sich eine Gesamtlaufzeit von
     \[
-        T(n) = n \cdot \log_2(n)
+        T(n) = n \cdot \log_2(n) + n
     \]
-    bzw.\ in asymptotischer Notation \(O(n \log n)\).
+    bzw. in asymptotischer Notation \(O(n \log n)\).
 
     \subsubsection{Quicksort}
     \textbf{Quicksort} ist im Grundaufbau ähnlich strukturiert, unterscheidet sich jedoch wesentlich im Ablauf. Die Liste wird nicht zwingend in zwei gleich große Hälften geteilt. Stattdessen wird zunächst ein sogenanntes \emph{Pivot-Element} gewählt, anhand dessen die Liste in einen kleineren und einen größeren Teil partitioniert wird. Dieser Partitionierungsschritt erfolgt \emph{vor} den rekursiven Selbstaufrufen, weshalb sich Quicksort auch als iterative Variante formulieren lässt.
