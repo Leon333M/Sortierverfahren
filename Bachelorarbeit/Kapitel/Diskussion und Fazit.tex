@@ -38,12 +38,12 @@
 % \section{Beantwortung der Forschungsfrage}
 % Forschungsfrage beantworten
 \newcommand{\BeantwortungDerForschungsfrage}{
-    Von den von mir prgrameirten varainten besitzt ganz klar die Quicksort Worker-Stealing vainte die beste lauziet,
-    uter der bedingun das das zu sortirdne int aray midestens 20k groß ist. bzw. das string aray midestens 8k groß ist.
-    Erst wen die sher unwarschinlice worscse lauziet untolerribar ist, ist die Mergsort Tiefenbasierte Thread-Erzeugung die bessere wahl.
-    Dies bitet aber erst eine besre lauzeit wenn das zu sortiedne int Aray midestens 8k große ist. bzw. das string Aray midestens 4k große ist. Wen das zu sortiedne Aray jedoch keiner ist, ist die serile varinte zu bevozugen da dise in disen berech schnerl ferting ist. Dis ist auf die anfgs genaten Overhads zurückzuführen.
+    Von den von mir programmierten Varianten besitzt ganz klar die Quicksort-Worker-Stealing-Variante die beste Laufzeit, unter der Bedingung, dass das zu sortierende \texttt{int}-Array mindestens 20k bzw. das \texttt{String}-Array mindestens 8k groß ist.
+    Erst wenn die sehr unwahrscheinliche \textit{Worst-Case}-Laufzeit untolerierbar ist, stellt die tiefenbasierte Thread-Erzeugung von Mergesort die bessere Wahl dar.
+    Diese bietet aber erst eine bessere Laufzeit, wenn das zu sortierende \texttt{int}-Array mindestens 8k bzw. das \texttt{String}-Array mindestens 4k groß ist.
+    Wenn das zu sortierende Array jedoch kleiner ist, ist die serielle Variante zu bevorzugen, da diese in diesem Bereich schneller fertig ist. Dies ist auf die anfangs genannten Overheads zurückzuführen.
+    Man sollte hierbei beachten, dass sich diese Angaben zur verbesserten parallelen Laufzeit bei beiden Algorithmen auf die jeweilige 16-Thread-Variante beziehen.
 }
-
 % \section{Zusammenfassung}
 % Kurze Zusammenfassung der Arbeit
 \newcommand{\Zusammenfassung}{}
