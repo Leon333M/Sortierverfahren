@@ -209,6 +209,50 @@
     \addlegendentry{Quicksort Sortiert}
 }
 
+\newcommand{\QuicksortSortiertGWorstCase}{%
+    % pivo = liste[rechts];
+    \addplot[red, mark=*] coordinates {
+            (1,5500)
+            (2,100)
+            (8,100)
+            (10,300)
+            (16,200)
+            (100,3300)
+            (1000,130400)
+            (1200,273900)
+            (2000,470500)
+            (4000,1818000)
+            (8000,7051100)
+            (20000,43413300)
+        };
+    \addlegendentry{Quicksort Worst Case}
+}
+
+\newcommand{\QuicksortSortiertWWorstCase}{%
+    % pivo = liste[rechts];
+    \addplot[red, mark=*] coordinates {
+            (1,613800)
+            (2,87700)
+            (4,86200)
+            (8,80800)
+            (10,93700)
+            (16,97200)
+            (100,101700)
+            (1000,221300)
+            (1200,296300)
+            (2000,642400)
+            (4000,1935900)
+            (8000,7572100)
+            (20000,45322800)
+            (40000,183304500)
+            (80000,730461900)
+            (200000,4366837800)
+            (400000,17142852700)
+            (800000,68036716400)
+        };
+    \addlegendentry{Quicksort W1 Worst Case}
+}
+
 \newcommand{\MergesortDupliziertG}{%
     \addplot[orange, mark=*] coordinates {
             (1,200)
@@ -1319,7 +1363,7 @@
     \begin{tikzpicture}
         \begin{axis}[
                 title style={yshift=1.5ex},
-                width=1\textwidth,
+                width=0.9\textwidth,
                 height=1\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
@@ -1361,6 +1405,7 @@
             \QuicksortZufallG
             \QuicksortSortiertG
             \QuicksortDupliziertG
+            \QuicksortSortiertGWorstCase
             % n*log2(n)
             \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
@@ -1523,7 +1568,7 @@
     \begin{tikzpicture}
         \begin{axis}[
                 title style={yshift=1.5ex},
-                width=1\textwidth,
+                width=0.9\textwidth,
                 height=1\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
@@ -1565,6 +1610,7 @@
             \QuicksortZufallG
             \QuicksortZufallSechzehnWorkerThreads
             \QuicksortSortiertSechzehnWorkerThreads
+            \QuicksortSortiertWWorstCase
             % n*log2(n)
             \addplot[black, dashed,domain=1:400000000, samples=1000] {x*log2(x)};
             \addlegendentry{$n \cdot \log_2 n$}
