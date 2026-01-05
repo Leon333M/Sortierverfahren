@@ -142,7 +142,7 @@
     Die gemessenen Daten zeigen deutlich, dass der Best Case von Quicksort in der Praxis besser als \(n \log_2(n)\) ausfällt. Dies ist darauf zurückzuführen, dass die Messungen in der Release-Version mit aktivierten Compiler-Optimierungen durchgeführt wurden.
     In der Debug-Version (ohne Compiler-Optimierungen) wurde bei einem sortierten Array der Größe von 400 Millionen Elementen hingegen eine Laufzeit von 14~s für Quicksort gemessen, welche wiederum oberhalb der erwarteten Laufzeit von \(n \log_2(n)\) liegt.
     Die Messungen zeigen außerdem, dass sortierte, invertiert sortierte sowie fastsortierte Arrays nahezu identische Laufzeiten erzeugen. Die entsprechenden Kurven würden nahezu aufeinanderliegen, weshalb auf eine separate grafische Darstellung dieser Listentypen zugunsten der Übersichtlichkeit verzichtet wurde.
-    Im Digram ist ebenfals zu erkenen das der Worstcase von qiksort eine Lauziet von O(n^2) hat. Alerdings endet der grph ab 20k da schon bei 40k ein stackoverlow duch die rekusinstife ausgelöst wird. Dies ist aber in einer iterative verion von Qiksort nicht mer der fall.
+    Im Diagramm ist ebenfalls zu erkennen, dass der Worst Case von Quicksort eine Laufzeit von \(O(n^2)\) hat. Allerdings endet der Graph ab 20k, da bereits bei 40k ein Stackoverflow durch die Rekursionstiefe ausgelöst wird. Dies ließe sich durch eine iterative Version von Quicksort vermeiden.
 }
 
 % \section{Tiefenbasierte Thread-Erzeugung}
