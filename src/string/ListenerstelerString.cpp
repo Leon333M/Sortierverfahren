@@ -54,15 +54,14 @@ std::string *ListenerstelerString::erstelleZufallsListe(int lange) {
 }
 
 std::string *ListenerstelerString::erstelleSortierteListe(int lange) {
-    listenLange = lange;
-    liste = std::make_unique<std::string[]>(listenLange);
+    liste = std::make_unique<std::string[]>(lange);
 
+    int breite = std::to_string(lange).size();
     for (int i = 0; i < lange; i++) {
-        liste[i] = "STR_" + std::to_string(i);
+        std::ostringstream oss;
+        oss << "STR_" << std::setw(breite) << std::setfill('0') << i;
+        liste[i] = oss.str();
     }
-
-    Messdaten::arrayTyp = "Sortiert";
-    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
