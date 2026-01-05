@@ -321,6 +321,7 @@ void ManagerString::messeAlles() {
     };
     // Gesamtlaufzeit: 786 s aller Messungen zusammen. 10 - 80000
     // Gesamtlaufzeit: 9266 s aller Messungen zusammen. 1 - 80000000 (s,z)
+    // Gesamtlaufzeit: 5923 s aller Messungen zusammen. 1 - 80000000 (z)
     for (int l : langen) {
         lange = l;
         std::cout << "lange :" << lange << std::endl;
