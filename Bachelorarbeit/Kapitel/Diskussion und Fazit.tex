@@ -16,15 +16,15 @@
 % Ausblick und weiterführende Überlegungen
 \newcommand{\Ausblick}{
     Eine theoretische Variante könnte Mergesort als Grundalgorithmus verwenden und bei Teilarrays kleiner gleich 40k auf Quicksort wechseln. Dadurch lässt sich eine absehbare Worst-Case-Laufzeit gewährleisten, während die durchschnittliche Laufzeit gegenüber reinem Mergesort verbessert wird.
-
+    \newline
     Man kann ebenso die Worst-Case-Laufzeit von Quicksort unwahrscheinlicher machen. Ein Ansatz dafür ist, dass das Pivot-Element zufällig bestimmt wird.
     Man kann auch mehrere Elemente zufällig auswählen sowie die Listenränder und die Listenmitte in die Pivot-Auswahl einbeziehen und daraus den Median bilden.
     Die Anzahl der zufällig hinzugewählten Elemente könnte dabei abhängig von der Listengröße gewählt werden.
     Diese Methoden führen dazu, dass die Worst-Case-Laufzeit nur noch eine Frage der Wahrscheinlichkeit ist.
     Da die Wahrscheinlichkeit sinkt, je mehr Pivot-Elemente zufällig bestimmt werden, ist es in der Praxis dann extrem unwahrscheinlich, dass der Worst-Case jemals eintritt.
-
+    \newline
     Es gibt auch Varianten, die den Partitionierungs- und Merge-Schritt parallelisiert haben. Man kann diese Variante auch noch mit der rekursiv parallelisierten Variante kombinieren, um so immer von allen Threads profitieren zu können. Dies sorgt dann wieder für eine noch bessere Laufzeit.
-
+    \newline
     Ich möchte noch erwähnen, dass moderne CPUs auf einem Multi-Chipsatz-Design basieren.
     Bei Intel sind das alle CPUs mit Performance- und Effizienz-Kernen zugleich.
     Da diese Kerne unterschiedliche Taktraten und Leistungen erbringen können, erschwert dies die perfekte Parallelisierung.

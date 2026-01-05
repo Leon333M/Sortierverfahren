@@ -277,7 +277,6 @@
 
 \newcommand{\MergesortZufallSechzehnThreads}{%
     \addplot[orange, mark=*] coordinates {
-            (10,354000)
             (16,622300)
             (100,545800)
             (1000,609200)
@@ -304,7 +303,6 @@
 
 \newcommand{\QuicksortZufallSechzehnThreads}{%
     \addplot[yellow, mark=*] coordinates {
-            (10,377900)
             (16,313700)
             (100,524900)
             (1000,524500)
@@ -333,7 +331,6 @@
 
 \newcommand{\MergesortSortiertSechzehnThreads}{%
     \addplot[blue!60!black, mark=*] coordinates {
-            (10,403500)
             (16,593900)
             (100,572900)
             (1000,662300)
@@ -362,7 +359,6 @@
 
 \newcommand{\QuicksortSortiertSechzehnThreads}{%
     \addplot[green!70!black, mark=*] coordinates {
-            (10,246500)
             (16,314600)
             (100,550300)
             (1000,548800)
@@ -391,7 +387,6 @@
 
 \newcommand{\MergesortFastSortiertSechzehnThreads}{%
     \addplot[orange, dashed, mark=*] coordinates {
-            (10,365400)
             (16,606000)
             (100,583700)
             (1000,599500)
@@ -420,7 +415,6 @@
 
 \newcommand{\QuicksortFastSortiertSechzehnThreads}{%
     \addplot[yellow, dashed, mark=*] coordinates {
-            (10,315000)
             (16,322200)
             (100,578700)
             (1000,526100)
@@ -658,7 +652,6 @@
 
 \newcommand{\MergesortStringZufallSechzehnThreads}{%
     \addplot[orange, mark=*] coordinates {
-            (10,411100)
             (16,549000)
             (100,624300)
             (1000,646800)
@@ -719,7 +712,6 @@
 
 \newcommand{\MergesortStringSortiertSechzehnThreads}{%
     \addplot[blue!60!black, mark=*] coordinates {
-            (10,397100)
             (16,591000)
             (100,1171700)
             (1000,603100)
@@ -1264,7 +1256,7 @@
                 grid=both,
                 grid style=dashed,
                 legend pos=north west,
-                ytick={1609541400,6854920900,14495472700,27203738300,56441153000},
+                ytick={0.5*10^10, 1*10^10, 1.5*10^10, 2*10^10, 2.5*10^10, 3*10^10, 3.5*10^10, 4*10^10, 4.5*10^10, 5*10^10, 5.5*10^10, 6*10^10},
                 % xtick={2^21,2^23,2^24,2^25},
                 % xticklabels={$2^{21}$, $2^{23}$, $2^{24}$, $2^{25}$},
                 % scaled x ticks=false,
@@ -1293,7 +1285,7 @@
                 ylabel={Dauer in ns},
                 title={Länge verdoppeln},
                 xmin=2.5*10^7, xmax=4*10^8,
-                ymin=10^8, ymax=6*10^10,
+                ymin=10^7, ymax=1*10^11,
                 grid=both,
                 grid style=dashed,
                 legend pos=south east,
@@ -1303,8 +1295,8 @@
                 xtick=data,
                 xticklabels={$2.5\cdot10^7$, $5\cdot10^7$, $10^8$, $2\cdot10^8$, $4\cdot10^8$},
                 ymode=log,
-                log basis y=2,
-                ytick=data,
+                log basis y=10,
+                ytick={1*10^8, 1*10^9, 1*10^10, 1*10^11},
                 % xtick={2^21,2^23,2^24,2^25},
                 % xticklabels={$2^{21}$, $2^{23}$, $2^{24}$, $2^{25}$},
                 % scaled x ticks=false,
