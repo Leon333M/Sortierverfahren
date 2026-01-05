@@ -193,7 +193,7 @@ static long long extractArraySize(const std::filesystem::path &p) {
         if (nextIsNumber) {
             return std::stoll(part.string());
         }
-        if (part == "string") {
+        if (part == "int") {
             nextIsNumber = true;
         }
     }
