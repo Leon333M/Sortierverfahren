@@ -54,6 +54,7 @@ std::string *ListenerstelerString::erstelleZufallsListe(int lange) {
 }
 
 std::string *ListenerstelerString::erstelleSortierteListe(int lange) {
+    listenLange = lange;
     liste = std::make_unique<std::string[]>(lange);
 
     int breite = std::to_string(lange).size();
