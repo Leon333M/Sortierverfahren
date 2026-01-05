@@ -28,6 +28,9 @@ std::string *ListenerstelerString::erstelleListe(char listeVariante, int lange) 
         default:
             liste = erstelleZufallsListe(lange);
     }
+
+    Messdaten::arrayLange = lange;
+
     return liste;
 }
 
@@ -42,13 +45,13 @@ std::string *ListenerstelerString::erstelleZufallsListe(int lange) {
         int len = 5 + (dis(gen) % 10); // 5-14 Zeichen
         std::string s;
         s.reserve(len);
-        for (int j = 0; j < len; j++)
+        for (int j = 0; j < len; j++) {
             s.push_back('A' + dis(gen));
-        liste[i] = s;
+            liste[i] = s;
+        }
     }
 
     Messdaten::arrayTyp = "Zufall";
-    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
@@ -64,6 +67,8 @@ std::string *ListenerstelerString::erstelleSortierteListe(int lange) {
         liste[i] = oss.str();
     }
 
+    Messdaten::arrayTyp = "Sortiert";
+
     return liste.get();
 }
 
@@ -76,7 +81,6 @@ std::string *ListenerstelerString::erstelleInvertierteListe(int lange) {
     }
 
     Messdaten::arrayTyp = "InvertSortiert";
-    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
@@ -90,7 +94,6 @@ std::string *ListenerstelerString::erstelleFastSortierteListe(int lange, int swa
     }
 
     Messdaten::arrayTyp = "FastSortiert";
-    Messdaten::arrayLange = lange;
 
     std::mt19937 gen(seed);
     std::uniform_int_distribution<> dis(0, lange - 1);
@@ -114,7 +117,6 @@ std::string *ListenerstelerString::erstelleDuplizierteListe(int lange, int uniqu
     }
 
     Messdaten::arrayTyp = "Dupliziert";
-    Messdaten::arrayLange = lange;
 
     return liste.get();
 }
