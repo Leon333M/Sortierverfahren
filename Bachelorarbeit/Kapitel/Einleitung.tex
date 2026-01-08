@@ -4,9 +4,8 @@
 % \newcommand{\Messziel}{Messziel}
 
 \newcommand{\Motivation}{
-    % Hier Motivation einfügen
     Ziel dieser Arbeit ist es, die Grenzen von Threads und Parallelisierung aufzuzeigen. Dabei soll insbesondere untersucht werden, wie groß der Overhead durch Threads ist und welchen Performanceunterschied es macht, bereits initialisierte Workerthreads zu verwenden, im Vergleich zur Erstellung neuer Threads.
-    Da sich für diese Untersuchungen ein geeigneter, leicht verständlicher und programmierbarer Anwendungsfall anbietet, habe ich mich für Sortieralgorithmen entschieden, die sich zudem sehr gut parallelisieren lassen.
+    Da sich für diese Untersuchungen ein geeigneter, leicht verständlicher und programmierbarer Anwendungsfall anbietet, werden Sortieralgorithmen betrachtet, die sich zudem sehr gut parallelisieren lassen.
 }
 
 \newcommand{\ZielsetzungUndForschungsfrage}{
@@ -247,10 +246,11 @@
 }
 
 \newcommand{\InkrementArrayText}{
-    Anhand dieses einfachen Beispiels möchte ich zeigen, was Parallelisierung in der Praxis bringt und dass die Praxis nicht immer mit den Erwartungen übereinstimmt. Zudem stellt dieses Beispiel einen guten Einstieg in das Thema Parallelisierung dar.
-    An den Diagrammen kann man deutlich erkennen, dass dieses Beispiel nicht linear mit der Thread-Anzahl skaliert, obwohl es rein theoretisch so sein sollte. Das liegt wahrscheinlich daran, dass wir am Datenübertragungslimit sind. Dies würde erklären, warum ab einem gewissen Punkt mehr ausgelastete Kerne keinen Performancegewinn mehr bringen. Zudem ist zu erkennen, dass das Array mindestens $2^{20}$ groß sein muss, damit überhaupt eine Thread-Anzahl doppelt so schnell ist wie die serielle Laufzeit.
-    Ich möchte außerdem erwähnen, dass die serielle Laufzeit dieser Funktion normalerweise unter 100~ns liegt. Dies ist auf Compiler-Optimierungen zurückzuführen. Daher habe ich diese Funktion mit \texttt{volatile} ausgeführt, was verhindert, dass der Compiler die eigentliche Aufgabe herausoptimiert und sie somit messbar bleibt. Das \texttt{volatile}-Schlüsselwort sorgt dafür, dass bei jedem Lesevorgang die Daten aus dem RAM geladen werden müssen. Daher ist es auch das wahrscheinlichste Szenario, dass unser Beispiel durch das Datenratenlimit begrenzt ist. Zusätzlich ist die eigentliche Aufgabe trivial für die CPU und lastet diese daher nicht vollständig aus.
+    Anhand dieses einfachen Beispiels soll gezeigt werden, was Parallelisierung in der Praxis bewirkt und dass die Praxis nicht immer mit den Erwartungen übereinstimmt. Zudem stellt dieses Beispiel einen guten Einstieg in das Thema Parallelisierung dar.
+    An den Diagrammen ist deutlich zu erkennen, dass dieses Beispiel nicht linear mit der Thread-Anzahl skaliert, obwohl dies rein theoretisch zu erwarten wäre. Dies liegt wahrscheinlich daran, dass das Datenübertragungslimit erreicht ist. Dies würde erklären, warum ab einem gewissen Punkt mehr ausgelastete Kerne keinen weiteren Performancegewinn mehr bringen. Zudem ist zu erkennen, dass das Array mindestens $2^{20}$ groß sein muss, damit eine parallele Ausführung einen mindestens zweifachen Geschwindigkeitsvorteil gegenüber der seriellen Laufzeit erreicht.
+    Zusätzlich ist anzumerken, dass die serielle Laufzeit dieser Funktion normalerweise unter 100~ns liegt. Dies ist auf Compiler-Optimierungen zurückzuführen. Daher wurde diese Funktion mit \texttt{volatile} ausgeführt, was verhindert, dass der Compiler die eigentliche Aufgabe herausoptimiert und sie somit messbar bleibt. Das \texttt{volatile}-Schlüsselwort sorgt dafür, dass bei jedem Lesevorgang die Daten aus dem RAM geladen werden müssen. Daher ist es auch das wahrscheinlichste Szenario, dass dieses Beispiel durch das Datenratenlimit begrenzt ist. Zusätzlich ist die eigentliche Aufgabe trivial für die CPU und lastet diese daher nicht vollständig aus.
 }
+
 
 
 \newcommand{\InkrementArray}{
