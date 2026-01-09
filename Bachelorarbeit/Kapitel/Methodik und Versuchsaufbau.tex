@@ -45,13 +45,14 @@
 % \section{Messmethodik}
 % % Vorgehensweise zur Laufzeitmessung, Datenerhebung
 \newcommand{\Messmethodik}{
-Zur Laufzeitmessung wurden zufällig erzeugte Listen verwendet, die stets mit demselben Seed initialisiert wurden. Dadurch sind alle Messungen reproduzierbar und miteinander vergleichbar.
-\newline
-Die Zeitmessung erfolgte mithilfe der Bibliothek \texttt{chrono}. Die gemessenen Zeiten besitzen eine Auflösung von 100\,ns und wurden entsprechend in Nanosekunden gespeichert sowie in den Diagrammen dargestellt. Zur Einordnung gilt:
-\(1\,\text{s} = 10^3\,\text{ms} = 10^9\,\text{ns}\).
-\newline
-Die Messung begann unmittelbar vor dem Aufruf des zu untersuchenden Sortieralgorithmus und endete direkt nach dessen Abschluss. Die Zeit für die Initialisierung der Testlisten wurde dabei nicht mitgemessen.
-\newline
-Nach den meisten Messungen wurde überprüft, ob die resultierende Liste korrekt sortiert ist, um die funktionale Korrektheit der Implementierung sicherzustellen.
-\newline
-Für die Darstellung in den Diagrammen wird der Übersicht halber von einer direkten 1:1-Zuordnung von theoretischer Laufzeit zu Dauer in ns ausgegangen. Diese Annahme ist jedoch stark vereinfacht, da sie nicht garantiert werden kann. Die erwarteten Werte sollten daher stets kritisch betrachtet werden.
+    Zur Laufzeitmessung wurden zufällig erzeugte Listen verwendet, die stets mit demselben Seed initialisiert wurden. Dadurch sind alle Messungen reproduzierbar und miteinander vergleichbar.
+    \newline
+    Die Zeitmessung erfolgte mithilfe der Bibliothek \texttt{chrono}. Die gemessenen Zeiten besitzen eine Auflösung von 100\,ns und wurden entsprechend in Nanosekunden gespeichert sowie in den Diagrammen dargestellt. Zur Einordnung gilt:
+    \(1\,\text{s} = 10^3\,\text{ms} = 10^9\,\text{ns}\).
+    \newline
+    Die Messung begann unmittelbar vor dem Aufruf des zu untersuchenden Sortieralgorithmus und endete direkt nach dessen Abschluss. Die Zeit für die Initialisierung der Testlisten wurde dabei nicht mitgemessen.
+    \newline
+    Nach den meisten Messungen wurde überprüft, ob die resultierende Liste korrekt sortiert ist, um die funktionale Korrektheit der Implementierung sicherzustellen.
+    \newline
+    Für die Darstellung in den Diagrammen wird der Übersicht halber von einer direkten 1:1-Zuordnung von theoretischer Laufzeit zu Dauer in ns ausgegangen. Diese Annahme ist jedoch stark vereinfacht, da sie nicht garantiert werden kann. Die erwarteten Werte sollten daher stets kritisch betrachtet werden.
+}

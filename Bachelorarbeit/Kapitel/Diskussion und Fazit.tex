@@ -3,13 +3,13 @@
 % Definiere Variablen
 % \newcommand{\Messziel}{Messziel}
 \newcommand{\InterpretationAllerErgebnisse}{
-    Es ist eindeutig zu sehen, dass Mergesort in der tiefenbasierten Thread-Erzeugungsvariante am besten performt sowie dass Quicksort bei der Worker-Thread-Variante nach einem Work-Stealing-Ansatz die beste Laufzeit erzielt, exakt wie zu erwarten war.
-    Es ist auch sehr eindeutig, dass diese Varianten nur leicht schlechtere Laufzeiten erreichen, als theoretisch möglich wäre.
-    Ich hatte allerdings ebenfalls erwartet, dass die Ergebnisse aufgrund der anfangs genannten Overheads stärker von der theoretisch möglichen Laufzeit abweichen würden.
-    Wenn man nun die entstehenden Overheads durch die Thread-Erzeugung mit den seriellen Laufzeiten vergleicht, erhält man einen guten Eindruck, ab wann Parallelisierung überhaupt einen Vorteil bietet.
-    Um zum Beispiel 16 Threads effizient nutzen zu können, sollte eine Mindestlaufzeit von 1\,ms erreicht werden. Dies ist z.\,B. bei Quicksort der Fall, wenn ein \texttt{int}-Array die Mindestgröße von 20k hat.
-    Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die \textit{Worst-Case}-Laufzeit von Quicksort nicht tolerierbar ist. Allerdings zeigt Quicksort für typische, nicht degenerierte Listen im Durchschnitt eine bessere Laufzeit, wobei die \textit{Best-} und \textit{Worst-Case}-Laufzeiten stets berücksichtigt werden sollten.
-    Wenn man nun von beiden Algorithmen die jeweils beste Variante miteinander vergleicht, stellt man fest, dass Quicksort nach der Parallelisierung im Durchschnittsfall immer noch doppelt so schnell wie Mergesort ist.
+    Es ist eindeutig zu erkennen, dass Mergesort in der tiefenbasierten Thread-Erzeugungsvariante die beste Performance erzielt und dass Quicksort in der Worker-Thread-Variante mit Work-Stealing-Ansatz die beste Laufzeit erreicht, wie zuvor erwartet.
+    Ebenso ist deutlich zu erkennen, dass diese Varianten nur geringfügig schlechtere Laufzeiten erreichen, als theoretisch möglich wäre.
+    Die Ergebnisse zeigen jedoch, dass die Abweichung von der theoretisch möglichen Laufzeit geringer ausfällt als aufgrund der anfangs genannten Overheads zu erwarten gewesen wäre.
+    Vergleicht man die entstehenden Overheads durch die Thread-Erzeugung mit den seriellen Laufzeiten, ergibt sich ein guter Eindruck davon, ab welcher Problemgröße Parallelisierung überhaupt einen Vorteil bietet.
+    Um beispielsweise 16 Threads effizient nutzen zu können, sollte eine Mindestlaufzeit von etwa 1\,ms erreicht werden. Dies ist bei Quicksort der Fall, wenn ein \texttt{int}-Array eine Mindestgröße von 20k aufweist.
+    Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die \textit{Worst-Case}-Laufzeit von Quicksort nicht tolerierbar ist. Quicksort zeigt jedoch für typische, nicht degenerierte Listen im Durchschnitt eine bessere Laufzeit, wobei die \textit{Best-} und \textit{Worst-Case}-Laufzeiten stets berücksichtigt werden sollten.
+    Vergleicht man die jeweils beste Variante beider Algorithmen, so zeigt sich, dass Quicksort nach der Parallelisierung im Durchschnittsfall weiterhin etwa doppelt so schnell ist wie Mergesort.
 }
 
 %\section{Ausblick und weiterführende Überlegungen}
@@ -17,42 +17,42 @@
 \newcommand{\Ausblick}{
     Eine theoretische Variante könnte Mergesort als Grundalgorithmus verwenden und bei Teilarrays kleiner gleich 40k auf Quicksort wechseln. Dadurch lässt sich eine absehbare Worst-Case-Laufzeit gewährleisten, während die durchschnittliche Laufzeit gegenüber reinem Mergesort verbessert wird.
     \newline
-    Man kann ebenso die Worst-Case-Laufzeit von Quicksort unwahrscheinlicher machen. Ein Ansatz dafür ist, dass das Pivot-Element zufällig bestimmt wird.
-    Man kann auch mehrere Elemente zufällig auswählen sowie die Listenränder und die Listenmitte in die Pivot-Auswahl einbeziehen und daraus den Median bilden.
-    Die Anzahl der zufällig hinzugewählten Elemente könnte dabei abhängig von der Listengröße gewählt werden.
+    Ebenso lässt sich die Worst-Case-Laufzeit von Quicksort unwahrscheinlicher machen. Ein möglicher Ansatz besteht darin, das Pivot-Element zufällig zu bestimmen.
+    Darüber hinaus können mehrere Elemente zufällig ausgewählt sowie die Listenränder und die Listenmitte in die Pivot-Auswahl einbezogen werden, aus denen anschließend der Median gebildet wird.
+    Die Anzahl der zufällig hinzugewählten Elemente kann dabei abhängig von der Listengröße gewählt werden.
     Diese Methoden führen dazu, dass die Worst-Case-Laufzeit nur noch eine Frage der Wahrscheinlichkeit ist.
-    Da die Wahrscheinlichkeit sinkt, je mehr Pivot-Elemente zufällig bestimmt werden, ist es in der Praxis dann extrem unwahrscheinlich, dass der Worst-Case jemals eintritt.
+    Da diese Wahrscheinlichkeit mit zunehmender Anzahl zufällig bestimmter Pivot-Elemente weiter sinkt, ist es in der Praxis extrem unwahrscheinlich, dass der Worst-Case eintritt.
     \newline
-    Es gibt auch Varianten, die den Partitionierungs- und Merge-Schritt parallelisiert haben. Man kann diese Variante auch noch mit der rekursiv parallelisierten Variante kombinieren, um so immer von allen Threads profitieren zu können. Dies sorgt dann wieder für eine noch bessere Laufzeit.
+    Zudem existieren Varianten, bei denen sowohl der Partitionierungs- als auch der Merge-Schritt parallelisiert sind. Diese Ansätze lassen sich mit rekursiv parallelisierten Varianten kombinieren, um eine möglichst gleichmäßige Auslastung aller Threads zu erreichen, was zu weiteren Laufzeitverbesserungen führen kann.
     \newline
-    Ich möchte noch erwähnen, dass moderne CPUs auf einem Multi-Chipsatz-Design basieren.
-    Bei Intel sind das alle CPUs mit Performance- und Effizienz-Kernen zugleich.
-    Da diese Kerne unterschiedliche Taktraten und Leistungen erbringen können, erschwert dies die perfekte Parallelisierung.
+    Weiterhin ist anzumerken, dass moderne CPUs häufig auf einem Multi-Chiplet-Design basieren.
+    Bei Intel betrifft dies CPUs mit einer Kombination aus Performance- und Effizienz-Kernen.
+    Diese Kerne unterscheiden sich in ihrer Taktrate und Leistungsfähigkeit, was eine perfekte Parallelisierung zusätzlich erschwert.
     Bei AMD besteht zum Beispiel der 7950X3D aus einem 7800X3D und einem 7800X.
     Diese beiden Chips unterscheiden sich in der Cache-Größe, in der Cache-Latenz und in der Taktrate.
-    Der 7800X3D überhitzt auch architekturbedingt leichter, da der 3D-Cache direkt auf den Kernen sitzt.
-    Dies sorgt auch bei AMD dafür, dass sich diese CPU nur sehr schwer perfekt parallelisieren lässt.
-    Aus diesen Gründen sowie aufgrund der anfangs genannten Overheads halte ich eine perfekte Parallelisierung moderner CPUs für unmöglich. Stattdessen kann man sich dem idealen Szenario nur annähern.
+    Der 7800X3D ist zudem aufgrund der Architektur des 3D-Caches thermisch stärker limitiert, da sich der Cache direkt auf den Kernen befindet.
+    Dies führt auch bei AMD dazu, dass sich solche CPUs nur sehr schwer perfekt parallelisieren lassen.
+    Aus diesen Gründen sowie aufgrund der anfangs genannten Overheads erscheint eine perfekte Parallelisierung moderner CPUs nicht erreichbar. Stattdessen kann sich dem idealen Szenario lediglich angenähert werden.
 }
 
 % \section{Beantwortung der Forschungsfrage}
 % Forschungsfrage beantworten
 \newcommand{\BeantwortungDerForschungsfrage}{
-    Von den von mir programmierten Varianten besitzt ganz klar die Quicksort-Worker-Stealing-Variante die beste Laufzeit, unter der Bedingung, dass das zu sortierende \texttt{int}-Array mindestens 20k bzw. das \texttt{String}-Array mindestens 8k groß ist.
+    Von den implementierten Varianten besitzt die Quicksort-Worker-Stealing-Variante die beste Laufzeit, unter der Bedingung, dass das zu sortierende \texttt{int}-Array mindestens 20k bzw. das \texttt{String}-Array mindestens 8k groß ist.
     Erst wenn die sehr unwahrscheinliche \textit{Worst-Case}-Laufzeit untolerierbar ist, stellt die tiefenbasierte Thread-Erzeugung von Mergesort die bessere Wahl dar.
-    Diese bietet aber erst eine bessere Laufzeit, wenn das zu sortierende \texttt{int}-Array mindestens 8k bzw. das \texttt{String}-Array mindestens 4k groß ist.
-    Wenn das zu sortierende Array jedoch kleiner ist, ist die serielle Variante zu bevorzugen, da diese in diesem Bereich schneller fertig ist. Dies ist auf die anfangs genannten Overheads zurückzuführen.
-    Man sollte hierbei beachten, dass sich diese Angaben zur verbesserten parallelen Laufzeit bei beiden Algorithmen auf die jeweilige 16-Thread-Variante beziehen.
+    Diese bietet jedoch erst eine bessere Laufzeit, wenn das zu sortierende \texttt{int}-Array mindestens 8k bzw. das \texttt{String}-Array mindestens 4k groß ist.
+    Ist das zu sortierende Array kleiner, ist die serielle Variante zu bevorzugen, da diese in diesem Bereich schneller ist. Dies ist auf die anfangs genannten Overheads zurückzuführen.
+    Dabei ist zu beachten, dass sich diese Angaben zur verbesserten parallelen Laufzeit bei beiden Algorithmen auf die jeweilige 16-Thread-Variante beziehen.
 }
 
 % \section{Zusammenfassung}
 % Kurze Zusammenfassung der Arbeit
 \newcommand{\Zusammenfassung}{
-    Zusammenfassend lässt sich sagen, dass die Quicksort-Worker-Stealing-Variante allgemein der tiefenbasierten Thread-Erzeugungsvariante von Mergesort überlegen ist.
-    Allerdings sollte man darauf achten, erst dann von der seriellen Version auf die Parallelisierung umzuschalten, wenn die entsprechende Mindestlaufzeit bzw. Mindest-Array-Größe erreicht ist.
-    Zudem habe ich gezeigt, dass die theoretisch mögliche Laufzeitverbesserung fast erreicht wird.
-    Es hat sich ebenso herausgestellt, dass Compiler-Optimierungen einen erheblichen Einfluss auf die Laufzeit haben, vor allem wenn es um Threads geht, auch wenn ich in dieser Arbeit nicht explizit darauf eingegangen bin.
-    Zudem ist noch viel Verbesserungspotenzial vorhanden, wie ich bereits im Ausblick erläutert habe.
+    Zusammenfassend lässt sich festhalten, dass die Quicksort-Worker-Stealing-Variante der tiefenbasierten Thread-Erzeugungsvariante von Mergesort in der Regel überlegen ist.
+    Allerdings ist darauf zu achten, erst dann von der seriellen Version auf die Parallelisierung umzuschalten, wenn die entsprechende Mindestlaufzeit bzw. Mindest-Array-Größe erreicht ist.
+    Zudem zeigen die Ergebnisse, dass die theoretisch mögliche Laufzeitverbesserung nahezu erreicht wird.
+    Weiterhin hat sich herausgestellt, dass Compiler-Optimierungen einen erheblichen Einfluss auf die Laufzeit haben, insbesondere im Zusammenhang mit Threading, auch wenn dieser Aspekt in dieser Arbeit nicht explizit untersucht wurde.
+    Darüber hinaus besteht weiterhin Verbesserungspotenzial, wie im Ausblick dargestellt.
 }
 
 % Aufgrund der weiterhin bestehenden Worst-Case-Komplexität von Quicksort ist für sehr große Arrays die Verwendung von Mergesort eindeutig zu bevorzugen.
