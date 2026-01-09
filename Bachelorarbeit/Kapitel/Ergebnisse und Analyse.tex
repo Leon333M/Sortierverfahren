@@ -68,9 +68,10 @@
     dargestellt und analysiert, da diese ausreichend sind, um die theoretisch
     erwarteten Laufzeiteigenschaften der untersuchten Algorithmen zu bestätigen.
     Weitere Messdaten würden keine zusätzlichen inhaltlichen Erkenntnisse liefern,
-    sondern lediglich bereits beobachtete Effekte wiederholen.}
-% \section{Grundlegende Laufzeiten abhängig von der Arraygröße}
+    sondern lediglich bereits beobachtete Effekte wiederholen.
+}
 
+% \section{Grundlegende Laufzeiten abhängig von der Arraygröße}
 % \subsection{Messziel} % Einleitung
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseMessziel}{
     Das Messziel besteht darin, die Abhängigkeit des seriellen Algorithmus von der Arraygröße grafisch darzustellen.
@@ -80,8 +81,9 @@
 
 % \subsection{Erwartung}
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseErwartung}{
-    Da die durchschnittliche Laufzeit \(O(n \log n)\) beträgt, erwarte ich eine logarithmische Laufzeiterhöhung bei wachsender Arraygröße.
+    Da die durchschnittliche Laufzeit \(O(n \log n)\) beträgt, wird eine logarithmische Laufzeiterhöhung bei wachsender Arraygröße erwartet.
 }
+
 % \subsection{Diagramm}
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagramm}{
     \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA
@@ -114,21 +116,24 @@
 % \section{Einfluss des Listentyps} % Listentyps: Zufall, Sortiert, InvertiertSortiert, FastSortiert, Dupliziert
 % \subsection{Messziel} % Einleitung
 \newcommand{\EinflussDesListentypsMessziel}{
-    Der Listentyp ist relevant, da es bei Quicksort einen Best-Case sowie einen Worst-Case gibt.
-    Diese hängen vom Inhalt der zu sortierenden Liste ab und somit auch vom Listentyp.
-    Gleichzeitig dient diese Messung der Vollständigkeit, damit die Laufzeiten auch mit anderen,
+    Der Listentyp ist relevant, da Quicksort sowohl einen Best-Case als auch einen Worst-Case aufweist.
+    Diese hängen vom Inhalt der zu sortierenden Liste und somit vom jeweiligen Listentyp ab.
+    Gleichzeitig dient diese Messung der Vollständigkeit, sodass die Laufzeiten auch mit anderen,
     nicht von mir implementierten Sortieralgorithmen gut vergleichbar sind.
-    Auch hierbei werden zunächst nur die seriellen Laufzeiten der Algorithmen gemessen.
-    Zur Vollständigkeit werden hierbei zusätzlich weitere Listentypen außer zufällig und sortiert betrachtet.
+    Auch hierbei werden zunächst ausschließlich die seriellen Laufzeiten der Algorithmen gemessen.
+    Zur Vollständigkeit werden zusätzlich weitere Listentypen außer zufällig und sortiert betrachtet.
 }
+
 % \subsection{Erwartung}
 \newcommand{\EinflussDesListentypsErwartung}{
-    Ich erwarte, dass der Listentyp bei Mergesort nahezu keinen Einfluss hat und somit nur sehr geringe Laufzeitänderungen zu beobachten sind.
+    Ich erwarte, dass der Listentyp bei Mergesort nahezu keinen Einfluss auf die Laufzeit hat,
+    sodass lediglich sehr geringe Laufzeitänderungen zu beobachten sind.
     Bei Quicksort erwarte ich hingegen bei einer sortierten Liste exakt den Best-Case,
     da als Pivotelement jeweils das mittlere Element gewählt wird.
-    Ebenso erwarte ich, dass bei Quicksort bei Wahl des jeweils ganz rechten Elements als Pivotelement
+    Ebenso erwarte ich, dass bei Quicksort bei Wahl des jeweils rechten Elements als Pivotelement
     bei einer sortierten Liste der Worst-Case eintritt.
 }
+
 % \subsection{Diagramm}
 \newcommand{\EinflussDesListentypsDiagramm}{
     \EinflussDesListentypsDiagrammA
@@ -137,12 +142,18 @@
     \newline
     \EinflussDesListentypsDiagrammC
 }
+
 % \subsection{Analyse und Interpretation}
 \newcommand{\EinflussDesListentypsAnalyse}{
-    Die gemessenen Daten zeigen deutlich, dass der Best Case von Quicksort in der Praxis besser als \(n \log_2(n)\) ausfällt. Dies ist darauf zurückzuführen, dass die Messungen in der Release-Version mit aktivierten Compiler-Optimierungen durchgeführt wurden.
-    In der Debug-Version (ohne Compiler-Optimierungen) wurde bei einem sortierten Array der Größe von 400 Millionen Elementen hingegen eine Laufzeit von 14~s für Quicksort gemessen, welche wiederum oberhalb der erwarteten Laufzeit von \(n \log_2(n)\) liegt.
-    Die Messungen zeigen außerdem, dass sortierte, invertiert sortierte sowie fastsortierte Arrays nahezu identische Laufzeiten erzeugen. Die entsprechenden Kurven würden nahezu aufeinanderliegen, weshalb auf eine separate grafische Darstellung dieser Listentypen zugunsten der Übersichtlichkeit verzichtet wurde.
-    Im Diagramm ist ebenfalls zu erkennen, dass der Worst Case von Quicksort eine Laufzeit von \(O(n^2)\) hat. Allerdings endet der Graph ab 20k, da bereits bei 40k ein Stackoverflow durch die Rekursionstiefe ausgelöst wird. Dies ließe sich durch eine iterative Version von Quicksort vermeiden.
+    Die gemessenen Daten zeigen deutlich, dass der Best-Case von Quicksort in der Praxis besser als \(n \log_2(n)\) ausfällt.
+    Dies ist darauf zurückzuführen, dass die Messungen in der Release-Version mit aktivierten Compiler-Optimierungen durchgeführt wurden.
+    In der Debug-Version (ohne Compiler-Optimierungen) wurde bei einem sortierten Array der Größe von 400~Millionen Elementen
+    hingegen eine Laufzeit von 14~s für Quicksort gemessen, welche oberhalb der erwarteten Laufzeit von \(n \log_2(n)\) liegt.
+    Die Messungen zeigen außerdem, dass sortierte, invertiert sortierte sowie fast sortierte Arrays nahezu identische Laufzeiten aufweisen.
+    Die entsprechenden Kurven würden nahezu übereinanderliegen, weshalb zugunsten der Übersichtlichkeit auf eine separate grafische Darstellung
+    dieser Listentypen verzichtet wurde.
+    Im Diagramm ist ebenfalls zu erkennen, dass der Worst-Case von Quicksort eine Laufzeit von \(O(n^2)\) besitzt.
+    Allerdings endet der Graph ab 20k, da bereits bei 40k ein Stackoverflow durch die Rekursionstiefe ausgelöst wird. Dies ließe sich durch eine iterative Version von Quicksort vermeiden.
 }
 
 % \section{Tiefenbasierte Thread-Erzeugung}
