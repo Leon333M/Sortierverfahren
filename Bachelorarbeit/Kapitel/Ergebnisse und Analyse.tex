@@ -119,18 +119,18 @@
     Der Listentyp ist relevant, da Quicksort sowohl einen Best-Case als auch einen Worst-Case aufweist.
     Diese hängen vom Inhalt der zu sortierenden Liste und somit vom jeweiligen Listentyp ab.
     Gleichzeitig dient diese Messung der Vollständigkeit, sodass die Laufzeiten auch mit anderen,
-    nicht von mir implementierten Sortieralgorithmen gut vergleichbar sind.
+    nicht in dieser Arbeit implementierten Sortieralgorithmen gut vergleichbar sind.
     Auch hierbei werden zunächst ausschließlich die seriellen Laufzeiten der Algorithmen gemessen.
     Zur Vollständigkeit werden zusätzlich weitere Listentypen außer zufällig und sortiert betrachtet.
 }
 
 % \subsection{Erwartung}
 \newcommand{\EinflussDesListentypsErwartung}{
-    Ich erwarte, dass der Listentyp bei Mergesort nahezu keinen Einfluss auf die Laufzeit hat,
+    Es wird erwartet, dass der Listentyp bei Mergesort nahezu keinen Einfluss auf die Laufzeit hat,
     sodass lediglich sehr geringe Laufzeitänderungen zu beobachten sind.
-    Bei Quicksort erwarte ich hingegen bei einer sortierten Liste exakt den Best-Case,
+    Für Quicksort wird bei einer sortierten Liste der Best-Case erwartet,
     da als Pivotelement jeweils das mittlere Element gewählt wird.
-    Ebenso erwarte ich, dass bei Quicksort bei Wahl des jeweils rechten Elements als Pivotelement
+    Ebenso wird erwartet, dass bei Quicksort bei Wahl des jeweils rechten Elements als Pivotelement
     bei einer sortierten Liste der Worst-Case eintritt.
 }
 
@@ -165,19 +165,22 @@
 % \section{Tiefenbasierte Thread-Erzeugung}
 % \subsection{Messziel} % Einleitung
 \newcommand{\TiefenbasierteThreadErzeugungMessziel}{
-    Hier messen wir die rekursive Variante, die einen der beiden rekursiven Selbstaufrufe in einem neuen Thread ausführt.
+    Hier wird die rekursive Variante gemessen, die einen der beiden rekursiven Selbstaufrufe in einem neuen Thread ausführt.
     Dabei gibt es jedoch ein Limit, da jeder Thread selbst Speicher benötigt und der RAM nicht unendlich groß ist.
     Hierbei soll gemessen werden, welchen Performance-Unterschied eine höhere Anzahl an Threads bewirkt.
 }
+
 % \subsection{Erwartung}
 \newcommand{\TiefenbasierteThreadErzeugungErwartung}{
-    Ich erwarte einen theoretisch linearen Performance-Zuwachs, solange kein Hardware-Limit dazwischenkommt.
-    Zudem erwarte ich in dieser Variante, dass Mergesort besser skaliert als Quicksort,
-    da Quicksort die Liste nicht exakt in der Mitte teilt, sondern nur dies theoretisch im Durchschnitt tut.
-    Der Best Case von Quicksort sollte jedoch immer noch wesentlich besser sein als der von Mergesort,
+    Es wird ein theoretisch linearer Performance-Zuwachs erwartet, solange kein Hardware-Limit erreicht wird.
+    Zudem wird in dieser Variante erwartet, dass Mergesort besser skaliert als Quicksort,
+    da Quicksort die Liste nicht exakt in der Mitte teilt, sondern dies nur theoretisch im Durchschnitt tut.
+    Der Best Case von Quicksort sollte jedoch weiterhin wesentlich besser sein als der von Mergesort,
     da Quicksort in diesem Fall die Liste immer perfekt in der Mitte teilt.
-    Ich erwarte außerdem, dass sich die Laufzeit deutlich verschlechtert, wenn mehr Threads genutzt werden als logische Prozessoren vorhanden sind, da der Overhead durch Thread-Initialisierung und Context-Switching zunimmt.
+    Außerdem wird erwartet, dass sich die Laufzeit deutlich verschlechtert, wenn mehr Threads genutzt werden als logische Prozessoren vorhanden sind,
+    da der Overhead durch Thread-Initialisierung und Context-Switching zunimmt.
 }
+
 % \subsection{Diagramm}
 \newcommand{\TiefenbasierteThreadErzeugungDiagramm}{
     \TiefenbasierteThreadErzeugungDiagrammB
@@ -193,14 +196,14 @@
     \newline
     Deutliche Performance-Verbesserungen sind jedoch in allen Bereichen messbar, wie theoretisch zu erwarten war.
     Für ein unsortiertes Array der Größe \(400 \, \text{Mio.}\) zeigt sich, dass Mergesort mit 16 Threads lediglich etwa 16~\% der Laufzeit der seriellen Variante benötigt, während Quicksort 26~\% erreicht.
-    Die Laufzeit von Mergesort wächst dabei sehr konstant, während Quicksort im Durchschnitt ebenfalls eine konsistente Steigerung der Laufzeit zeigt, jedoch sher stark schwankt.
+    Die Laufzeit von Mergesort wächst dabei sehr regelmäßig, während Quicksort im Durchschnitt ebenfalls eine regelmäßige Steigerung der Laufzeit zeigt, jedoch sehr stark schwankt.
     \newline
     Bemerkenswert ist, dass die 16-Thread-Variante von Quicksort nur rund 85~\% der Laufzeit von Mergesort erreicht, wodurch Mergesort insgesamt überlegen ist.
     Außerdem wird deutlich, dass Performance-Vorteile erst ab einer Array-Größe von etwa 20.000 Elementen auftreten, was auf den Overhead der Thread-Erzeugung zurückzuführen ist.
     \newline
     Die starken Laufzeitschwankungen von Quicksort bei verschiedenen Listen sind auf die ungleiche Lastverteilung auf die Threads zurückzuführen.
     Bei dieser Quicksort-Variante wird die Thread-Last meist ungleich verteilt, was dazu führt, dass die genutzten Threads über die Laufzeit hinweg immer weniger werden und somit die gesamte Hardware nicht mehr vollständig ausgenutzt wird.
-    Dies ist auch deutlich im Strong Scaling zu erkennen. Dort zeigt sich, dass Quicksort bei dieser Liste weiterhin an Performance gewinnt, obwohl die Threadanzahl die Anzahl der logischen Prozessoren übersteigt. Hingegen ist bei Mergesort zu beobachten, dass die gemessene Laufzeitverbesserung nur geringfügig schlechter ausfällt als die theoretisch zu erwartende.
+    Dies ist auch deutlich im Strong Scaling zu erkennen. Dort zeigt sich, dass Quicksort bei dieser Liste weiterhin an Performance gewinnt, obwohl die Threadanzahl die Anzahl der logischen Prozessoren übersteigt. Während bei Mergesort zu beobachten ist, dass die gemessene Laufzeitverbesserung nur geringfügig schlechter ausfällt als die theoretisch zu erwartende.
     \newline
     Beim Weak Scaling ist zu erkennen, dass Quicksort dort sehr schlecht abschneidet. Dies liegt ebenfalls an der unausgeglichenen Thread-Auslastung sowie daran, dass nur eine zufällige Liste gemessen wurde und kein Median über mehrere Listen verwendet wird.
     \newline
@@ -216,9 +219,9 @@
 % \section{Workerthreads}
 % \subsection{Messziel} % Einleitung
 \newcommand{\WorkerthreadsMessziel}{
-    Hier messen wir die Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten
-    Thread-Anzahl von \(N\), wobei Quicksort als iterative Version umgesetzt ist.
-    Zusätzlich messen wir die Zeit, die die Threads für ihre Initialisierung benötigen mit.
+    Hier wird die Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten
+    Thread-Anzahl von \(N\) gemessen, wobei Quicksort als iterative Version umgesetzt ist.
+    Zusätzlich erfolgt eine Messung der Zeit, die die Threads für ihre Initialisierung benötigen mit.
     Da in unserem Fall die Worker-Threads nach dem Sortieren nicht wiederverwendet werden,
     ist diese Messung nicht vollständig fair.
     \newline
@@ -227,6 +230,7 @@
     Dies geschieht aus dem schlichten Grund, dass sich andernfalls kein Performance-Vorteil durch zusätzliche Threads ergibt,
     da der entstehende Overhead sonst zu groß ist.
 }
+
 % \subsection{Erwartung}
 \newcommand{\WorkerthreadsErwartung}{
     Es wird erwartet, dass Mergesort in der Worker-Thread-Variante schlechtere Ergebnisse erzielt als bei der tiefenbasierten Thread-Erzeugung.
@@ -253,9 +257,8 @@
     Dies liegt am Mindestlimit von 4.000 Elementen für die Erzeugung neuer Threads.
     Man muss beachten, dass Mergesort hier langsamer ist als bei der tiefenbasierten Thread-Erzeugung, da die Last nicht mehr optimal auf alle Threads verteilt ist. Bei Quicksort hingegen zeigt sich eine deutlich bessere Leistung, da die Last hier sehr gut auf alle Threads verteilt ist.
     Dies zeigt sich auch im Strong Scaling und Weak Scaling, da hier Quicksort nur minimal schlechter als die theoretisch erwartete Laufzeit ausfällt, während Mergesort im Vergleich zur anderen Variante schlechter abschneidet.
-    Wenn man jetzt die Quicksort-Worker-Thread-Variante mit der Mergesort-tiefenbasierten Thread-Erzeugungsvariante vergleicht, stellt man immer noch fest, dass Quicksort im Durchschnitt doppelt so schnell ist wie Mergesort und im Bestfall sogar zehnmal schneller ist.
-    Man sieht außerdem, dass beim Strong Scaling die Performance bei sehr vielen Threads wieder abnimmt. Das liegt daran, dass ich in dieser Variante Sperren für die Thread-Arbeitsverteilung einsetze, die in der anderen Variante nicht erforderlich sind. Bei sehr vielen Threads führt dies zu einem Performance-Einbruch, da immer nur ein Thread die Sperre belegen kann. Dazu kommen die Kosten der reinen Initialisierungszeit der Threads, da $2^{14}$ Threads rund 1~s benötigen, um erstellt zu werden.
-    Im Diagramm "Laufzeit bei Arraygröße 16" sind die Overheads durch das Erstellen von Threads zu erkennen. Dabei fällt auf, dass sich diese Overheads nur minimal unterscheiden. Außerdem zeigt sich, dass die Quicksort-Worker-Thread-Variante die höchsten Initialisierungs-Overheads aufweist. Dies liegt daran, dass alle anderen Varianten ihren Main-Thread weiter nutzen, während die Quicksort-Worker-Thread-Variante dies nicht tut. Dadurch muss sie stets einen Thread mehr erstellen als die anderen Varianten, was zu diesem minimalen Overhead führt.
+    Wenn man jetzt die Quicksort-Worker-Thread-Variante mit der Mergesort-tiefenbasierten Thread-Erzeugungsvariante vergleicht, stellt man immer noch fest, dass Quicksort im Durchschnitt doppelt so schnell ist wie Mergesort und im Beim Strong Scaling ist außerdem zu beobachten, dass die Performance bei sehr vielen Threads wieder abnimmt. Ursache hierfür sind die Sperren zur Thread-Arbeitsverteilung, die in dieser Variante erforderlich sind, in der anderen jedoch nicht. Bei sehr vielen Threads führt dies zu einem Performance-Einbruch, da jeweils nur ein Thread die Sperre belegen kann. Hinzu kommen die Kosten der reinen Initialisierungszeit, da $2^{14}$ Threads rund 1~s für ihre Erstellung benötigen.
+    Im Diagramm "Laufzeit bei Arraygröße 16" sind die Overheads durch das Erstellen von Threads zu erkennen. Dabei fällt auf, dass sich diese Overheads nur minimal unterscheiden. Außerdem zeigt sich, dass die Quicksort-Worker-Thread-Variante die höchsten Initialisierungs-Overheads aufweist. Dies liegt daran, dass alle anderen Varianten ihren Main-Thread weiter nutzen, während die Quicksort-Worker-Thread-Variante dies nicht tut. Dadurch muss sie stets einen Thread mehr als die anderen Varianten erstellen, was zu diesem minimalen Overhead führt.
 }
 
 % \section{Einfluss des Datentyps der Liste} % Listenart: int, string
@@ -269,12 +272,14 @@
 \newcommand{\EinflussDesDatentypsMessziel}{
     Hier wird die Zeit gemessen, die zum Sortieren von Strings benötigt wird, da dies auch ein realistischer Anwendungsfall ist.
 }
+
 % \subsection{Erwartung}
 \newcommand{\EinflussDesDatentypsErwartung}{
-    Ich erwarte, dass das Sortieren länger dauert als bei \texttt{int}, da ein String wesentlich aufwendiger zu vergleichen ist, weil dieser aus mehreren Zeichen (\texttt{char}) besteht und somit auch mehr Speicher benötigt.
-    Deswegen erwarte ich auch, dass der entstehende Overhead durch die Threads einen geringeren Einfluss auf die gemessene Endzeit hat.
+    Es wird erwartet, dass das Sortieren länger dauert als bei \texttt{int}, da ein String wesentlich aufwendiger zu vergleichen ist. Dies liegt daran, dass er aus mehreren Zeichen (\texttt{char}) besteht und entsprechend mehr Speicher benötigt.
+    Folglich sollte der durch die Threads entstehende Overhead einen geringeren Einfluss auf die gemessene Endzeit haben.
     Dies sollte wiederum dazu führen, dass die Graphen im Strong Scaling und Weak Scaling besser abschneiden.
 }
+
 % \subsection{Diagramm}
 \newcommand{\EinflussDesDatentypsDiagramm}{
     \EinflussDesDatentypsDiagrammB
@@ -283,9 +288,10 @@
     \newline
     \EinflussDesDatentypsDiagrammA
 }
+
 % \subsection{Analyse und Interpretation}
 \newcommand{\EinflussDesDatentypsAnalyse}{
     Bei den Graphen zu Strong Scaling und Weak Scaling ist zu erkennen, dass Mergesort hier schlechter abschneidet als bei Integer-Daten, während Quicksort weiterhin nur minimal schlechter als die theoretische Laufzeit ist.
     Dass Mergesort schlechter abschneidet, liegt vermutlich daran, dass der Aufwand zum Kopieren der Teillisten bei Strings größer ist als bei Integern.
-    Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde. Dies liegt an dem Code zur Listengenerierung, der für sortierte Listen deutlich längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
+    Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde. Dies liegt an dem Code zur Listengenerierung, der für sortierte Listen längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
 }
