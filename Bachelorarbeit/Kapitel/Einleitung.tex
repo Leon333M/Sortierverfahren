@@ -32,19 +32,21 @@
         \begin{axis}[
                 title style={yshift=1.5ex},
                 width=0.5\textwidth,
-                height=0.4\textwidth,
+                height=0.3\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Arraygröße},
                 title={50\% Geschwindigkeitssteigerung}, % Zeitpunkt der 50\% Geschwindigkeitssteigerung (incAray)
-                xmin=1, xmax=18,
+                xmin=1, xmax=16,
                 ymin=2^19, ymax=2^22,
                 grid style=dashed,
                 legend pos=north east,
                 ymode=log,
                 log basis y=2,
-                xtick={3,...,16},               % jeden Integer von 2 bis 17
+                xtick={1,...,16},               % jeden Integer von 2 bis 17
                 ytick={2^20,2^21},      % gewünschte y-Werte
-                % yticklabels={\ensuremath{2^{19}},\ensuremath{2^{20}},\ensuremath{2^{21}},\ensuremath{2^{22}},\ensuremath{2^{23}}} % Beschriftung
+                xticklabels={$1$,$2$,$3$,$4$,$5$,$6$,$7$,$8$,$9$,$10$,$ $,$12$,$ $,$14$,$ $,$16$},
+                grid=both,
+                grid style=dashed,
             ]
             \addplot[only marks, blue, mark=*] coordinates {
                     (1,2)
@@ -73,16 +75,18 @@
         \begin{axis}[
                 title style={yshift=1.5ex},
                 width=0.5\textwidth,
-                height=0.4\textwidth,
+                height=0.3\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
                 title={Laufzeit bei Arraygröße $2^{21}$},
-                xmin=0, xmax=17,
+                xmin=0, xmax=16,
                 ymin=0.5*10^6, ymax=2*10^6,
                 grid style=dashed,
                 legend pos=north east,
                 xtick={1,...,16},
-                % ymode=log,
+                xticklabels={$1$,$2$,$3$,$4$,$5$,$6$,$7$,$8$,$9$,$10$,$ $,$12$,$ $,$14$,$ $,$16$},
+                grid=both,
+                grid style=dashed,
             ]
             \addplot[blue, mark=*] coordinates {
                     (1,1852600)
@@ -112,15 +116,18 @@
         \begin{axis}[
                 title style={yshift=1.5ex},
                 width=0.5\textwidth,
-                height=0.4\textwidth,
+                height=0.3\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
                 title={Laufzeit bei Arraygröße $2^{31}$}, % ($2^{31}-1$)
-                xmin=0, xmax=17,
+                xmin=0, xmax=16,
                 ymin=0.5*10^9, ymax=0.2*10^10,
                 grid style=dashed,
                 legend pos=north east,
                 xtick={1,...,16},
+                xticklabels={$1$,$2$,$3$,$4$,$5$,$6$,$7$,$8$,$9$,$10$,$ $,$12$,$ $,$14$,$ $,$16$},
+                grid=both,
+                grid style=dashed,
             ]
             \addplot[blue, mark=*] coordinates {
                     (1,1582322800)
@@ -150,7 +157,7 @@
         \begin{axis}[
                 title style={yshift=1.5ex},
                 width=0.5\textwidth,
-                height=0.4\textwidth,
+                height=0.3\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
                 title={Laufzeit bei Arraygröße 16},
@@ -158,7 +165,6 @@
                 grid style=dashed,
                 xmin=0, xmax=16,
                 ymin=0, ymax=5*10^5,
-                grid style=dashed,
                 legend pos=north west,
                 xtick={1,...,16},
                 ytick={1*10^5,2*10^5,3*10^5,4*10^5,5*10^5},
@@ -192,7 +198,7 @@
         \begin{axis}[
                 title style={yshift=1.5ex},
                 width=0.5\textwidth,
-                height=0.4\textwidth,
+                height=0.3\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
                 title={Weak Scaling {\small (Start-Größe $2^{21}$)}}, % Threads und Länge verdoppeln
@@ -201,7 +207,9 @@
                 grid style=dashed,
                 legend pos=north west,
                 xtick={1,2,4,8,16},
-                ytick=data,
+                ytick={1*10^6, 5*10^6, 10*10^6, 1.5*10^7},
+                grid=both,
+                grid style=dashed,
             ]
             \addplot[blue, mark=*] coordinates {
                     (1,1910700)
@@ -220,7 +228,7 @@
         \begin{axis}[
                 title style={yshift=1.5ex},
                 width=0.5\textwidth,
-                height=0.4\textwidth,
+                height=0.3\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
                 title={Länge verdoppeln (16 Threads)},
@@ -231,7 +239,9 @@
                 xtick={2^21,2^23,2^24,2^25},
                 xticklabels={$2^{21}$, $2^{23}$, $2^{24}$, $2^{25}$},
                 scaled x ticks=false,
-                ytick={1077100,3237700,6213600,13184900},
+                ytick={1*10^6, 5*10^6, 10*10^6, 1.5*10^7},
+                grid=both,
+                grid style=dashed,
             ]
             \addplot[blue, mark=*] coordinates {
                     (2097152,1077100)
