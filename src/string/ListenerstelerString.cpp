@@ -76,8 +76,11 @@ std::string *ListenerstelerString::erstelleInvertierteListe(int lange) {
     listenLange = lange;
     liste = std::make_unique<std::string[]>(listenLange);
 
+    int breite = std::to_string(lange).size();
     for (int i = 0; i < lange; i++) {
-        liste[i] = "STR_" + std::to_string(lange - i);
+        std::ostringstream oss;
+        oss << "STR_" << std::setw(breite) << std::setfill('0') << (lange - i);
+        liste[i] = oss.str();
     }
 
     Messdaten::arrayTyp = "InvertSortiert";
@@ -86,14 +89,7 @@ std::string *ListenerstelerString::erstelleInvertierteListe(int lange) {
 }
 
 std::string *ListenerstelerString::erstelleFastSortierteListe(int lange, int swaps) {
-    listenLange = lange;
-    liste = std::make_unique<std::string[]>(listenLange);
-
-    for (int i = 0; i < lange; i++) {
-        liste[i] = "STR_" + std::to_string(i);
-    }
-
-    Messdaten::arrayTyp = "FastSortiert";
+    erstelleSortierteListe(lange);
 
     std::mt19937 gen(seed);
     std::uniform_int_distribution<> dis(0, lange - 1);
@@ -101,6 +97,8 @@ std::string *ListenerstelerString::erstelleFastSortierteListe(int lange, int swa
     for (int i = 0; i < swaps; i++) {
         std::swap(liste[dis(gen)], liste[dis(gen)]);
     }
+
+    Messdaten::arrayTyp = "FastSortiert";
 
     return liste.get();
 }
