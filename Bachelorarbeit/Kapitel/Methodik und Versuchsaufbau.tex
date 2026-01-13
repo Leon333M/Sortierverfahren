@@ -42,6 +42,11 @@
     Für die Work-Stealing-Variante ist keine auch exakte Vorhersage der Laufzeit möglich, weshalb eine approximative Abschätzung erfolgt.
     Dies liegt daran, dass sich die Threads frei die Arbeit teilen und nicht mehr fest an Ebenen gebunden sind, wodurch ein zusätzlicher Overhead entsteht.
     Unter der Annahme, dass die zusätzlichen Overheads ignoriert werden, ist die theoretische Laufzeit der Work-Stealing-Variante identisch mit der tiefenbasierten Variante.
+
+    Um das ganze bildich auszudücken kan man sihc mergsort als eine blancierten baum vorstelen und qiksort als ein unblacerten.
+    wen man jetzt wie in der tiefenbasierten Thread-Erzeugung varinte nur bis zu eine festen ebene neue thads erstelet sorgt ist das für mergsort perfket , wohingegen das eine schlchte lastevertiling für qiksort ist.
+    Die Work-Stealing-Variante hingenen funkton so das imer der linke ast von eine andern thad genutzt werden kan.
+    So enteht auch bei ein unblacerten baum eine sher glecihmäsige lastervertienung.
 }
 
 % \section{Messmethodik}
