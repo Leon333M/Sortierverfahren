@@ -34,12 +34,12 @@
     \end{itemize}
     Die theoretische Laufzeit beider Sortieralgorithmen der tiefenbasierten Thread-Erzeugung lässt sich durch folgende Gleichungen beschreiben, ohne die durch die Threads entstehenden Overheads zu berücksichtigen:
     \begin{flalign*}
-        e         & = \log_2(\text{Thread-Anzahl})                                                                                      &  & \\
-        T(n,e)    & = n \cdot 2 \left( 1 - \frac{1}{2^e} \right) + \frac{n}{2^e} \cdot \log_2\left(\frac{n}{2^e}\right) + \frac{n}{2^e} &  & \\
-        O(T(n,e)) & = O\left(n + \frac{n}{2^e} \cdot \log_2(n)\right)                                                                   &  &
+        p         & = \text{Thread-Anzahl}                                                                                      &  & \\
+        T(n,p)    & = n \cdot 2 \left( 1 - \frac{1}{p} \right) + \frac{n}{p} \cdot \log_2\left(\frac{n}{p}\right) + \frac{n}{p} &  & \\
+        O(T(n,p)) & = O\left(n + \frac{n}{p} \cdot \log_2(n)\right)                                                             &  &
     \end{flalign*}
-    Hierbei ist zu beachten, dass für Quicksort im Worst-Case weiterhin eine Komplexität von $O(n^2)$ besteht. Zudem ist die Parallelisierung auf die vorhandene Rekursionstiefe begrenzt, woraus $e_{\max} = \log_2(n)$ folgt.
-    Für die Work-Stealing-Variante ist keine auch exakte Vorhersage der Laufzeit möglich, weshalb eine approximative Abschätzung erfolgt.
+    Hierbei ist zu beachten, dass für Quicksort im Worst-Case weiterhin eine Komplexität von $O(n^2)$ besteht. Zudem ist die Parallelisierung auf die vorhandene Rekursionstiefe begrenzt, woraus $p_{\max} = n$ folgt.
+    Für die Work-Stealing-Variante ist auch keine exakte Vorhersage der Laufzeit möglich, weshalb eine approximative Abschätzung erfolgt.
     Dies liegt daran, dass sich die Threads frei die Arbeit teilen und nicht mehr fest an Ebenen gebunden sind, wodurch ein zusätzlicher Overhead entsteht.
     Unter der Annahme, dass die zusätzlichen Overheads ignoriert werden, ist die theoretische Laufzeit der Work-Stealing-Variante identisch mit der tiefenbasierten Variante.
     \newline
