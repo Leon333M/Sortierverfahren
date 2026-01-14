@@ -32,7 +32,9 @@
         \item eine rekursive Variante mit dynamischer Thread-Erzeugung bis zu einer Tiefe $e$, welche eine Thread-Anzahl von $2^e$ unterstützt,
         \item eine Worker-Thread-Variante basierend auf einem Work-Stealing-ähnlichen Ansatz mit $N$ Threads, umgesetzt als aufgabenbasierte Rekursionsverwaltung.
     \end{itemize}
-    Die theoretische Laufzeit beider Sortieralgorithmen der tiefenbasierten Thread-Erzeugung lässt sich durch folgende Gleichungen beschreiben, ohne die durch die Threads entstehenden Overheads zu berücksichtigen:
+    Für die tiefenbasierte Thread-Erzeugung ändert sich in der parallelen Phase die Rekursionsgleichung von $T(n) = 2 \cdot T(n/2) + n$ zu $T(n) = 1 \cdot T(n/2) + n$. Dies liegt daran, dass die zweite Hälfte der Arbeit parallel in einem anderen Thread verarbeitet wird und somit nicht zur Laufzeit der aktuellen Ebene beiträgt.
+    Durch das Auflösen dieser Rekursion über die parallelen sowie anschließend sequenziellen Ebenen hinweg lässt sich die theoretische Laufzeit in eine geschlossene Form überführen.
+    Daraus ergibt sich die theoretische Laufzeit beider Sortieralgorithmen der tiefenbasierten Thread-Erzeugung, die sich durch folgende Gleichungen beschreiben lassen, ohne die durch die Threads entstehenden Overheads zu berücksichtigen:
     \begin{flalign*}
         p         & = \text{Thread-Anzahl}                                                                                      &  & \\
         T(n,p)    & = n \cdot 2 \left( 1 - \frac{1}{p} \right) + \frac{n}{p} \cdot \log_2\left(\frac{n}{p}\right) + \frac{n}{p} &  & \\
