@@ -38,7 +38,7 @@
     \begin{flalign*}
         p         & = \text{Thread-Anzahl}                                                                               &  & \\
         T(n,p)    & = 2n \left( 1 - \frac{1}{p} \right) + \frac{n}{p} \cdot \log_2\left(\frac{n}{p}\right) + \frac{n}{p} &  & \\
-        O(T(n,p)) & = O\left(n + \frac{n}{p} \cdot \log_2(n)\right)                                                      &  &
+        O(T(n,p)) & = O\left( \frac{n}{p} \cdot \log_2(n) + n \right)                                                    &  &
     \end{flalign*}
     Hierbei ist zu beachten, dass für Quicksort im Worst-Case weiterhin eine Komplexität von $O(n^2)$ besteht. Zudem ist die Parallelisierung auf die vorhandene Rekursionstiefe begrenzt, woraus $p_{\max} = n$ folgt.
     Für die Work-Stealing-Variante ist auch keine exakte Vorhersage der Laufzeit möglich, weshalb eine approximative Abschätzung erfolgt.
