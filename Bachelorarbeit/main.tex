@@ -29,6 +29,7 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 \usepackage{float}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usetikzlibrary{positioning, arrows.meta}
 \pgfplotsset{compat=1.18}
 
 % ----------------------
@@ -180,6 +181,8 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 
 % \newpage
 \section{Tiefenbasierte Thread-Erzeugung}
+\subsection{Begriffsdefinition: Strong und Weak Scaling}
+\TiefenbasierteThreadErzeugungBegriffsdefinition
 \subsection{Messziel} % Einleitung
 \TiefenbasierteThreadErzeugungMessziel
 \subsection{Erwartung}
@@ -191,6 +194,16 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 
 %\newpage
 \section{Workerthreads}
+\subsection{Begriffsdefinition: Worker-Thread und Work-Stealing} % WorkerThread WorkStealing Work-Stealing-ähnliche Ansatz
+\WorkerthreadsBegriffsdefinition
+
+\begin{figure}[h]
+    \centering
+    \WorkerthreadsAbildung
+    \caption{Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue: Threads entnehmen dynamisch Tasks aus der Queue und können neue Unteraufgaben auf diese legen.}
+    \label{fig:workstealing_dynamisch}
+\end{figure}
+
 \subsection{Messziel} % Einleitung
 \WorkerthreadsMessziel
 \subsection{Erwartung}

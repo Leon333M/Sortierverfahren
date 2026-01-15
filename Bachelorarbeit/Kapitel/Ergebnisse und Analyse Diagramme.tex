@@ -1430,8 +1430,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                            $$,$40M$,$$,
-                            $$,$400M$,$$
+                        $$,$40M$,$$,
+                        $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -1907,4 +1907,28 @@
             \QuicksortTInitZeiten
         \end{axis}
     \end{tikzpicture}%
+}
+
+\newcommand{\WorkerthreadsAbildung}{
+    \begin{tikzpicture}[
+        every node/.style={draw, minimum width=2cm, minimum height=0.8cm, align=center},
+        thread/.style={draw, rectangle, fill=blue!20, minimum width=2cm, minimum height=0.8cm},
+        % Wir definieren den Stil hier direkt für die Spitzen
+        pfeil/.style={{Stealth[scale=1]}-{Stealth[scale=1]}, thick}
+        ]
+
+        % Gemeinsame Queue
+        \node[draw, rectangle, minimum width=6cm, minimum height=2cm] (queue) {Gemeinsame Aufgaben-Queue\\(Tasks)};
+
+        % Worker-Threads
+        \node[thread, below left=3cm and 1cm of queue] (w1) {Worker-Thread 1};
+        \node[thread, below=3cm of queue] (w2) {Worker-Thread 2};
+        \node[thread, below right=3cm and 1cm of queue] (w3) {Worker-Thread 3};
+
+        % Die Pfeile mit dem neuen Stil "pfeil"
+        \draw[pfeil] (queue.south west) -- (w1.north);
+        \draw[pfeil] (queue.south) -- (w2.north);
+        \draw[pfeil] (queue.south east) -- (w3.north);
+
+    \end{tikzpicture}
 }

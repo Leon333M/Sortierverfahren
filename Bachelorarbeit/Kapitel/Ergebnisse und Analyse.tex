@@ -116,6 +116,8 @@
 % \section{Einfluss des Listentyps} % Listentyps: Zufall, Sortiert, InvertiertSortiert, FastSortiert, Dupliziert
 % \subsection{Messziel} % Einleitung
 \newcommand{\EinflussDesListentypsMessziel}{
+    Der Begriff \emph{Listentyp} beschreibt in dieser Arbeit die Anfangsanordnung der Elemente in der zu sortierenden Liste.
+    Untersucht werden konkret die Listentypen \emph{zufällig}, \emph{sortiert}, \emph{invertiert sortiert}, \emph{fast sortiert} sowie \emph{dupliziert}.
     Der Listentyp ist relevant, da Quicksort sowohl einen Best-Case als auch einen Worst-Case aufweist.
     Diese hängen vom Inhalt der zu sortierenden Liste und somit vom jeweiligen Listentyp ab.
     Gleichzeitig dient diese Messung der Vollständigkeit, sodass die Laufzeiten auch mit anderen,
@@ -163,6 +165,14 @@
 % \subsection{Analyse und Interpretation}
 
 % \section{Tiefenbasierte Thread-Erzeugung}
+\newcommand{\TiefenbasierteThreadErzeugungBegriffsdefinition}{
+    Unter \emph{Strong Scaling} versteht man die Untersuchung der Laufzeit eines festen Problemumfangs bei steigender Anzahl an Recheneinheiten (Threads).
+    Ziel ist es zu analysieren, wie stark sich die Laufzeit durch zusätzliche Parallelisierung verkürzt.
+    \newline
+    Unter \emph{Weak Scaling} versteht man die Untersuchung der Laufzeit, bei der der Problemumfang proportional zur Anzahl der Recheneinheiten wächst.
+    Ziel ist es zu bewerten, ob die Laufzeit bei wachsender Parallelität konstant bleibt.
+}
+
 % \subsection{Messziel} % Einleitung
 \newcommand{\TiefenbasierteThreadErzeugungMessziel}{
     Hier wird die rekursive Variante gemessen, die einen der beiden rekursiven Selbstaufrufe in einem neuen Thread ausführt.
@@ -217,6 +227,33 @@
 % \subsection{Analyse und Interpretation}
 
 % \section{Workerthreads}
+
+\newcommand{\WorkerThreadErklaerung}{
+    Ein \emph{Worker-Thread} ist ein Thread, der einmalig erzeugt wird und über die gesamte Laufzeit des Programms aktiv bleibt.
+    Seine Hauptaufgabe besteht darin, Aufgaben aus einer zugewiesenen Warteschlange kontinuierlich abzuarbeiten.
+    Dies reduziert den Overhead durch ständiges Erzeugen und Zerstören von Threads und ermöglicht eine effiziente parallele Verarbeitung.
+}
+\newcommand{\WorkStealingErklaerung}{
+    \emph{Work-Stealing} ist eine Scheduling-Strategie für parallele Programme, bei der jeder Worker-Thread seine eigenen Aufgaben verwaltet.
+    Wenn ein Thread keine Aufgaben mehr hat, stiehlt er Aufgaben von den Warteschlangen anderer Threads, die noch Aufgaben übrig haben.
+    Ziel ist es, eine gleichmäßige Auslastung aller Threads zu erreichen und Leerlaufzeiten zu vermeiden, insbesondere bei unbalancierten Aufgaben oder Datenstrukturen.
+    Diese Strategie reduziert Wartezeiten und verbessert die Performance bei dynamisch verteilten Aufgaben.
+}
+\newcommand{\WorkStealingAehnlichErklaerung}{
+    Der \emph{Work-Stealing-ähnliche Ansatz} in dieser Arbeit basiert auf einem Worker-Thread-Pool mit einer gemeinsamen Aufgabenwarteschlange.
+    Alle Worker-Threads ziehen Aufgaben aus dieser Queue und bearbeiten sie.
+    Ist die Queue leer, warten die Threads auf neue Aufgaben.
+    Dadurch wird sichergestellt, dass alle Threads möglichst konstant ausgelastet sind, ohne dass für jeden Thread eine eigene Queue benötigt wird.
+    Dies reduziert den Overhead durch Synchronisation und vermeidet Leerlaufzeiten, ähnlich wie beim klassischen Work-Stealing.
+}
+\newcommand{\WorkerthreadsBegriffsdefinition}{
+    \WorkerThreadErklaerung
+
+    \WorkStealingErklaerung
+
+    \WorkStealingAehnlichErklaerung
+}
+
 % \subsection{Messziel} % Einleitung
 \newcommand{\WorkerthreadsMessziel}{
     Hier wird die Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten
