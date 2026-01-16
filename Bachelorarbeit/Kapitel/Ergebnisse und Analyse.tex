@@ -261,7 +261,7 @@
     Da in unserem Fall die Worker-Threads nach dem Sortieren nicht wiederverwendet werden,
     ist diese Messung nicht vollständig fair.
     \newline
-    In der Praxis würde man die Threads weiterverwenden, wodurch dieser Overhead geringer ausfallen würde.
+    In der Praxis würde man die Threads weiterverwenden, wodurch dieser Overhead geringer ausfallen würde, aber ein gemeinsamer Thread-Pool für verschiedene Algorithmen würde den Rahmen dieser Arbeit sprengen.
     Bei der Worker-Thread-Variante wurde außerdem eine Mindestgröße von 4.000 Elementen für neue Threads eingeführt.
     Dies geschieht aus dem schlichten Grund, dass sich andernfalls kein Performance-Vorteil durch zusätzliche Threads ergibt,
     da der entstehende Overhead sonst zu groß ist.
@@ -319,6 +319,10 @@
 % \subsection{Diagramm}
 \newcommand{\EinflussDesDatentypsDiagramm}{
     \EinflussDesDatentypsDiagrammB
+    \stepcounter{figure}% Erhöht die Nummer
+    \edef\@currentlabel{\thefigure}% Setzt die Nummer für das Label fest
+    \label{fig:datentypB}% Jetzt kannst du \ref{fig:datentypB} nutzen
+    \addcontentsline{lof}{figure}{Abbildung \thefigure: Einfluss Datentyp B}%
     \newline
     \EinflussDesDatentypsDiagrammC
     \newline
