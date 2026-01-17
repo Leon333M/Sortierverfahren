@@ -1,0 +1,79 @@
+ohne notify all:
+PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 400000000 w z 
+listeVariante :z
+maxEbene : 30
+Mergesort :
+Laufzeit: 54899 ms workerThreads: 1
+Laufzeit: 29890 ms workerThreads: 2
+Laufzeit: 20627 ms workerThreads: 4
+Laufzeit: 14901 ms workerThreads: 8
+Laufzeit: 10517 ms workerThreads: 15
+Laufzeit: 10187 ms workerThreads: 16
+Laufzeit: 10334 ms workerThreads: 17
+Laufzeit: 10157 ms workerThreads: 18
+Laufzeit: 9227 ms workerThreads: 32
+Laufzeit: 9409 ms workerThreads: 64
+Laufzeit: 9863 ms workerThreads: 128
+Laufzeit: 10101 ms workerThreads: 256
+Laufzeit: 10092 ms workerThreads: 1024
+Laufzeit: 12157 ms workerThreads: 4096
+Laufzeit: 14096 ms workerThreads: 8192
+Laufzeit: 20222 ms workerThreads: 16384
+Quicksort :
+Laufzeit: 28735 ms workerThreads: 1
+Laufzeit: 15064 ms workerThreads: 2
+Laufzeit: 8424 ms workerThreads: 4
+Laufzeit: 5331 ms workerThreads: 8
+Laufzeit: 3936 ms workerThreads: 15
+Laufzeit: 3844 ms workerThreads: 16
+Laufzeit: 3824 ms workerThreads: 17
+Laufzeit: 3810 ms workerThreads: 18
+Laufzeit: 3803 ms workerThreads: 32
+Laufzeit: 4133 ms workerThreads: 64
+Laufzeit: 4145 ms workerThreads: 128
+Laufzeit: 4171 ms workerThreads: 256
+Laufzeit: 4340 ms workerThreads: 1024
+Laufzeit: 5758 ms workerThreads: 4096
+Laufzeit: 6217 ms workerThreads: 8192
+Laufzeit: 10473 ms workerThreads: 16384
+Ende
+
+mit notify all:
+PS E:\Code\Sortierverfahren> .\build\Release\Sortierverfahren.exe 400000000 w z 
+listeVariante :z
+maxEbene : 30
+Mergesort :
+Laufzeit: 54665 ms workerThreads: 1
+Laufzeit: 30011 ms workerThreads: 2
+Laufzeit: 20929 ms workerThreads: 4
+Laufzeit: 14678 ms workerThreads: 8
+Laufzeit: 10735 ms workerThreads: 15
+Laufzeit: 10199 ms workerThreads: 16
+Laufzeit: 11192 ms workerThreads: 17
+Laufzeit: 10176 ms workerThreads: 18
+Laufzeit: 9362 ms workerThreads: 32
+Laufzeit: 9413 ms workerThreads: 64
+Laufzeit: 9409 ms workerThreads: 128
+Laufzeit: 9913 ms workerThreads: 256
+Laufzeit: 10440 ms workerThreads: 1024
+Laufzeit: 14529 ms workerThreads: 4096
+Laufzeit: 21537 ms workerThreads: 8192
+Laufzeit: 31062 ms workerThreads: 16384
+Quicksort :
+Laufzeit: 29121 ms workerThreads: 1
+Laufzeit: 15472 ms workerThreads: 2
+Laufzeit: 8753 ms workerThreads: 4
+Laufzeit: 5482 ms workerThreads: 8
+Laufzeit: 4003 ms workerThreads: 15
+Laufzeit: 3903 ms workerThreads: 16
+Laufzeit: 3889 ms workerThreads: 17
+Laufzeit: 3927 ms workerThreads: 18
+Laufzeit: 3976 ms workerThreads: 32
+Laufzeit: 4193 ms workerThreads: 64
+Laufzeit: 4217 ms workerThreads: 128
+Laufzeit: 4411 ms workerThreads: 256
+Laufzeit: 4578 ms workerThreads: 1024
+Laufzeit: 6488 ms workerThreads: 4096
+Laufzeit: 8591 ms workerThreads: 8192
+Laufzeit: 13851 ms workerThreads: 16384
+Ende
