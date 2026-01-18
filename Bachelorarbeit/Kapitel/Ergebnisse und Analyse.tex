@@ -318,19 +318,31 @@
 
 % \subsection{Diagramm}
 \newcommand{\EinflussDesDatentypsDiagramm}{
-    \EinflussDesDatentypsDiagrammB
-    \stepcounter{figure}% Erhöht die Nummer
-    \edef\@currentlabel{\thefigure}% Setzt die Nummer für das Label fest
-    \label{fig:datentypB}% Jetzt kannst du \ref{fig:datentypB} nutzen
-    \addcontentsline{lof}{figure}{Abbildung \thefigure: Einfluss Datentyp B}%
+    \begin{minipage}{\linewidth}
+        \centering
+        \EinflussDesDatentypsDiagrammB
+        \captionof{figure}{EinflussDesDatentyps B: [Beschreibung]}
+        \label{fig:datentypB}
+    \end{minipage}
     \newline
-    \EinflussDesDatentypsDiagrammC
+    \begin{minipage}{\linewidth}
+        \centering
+        \EinflussDesDatentypsDiagrammC
+        \captionof{figure}{EinflussDesDatentyps C: [Beschreibung]}
+        \label{fig:datentypC}
+    \end{minipage}
     \newline
-    \EinflussDesDatentypsDiagrammA
+    \begin{minipage}{\linewidth}
+        \centering
+        \EinflussDesDatentypsDiagrammA
+        \captionof{figure}{EinflussDesDatentyps A: [Beschreibung]}
+        \label{fig:datentypA}
+    \end{minipage}
 }
 
 % \subsection{Analyse und Interpretation}
 \newcommand{\EinflussDesDatentypsAnalyse}{
+    % wie in Abbildung~\ref{fig:datentypB} dargestellt, ...
     Bei den Graphen zu Strong Scaling und Weak Scaling ist zu erkennen, dass Mergesort hier schlechter abschneidet als bei Integer-Daten, während Quicksort weiterhin nur minimal schlechter als die theoretische Laufzeit ist.
     Dass Mergesort schlechter abschneidet, liegt vermutlich daran, dass der Aufwand zum Kopieren der Teillisten bei Strings größer ist als bei Integern.
     Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde. Dies liegt an dem Code zur Listengenerierung, der für sortierte Listen im Durchschnitt längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
