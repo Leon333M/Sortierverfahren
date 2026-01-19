@@ -29,7 +29,7 @@
     Im Rahmen dieser Arbeit wurden folgende Implementierungsvarianten für Mergesort und Quicksort umgesetzt:
     \begin{itemize}
         \item eine rekursiv sequenzielle Variante,
-        \item eine rekursive Variante mit dynamischer Thread-Erzeugung bis zu einer Tiefe $e$, welche eine Thread-Anzahl von $2^e$ unterstützt,
+        \item eine rekursive Variante mit dynamischer Thread-Erzeugung bis zu einer Tiefe $e$, welche eine Thread-Anzahl von $2^e$ unterstützt (tiefenbasierte Thread-Erzeugung),
         \item eine Worker-Thread-Variante basierend auf einem Work-Stealing-ähnlichen Ansatz mit $N$ Threads, umgesetzt als aufgabenbasierte Rekursionsverwaltung.
     \end{itemize}
     Für die tiefenbasierte Thread-Erzeugung ändert sich in der parallelen Phase die Rekursionsgleichung von $T(n) = 2 \cdot T(n/2) + n$ zu $T(n) = 1 \cdot T(n/2) + n$. Dies liegt daran, dass die zweite Hälfte der Arbeit parallel in einem anderen Thread verarbeitet wird und somit nicht zur Laufzeit der aktuellen Ebene beiträgt.
@@ -44,6 +44,7 @@
     Für die Work-Stealing-Variante ist auch keine exakte Vorhersage der Laufzeit möglich, weshalb eine approximative Abschätzung erfolgt.
     Dies liegt daran, dass sich die Threads frei die Arbeit teilen und nicht mehr fest an Ebenen gebunden sind, wodurch ein zusätzlicher Overhead entsteht.
     Unter der Annahme, dass die zusätzlichen Overheads ignoriert werden, ist die theoretische Laufzeit der Work-Stealing-Variante identisch mit der tiefenbasierten Variante.
+    Natürlich unterscheiden sich die Average-Case-Laufzeiten beider Varianten in der Praxis dramatisch. Für diese Arbeit ist es jedoch ausreichend, nur den \textbf{heuristischen Average-Case} zu analysieren.
     \newline
     Bildlich gesprochen lässt sich Mergesort als balancierter und Quicksort als unbalancierter Baum darstellen. Während die tiefenbasierte Thread-Erzeugung bis zu einer festen Ebene bei Mergesort zu einer optimalen Auslastung führt, resultiert dies bei Quicksort in einer schlechten Lastverteilung. Im Gegensatz dazu ermöglicht die Work-Stealing-Variante, dass freie Threads Aufgaben aus anderen Ästen (dem linken Teilbaum) übernehmen. Dadurch wird auch bei unbalancierten Baumstrukturen eine sehr gleichmäßige Lastverteilung erzielt, was wiederum in einer verkürzten Laufzeit resultiert.
 }
