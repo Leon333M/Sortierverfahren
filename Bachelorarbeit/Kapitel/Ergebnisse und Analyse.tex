@@ -192,11 +192,26 @@
 
 % \subsection{Diagramm}
 \newcommand{\TiefenbasierteThreadErzeugungDiagramm}{
-    \TiefenbasierteThreadErzeugungDiagrammB
+    \begin{minipage}{\linewidth}
+        \centering
+        \TiefenbasierteThreadErzeugungDiagrammB
+        \captionof{figure}[Strong Scaling (Tiefenbasierte Thread-Erzeugung)]{Strong Scaling (Tiefenbasierte Thread-Erzeugung)}
+        \label{fig:TiefenbasierteThreadErzeugungDiagrammB}
+    \end{minipage}
     \newline
-    \TiefenbasierteThreadErzeugungDiagrammC
+    \begin{minipage}{\linewidth}
+        \centering
+        \TiefenbasierteThreadErzeugungDiagrammC
+        \captionof{figure}[Weak Scaling (Tiefenbasierte Thread-Erzeugung)]{Weak Scaling (Tiefenbasierte Thread-Erzeugung)}
+        \label{fig:TiefenbasierteThreadErzeugungDiagrammC}
+    \end{minipage}
     \newline
-    \TiefenbasierteThreadErzeugungDiagrammA
+    \begin{minipage}{\linewidth}
+        \centering
+        \TiefenbasierteThreadErzeugungDiagrammA
+        \captionof{figure}[Länge vergrößern (Tiefenbasierte  Thread-Erzeugung)]{Länge vergrößern (Tiefenbasierte Thread-Erzeugung)}
+        \label{fig:TiefenbasierteThreadErzeugungDiagrammA}
+    \end{minipage}
 }
 % \subsection{Analyse und Interpretation}
 \newcommand{\TiefenbasierteThreadErzeugungAnalyse}{
@@ -256,12 +271,12 @@
 % \subsection{Messziel} % Einleitung
 \newcommand{\WorkerthreadsMessziel}{
     Hier wird die Worker-Thread-Variante nach einem Work-Stealing-Ansatz mit einer unterstützten
-    Thread-Anzahl von \(N\) gemessen, wobei Quicksort als iterative Version umgesetzt ist.
-    Zusätzlich erfolgt eine Messung der Zeit, die die Threads für ihre Initialisierung benötigen mit.
+    Thread-Anzahl von \(N\) gemessen.
+    Zusätzlich erfolgt eine Messung, welche die Grund-Overheads der Threads näherungsweise repräsentieren soll (Abbildung~\ref{fig:initZeitenDiagrammA}).
     Da in unserem Fall die Worker-Threads nach dem Sortieren nicht wiederverwendet werden,
     ist diese Messung nicht vollständig fair.
-    \newline
     In der Praxis würde man die Threads weiterverwenden, wodurch dieser Overhead geringer ausfallen würde, aber ein gemeinsamer Thread-Pool für verschiedene Algorithmen würde den Rahmen dieser Arbeit sprengen.
+    \newline
     Bei der Worker-Thread-Variante wurde außerdem eine Mindestgröße von 4.000 Elementen für neue Threads eingeführt.
     Dies geschieht aus dem schlichten Grund, dass sich andernfalls kein Performance-Vorteil durch zusätzliche Threads ergibt,
     da der entstehende Overhead sonst zu groß ist.
@@ -275,16 +290,37 @@
     Ebenso wird erwartet, dass der Best-Case von Quicksort im Vergleich zur tiefenbasierten Variante schlechter ausfällt, da auch hier keine optimale Arbeitsaufteilung erreicht wird.
     Für den Average-Case von Quicksort wird hingegen eine bessere Performance erwartet, da der Work-Stealing-Ansatz eine gleichmäßigere Lastverteilung über mehrere Threads ermöglicht.
 }
+
 % \subsection{Diagramm}
 \newcommand{\WorkerthreadsDiagramm}{
-    \initZeitenDiagrammA
+    \begin{minipage}{\linewidth}
+        \centering
+        \initZeitenDiagrammA
+        \captionof{figure}[Laufzeit der Sortierverfahren bei einer Arraygröße von 16 Elementen]{Laufzeit der Sortierverfahren bei einer Arraygröße von 16 Elementen}
+        \label{fig:initZeitenDiagrammA}
+    \end{minipage}
     \newline
     \newline
-    \WorkerthreadsDiagrammB
+    \begin{minipage}{\linewidth}
+        \centering
+        \WorkerthreadsDiagrammB
+        \captionof{figure}[Strong Scaling (Worker-Thread)]{Strong Scaling (Worker-Thread)}
+        \label{fig:WorkerthreadsDiagrammB}
+    \end{minipage}
     \newline
-    \WorkerthreadsDiagrammC
+    \begin{minipage}{\linewidth}
+        \centering
+        \WorkerthreadsDiagrammC
+        \captionof{figure}[Weak Scaling (Worker-Thread)]{Weak Scaling (Worker-Thread)}
+        \label{fig:WorkerthreadsDiagrammC}
+    \end{minipage}
     \newline
-    \WorkerthreadsDiagrammA
+    \begin{minipage}{\linewidth}
+        \centering
+        \WorkerthreadsDiagrammA
+        \captionof{figure}[Länge vergrößern (Worker-Thread)]{Länge vergrößern Worker-Thread}
+        \label{fig:WorkerthreadsDiagrammA}
+    \end{minipage}
 }
 % \subsection{Analyse und Interpretation}
 \newcommand{\WorkerthreadsAnalyse}{
@@ -292,9 +328,9 @@
     Zu beachten ist, dass die Mergesort-Worker-Thread-Variante erst ab einer Array-Größe von 64.000 Elementen alle 16 Threads nutzt.
     Dies liegt am Mindestlimit von 4.000 Elementen für die Erzeugung neuer Threads.
     Man muss beachten, dass Mergesort hier langsamer ist als bei der tiefenbasierten Thread-Erzeugung, da die Last nicht mehr optimal auf alle Threads verteilt ist. Bei Quicksort hingegen zeigt sich eine deutlich bessere Leistung, da die Last hier sehr gut auf alle Threads verteilt ist.
-    Dies zeigt sich auch im Strong Scaling und Weak Scaling, da hier Quicksort nur minimal schlechter als die theoretisch erwartete Laufzeit ausfällt, während Mergesort im Vergleich zur anderen Variante schlechter abschneidet.
-    Wenn man jetzt die Quicksort-Worker-Thread-Variante mit der Mergesort-tiefenbasierten Thread-Erzeugungsvariante vergleicht, stellt man immer noch fest, dass Quicksort im Durchschnitt doppelt so schnell ist wie Mergesort und im Beim Strong Scaling ist außerdem zu beobachten, dass die Performance bei sehr vielen Threads wieder abnimmt. Ursache hierfür sind die Sperren zur Thread-Arbeitsverteilung, die in dieser Variante erforderlich sind, in der anderen jedoch nicht. Bei sehr vielen Threads führt dies zu einem Performance-Einbruch, da jeweils nur ein Thread die Sperre belegen kann. Hinzu kommen die Kosten der reinen Initialisierungszeit, da $2^{14}$ Threads rund 1~s für ihre Erstellung benötigen.
-    Im Diagramm "Laufzeit bei Arraygröße 16" sind die Overheads durch das Erstellen von Threads zu erkennen. Dabei fällt auf, dass sich diese Overheads nur minimal unterscheiden. Außerdem zeigt sich, dass die Quicksort-Worker-Thread-Variante die höchsten Initialisierungs-Overheads aufweist. Dies liegt daran, dass alle anderen Varianten ihren Main-Thread weiter nutzen, während die Quicksort-Worker-Thread-Variante dies nicht tut. Dadurch muss sie stets einen Thread mehr als die anderen Varianten erstellen, was zu diesem minimalen Overhead führt.
+    Dies zeigt sich auch im Strong Scaling (Abbildung~\ref{fig:WorkerthreadsDiagrammB}) und Weak Scaling (Abbildung~\ref{fig:WorkerthreadsDiagrammC}), da hier Quicksort nur minimal schlechter als die theoretisch erwartete Laufzeit ausfällt, während Mergesort im Vergleich zur anderen Variante schlechter abschneidet.
+    Wenn man jetzt die Quicksort-Worker-Thread-Variante mit der Mergesort-tiefenbasierten Thread-Erzeugungsvariante vergleicht, stellt man immer noch fest, dass Quicksort im Durchschnitt doppelt so schnell ist wie Mergesort. Beim Strong Scaling ist außerdem zu beobachten, dass die Performance bei sehr vielen Threads wieder abnimmt. Ursache hierfür sind die Sperren zur Thread-Arbeitsverteilung, die in dieser Variante erforderlich sind, in der anderen jedoch nicht. Bei sehr vielen Threads führt dies zu einem Performance-Einbruch, da jeweils nur ein Thread die Sperre belegen kann. Hinzu kommen die Kosten der reinen Initialisierungszeit, da $2^{14}$ Threads rund 1~s für ihre Erstellung benötigen.
+    Im Diagramm~\ref{fig:initZeitenDiagrammA} sind die Overheads durch das Erstellen von Threads zu erkennen. Dabei fällt auf, dass sich diese Overheads nur minimal unterscheiden. Außerdem zeigt sich, dass die Quicksort-Worker-Thread-Variante die höchsten Initialisierungs-Overheads aufweist. Dies liegt daran, dass alle anderen Varianten ihren Main-Thread weiter nutzen, während die Quicksort-Worker-Thread-Variante dies nicht tut. Dadurch muss sie stets einen Thread mehr als die anderen Varianten erstellen, was zu diesem minimalen Overhead führt.
 }
 
 % \section{Einfluss des Datentyps der Liste} % Listenart: int, string
@@ -321,28 +357,27 @@
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesDatentypsDiagrammB
-        \captionof{figure}[EinflussDesDatentyps B]{EinflussDesDatentyps B: [Beschreibung]}
+        \captionof{figure}[Strong Scaling String]{Strong Scaling String: [Beschreibung]}
         \label{fig:EinflussDesDatentypsDiagrammB}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesDatentypsDiagrammC
-        \captionof{figure}[EinflussDesDatentyps C]{EinflussDesDatentyps C: [Beschreibung]}
+        \captionof{figure}[Weak Scaling String]{Weak Scaling String: [Beschreibung]}
         \label{fig:EinflussDesDatentypsDiagrammC}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesDatentypsDiagrammA
-        \captionof{figure}[EinflussDesDatentyps A]{EinflussDesDatentyps A: [Beschreibung]}
+        \captionof{figure}[Länge vergrößern String]{Länge vergrößern String: [Beschreibung]}
         \label{fig:EinflussDesDatentypsDiagrammA}
     \end{minipage}
 }
 
 % \subsection{Analyse und Interpretation}
 \newcommand{\EinflussDesDatentypsAnalyse}{
-    % wie in Abbildung~\ref{fig:datentypB} dargestellt, ...
     Bei den Graphen zu Strong Scaling (Abbildung~\ref{fig:EinflussDesDatentypsDiagrammB}) und Weak Scaling (Abbildung~\ref{fig:EinflussDesDatentypsDiagrammC}) ist zu erkennen, dass Mergesort hier schlechter abschneidet als bei Integer-Daten, während Quicksort weiterhin nur minimal schlechter als die theoretische Laufzeit ist.
     Dass Mergesort schlechter abschneidet, liegt vermutlich daran, dass der Aufwand zum Kopieren der Teillisten bei Strings größer ist als bei Integern.
     Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde. Dies liegt an dem Code zur Listengenerierung, der für sortierte Listen im Durchschnitt längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
