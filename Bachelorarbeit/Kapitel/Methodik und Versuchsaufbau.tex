@@ -60,7 +60,19 @@
     \newline
     Nach den meisten Messungen wurde überprüft, ob die resultierende Liste korrekt sortiert ist, um die funktionale Korrektheit der Implementierung sicherzustellen.
     \newline
+    In der vorliegenden Untersuchung wird jeder Datenpunkt als Einzelergebnis (Stichprobenmessung) aufgeführt. Dieser Ansatz wurde gewählt, um die reale Systemperformance unter wechselnden Lastbedingungen unverfälscht darzustellen. Da jede Messung ein in der Praxis aufgetretenes Laufzeitverhalten repräsentiert, wird auf eine Mittelwertbildung verzichtet, um auch punktuelle Latenzen oder Ausreißer, die für die Stabilität des Algorithmus relevant sind, sichtbar zu machen.
+    \newline
     Für die Darstellung in den Diagrammen wird der Übersicht halber von einer direkten 1:1-Zuordnung von theoretischer Laufzeit zu Dauer in ns ausgegangen. Diese Annahme ist jedoch stark vereinfacht, da sie nicht garantiert werden kann. Die erwarteten Werte sollten daher stets kritisch betrachtet werden.
     \newline
-    In der vorliegenden Untersuchung wird jeder Datenpunkt als Einzelergebnis (Stichprobenmessung) aufgeführt. Dieser Ansatz wurde gewählt, um die reale Systemperformance unter wechselnden Lastbedingungen unverfälscht darzustellen. Da jede Messung ein in der Praxis aufgetretenes Laufzeitverhalten repräsentiert, wird auf eine Mittelwertbildung verzichtet, um auch punktuelle Latenzen oder Ausreißer, die für die Stabilität des Algorithmus relevant sind, sichtbar zu machen.
+    Dafür folgt hier ein praktisches Beispiel: Damit der theoretischen Laufzeit eine Zeiteinheit zugeordnet werden kann, wird eine Variable benötigt, die wir \(x\) nennen. Dieses \(x\) repräsentiert die Zeit, die ein einzelner Vergleich benötigt. Es ergeben sich folgende Gleichungen:
+    \begin{flalign*}
+         & T(n) = 2 \cdot T \left( \frac{n}{2} \right) + x \cdot n & \\
+         & T(n) = x \cdot \left( n \cdot \log_2(n) + n \right).    &
+    \end{flalign*}
+    Wenn die Vergleichszeit $x = 1\,\text{ns}$ beträgt, liegt eine direkte
+    1:1-Zuordnung vor. In der Praxis könnte $x$ jedoch variieren und beispielsweise
+    einen Best-Case von $0,25\,\text{ns}$ sowie einen Worst-Case von $1\,\text{ms}$
+    aufweisen. Durch diese Schwankungen, die unter anderem durch Speicherlatenzen entstehen,
+    lässt sich die theoretische Laufzeit nie perfekt 1:1 zuordnen. Sie wird in
+    der Realität immer schwanken.
 }
