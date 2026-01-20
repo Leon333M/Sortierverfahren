@@ -40,11 +40,18 @@
         T(n,p)    & = 2n \left( 1 - \frac{1}{p} \right) + \frac{n}{p} \cdot \log_2\left(\frac{n}{p}\right) + \frac{n}{p} &  & \\
         O(T(n,p)) & = O\left( \frac{n}{p} \cdot \log_2(n) + n \right)                                                    &  &
     \end{flalign*}
-    Hierbei ist zu beachten, dass für Quicksort im Worst-Case weiterhin eine Komplexität von $O(n^2)$ besteht. Zudem ist die Parallelisierung auf die vorhandene Rekursionstiefe begrenzt, woraus $p_{\max} = n$ folgt.
+    Hierbei ist zu beachten, dass die Parallelisierung auf die vorhandene Rekursionstiefe begrenzt ist, woraus $p_{\max} = n$ folgt.
+    Zudem besteht für Quicksort im Worst-Case bei $p > 1$ folgende theoretische Laufzeit:
+    \begin{flalign*}
+        T(n)    & = T(n-1) + n,            & \\
+        T(n)    & = \frac{1}{2} \cdot n^2, & \\
+        O(T(n)) & = O(n^2).                &
+    \end{flalign*}
     Für die Work-Stealing-Variante ist auch keine exakte Vorhersage der Laufzeit möglich, weshalb eine approximative Abschätzung erfolgt.
     Dies liegt daran, dass sich die Threads frei die Arbeit teilen und nicht mehr fest an Ebenen gebunden sind, wodurch ein zusätzlicher Overhead entsteht.
     Unter der Annahme, dass die zusätzlichen Overheads ignoriert werden, ist die theoretische Laufzeit der Work-Stealing-Variante identisch mit der tiefenbasierten Variante.
-    Natürlich unterscheiden sich die Average-Case-Laufzeiten beider Varianten in der Praxis dramatisch. Für diese Arbeit ist es jedoch ausreichend, nur den heuristischen Average-Case zu analysieren.
+    Natürlich unterscheiden sich die Average-Case-Laufzeiten beider Varianten in der Praxis dramatisch.
+    Für diese Arbeit ist es jedoch ausreichend, nur den durch $T(n,p)$ beschriebenen heuristischen Average-Case zu analysieren.
     \newline
     Bildlich gesprochen lässt sich Mergesort als balancierter und Quicksort als unbalancierter Baum darstellen. Während die tiefenbasierte Thread-Erzeugung bis zu einer festen Ebene bei Mergesort zu einer optimalen Auslastung führt, resultiert dies bei Quicksort in einer schlechten Lastverteilung. Im Gegensatz dazu ermöglicht die Work-Stealing-Variante, dass freie Threads Aufgaben aus anderen Ästen (dem linken Teilbaum) übernehmen. Dadurch wird auch bei unbalancierten Baumstrukturen eine sehr gleichmäßige Lastverteilung erzielt, was wiederum in einer verkürzten Laufzeit resultiert.
 }
