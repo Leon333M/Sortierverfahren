@@ -28,7 +28,9 @@
     \[
         T(n) = 2 \cdot T \left( \frac{n}{2} \right) + n
     \]
-    beschreiben, wobei der Term \( {} + n \) den Aufwand des Merge-Schritts repräsentiert. Daraus ergibt sich eine Gesamtlaufzeit von
+    beschreiben, wobei der Term \( {} + n \) den Aufwand des Merge-Schritts repräsentiert
+    und \( 2 \cdot T \left( \frac{n}{2} \right) \) die beiden rekursiven Selbstaufrufe darstellt.
+    Daraus ergibt sich eine Gesamtlaufzeit von
     \[
         T(n) = n \cdot \log_2(n) + n
     \]
@@ -38,18 +40,32 @@
     \textbf{Quicksort} ist im Grundaufbau ähnlich strukturiert, unterscheidet sich jedoch wesentlich im Ablauf. Die Liste wird nicht zwingend in zwei gleich große Hälften geteilt. Stattdessen wird zunächst ein sogenanntes \emph{Pivot-Element} gewählt, anhand dessen die Liste in einen kleineren und einen größeren Teil partitioniert wird. Dieser Partitionierungsschritt erfolgt \emph{vor} den rekursiven Selbstaufrufen, weshalb sich Quicksort auch als iterative Variante formulieren lässt.
     Beim Partitionieren wird die Liste so umsortiert, dass alle Elemente, die kleiner als das Pivotelement sind, links davon stehen und alle Elemente, die größer sind, rechts davon stehen. Dabei werden die Elemente auf beiden Seiten entsprechend getauscht.
     \newline
-    Die Laufzeit von Quicksort hängt stark von der Qualität der Partitionierung ab. Im \textbf{Worst-Case}, beispielsweise bei ungünstiger Pivot-Wahl, beträgt die serielle Laufzeit
-    \[
-        T(n) = \frac{1}{2} \cdot ( n^2 + n ),
-    \]
-    \[
-        O(T(n)) = O(n^2).
-    \]
-    Im \textbf{Best-Case} sowie im \textbf{heuristisch betrachteten Average-Case} ergibt sich ebenfalls die Rekursionsgleichung.
-    \[
-        T(n) = 2 \cdot T(\frac{n}{2}) + n,
-    \]
-    woraus wiederum eine Laufzeit von \(O(n \log n)\) folgt. Damit ist Quicksort im Durchschnitt asymptotisch genauso effizient wie Mergesort, aber in der Praxis ist Quicksort oft doppelt so schnell wie Mergesort, doch dazu später mehr.
+    Die Laufzeit von Quicksort hängt stark von der Qualität der Partitionierung ab.
+    Der \textbf{heuristisch betrachtete Average-Case} ergibt sich aus den rekursiven Selbstaufrufen.
+    Die Herleitung sowie die Endgleichung für die serielle Laufzeit lauten:
+    \begin{flalign*}
+        T(n)    & = q_1 + q_2 + n                                                                   & \\
+        q_1     & = T\left( \frac{1 + \dots + n-1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
+        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n                                         & \\
+        T(n)    & = n \cdot \log_2(n) + n                                                           & \\
+        O(T(n)) & = O(n \log n).                                                                    &
+    \end{flalign*}
+    Der \textbf{Worst-Case} tritt ein, wenn das gewählte Pivotelement in jedem Rekursionsschritt zu einer maximal asymmetrischen Partitionierung führt.
+    Für die serielle Laufzeit gilt hierbei:
+    \begin{flalign*}
+        T(n)    & = T(n-1) + 1 + n,                & \\
+        T(n)    & = \frac{1}{2} \cdot ( n^2 + n ), & \\
+        O(T(n)) & = O(n^2).                        &
+    \end{flalign*}
+    Der \textbf{Best-Case} tritt ein, wenn das gewählte Pivotelement in jedem Rekursionsschritt zu einer exakt symmetrischen Partitionierung führt.
+    Für die serielle Laufzeit ergeben sich hierbei die Gleichungen:
+    \begin{flalign*}
+        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n & \\
+        T(n)    & = n \cdot \log_2(n) + n                   & \\
+        O(T(n)) & = O(n \log n).
+    \end{flalign*}
+    Aufgrund der theoretischen Best-Case- und heuristischen Average-Case-Laufzeit ist Quicksort im Durchschnitt genauso effizient wie Mergesort,
+    aber in der Praxis ist Quicksort oft doppelt so schnell wie Mergesort, doch dazu später mehr.
 }
 
 % \subsection{Grundlagen der Parallelisierung}

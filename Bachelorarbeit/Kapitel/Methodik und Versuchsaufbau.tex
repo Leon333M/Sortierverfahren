@@ -44,7 +44,7 @@
     Für die Work-Stealing-Variante ist auch keine exakte Vorhersage der Laufzeit möglich, weshalb eine approximative Abschätzung erfolgt.
     Dies liegt daran, dass sich die Threads frei die Arbeit teilen und nicht mehr fest an Ebenen gebunden sind, wodurch ein zusätzlicher Overhead entsteht.
     Unter der Annahme, dass die zusätzlichen Overheads ignoriert werden, ist die theoretische Laufzeit der Work-Stealing-Variante identisch mit der tiefenbasierten Variante.
-    Natürlich unterscheiden sich die Average-Case-Laufzeiten beider Varianten in der Praxis dramatisch. Für diese Arbeit ist es jedoch ausreichend, nur den \textbf{heuristischen Average-Case} zu analysieren.
+    Natürlich unterscheiden sich die Average-Case-Laufzeiten beider Varianten in der Praxis dramatisch. Für diese Arbeit ist es jedoch ausreichend, nur den heuristischen Average-Case zu analysieren.
     \newline
     Bildlich gesprochen lässt sich Mergesort als balancierter und Quicksort als unbalancierter Baum darstellen. Während die tiefenbasierte Thread-Erzeugung bis zu einer festen Ebene bei Mergesort zu einer optimalen Auslastung führt, resultiert dies bei Quicksort in einer schlechten Lastverteilung. Im Gegensatz dazu ermöglicht die Work-Stealing-Variante, dass freie Threads Aufgaben aus anderen Ästen (dem linken Teilbaum) übernehmen. Dadurch wird auch bei unbalancierten Baumstrukturen eine sehr gleichmäßige Lastverteilung erzielt, was wiederum in einer verkürzten Laufzeit resultiert.
 }
