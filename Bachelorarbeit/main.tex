@@ -70,6 +70,7 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 % Ausgelagerte Texte für die Bachelorarbeit
 % ----------------------
 % \input{commands.tex}
+\input{Deckblatt/Metadaten.tex}
 \input{Kapitel/Kapitel.tex}
 
 % ----------------------
@@ -78,22 +79,23 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 \begin{document}
 
 % Titelseite
-\begin{titlepage}
-    \centering
-    \vspace*{4cm}
-    {\LARGE\textbf{Untersuchung der Skalierbarkeit von parallelem Sortieren auf einem Multicore-Prozessor}}\\[1.5cm]
-    {\large Bachelorarbeit}\\[0.5cm]
-    {\large Studiengang: Informatik}\\[0.5cm]
-    {\large Bearbeiter: Leon Zoerner}\\[2cm]
-    \vfill
-    \today
-\end{titlepage}
+% \begin{titlepage}
+%     \centering
+%     \vspace*{4cm}
+%     {\LARGE\textbf{Untersuchung der Skalierbarkeit von parallelem Sortieren auf einem Multicore-Prozessor}}\\[1.5cm]
+%     {\large Bachelorarbeit}\\[0.5cm]
+%     {\large Studiengang: Informatik}\\[0.5cm]
+%     {\large Bearbeiter: Leon Zoerner}\\[2cm]
+%     \vfill
+%     \today
+% \end{titlepage}
+
+\include{Deckblatt/Deckblatt}
 
 % Inhaltsverzeichnis / Gliederung
 \tableofcontents
 \newpage
-\listoffigures
-\newpage
+\mainmatter
 
 % \chapter
 % \section
@@ -285,9 +287,13 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 \section{Quellen}
 \Quellen
 
+\newpage
+\pagenumbering{Roman}
+\appendix
 \nocite{*}
 \bibliographystyle{plainurl}
 \bibliography{literatur}
+\listoffigures
 
 % ----------------------
 % Dokumentende
