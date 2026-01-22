@@ -137,7 +137,7 @@
     Diese hängen vom Inhalt der zu sortierenden Liste und somit vom jeweiligen Listentyp ab.
     Gleichzeitig dient diese Messung der Vollständigkeit, sodass die Laufzeiten auch mit anderen,
     nicht in dieser Arbeit implementierten Sortieralgorithmen gut vergleichbar sind.
-    Auch hierbei werden zunächst ausschließlich die seriellen Laufzeiten der Algorithmen gemessen.
+    Auch hierbei werden zunächst ausschließlich die sequenziellen Laufzeiten der Algorithmen gemessen.
     Zur Vollständigkeit werden zusätzlich weitere Listentypen außer zufällig und sortiert betrachtet.
 }
 
@@ -249,7 +249,7 @@
     Dieses Verhalten ist vermutlich auf Compiler-Optimierungen zurückzuführen und darauf, dass in der Implementierung nicht systematisch ein besonders ungünstiges Pivot-Element gewählt wurde.
     \newline
     Deutliche Performance-Verbesserungen sind jedoch in allen Bereichen messbar, wie theoretisch zu erwarten war.
-    Für ein unsortiertes Array der Größe \(400 \, \text{Mio.}\) zeigt sich, dass Mergesort mit 16 Threads lediglich etwa 16~\% der Laufzeit der seriellen Variante benötigt, während Quicksort 26~\% erreicht.
+    Für ein unsortiertes Array der Größe \(400 \, \text{Mio.}\) zeigt sich, dass Mergesort mit 16 Threads lediglich etwa 16~\% der Laufzeit der sequenziellen Variante benötigt, während Quicksort 26~\% erreicht.
     Die Laufzeit von Mergesort wächst dabei sehr regelmäßig, während Quicksort im Durchschnitt ebenfalls eine regelmäßige Steigerung der Laufzeit zeigt, jedoch sehr stark schwankt.
     \newline
     Bemerkenswert ist, dass die 16-Thread-Variante von Quicksort nur rund 85~\% der Laufzeit von Mergesort erreicht, wodurch Mergesort insgesamt überlegen ist.

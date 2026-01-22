@@ -48,7 +48,7 @@
     \newline
     Die Laufzeit von Quicksort hängt stark von der Qualität der Partitionierung ab.
     Der \textbf{heuristisch betrachtete Average-Case} ergibt sich aus den rekursiven Selbstaufrufen.
-    Die Herleitung sowie die Endgleichung für die serielle Laufzeit lauten:
+    Die Herleitung sowie die Endgleichung für die sequenzielle Laufzeit lauten:
     \begin{flalign*}
         T(n)    & = q_1 + q_2 + n                                                                                                                                 & \\
         q_1     & = T\left( \frac{1 + \dots + (n-1)}{n-1} \right) = T\left( n \cdot \frac{n-1}{2} \cdot \frac{1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
@@ -57,14 +57,14 @@
         O(T(n)) & = O(n \log n).                                                                                                                                  &
     \end{flalign*}
     Der \textbf{Worst-Case} tritt ein, wenn das gewählte Pivotelement in jedem Rekursionsschritt zu einer maximal asymmetrischen Partitionierung führt.
-    Für die serielle Laufzeit gilt hierbei:
+    Für die sequenzielle Laufzeit gilt hierbei:
     \begin{flalign*}
         T(n)    & = T(n-1) + 1 + n,                    & \\
         T(n)    & = \frac{1}{2} \cdot ( n^2 + n ) + n, & \\
         O(T(n)) & = O(n^2).                            &
     \end{flalign*}
     Der \textbf{Best-Case} tritt ein, wenn das gewählte Pivotelement in jedem Rekursionsschritt zu einer exakt symmetrischen Partitionierung führt.
-    Für die serielle Laufzeit ergeben sich hierbei die Gleichungen:
+    Für die sequenzielle Laufzeit ergeben sich hierbei die Gleichungen:
     \begin{flalign*}
         T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n & \\
         T(n)    & = n \cdot \log_2(n) + n                   & \\
@@ -77,13 +77,13 @@
 % \subsection{Grundlagen der Parallelisierung}
 % % Amdahl Law
 \newcommand{\GrundlagenDerParallelisierung}{
-    Parallelisierung beschreibt die gleichzeitige Ausführung mehrerer Programmteile mit dem Ziel, die Gesamtlaufzeit einer Berechnung zu reduzieren. Dabei wird eine ursprünglich serielle Aufgabe in mehrere Teilaufgaben zerlegt, die parallel auf mehreren Recheneinheiten verarbeitet werden können.
+    Parallelisierung beschreibt die gleichzeitige Ausführung mehrerer Programmteile mit dem Ziel, die Gesamtlaufzeit einer Berechnung zu reduzieren. Dabei wird eine ursprünglich sequenzielle Aufgabe in mehrere Teilaufgaben zerlegt, die parallel auf mehreren Recheneinheiten verarbeitet werden können.
     \newline
-    Der maximal erreichbare Geschwindigkeitsgewinn durch Parallelisierung ist jedoch begrenzt. Nach dem Amdahlschen Gesetz hängt die theoretische Beschleunigung davon ab, welcher Anteil eines Programms parallelisiert werden kann. Serielle Programmanteile sowie zusätzlicher Verwaltungsaufwand, beispielsweise durch Thread-Erzeugung, Synchronisation und Kommunikation, begrenzen die Skalierbarkeit.
+    Der maximal erreichbare Geschwindigkeitsgewinn durch Parallelisierung ist jedoch begrenzt. Nach dem Amdahlschen Gesetz hängt die theoretische Beschleunigung davon ab, welcher Anteil eines Programms parallelisiert werden kann. Sequenzielle Programmanteile sowie zusätzlicher Verwaltungsaufwand, beispielsweise durch Thread-Erzeugung, Synchronisation und Kommunikation, begrenzen die Skalierbarkeit.
     \newline
     In der Praxis führt Parallelisierung daher nicht zwangsläufig zu einer linearen Beschleunigung, insbesondere bei steigender Anzahl von Threads.
     \newline
-    Einfach ausgedrückt bedeutet dies, dass Code mit seriellen Abhängigkeiten auch bei mehreren Threads nicht schneller ausgeführt wird. Daher sollte nur der Teil des Codes parallelisiert werden, der keine solchen Abhängigkeiten enthält.
+    Einfach ausgedrückt bedeutet dies, dass Code mit sequenziellen Abhängigkeiten auch bei mehreren Threads nicht schneller ausgeführt wird. Daher sollte nur der Teil des Codes parallelisiert werden, der keine solchen Abhängigkeiten enthält.
 }
 
 % \subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}

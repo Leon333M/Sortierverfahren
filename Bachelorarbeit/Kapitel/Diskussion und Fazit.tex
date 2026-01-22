@@ -6,7 +6,7 @@
     Es ist eindeutig zu erkennen, dass Mergesort in der tiefenbasierten Thread-Erzeugungsvariante die beste Performance erzielt und dass Quicksort in der Worker-Thread-Variante mit Work-Stealing-Ansatz die beste Laufzeit erreicht, wie zuvor erwartet.
     Ebenso ist deutlich zu erkennen, dass diese Varianten nur geringfügig schlechtere Laufzeiten erreichen, als theoretisch möglich wäre.
     Die Ergebnisse zeigen jedoch, dass die Abweichung von der theoretisch möglichen Laufzeit geringer ausfällt als aufgrund der anfangs genannten Overheads zu erwarten gewesen wäre.
-    Vergleicht man die entstehenden Overheads durch die Thread-Erzeugung mit den seriellen Laufzeiten, ergibt sich ein guter Eindruck davon, ab welcher Problemgröße Parallelisierung überhaupt einen Vorteil bietet.
+    Vergleicht man die entstehenden Overheads durch die Thread-Erzeugung mit den sequenziellen Laufzeiten, ergibt sich ein guter Eindruck davon, ab welcher Problemgröße Parallelisierung überhaupt einen Vorteil bietet.
     Um beispielsweise 16 Threads effizient nutzen zu können, sollte eine Mindestlaufzeit von etwa 1\,ms erreicht werden. Dies ist bei Quicksort der Fall, wenn ein \texttt{int}-Array eine Mindestgröße von 20k aufweist.
     Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die \textit{Worst-Case}-Laufzeit von Quicksort nicht tolerierbar ist. Quicksort zeigt jedoch für typische, nicht degenerierte Listen im Durchschnitt eine bessere Laufzeit, wobei die \textit{Best-} und \textit{Worst-Case}-Laufzeiten stets berücksichtigt werden sollten.
     Vergleicht man die jeweils beste Variante beider Algorithmen, so zeigt sich, dass Quicksort nach der Parallelisierung im Durchschnittsfall weiterhin etwa doppelt so schnell ist wie Mergesort.
@@ -41,7 +41,7 @@
     Von den implementierten Varianten besitzt die Quicksort-Worker-Stealing-Variante die beste Laufzeit, unter der Bedingung, dass das zu sortierende \texttt{int}-Array mindestens 20k bzw. das \texttt{String}-Array mindestens 8k groß ist.
     Erst wenn die sehr unwahrscheinliche \textit{Worst-Case}-Laufzeit untolerierbar ist, stellt die tiefenbasierte Thread-Erzeugung von Mergesort die bessere Wahl dar.
     Diese bietet jedoch erst eine bessere Laufzeit, wenn das zu sortierende \texttt{int}-Array mindestens 8k bzw. das \texttt{String}-Array mindestens 4k groß ist.
-    Ist das zu sortierende Array kleiner, ist die serielle Variante zu bevorzugen, da diese in diesem Bereich schneller ist. Dies ist auf die anfangs genannten Overheads zurückzuführen.
+    Ist das zu sortierende Array kleiner, ist die sequenzielle Variante zu bevorzugen, da diese in diesem Bereich schneller ist. Dies ist auf die anfangs genannten Overheads zurückzuführen.
     Dabei ist zu beachten, dass sich diese Angaben zur verbesserten parallelen Laufzeit bei beiden Algorithmen auf die jeweilige 16-Thread-Variante beziehen.
 }
 
@@ -49,7 +49,7 @@
 % Kurze Zusammenfassung der Arbeit
 \newcommand{\Zusammenfassung}{
     Zusammenfassend lässt sich festhalten, dass die Quicksort-Worker-Stealing-Variante der tiefenbasierten Thread-Erzeugungsvariante von Mergesort in der Regel überlegen ist.
-    Allerdings ist darauf zu achten, erst dann von der seriellen Version auf die Parallelisierung umzuschalten, wenn die entsprechende Mindestlaufzeit bzw. Mindest-Array-Größe erreicht ist.
+    Allerdings ist darauf zu achten, erst dann von der sequenziellen Version auf die Parallelisierung umzuschalten, wenn die entsprechende Mindestlaufzeit bzw. Mindest-Array-Größe erreicht ist.
     Zudem zeigen die Ergebnisse, dass die theoretisch mögliche Laufzeitverbesserung nahezu erreicht wird.
     Weiterhin hat sich herausgestellt, dass Compiler-Optimierungen einen erheblichen Einfluss auf die Laufzeit haben, insbesondere im Zusammenhang mit Threading, auch wenn dieser Aspekt in dieser Arbeit nicht explizit untersucht wurde.
     Darüber hinaus besteht weiterhin Verbesserungspotenzial, wie im Ausblick dargestellt.
