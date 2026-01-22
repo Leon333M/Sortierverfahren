@@ -50,11 +50,11 @@
     Der \textbf{heuristisch betrachtete Average-Case} ergibt sich aus den rekursiven Selbstaufrufen.
     Die Herleitung sowie die Endgleichung für die serielle Laufzeit lauten:
     \begin{flalign*}
-        T(n)    & = q_1 + q_2 + n                                                                                                                               & \\
-        q_1     & = T\left( \frac{1 + \dots + n-1}{n-1} \right) = T\left( n \cdot \frac{n-1}{2} \cdot \frac{1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
-        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n                                                                                                     & \\
-        T(n)    & = n \cdot \log_2(n) + n                                                                                                                       & \\
-        O(T(n)) & = O(n \log n).                                                                                                                                &
+        T(n)    & = q_1 + q_2 + n                                                                                                                                 & \\
+        q_1     & = T\left( \frac{1 + \dots + (n-1)}{n-1} \right) = T\left( n \cdot \frac{n-1}{2} \cdot \frac{1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
+        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n                                                                                                       & \\
+        T(n)    & = n \cdot \log_2(n) + n                                                                                                                         & \\
+        O(T(n)) & = O(n \log n).                                                                                                                                  &
     \end{flalign*}
     Der \textbf{Worst-Case} tritt ein, wenn das gewählte Pivotelement in jedem Rekursionsschritt zu einer maximal asymmetrischen Partitionierung führt.
     Für die serielle Laufzeit gilt hierbei:
