@@ -18,6 +18,7 @@
 % % Theorie zu Quicksort und Merge Sort
 \newcommand{\SortieralgorithmenQuicksortMergesort}{
     Sowohl \textbf{Quicksort} als auch \textbf{Mergesort} basieren auf dem \emph{Teile-und-Herrsche}-Prinzip und sind rekursive Sortieralgorithmen. Dabei wird das zu sortierende Array wiederholt in kleinere Teilprobleme zerlegt, die unabhängig voneinander verarbeitet werden.
+    Die in dieser Arbeit genutzten mathematischen Beschreibungen und Formeln beziehen sich durchgehend auf die konkret implementierten Programmstrukturen und können daher von allgemeinen Standardformeln abweichen.
 
     \subsubsection{Mergesort}
     Das Grundprinzip von \textbf{Mergesort} besteht darin, zwei bereits sortierte \textbf{Teilarrays} zu einem sortierten Array zusammenzuführen. In dieser Arbeit wird das unsortierte Eingabearray rekursiv in zwei möglichst gleich große Hälften geteilt, bis jedes Teilarray nur noch aus einem einzelnen Element besteht. Da ein Array mit einem Element per Definition sortiert ist, beginnt anschließend der sogenannte \emph{Merge-Schritt}. In diesem Schritt werden jeweils zwei sortierte Teilarrays zu einem sortierten Gesamtergebnis zusammengeführt.
@@ -44,11 +45,11 @@
     Der \textbf{heuristisch betrachtete Average-Case} ergibt sich aus den rekursiven Selbstaufrufen.
     Die Herleitung sowie die Endgleichung für die serielle Laufzeit lauten:
     \begin{flalign*}
-        T(n)    & = q_1 + q_2 + n                                                                   & \\
-        q_1     & = T\left( \frac{1 + \dots + n-1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
-        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n                                         & \\
-        T(n)    & = n \cdot \log_2(n) + n                                                           & \\
-        O(T(n)) & = O(n \log n).                                                                    &
+        T(n)    & = q_1 + q_2 + n                                                                                                                               & \\
+        q_1     & = T\left( \frac{1 + \dots + n-1}{n-1} \right) = T\left( n \cdot \frac{n-1}{2} \cdot \frac{1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
+        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n                                                                                                     & \\
+        T(n)    & = n \cdot \log_2(n) + n                                                                                                                       & \\
+        O(T(n)) & = O(n \log n).                                                                                                                                &
     \end{flalign*}
     Der \textbf{Worst-Case} tritt ein, wenn das gewählte Pivotelement in jedem Rekursionsschritt zu einer maximal asymmetrischen Partitionierung führt.
     Für die serielle Laufzeit gilt hierbei:
