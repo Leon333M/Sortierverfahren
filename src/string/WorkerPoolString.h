@@ -50,11 +50,6 @@ public:
         }
     }
 
-    void waitUntilDone() {
-        std::unique_lock<std::mutex> lock(mutex);
-        cv.wait(lock, [this] { return activeTasks == 0; });
-    }
-
     void addTaskWaitUntilDone(const Task &task) {
         std::unique_lock<std::mutex> lock(mutex);
         taskQueue.push(task);
