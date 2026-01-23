@@ -26,6 +26,7 @@ private:
     static void quicksortStringP(std::string *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene);
     static void quicksortStringPM(std::string *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene);
     static void quicksortStringW(std::string *liste, const int links, const int rechts, const int workerThreads);
+    // aus Algorithmen und Datenstrukturen
     static void partitioniere(std::string *liste, const int links, const int rechts, int &ml, int &mr);
     static void vertausche(std::string *liste, const int a, const int b);
 };

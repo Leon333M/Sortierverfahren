@@ -26,6 +26,7 @@ private:
     static void quicksortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene);
     static void quicksortPM(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene);
     static void quicksortW(int *liste, const int links, const int rechts, const int workerThreads);
+    // aus Algorithmen und Datenstrukturen
     static void partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr);
     static void vertausche(int *liste, const int a, const int b);
 };

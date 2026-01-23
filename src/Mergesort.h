@@ -24,5 +24,6 @@ private:
     static void mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene);
     static void mergesortPM(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene);
     static void mergesortW(int *liste, int links, int rechts, int workerThreads);
+    // aus Algorithmen und Datenstrukturen
     static void mischen(int *liste, const int links, const int mitte, const int rechts, const int lange);
 };
