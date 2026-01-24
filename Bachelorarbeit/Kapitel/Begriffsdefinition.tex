@@ -5,17 +5,16 @@
 }
 
 \newcommand{\WorkStealingErklaerung}{
-    \emph{Work-Stealing} ist eine Scheduling-Strategie für parallele Programme, bei der jeder Worker-Thread seine eigenen Aufgaben verwaltet.
-    Wenn ein Thread keine Aufgaben mehr hat, stiehlt er Aufgaben von den Warteschlangen anderer Threads, die noch Aufgaben übrig haben.
-    Ziel ist es, eine gleichmäßige Auslastung aller Threads zu erreichen und Leerlaufzeiten zu vermeiden, insbesondere bei unbalancierten Aufgaben oder Datenstrukturen.
-    Diese Strategie reduziert Wartezeiten und verbessert die Performance bei dynamisch verteilten Aufgaben.
+    \emph{Work-Stealing} bezeichnet ein Verfahren, bei dem Aufgaben in prozessorspezifischen Warteschlangen verteilt werden und jeder Prozessor auf seiner lokalen Warteschlange operiert.
+    Dabei können Prozessoren Aufgaben aus anderen Warteschlangen stehlen, um eine gleichmäßige Lastverteilung (\emph{Load Balancing}) zu erhalten \cite{dynamicscheduling}.
 }
 
 \newcommand{\WorkStealingAehnlichErklaerung}{
     Der \emph{Work-Stealing-ähnliche Ansatz} in dieser Arbeit basiert auf einem Worker-Thread-Pool mit einer gemeinsamen Aufgabenwarteschlange.
-    Alle Worker-Threads ziehen Aufgaben aus dieser Queue und bearbeiten sie.
+    Alle Worker-Threads ziehen Aufgaben aus dieser Warteschlange und bearbeiten sie.
+    Dazu kann jeder Worker-Thread auch neue Aufgaben in die Warteschlange legen.
     Ist die Queue leer, warten die Threads auf neue Aufgaben.
-    Dadurch wird sichergestellt, dass alle Threads möglichst konstant ausgelastet sind, ohne dass für jeden Thread eine eigene Queue benötigt wird.
+    Dadurch wird sichergestellt, dass alle Threads möglichst konstant ausgelastet sind, ohne dass für jeden Thread eine eigene Warteschlange benötigt wird.
     Dies reduziert den Overhead durch Synchronisation und vermeidet Leerlaufzeiten, ähnlich wie beim klassischen Work-Stealing.
 }
 
