@@ -133,9 +133,6 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 \section{Thread-Modelle, Overheads und Skalierungsgrenzen}
 % Overheads, Threading, Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
 \ThreadModelleOverheadsUndSkalierungsgrenzen
-\section{Threading anhand des einfachen Beispiels Inkrement-Array erklärt}
-% Inkrement-Array
-\InkrementArray
 
 % ----------------------
 % 3. Methodik und Versuchsaufbau
@@ -161,6 +158,10 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 \chapter{Ergebnisse und Analyse}
 \paragraph{Hinweis zum Umfang der Darstellung}
 \HinweisZumUmfangDerDarstellung
+
+\section{Threading anhand des einfachen Beispiels Inkrement-Array erklärt}
+% Inkrement-Array
+\InkrementArray
 
 \section{Grundlegende Laufzeiten abhängig von der Arraygröße (sequenziell)}
 \subsection{Messziel} % Einleitung
@@ -208,12 +209,12 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 \subsection{Begriffsdefinition: Worker-Thread und Work-Stealing} % WorkerThread WorkStealing Work-Stealing-ähnliche Ansatz
 \WorkerthreadsBegriffsdefinition
 
-\begin{figure}[h]
-    \centering
-    \WorkerthreadsAbildung
-    \caption[Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue]{Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue: Threads entnehmen dynamisch Tasks aus der Queue und können neue Unteraufgaben auf diese legen.}
-    \label{fig:workstealing_dynamisch}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \WorkerthreadsAbildung
+%     \caption[Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue]{Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue: Threads entnehmen dynamisch Tasks aus der Queue und können neue Unteraufgaben auf diese legen.}
+%     \label{fig:workstealing_dynamisch}
+% \end{figure}
 
 \subsection{Messziel} % Einleitung
 \WorkerthreadsMessziel
