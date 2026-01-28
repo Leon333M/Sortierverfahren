@@ -87,9 +87,9 @@
 
     Die Formel für das \textbf{Amdahlsche Gesetz} lautet:
     \begin{flalign*}
-        p       & = \text{Thread-Anzahl} ,                             & \\
-        f       & = \text{serieller Code, wobei } 0 < f \le 1 ,        & \\
-        t ( p ) & = f \cdot t( 1 ) + ( 1 - f ) \cdot ( t ( 1 ) / p ) . &
+        p       & = \text{Thread-Anzahl} ,                                                                                                   & \\
+        f       & = \text{serieller Code, wobei } 0 < f \le 1 ,                                                                              & \\
+        t ( p ) & = \underbrace{f \cdot t(1)}_{\text{serielle Arbeit}} + \underbrace{(1-f) \cdot \frac{t(1)}{p}}_{\text{parallele Arbeit}} . &
     \end{flalign*}
     $f$ nahe 0 bedeutet,
     dass der Code fast die ganze Zeit alle Recheneinheiten beschäftigt hält.
