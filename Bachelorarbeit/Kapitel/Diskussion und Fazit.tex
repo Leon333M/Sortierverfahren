@@ -8,7 +8,7 @@
     Die Ergebnisse zeigen jedoch, dass die Abweichung von der theoretisch möglichen Laufzeit geringer ausfällt als aufgrund der anfangs genannten Overheads zu erwarten gewesen wäre.
     Vergleicht man die entstehenden Overheads durch die Thread-Erzeugung mit den sequenziellen Laufzeiten, ergibt sich ein guter Eindruck davon, ab welcher Problemgröße Parallelisierung überhaupt einen Vorteil bietet.
     Um beispielsweise 16 Threads effizient nutzen zu können, sollte eine Mindestlaufzeit von etwa 1\,ms erreicht werden. Dies ist bei Quicksort der Fall, wenn ein \texttt{int}-Array eine Mindestgröße von 20k aufweist.
-    Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die \textit{Worst-Case}-Laufzeit von Quicksort nicht tolerierbar ist. Quicksort zeigt jedoch für typische, nicht degenerierte Listen im Durchschnitt eine bessere Laufzeit, wobei die \textit{Best-} und \textit{Worst-Case}-Laufzeiten stets berücksichtigt werden sollten.
+    Zusammenfassend lässt sich festhalten, dass Mergesort insbesondere dann die bessere Wahl ist, wenn die \textit{Worst-Case}-Laufzeit von Quicksort nicht tolerierbar ist. Quicksort zeigt jedoch für typische, nicht gezielt konstruierte Listen im Durchschnitt eine bessere Laufzeit, wobei die \textit{Best-} und \textit{Worst-Case}-Laufzeiten stets berücksichtigt werden sollten.
     Vergleicht man die jeweils beste Variante beider Algorithmen, so zeigt sich, dass Quicksort nach der Parallelisierung im Durchschnittsfall weiterhin etwa doppelt so schnell ist wie Mergesort.
 }
 
@@ -22,6 +22,10 @@
     Die Anzahl der zufällig hinzugewählten Elemente kann dabei abhängig von der Listengröße gewählt werden.
     Diese Methoden führen dazu, dass die Worst-Case-Laufzeit nur noch eine Frage der Wahrscheinlichkeit ist.
     Da diese Wahrscheinlichkeit mit zunehmender Anzahl zufällig bestimmter Pivot-Elemente weiter sinkt, ist es in der Praxis extrem unwahrscheinlich, dass der Worst-Case eintritt.
+    \newline.
+    Das pefkete Pivo elment ist der Median der zu partionirenden lsite.
+    Alerding kan man den medin nur betimnen indem man die Ksite sorteirt,
+    weswegen es sinlos ist es perfkt zu bestimen.
     \newline
     Zudem existieren Varianten, bei denen sowohl der Partitionierungs- als auch der Merge-Schritt parallelisiert sind. Diese Ansätze lassen sich mit rekursiv parallelisierten Varianten kombinieren, um eine möglichst gleichmäßige Auslastung aller Threads zu erreichen, was zu weiteren Laufzeitverbesserungen führen kann.
     \newline
