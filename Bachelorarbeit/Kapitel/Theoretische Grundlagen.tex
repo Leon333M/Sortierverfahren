@@ -84,6 +84,13 @@
     In der Praxis führt Parallelisierung daher nicht zwangsläufig zu der theoretisch erwarteten Laufzeitverbesserung, insbesondere bei steigender Anzahl von Threads.
     \newline
     Einfach ausgedrückt bedeutet dies, dass Code mit sequenziellen Abhängigkeiten auch bei mehreren Threads nicht schneller ausgeführt wird. Daher sollte nur der Teil des Codes parallelisiert werden, der keine solchen Abhängigkeiten enthält.
+    \newline
+    Die fomel für das Amdahlschen Gesetz lautet
+    \begin{flalign*}
+        p       & = \text{Thread-Anzahl},                             & \\
+        f       & = \text{seriler Code wobei } 0<f<=1,                & \\
+        t ( p ) & = f \cdot t( 1 ) + ( 1 - f ) \cdot ( t ( 1 ) / p ). &
+    \end{flalign*}
 }
 
 % \subsection{Thread-Modelle, Overheads und Skalierungsgrenzen}
