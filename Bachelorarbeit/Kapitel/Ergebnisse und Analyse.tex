@@ -109,22 +109,29 @@
 
 % \subsection{Analyse und Interpretation}
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseAnalyse}{
-    In den ersten zwei Diagrammen (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA} Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB}) ist die Veränderung der Laufzeit zu sehen, wenn die Listengröße fünfmal verdoppelt wird und bei \(2.5 \cdot 10^7\) startet.
+    In den ersten zwei Diagrammen
+    (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}
+    ~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB})
+    ist die Veränderung der Laufzeit zu sehen, wenn die Listengröße fünfmal verdoppelt wird und bei \(2.5 \cdot 10^7\) startet.
     Beim zweiten Diagramm (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB}) sind die Achsen logarithmisch dargestellt, da dies die Darstellung und den Vergleich der Laufzeiten erleichtert.
     \newline
     Unter diesen beiden Diagrammen befindet sich ein drittes Diagramm (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC}), in dem die gemessenen Laufzeiten ebenfalls logarithmisch dargestellt sind und der Größenbereich von \(1\) bis \(800\,000\) betrachtet wird.
     \newline
-    Anhand dieser Diagramme ist deutlich erkennbar, dass sowohl Mergesort als auch Quicksort tatsächlich eine Laufzeit von
+    Anhand dieser Diagramme
+    (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB}
+    ~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC})
+    ist deutlich erkennbar, dass sowohl Mergesort als auch Quicksort tatsächlich eine Laufzeit von
     \(O(n \log n)\) besitzen.
-    Da die graphen in den logrtismchen digram Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC})
-    Paleal zum eingezeichetnetn \(n \cdot log_2(n)\) graphen verlaufen.
+    Da die Graphen in dem logarithmischen Diagrammen
+    (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB} ~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC})
+    parallel zum eingezeichneten \(n \cdot \log_2(n)\)-Graphen verlaufen.
     \newline
     Zudem ist erkennbar, dass Mergesort etwa die doppelte Laufzeit von Quicksort benötigt und dass Quicksort näherungsweise ein Zeitverhalten von
     \(2 \cdot n \log_2(n)\) aufweist.
     \newline
     Da eine lineare Laufzeit auf einen Blick leichter zu interpretieren ist, wurde zusätzlich die Funktion \(32n\) eingezeichnet.
     Anhand dieser Funktion ist erkennbar, dass sie im untersuchten Zahlenbereich von \(1\) bis \(4 \cdot 10^8\) teilweise sogar eine genauere Abschätzung liefert als \(n \log_2(n)\).
-    Daraus folgt, dass von einer gerundeten Mindestlaufzeit von \(32n\) ausgegangen werden kann.
+    Daraus folgt, dass von einer gerundeten durchschnittlichen Mindestlaufzeit von \(32n\) ausgegangen werden kann.
     \newline
     Abschließend ist anzumerken, dass alle Messungen mit einer Laufzeit von kleiner oder gleich \(10^4\,\text{ns}\) aufgrund der Messtoleranz nur eine eingeschränkte Aussagekraft besitzen.
     Zwar kann mit \texttt{chrono} auf eine Auflösung von \(100\,\text{ns}\) genau gemessen werden, dennoch verbleiben natürliche Schwankungen, die insbesondere im Bereich von \(10^4\,\text{ns}\) einen erheblichen Einfluss auf die Messergebnisse haben.
@@ -135,6 +142,8 @@
 \newcommand{\EinflussDesListentypsMessziel}{
     Der Begriff \emph{Listentyp} beschreibt in dieser Arbeit die Anfangsanordnung der Elemente in der zu sortierenden Liste.
     Untersucht werden konkret die Listentypen \emph{zufällig}, \emph{sortiert}, \emph{invertiert sortiert}, \emph{fast sortiert} sowie \emph{dupliziert}.
+    Ein Beispiel für eine duplizierte Liste ist eine Liste der Größe 100, die aus 50 Einsen und 50 Zweien besteht.
+    \newline
     Der Listentyp ist relevant, da Quicksort sowohl einen Best-Case als auch einen Worst-Case aufweist.
     Diese hängen vom Inhalt der zu sortierenden Liste und somit vom jeweiligen Listentyp ab.
     Gleichzeitig dient diese Messung der Vollständigkeit, sodass die Laufzeiten auch mit anderen,
@@ -181,7 +190,7 @@
 \newcommand{\EinflussDesListentypsAnalyse}{
     Die gemessenen Daten zeigen deutlich, dass die reale Laufzeit im Best-Case unterhalb der Referenzfunktion \(n \log_2(n)\) liegt, was auf einen vorteilhaften konstanten Faktor von ca. 0,25 zurückzuführen ist.
     Dies ist darauf zurückzuführen, dass die Messungen in der Release-Version mit aktivierten Compiler-Optimierungen durchgeführt wurden.
-    In der Debug-Version (ohne Compiler-Optimierungen) wurde bei einem sortierten Array der Größe von 400~Millionen Elementen hingegen eine Laufzeit von 14~s für Quicksort gemessen, welche oberhalb der berechneten Werte von \(n \log_2(n)\) liegt.
+    In der Debug-Version (ohne Compiler-Optimierungen) wurde bei einem sortierten Array der Größe von 400~Millionen Elementen hingegen eine Laufzeit von 14~s für Quicksort gemessen, welche oberhalb der berechneten Werte von \(1 \cdot n \log_2(n)\) liegt.
     Die Messungen zeigen außerdem, dass sortierte, invertiert sortierte sowie fast sortierte Arrays nahezu identische Laufzeiten aufweisen.
     Die entsprechenden Kurven würden nahezu übereinanderliegen, weshalb zugunsten der Übersichtlichkeit auf eine separate grafische Darstellung
     dieser Listentypen verzichtet wurde.
