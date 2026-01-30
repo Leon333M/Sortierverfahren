@@ -35,3 +35,42 @@ void Quicksort::quicksortP(int *liste, const int links, const int rechts, const 
     }
 };
 \end{lstlisting}
+\begin{lstlisting}[language=C++, caption={Worker-Thread-Variante Mergesort}, label={lst:mergesortW}]
+void Mergesort::mergesortW(int *liste, int links, int rechts, int workerThreads) {
+    MergeWorkerPool pool(workerThreads - 1);
+    pool.taskHandler = [&](int *liste, int links, int rechts, MergeWorkerPool &pool) {
+        if (links < rechts) {
+            int lange = rechts - links + 1;
+            if (lange < Sortierverfaren::mindestLange) {
+                mergesort(liste, links, rechts);
+            } else {
+                int mitte = links + ((rechts - links) / 2);
+                auto leftHandle = pool.addTaskSmart({liste, links, mitte});
+                pool.taskHandler(liste, mitte + 1, rechts, pool);
+                leftHandle.wait();
+                mischen(liste, links, mitte, rechts, lange);
+            }
+        }
+    };
+    // Starttask
+    pool.taskHandler(liste, links, rechts, pool);
+}
+\end{lstlisting}
+\begin{lstlisting}[language=C++, caption={Worker-Thread-Variante Quicksort}, label={lst:quicksortW}]
+void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads) {
+    WorkerPool pool(workerThreads);
+    pool.taskHandler = [](int *liste, int links, int rechts, WorkerPool &pool) {
+        if (links < rechts) {
+            if (rechts - links < Sortierverfaren::mindestLange) {
+                quicksort(liste, links, rechts);
+            } else {
+                int ml, mr;
+                Quicksort::partitioniere(liste, links, rechts, ml, mr);
+                pool.addTask({liste, links, ml});
+                pool.taskHandler(liste, mr, rechts, pool);
+            }
+        }
+    };
+    pool.addTaskWaitUntilDone({liste, links, rechts});
+}
+\end{lstlisting}
