@@ -81,7 +81,7 @@
 
 % \subsection{Erwartung}
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseErwartung}{
-    Da die durchschnittliche Laufzeit \(O(n \log n)\) beträgt, wird eine logarithmische Laufzeiterhöhung bei wachsender Arraygröße erwartet.
+    Da die durchschnittliche Laufzeit \(O(n \log n)\) beträgt, wird auch diese bei wachsender Arraygröße erwartet.
 }
 
 % \subsection{Diagramm}
@@ -109,15 +109,17 @@
 
 % \subsection{Analyse und Interpretation}
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseAnalyse}{
-    In den ersten zwei Diagrammen ist die Veränderung der Laufzeit zu sehen, wenn die Listengröße fünfmal verdoppelt wird und bei \(2.5 \cdot 10^7\) startet.
-    Beim zweiten Diagramm sind die Achsen logarithmisch dargestellt, da dies die Darstellung und den Vergleich der Laufzeiten erleichtert.
+    In den ersten zwei Diagrammen (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA} Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB}) ist die Veränderung der Laufzeit zu sehen, wenn die Listengröße fünfmal verdoppelt wird und bei \(2.5 \cdot 10^7\) startet.
+    Beim zweiten Diagramm (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB}) sind die Achsen logarithmisch dargestellt, da dies die Darstellung und den Vergleich der Laufzeiten erleichtert.
     \newline
-    Unter diesen beiden Diagrammen befindet sich ein drittes Diagramm, in dem die gemessenen Laufzeiten ebenfalls logarithmisch dargestellt sind und der Größenbereich von \(1\) bis \(800\,000\) betrachtet wird.
+    Unter diesen beiden Diagrammen befindet sich ein drittes Diagramm (Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC}), in dem die gemessenen Laufzeiten ebenfalls logarithmisch dargestellt sind und der Größenbereich von \(1\) bis \(800\,000\) betrachtet wird.
     \newline
     Anhand dieser Diagramme ist deutlich erkennbar, dass sowohl Mergesort als auch Quicksort tatsächlich eine Laufzeit von
     \(O(n \log n)\) besitzen.
+    Da die graphen in den logrtismchen digram Abbildung~\ref{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC})
+    Paleal zum eingezeichetnetn \(n \cdot log_2(n)\) graphen verlaufen.
     \newline
-    Zudem ist erkennbar, dass Mergesort etwa doppelt so lange benötigt wie Quicksort und dass Quicksort näherungsweise eine Laufzeit von
+    Zudem ist erkennbar, dass Mergesort etwa die doppelte Laufzeit von Quicksort benötigt und dass Quicksort näherungsweise ein Zeitverhalten von
     \(2 \cdot n \log_2(n)\) aufweist.
     \newline
     Da eine lineare Laufzeit auf einen Blick leichter zu interpretieren ist, wurde zusätzlich die Funktion \(32n\) eingezeichnet.
