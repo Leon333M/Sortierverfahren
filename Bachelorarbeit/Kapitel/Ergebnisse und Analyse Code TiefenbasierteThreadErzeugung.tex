@@ -1,0 +1,37 @@
+\begin{lstlisting}[language=C++, caption={Tiefenbasierte Thread-Erzeugung Mergesort}, label={lst:mergesortP}]
+void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
+    if (aktuelleEbene < neueThreadsBisEbene) {
+        int lange = rechts - links + 1;
+        if (lange > 1) {
+            int mitte = links + ((rechts - links) / 2);
+            // mergesort(liste, links, mitte);
+            std::thread thread(
+                static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+                liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene);
+            // mergesort(liste, mitte + 1, rechts);
+            mergesortP(liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+            thread.join();
+            mischen(liste, links, mitte, rechts, lange);
+        }
+    } else {
+        mergesort(liste, links, rechts);
+    }
+};
+\end{lstlisting}
+\begin{lstlisting}[language=C++, caption={Tiefenbasierte Thread-Erzeugung Quicksort}, label={lst:quicksortP}]
+void Quicksort::quicksortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
+    if (aktuelleEbene < neueThreadsBisEbene) {
+        if (links < rechts) {
+            int ml, mr;
+            partitioniere(liste, links, rechts, ml, mr);
+            // quicksort(liste, links, ml);
+            std::thread thread(static_cast<void (*)(int *, const int, const int, const int, const int)>(&Quicksort::quicksortP), liste, links, ml, aktuelleEbene + 1, neueThreadsBisEbene);
+            // quicksort(liste, mr, rechts);
+            quicksortP(liste, mr, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+            thread.join();
+            }
+    } else {
+        quicksort(liste, links, rechts);
+    }
+};
+\end{lstlisting}
