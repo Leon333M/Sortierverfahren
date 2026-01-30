@@ -258,7 +258,8 @@
     Bemerkenswert ist, dass die 16-Thread-Variante von Quicksort nur rund 85~\% der Laufzeit von Mergesort erreicht, wodurch Mergesort insgesamt überlegen ist.
     Außerdem wird deutlich, dass Performance-Vorteile erst ab einer Array-Größe von etwa 20.000 Elementen auftreten, was auf den Overhead der Thread-Erzeugung zurückzuführen ist.
     \newline
-    Die starken Laufzeitschwankungen von Quicksort bei verschiedenen Listen sind auf die ungleiche Lastverteilung auf die Threads zurückzuführen.
+    Die starken Laufzeitschwankungen von Quicksort bei verschiedenen Listen sind auf die ungleiche Lastverteilung auf die Threads zurückzuführen
+    , die eine direkte Konsequenz der tiefenbasierten Parallelisierungs-Strategie bei unbalancierten Bäumen ist.
     Bei dieser Quicksort-Variante wird die Thread-Last meist ungleich verteilt, was dazu führt, dass die genutzten Threads über die Laufzeit hinweg immer weniger werden und somit die gesamte Hardware nicht mehr vollständig ausgenutzt wird.
     Dies ist auch deutlich im Strong Scaling zu erkennen. Dort zeigt sich, dass Quicksort bei dieser Liste weiterhin an Performance gewinnt, obwohl die Threadanzahl die Anzahl der logischen Prozessoren übersteigt. Während bei Mergesort zu beobachten ist, dass die gemessene Laufzeitverbesserung nur geringfügig schlechter ausfällt als die theoretisch zu erwartende.
     \newline
