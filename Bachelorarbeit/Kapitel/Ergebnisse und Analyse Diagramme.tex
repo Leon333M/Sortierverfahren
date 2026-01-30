@@ -1179,7 +1179,8 @@
             (8, 989385619 * \faktor)
             (16, 1389385619 * \faktor)
         };
-    % \addlegendentry{Theoretische Laufzeit ($\times \text{\faktor}$)}
+    % \addlegendentry{Theoretische Laufzeit ($\times \text{#1}$)}
+    \addlegendentry{$ #1 \cdot T(n,p) $}
 }
 
 \newcommand{\TheorieWeakScalingB}[1]{%
@@ -1585,9 +1586,9 @@
                 grid style=dashed,
                 % legend pos=south east,
                 legend style={
-                        at={(0.5,-0.3)},
+                        at={(0.5,-0.2)},
                         anchor=north,
-                        legend columns=3
+                        legend columns=2
                     },
                 xtick=data,
                 % xtick={1},
@@ -1722,9 +1723,9 @@
                 grid style=dashed,
                 % legend pos=south east,
                 legend style={
-                        at={(0.5,-0.3)},
+                        at={(0.5,-0.2)},
                         anchor=north,
-                        legend columns=3
+                        legend columns=2
                     },
                 xtick=data,
                 % xtick={1},
