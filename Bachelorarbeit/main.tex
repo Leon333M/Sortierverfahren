@@ -148,6 +148,15 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 % Sequenziell, parallel, Workerthreads, neue Threads
 \label{sec:implementierung}
 \Implementierungsvarianten
+
+\section{Begriffsdefinition: Worker-Thread, Work-Stealing und Work-Stealing-ähnliche Ansatz} % WorkerThread WorkStealing Work-Stealing-ähnliche Ansatz
+\WorkerthreadsBegriffsdefinition
+\begin{figure}[h]
+    \centering
+    \WorkerthreadsAbildung
+    \caption[Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue]{Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue: Threads entnehmen dynamisch Tasks aus der Queue und können neue Unteraufgaben auf diese legen.}
+    \label{fig:workstealing_dynamisch}
+\end{figure}
 \section{Parallele Implementierungsvarianten Code}
 \input{Kapitel/Implementierungsvarianten Code.tex}
 
@@ -210,16 +219,6 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 
 %\newpage
 \section{Workerthreads}
-\subsection{Begriffsdefinition: Worker-Thread und Work-Stealing} % WorkerThread WorkStealing Work-Stealing-ähnliche Ansatz
-\WorkerthreadsBegriffsdefinition
-
-% \begin{figure}[h]
-%     \centering
-%     \WorkerthreadsAbildung
-%     \caption[Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue]{Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue: Threads entnehmen dynamisch Tasks aus der Queue und können neue Unteraufgaben auf diese legen.}
-%     \label{fig:workstealing_dynamisch}
-% \end{figure}
-
 \subsection{Messziel} % Einleitung
 \WorkerthreadsMessziel
 \subsection{Erwartung}
