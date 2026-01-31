@@ -355,13 +355,14 @@
 % \subsection{Messziel} % Einleitung
 \newcommand{\EinflussDesDatentypsMessziel}{
     Hier wird die Zeit gemessen, die zum Sortieren von Strings benötigt wird, da dies auch ein realistischer Anwendungsfall ist.
+    Es werden die Strategien mit der besten Laufzeit miteinander verglichen.
 }
 
 % \subsection{Erwartung}
 \newcommand{\EinflussDesDatentypsErwartung}{
     Es wird erwartet, dass das Sortieren länger dauert als bei \texttt{int}, da ein String wesentlich aufwendiger zu vergleichen ist. Dies liegt daran, dass er aus mehreren Zeichen (\texttt{char}) besteht und entsprechend mehr Speicher benötigt.
     Folglich sollte der durch die Threads entstehende Overhead einen geringeren Einfluss auf die gemessene Endzeit haben.
-    Dies sollte wiederum dazu führen, dass die Graphen im Strong Scaling und Weak Scaling besser abschneiden.
+    Dies sollte dazu führen, dass die Graphen im Strong Scaling und Weak Scaling weniger von den theoretisch erwarteten Laufzeitverbesserungen abweichen.
 }
 
 % \subsection{Diagramm}
@@ -392,5 +393,6 @@
 \newcommand{\EinflussDesDatentypsAnalyse}{
     Bei den Graphen zu Strong Scaling (Abbildung~\ref{fig:EinflussDesDatentypsDiagrammB}) und Weak Scaling (Abbildung~\ref{fig:EinflussDesDatentypsDiagrammC}) ist zu erkennen, dass Mergesort hier schlechter abschneidet als bei Integer-Daten, während Quicksort weiterhin nur minimal schlechter als die theoretische Laufzeit ist.
     Dass Mergesort schlechter abschneidet, liegt vermutlich daran, dass der Aufwand zum Kopieren der Teillisten bei Strings größer ist als bei Integern.
-    Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde. Dies liegt an dem Code zur Listengenerierung, der für sortierte Listen im Durchschnitt längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
+    Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde.
+    Vereinfacht ausgedrückt liegt dies am Code zur Listengenerierung, der für sortierte Listen im Durchschnitt längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
 }
