@@ -282,11 +282,16 @@
     Zusätzlich erfolgt eine Messung, welche die Grund-Overheads der Threads näherungsweise repräsentieren soll (Abbildung~\ref{fig:initZeitenDiagrammA}).
     Da in unserem Fall die Worker-Threads nach dem Sortieren nicht wiederverwendet werden,
     ist diese Messung nicht vollständig fair.
-    In der Praxis würde man die Threads weiterverwenden, wodurch dieser Overhead geringer ausfallen würde, aber ein gemeinsamer Thread-Pool für verschiedene Algorithmen würde den Rahmen dieser Arbeit sprengen.
+    In der Praxis würde man die Threads weiterverwenden, wodurch dieser Overhead geringer ausfallen würde,
+    da Worker-Threads nur einmalig am Anfang erstellt werden würden
+    und somit die Thread-Initialisierungs-Overheads bei jedem Aufruf des Sortierverfahrens wegfallen würden,
+    aber ein gemeinsamer Thread-Pool für verschiedene Algorithmen würde den Rahmen dieser Arbeit sprengen.
     \newline
     Bei der Worker-Thread-Variante wurde außerdem eine Mindestgröße von 4.000 Elementen für neue Threads eingeführt.
     Dies geschieht aus dem schlichten Grund, dass sich andernfalls kein Performance-Vorteil durch zusätzliche Threads ergibt,
     da der entstehende Overhead sonst zu groß ist.
+    \newline
+    Die Implementierung steht im Abschnitt~\ref{sec:implementierung}.
 }
 
 % \subsection{Erwartung}
