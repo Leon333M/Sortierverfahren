@@ -214,9 +214,11 @@
 
 % \subsection{Erwartung}
 \newcommand{\TiefenbasierteThreadErzeugungErwartung}{
-    Es wird ein theoretisch linearer Performance-Zuwachs erwartet, solange kein Hardware-Limit erreicht wird.
+    Es wird der theoretisch Performance-Zuwachs \(T(n,p)\) erwartet, solange kein Hardware-Limit erreicht wird.
+    Dafür skalieren wir die \(T(n,p)\)-Formel um einen Faktor, sodass sie mit der gemessenen Grundlaufzeit übereinstimmt (\(x \cdot T(n,1)\)).
+    Der Faktor wird auf eine Stelle nach dem Komma gerundet und ergibt für Quicksort \(x = 2,5\) sowie für Mergesort \(x = 5\).
     Zudem wird in dieser Variante erwartet, dass Mergesort besser skaliert als Quicksort,
-    da Quicksort die Liste nicht exakt in der Mitte teilt, sondern dies nur theoretisch im Durchschnitt tut.
+    da Quicksort die Liste nicht exakt in der Mitte teilt, sondern dies nur theoretisch im heuristischen Durchschnitt tut.
     Der Best Case von Quicksort sollte jedoch weiterhin wesentlich besser sein als der von Mergesort,
     da Quicksort in diesem Fall die Liste immer perfekt in der Mitte teilt.
     Außerdem wird erwartet, dass sich die Laufzeit deutlich verschlechtert, wenn mehr Threads genutzt werden als logische Prozessoren vorhanden sind,
@@ -302,8 +304,10 @@
 
 % \subsection{Erwartung}
 \newcommand{\WorkerthreadsErwartung}{
+    Auch hier wier die \(T(n,p)\)-Formel zum Vorhersagen der Performanceverbesserung genutz, genau wie bei der tiefenbasierten Thread-Erzeugung.
+    \newline
     Es wird erwartet, dass Mergesort in der Worker-Thread-Variante schlechtere Ergebnisse erzielt als bei der tiefenbasierten Thread-Erzeugung.
-    Dies ist darauf zurückzuführen, dass sich die Arbeit bei Mergesort in dieser Variante nur selten gleichmäßig auf die verfügbaren Threads verteilt.
+    Dies ist darauf zurückzuführen, dass sich die Arbeit bei Mergesort in dieser Variante nicht mehr perfekt auf alle Threads verteilt und das Wait nicht wegoptimiert wurde.
     \newline
     Ebenso wird erwartet, dass der Best-Case von Quicksort im Vergleich zur tiefenbasierten Variante schlechter ausfällt, da auch hier keine optimale Arbeitsaufteilung erreicht wird.
     Für den Average-Case von Quicksort wird hingegen eine bessere Performance erwartet, da der Work-Stealing-Ansatz eine gleichmäßigere Lastverteilung über mehrere Threads ermöglicht.
