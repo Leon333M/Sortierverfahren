@@ -41,7 +41,7 @@
                     (15,2097152)
                     (16,2097152)
                 };
-            \addlegendentry{Messwerte}
+            \addlegendentry{Inkrement-Array}
         \end{axis}
     \end{tikzpicture}%
 }
@@ -82,7 +82,7 @@
                     (15,878800)
                     (16,910300)
                 };
-            \addlegendentry{Messwerte}
+            \addlegendentry{Inkrement-Array}
         \end{axis}
     \end{tikzpicture}%
 }
@@ -123,7 +123,7 @@
                     (15,755257400)
                     (16,751066600)
                 };
-            \addlegendentry{Messwerte}
+            \addlegendentry{Inkrement-Array}
         \end{axis}
     \end{tikzpicture}%
 }
@@ -164,7 +164,7 @@
                     (15,415000)
                     (16,471400)
                 };
-            \addlegendentry{Messwerte}
+            \addlegendentry{Inkrement-Array}
         \end{axis}
     \end{tikzpicture}%
 }
@@ -194,7 +194,7 @@
                     (8,6358100)
                     (16,12003500)
                 };
-            \addlegendentry{Messwerte}
+            \addlegendentry{Inkrement-Array}
         \end{axis}
     \end{tikzpicture}%
 }
@@ -205,7 +205,7 @@
                 title style={yshift=1.5ex},
                 width=1\textwidth,
                 height=0.6\textwidth,
-                xlabel={Arraygröße},
+                xlabel={Arraygröße (lineare Skalierung)},
                 ylabel={Dauer in ns},
                 title={Arraygröße verdoppeln (16 Threads)},
                 xmin=2^21, xmax=1 * 2^25,
@@ -226,15 +226,23 @@
                     (16777216,6213600)
                     (33554432,13184900)
                 };
-            \addlegendentry{Messwerte}
+            \addlegendentry{Inkrement-Array}
         \end{axis}
     \end{tikzpicture}%
 }
 
 \newcommand{\InkrementArrayText}{
     Anhand dieses einfachen Beispiels soll gezeigt werden, was Parallelisierung in der Praxis bewirkt und dass die Praxis nicht immer mit den Erwartungen übereinstimmt. Zudem stellt dieses Beispiel einen guten Einstieg in das Thema Parallelisierung dar.
-    An den Diagrammen (Abbildung~\ref{fig:InkrementArrayDiagramm}) ist deutlich zu erkennen, dass dieses Beispiel nicht linear mit der Thread-Anzahl skaliert, obwohl dies rein theoretisch zu erwarten wäre. Dies liegt wahrscheinlich an der Speicherlatenz als limitierendem Faktor. Dies würde erklären, warum ab einem gewissen Punkt mehr ausgelastete Kerne keinen weiteren Performancegewinn mehr bringen. Zudem ist zu erkennen, dass das Array mindestens $2^{20}$ groß sein muss, damit eine parallele Ausführung einen mindestens zweifachen Geschwindigkeitsvorteil gegenüber der sequenziellen Laufzeit erreicht.
-    Zusätzlich ist anzumerken, dass die sequenzielle Laufzeit dieser Funktion normalerweise unter 100~ns liegt. Dies ist auf Compiler-Optimierungen zurückzuführen. Daher wurde diese Funktion mit \texttt{volatile} ausgeführt, was verhindert, dass der Compiler die eigentliche Aufgabe herausoptimiert und sie somit messbar bleibt. Das \texttt{volatile}-Schlüsselwort sorgt dafür, dass bei jedem Lesevorgang die Daten aus dem RAM geladen werden müssen. Daher ist es auch das wahrscheinlichste Szenario, dass dieses Beispiel durch das Datenratenlimit begrenzt ist. Zusätzlich ist die eigentliche Aufgabe trivial für die CPU und lastet diese daher nicht vollständig aus.
+    An den Diagrammen
+    (Abbildung~\ref{fig:InkrementArrayDiagrammStrongScalingA}, ~\ref{fig:InkrementArrayDiagrammStrongScalingB})
+    ist deutlich zu erkennen, dass dieses Beispiel nicht linear mit der Thread-Anzahl skaliert, obwohl dies rein theoretisch zu erwarten wäre.
+    Dies liegt wahrscheinlich an der Speicherlatenz als limitierendem Faktor.
+    Dies würde erklären, warum ab einem gewissen Punkt mehr ausgelastete Kerne keinen weiteren Performancegewinn mehr bringen. Zudem ist zu erkennen (Abbildung~\ref{fig:InkrementArrayDiagrammGeschwindigkeitssteigerung}), dass das Array mindestens $2^{20}$ groß sein muss, damit eine parallele Ausführung einen mindestens zweifachen Geschwindigkeitsvorteil gegenüber der sequenziellen Laufzeit erreicht.
+    Zusätzlich ist anzumerken, dass die sequenzielle Laufzeit dieser Funktion normalerweise unter 100~ns liegt.
+    Dies ist auf Compiler-Optimierungen zurückzuführen.
+    Daher wurde diese Funktion mit \texttt{volatile} ausgeführt, was verhindert, dass der Compiler die eigentliche Aufgabe herausoptimiert und sie somit messbar bleibt.
+    Das \texttt{volatile}-Schlüsselwort sorgt dafür, dass bei jedem Lesevorgang die Daten aus dem RAM geladen werden müssen. Daher ist es auch das wahrscheinlichste Szenario, dass dieses Beispiel durch das Datenratenlimit und Speicherlatenz begrenzt ist.
+    Zusätzlich ist die eigentliche Aufgabe trivial für die CPU und lastet diese daher nicht vollständig aus.
     Aufgrund dieses künstlich erzeugten Szenarios durch die bewusste Beeinflussung des Laufzeitverhaltens mit \texttt{volatile} wird auf eine detaillierte Einzelanalyse der Diagramme verzichtet.
 }
 
@@ -244,47 +252,47 @@
     % Inkrement-Array
     \InkrementArrayText
     \newline
-    %\resizebox{\textwidth}{8cm}{%
-    \begin{minipage}{\textwidth}
-        \centering
-        % Zeile 1
-        \begin{minipage}{0.48\textwidth}
-            \centering \InkrementArrayDiagrammA
-            \captionof{figure}[Inkrement-Array ($2\times$ Geschwindigkeit)]{
-                Zeigt, ab welcher Arraygröße zum ersten Mal die halbe Laufzeit gegenüber der sequentiellen Laufzeit erreicht wird.
-            }
-        \end{minipage}\hfill %
-        \begin{minipage}{0.48\textwidth}
-            \centering \InkrementArrayDiagrammD
-            \captionof{figure}[Inkrement-Array (Laufzeit bei Arraygröße 16)]{
-                Zeigt die Overheads, die durch Threads entstehen.
-            }
-        \end{minipage}
-        \par\vspace{1em}
+    \resizebox{\textwidth}{10cm}{%
+        \begin{minipage}{\textwidth}
+            \centering
+            % Zeile 1
+            \begin{minipage}{0.48\textwidth}
+                \centering \InkrementArrayDiagrammA
+                \captionof{figure}[Inkrement-Array ($2\times$ Geschwindigkeit)]{
+                    Zeigt, ab welcher Arraygröße zum ersten Mal die halbe Laufzeit gegenüber der sequentiellen Laufzeit erreicht wird.
+                }
+                \label{fig:InkrementArrayDiagrammGeschwindigkeitssteigerung}
+            \end{minipage}\hfill %
+            \begin{minipage}{0.48\textwidth}
+                \centering \InkrementArrayDiagrammD
+                \captionof{figure}[Inkrement-Array (Laufzeit bei Arraygröße 16)]{
+                    Zeigt die Overheads, die durch Threads entstehen.
+                }
+            \end{minipage}
+            \par\vspace{1em}
 
-        % Zeile 2
-        \begin{minipage}{0.5\textwidth}
-            \centering \InkrementArrayDiagrammB
-            \captionof{figure}[Inkrement-Array (Laufzeit bei Arraygröße $2^{21}$)]{}
-        \end{minipage}%
-        \begin{minipage}{0.5\textwidth}
-            \centering \InkrementArrayDiagrammC
-            \captionof{figure}[Inkrement-Array (Laufzeit bei Arraygröße $2^{31}$)]{}
-        \end{minipage}
-        \par\vspace{1em}
+            % Zeile 2
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammB
+                \captionof{figure}[Inkrement-Array (Strong Scaling: Laufzeit bei Arraygröße $2^{21}$)]{}
+                \label{fig:InkrementArrayDiagrammStrongScalingA}
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammC
+                \captionof{figure}[Inkrement-Array (Strong Scaling: Laufzeit bei Arraygröße $2^{31}$)]{}
+                \label{fig:InkrementArrayDiagrammStrongScalingB}
+            \end{minipage}
+            \par\vspace{1em}
 
-        % Zeile 3
-        \begin{minipage}{0.5\textwidth}
-            \centering \InkrementArrayDiagrammE
-            \captionof{figure}[Inkrement-Array (Weak Scaling {\small (Start-Größe $2^{21}$)})]{}
-        \end{minipage}%
-        \begin{minipage}{0.5\textwidth}
-            \centering \InkrementArrayDiagrammF
-            \captionof{figure}[Inkrement-Array (Arraygröße verdoppeln (16 Threads))]{}
+            % Zeile 3
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammE
+                \captionof{figure}[Inkrement-Array (Weak Scaling {\small (Start-Größe $2^{21}$)})]{}
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammF
+                \captionof{figure}[Inkrement-Array (Arraygröße verdoppeln (16 Threads))]{}
+            \end{minipage}
         \end{minipage}
-
-        \captionof{figure}[Laufzeitanalyse Inkrement-Array]{Laufzeitanalyse Inkrement-Array}
-        \label{fig:InkrementArrayDiagramm}
-    \end{minipage}
-    %}
+    }
 }
