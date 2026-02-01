@@ -93,9 +93,11 @@
     der Realität immer schwanken.
 }
 
-% \section{Optimirung}
+% \section{Optimierung}
 \newcommand{\Optimierung}{
-    Auf eine Optimierung des Codes wurde bewusst verzichtet, da es vorrangig um den Vergleich der Threading-Strategien geht und eine perfekte Implementierung zu zeitaufwendig gewesen wäre.
-    Da das Rausoptimieren des Waits der (Worker-Thread-Variante Mergesort, \ref{lst:mergesortW}) Variante viel zu aufwendig wäre und auch dann kein einfaches Beispiel mehr ist.
-    Daher wurde gleich vollständig auf eine Optimierung verzichtet, da ich damit nicht alle Varianten gleichmäßig mehr optimieren konnte.
+    Auf eine Optimierung des Codes wurde bewusst verzichtet, da primär der Vergleich der Threading-Strategien im Fokus steht und eine perfekte Implementierung zu zeitaufwendig gewesen wäre.
+    \newline
+    Speziell die Eliminierung der Wartezeiten (Wait) in der Mergesort-Worker-Thread-Variante (Listing \ref{lst:mergesortW})
+    durch einen Task-Drop-Mechanismus wäre zu aufwendig gewesen und würde den Rahmen eines einfachen Beispiels sprengen.
+    Aus Gründen der Fairness wurde daher konsequent auf Optimierungen bei allen Varianten verzichtet, um keine künstlichen Vorteile zu schaffen und die Vergleichbarkeit der Ergebnisse zu gewährleisten.
 }
