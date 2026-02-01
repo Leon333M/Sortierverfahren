@@ -876,7 +876,7 @@
             (8192,21360609200)
             (16384,22809325900)
         };
-    \addlegendentry{Mergesort Zufall}
+    \addlegendentry{Mergesort WT Zufall}
 }
 
 \newcommand{\QuicksortWZufallStrongScaling}{%
@@ -899,7 +899,7 @@
             (8192,11730603100)
             (16384,12841474600)
         };
-    \addlegendentry{Quicksort Zufall}
+    \addlegendentry{Quicksort WT Zufall}
 }
 
 \newcommand{\MergesortWZufallWeakScaling}{%
@@ -911,7 +911,7 @@
             (8,6766294600)
             (16,10859430800)
         };
-    \addlegendentry{Mergesort Zufall}
+    \addlegendentry{Mergesort WT Zufall}
 }
 
 \newcommand{\QuicksortWZufallWeakScaling}{%
@@ -923,7 +923,7 @@
             (8,2201854900)
             (16,3836458700)
         };
-    \addlegendentry{Quicksort Zufall}
+    \addlegendentry{Quicksort WT Zufall}
 }
 
 \newcommand{\MergesortZufallWeakScaling}{%
@@ -935,7 +935,7 @@
             (8,5347002100)
             (16,8799988500)
         };
-    \addlegendentry{Mergesort Zufall}
+    \addlegendentry{Mergesort T Zufall}
 }
 
 \newcommand{\QuicksortZufallWeakScaling}{%
@@ -947,7 +947,7 @@
             (8,9023601000)
             (16,7499160500)
         };
-    \addlegendentry{Quicksort Zufall}
+    \addlegendentry{Quicksort T Zufall}
 }
 
 \newcommand{\MergesortZufallStrongScaling}{%
@@ -969,7 +969,7 @@
             (2^13,9530975800)
             (2^14,9652868400)
         };
-    \addlegendentry{Mergesort Zufall}
+    \addlegendentry{Mergesort T Zufall}
 }
 
 \newcommand{\QuicksortZufallStrongScaling}{%
@@ -991,7 +991,7 @@
             (2^13,3924137200)
             (2^14,4034757100)
         };
-    \addlegendentry{Quicksort Zufall}
+    \addlegendentry{Quicksort T Zufall}
 }
 
 \newcommand{\MergesortStringZufallStrongScaling}{%
@@ -1160,6 +1160,7 @@
             (16384, { (2*\n*(1-1/(2^14)) + (\n/(2^14))*ln(\n/(2^14))/ln(2) + (\n/(2^14)))*\faktor })
         };
     % \addlegendentry{Theoretische Laufzeit ($\times \text{\faktor}$)}
+    \addlegendentry{$ #2 \cdot T(n,p) $}
 }
 
 \newcommand{\TheorieWeakScaling}[1]{%
@@ -1201,6 +1202,7 @@
             (16, 130719250 * \faktor)
         };
     % \addlegendentry{Theoretische Laufzeit ($\times \text{\faktor}$)}
+    \addlegendentry{$ #1 \cdot T(n,p) $}
 }
 
 \newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}{%
@@ -1211,7 +1213,7 @@
                 height=\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge verdoppeln},
+                title={Laufzeit der Sortierverfahren},
                 xmin=0, xmax=4 * 10^8,
                 ymin=0, ymax=6*10^10,
                 grid=both,
@@ -1246,7 +1248,7 @@
                 height=\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge verdoppeln},
+                title={Laufzeit der Sortierverfahren (logarithmische Achsen)},
                 xmin=2.5*10^7, xmax=4*10^8,
                 ymin=10^8, ymax=1*10^11,
                 grid=both,
@@ -1290,7 +1292,7 @@
                 height=0.5\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge vergrößern},
+                title={Grundlegende Laufzeit der Sortierverfahren, logarithmische Achsen},
                 xmin=1, xmax=800000,
                 ymin=0.1, ymax=1*10^8,
                 grid=both,
@@ -1336,7 +1338,7 @@
                 height=0.5\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge verdoppeln},
+                title={Laufzeit der Sortierverfahren (Arraygröße 1 - 400M)},
                 xmin=0, xmax=4 * 10^8,
                 ymin=0, ymax=6*10^10,
                 grid=both,
@@ -1369,7 +1371,7 @@
                 height=0.5\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge verdoppeln},
+                title={Laufzeit der Sortierverfahren (Arraygröße 25M - 400M, logarithmische Achsen)},
                 xmin=2.5*10^7, xmax=4*10^8,
                 ymin=10^7, ymax=1*10^11,
                 grid=both,
@@ -1409,7 +1411,7 @@
                 height=1\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge vergrößern},
+                title={Laufzeit der Sortierverfahren (Arraygröße 1 - 400M)},
                 xmin=1, xmax=400000000,
                 ymin=100, ymax=1*10^11,
                 grid=both,
@@ -1431,8 +1433,8 @@
                         $20k$,$$,$80k$,
                             $ $,$400k$,$ $,
                             $ $,$4M$,$$,
-                        $$,$40M$,$$,
-                        $$,$400M$,$$
+                            $$,$40M$,$$,
+                            $$,$400M$,$$
                     },
                 ymode=log,
                 log basis y=10,
@@ -1476,7 +1478,7 @@
                 height=1\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge vergrößern},
+                title={Laufzeit der Sortierverfahren (Arraygröße 1 - 400M)},
                 xmin=1, xmax=400000000,
                 ymin=100, ymax=1*10^11,
                 grid=both,
@@ -1548,9 +1550,9 @@
                 grid style=dashed,
                 % legend pos=south east,
                 legend style={
-                        at={(0.5,-0.3)},
+                        at={(0.5,-0.2)},
                         anchor=north,
-                        legend columns=3
+                        legend columns=2
                     },
                 xtick=data,
                 % xtick={1},
@@ -1579,7 +1581,7 @@
                 height=0.45\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
-                title={Weak Scaling {\small (Start-Größe $2.5 \cdot {10^7}$)}}, % Threads und Länge verdoppeln
+                title={Weak Scaling {\small (Start-Arraygröße $2.5 \cdot {10^7}$)}}, % Threads und Länge verdoppeln
                 xmin=1, xmax=16,
                 ymin=1*10^9, ymax=1*10^10,
                 grid=both,
@@ -1614,7 +1616,7 @@
                 height=1\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge vergrößern},
+                title={Laufzeit der Sortierverfahren (Arraygröße 1 - 400M)},
                 xmin=1, xmax=400000000,
                 ymin=100, ymax=1*10^11,
                 grid=both,
@@ -1685,9 +1687,9 @@
                 grid style=dashed,
                 % legend pos=south east,
                 legend style={
-                        at={(0.5,-0.3)},
+                        at={(0.5,-0.2)},
                         anchor=north,
-                        legend columns=3
+                        legend columns=2
                     },
                 xtick=data,
                 % xtick={1},
@@ -1716,7 +1718,7 @@
                 height=0.5\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
-                title={Weak Scaling {\small (Start-Größe $2.5 \cdot {10^7}$)}}, % Threads und Länge verdoppeln
+                title={Weak Scaling {\small (Start-Arraygröße $2.5 \cdot {10^7}$)}}, % Threads und Länge verdoppeln
                 xmin=1, xmax=16,
                 ymin=1*10^9, ymax=1.1*10^10,
                 grid=both,
@@ -1751,7 +1753,7 @@
                 height=1\textwidth,
                 xlabel={Array-Länge},
                 ylabel={Dauer in ns},
-                title={Länge vergrößern},
+                title={Laufzeit der Sortierverfahren (Arraygröße 1 - 80M)},
                 xmin=1, xmax=80000000,
                 ymin=100, ymax=1*10^11,
                 grid=both,
@@ -1822,9 +1824,9 @@
                 grid style=dashed,
                 % legend pos=south east,
                 legend style={
-                        at={(0.5,-0.3)},
+                        at={(0.5,-0.2)},
                         anchor=north,
-                        legend columns=3
+                        legend columns=2
                     },
                 xtick=data,
                 % xtick={1},
@@ -1853,16 +1855,16 @@
                 height=0.5\textwidth,
                 xlabel={Thread-Anzahl},
                 ylabel={Dauer in ns},
-                title={Weak Scaling {\small (Start-Größe $2.5 \cdot {10^6}$)}}, % Threads und Länge verdoppeln
+                title={Weak Scaling {\small (Start-Arraygröße $2.5 \cdot {10^6}$)}}, % Threads und Länge verdoppeln
                 xmin=1, xmax=16,
                 ymin=1*10^8, ymax=7*10^9,
                 grid=both,
                 grid style=dashed,
                 % legend pos=south east,
                 legend style={
-                        at={(0.5,-0.3)},
+                        at={(0.5,-0.2)},
                         anchor=north,
-                        legend columns=3
+                        legend columns=2
                     },
                 xtick=data,
                 % xtick={1},

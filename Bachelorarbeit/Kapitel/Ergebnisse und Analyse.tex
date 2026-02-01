@@ -89,20 +89,20 @@
     \begin{minipage}{0.5\linewidth}
         \centering
         \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA
-        \captionof{figure}[Länge verdoppeln]{Länge verdoppeln}
+        \captionof{figure}[Grundlegende Laufzeit der Sortierverfahren (Arraygröße 1 - 400M)]{}
         \label{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}
     \end{minipage}
     \begin{minipage}{0.5\linewidth}
         \centering
         \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB
-        \captionof{figure}[Länge verdoppeln]{Länge verdoppeln}
+        \captionof{figure}[Grundlegende Laufzeit der Sortierverfahren (Arraygröße 25M - 400M, logarithmische Achsen)]{}
         \label{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC
-        \captionof{figure}[Länge vergrößern]{Länge vergrößern}
+        \captionof{figure}[Grundlegende Laufzeit der Sortierverfahren (Arraygröße 1 - 800k, logarithmische Achsen)]{}
         \label{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC}
     \end{minipage}
 }
@@ -130,7 +130,7 @@
     \(2 \cdot n \log_2(n)\) aufweist.
     \newline
     Da eine lineare Laufzeit auf einen Blick leichter zu interpretieren ist, wurde zusätzlich die Funktion \(32n\) eingezeichnet.
-    Anhand dieser Funktion ist erkennbar, dass sie im untersuchten Zahlenbereich von \(1\) bis \(4 \cdot 10^8\) teilweise sogar eine genauere Abschätzung liefert als \(n \log_2(n)\).
+    Anhand dieser Funktion ist erkennbar, dass sie im untersuchten Zahlenbereich von \(1\) bis \(4 \cdot 10^8\) teilweise sogar eine genauere Abschätzung liefert als \(1 \cdot n \log_2(n)\).
     Daraus folgt, dass von einer gerundeten durchschnittlichen Mindestlaufzeit von \(32n\) ausgegangen werden kann.
     \newline
     Abschließend ist anzumerken, dass alle Messungen mit einer Laufzeit von kleiner oder gleich \(10^4\,\text{ns}\) aufgrund der Messtoleranz nur eine eingeschränkte Aussagekraft besitzen.
@@ -167,34 +167,34 @@
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesListentypsDiagrammA
-        \captionof{figure}[Länge verdoppeln]{Länge verdoppeln}
+        \captionof{figure}[Laufzeit der Sortierverfahren (Arraygröße 1 - 400M)]{}
         \label{fig:EinflussDesListentypsDiagrammA}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesListentypsDiagrammB
-        \captionof{figure}[Länge verdoppeln]{Länge verdoppeln}
+        \captionof{figure}[Laufzeit der Sortierverfahren (Arraygröße 25M - 400M, logarithmische Achsen)]{}
         \label{fig:EinflussDesListentypsDiagrammB}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesListentypsDiagrammC
-        \captionof{figure}[Länge vergrößern]{Länge vergrößern}
+        \captionof{figure}[Laufzeit der Sortierverfahren (Arraygröße 1 - 400M, logarithmische Achsen)]{}
         \label{fig:EinflussDesListentypsDiagrammC}
     \end{minipage}
 }
 
 % \subsection{Analyse und Interpretation}
 \newcommand{\EinflussDesListentypsAnalyse}{
-    Die gemessenen Daten zeigen deutlich, dass die reale Laufzeit im Best-Case unterhalb der Referenzfunktion \(n \log_2(n)\) liegt, was auf einen vorteilhaften konstanten Faktor von ca. 0,25 zurückzuführen ist.
+    Die gemessenen Daten (Abbildung~\ref{fig:EinflussDesListentypsDiagrammC}) zeigen deutlich, dass die reale Laufzeit im Best-Case unterhalb der Referenzfunktion \(n \log_2(n)\) liegt, was auf einen vorteilhaften konstanten Faktor von ca. 0,25 zurückzuführen ist.
     Dies ist darauf zurückzuführen, dass die Messungen in der Release-Version mit aktivierten Compiler-Optimierungen durchgeführt wurden.
     In der Debug-Version (ohne Compiler-Optimierungen) wurde bei einem sortierten Array der Größe von 400~Millionen Elementen hingegen eine Laufzeit von 14~s für Quicksort gemessen, welche oberhalb der berechneten Werte von \(1 \cdot n \log_2(n)\) liegt.
     Die Messungen zeigen außerdem, dass sortierte, invertiert sortierte sowie fast sortierte Arrays nahezu identische Laufzeiten aufweisen.
     Die entsprechenden Kurven würden nahezu übereinanderliegen, weshalb zugunsten der Übersichtlichkeit auf eine separate grafische Darstellung
     dieser Listentypen verzichtet wurde.
-    Im Diagramm ist ebenfalls zu erkennen, dass der Worst-Case von Quicksort eine Laufzeit von \(O(n^2)\) besitzt.
+    Im Diagramm (Abbildung~\ref{fig:EinflussDesListentypsDiagrammC}) ist ebenfalls zu erkennen, dass der Worst-Case von Quicksort eine Laufzeit von \(O(n^2)\) besitzt, da dieser Graph parallel verläuft.
     Allerdings endet der Graph ab 20k, da bereits bei 40k ein Stackoverflow durch die Rekursionstiefe ausgelöst wird. Dies ließe sich durch eine iterative Version von Quicksort vermeiden.
 }
 
@@ -228,21 +228,27 @@
     \begin{minipage}{\linewidth}
         \centering
         \TiefenbasierteThreadErzeugungDiagrammB
-        \captionof{figure}[Strong Scaling (Tiefenbasierte Thread-Erzeugung)]{Strong Scaling (Tiefenbasierte Thread-Erzeugung): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen. Quicksort kann diese Verbesserung nur im Best-Case erreichen.}
+        \captionof{figure}[Strong Scaling (Tiefenbasierte Thread-Erzeugung)]{Strong Scaling (Tiefenbasierte Thread-Erzeugung): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen. Quicksort kann diese Verbesserung nur im Best-Case erreichen.
+            T = Tiefenbasierte Thread-Erzeugung
+        }
         \label{fig:TiefenbasierteThreadErzeugungDiagrammB}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \TiefenbasierteThreadErzeugungDiagrammC
-        \captionof{figure}[Weak Scaling (Tiefenbasierte Thread-Erzeugung)]{Weak Scaling (Tiefenbasierte Thread-Erzeugung): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen. Quicksort kann diese Verbesserung nur im Best-Case erreichen.}
+        \captionof{figure}[Weak Scaling (Tiefenbasierte Thread-Erzeugung)]{Weak Scaling (Tiefenbasierte Thread-Erzeugung): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen. Quicksort kann diese Verbesserung nur im Best-Case erreichen.
+            T = Tiefenbasierte Thread-Erzeugung
+        }
         \label{fig:TiefenbasierteThreadErzeugungDiagrammC}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \TiefenbasierteThreadErzeugungDiagrammA
-        \captionof{figure}[Länge vergrößern (Tiefenbasierte  Thread-Erzeugung)]{Länge vergrößern (Tiefenbasierte Thread-Erzeugung)}
+        \captionof{figure}[Laufzeit der Sortierverfahren (Tiefenbasierte Thread-Erzeugung, Arraygröße 1 - 400M)]{
+            T16 = Tiefenbasierte Thread-Erzeugung mit 16 Threads
+        }
         \label{fig:TiefenbasierteThreadErzeugungDiagrammA}
     \end{minipage}
 }
@@ -308,7 +314,10 @@
     \begin{minipage}{\linewidth}
         \centering
         \initZeitenDiagrammA
-        \captionof{figure}[Laufzeit der Sortierverfahren bei einer Arraygröße von 16 Elementen]{Laufzeit der Sortierverfahren bei einer Arraygröße von 16 Elementen}
+        \captionof{figure}[Laufzeit der Sortierverfahren bei einer Arraygröße von 16 Elementen]{Dieses Diagramm dient der Abschätzung der durch Threads entstehenden Overheads.
+            T = Tiefenbasierte Thread-Erzeugung,
+            WT = Worker-Thread-Variante
+        }
         \label{fig:initZeitenDiagrammA}
     \end{minipage}
     \newline
@@ -316,21 +325,27 @@
     \begin{minipage}{\linewidth}
         \centering
         \WorkerthreadsDiagrammB
-        \captionof{figure}[Strong Scaling (Worker-Thread)]{Strong Scaling (Worker-Thread): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.}
+        \captionof{figure}[Strong Scaling (Worker-Thread)]{Strong Scaling (Worker-Thread): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.
+            WT = Worker-Thread-Variante
+        }
         \label{fig:WorkerthreadsDiagrammB}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \WorkerthreadsDiagrammC
-        \captionof{figure}[Weak Scaling (Worker-Thread)]{Weak Scaling (Worker-Thread): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.}
+        \captionof{figure}[Weak Scaling (Worker-Thread)]{Weak Scaling (Worker-Thread): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.
+            WT = Worker-Thread-Variante
+        }
         \label{fig:WorkerthreadsDiagrammC}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \WorkerthreadsDiagrammA
-        \captionof{figure}[Länge vergrößern (Worker-Thread)]{Länge vergrößern Worker-Thread}
+        \captionof{figure}[Laufzeit der Sortierverfahren (Worker-Thread, Arraygröße 1 - 400M)]{
+            WT16 = Worker-Thread-Variante mit 16 Worker-Threads
+        }
         \label{fig:WorkerthreadsDiagrammA}
     \end{minipage}
 }
@@ -370,21 +385,30 @@
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesDatentypsDiagrammB
-        \captionof{figure}[Strong Scaling String]{Strong Scaling String: Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.}
+        \captionof{figure}[Strong Scaling (String)]{Strong Scaling (String): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.
+            T = Tiefenbasierte Thread-Erzeugung,
+            WT = Worker-Thread-Variante
+        }
         \label{fig:EinflussDesDatentypsDiagrammB}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesDatentypsDiagrammC
-        \captionof{figure}[Weak Scaling String]{Weak Scaling String: Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.}
+        \captionof{figure}[Weak Scaling (String)]{Weak Scaling (String): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.
+            T = Tiefenbasierte Thread-Erzeugung,
+            WT = Worker-Thread-Variante
+        }
         \label{fig:EinflussDesDatentypsDiagrammC}
     \end{minipage}
     \newline
     \begin{minipage}{\linewidth}
         \centering
         \EinflussDesDatentypsDiagrammA
-        \captionof{figure}[Länge vergrößern String]{Länge vergrößern String: [Beschreibung]}
+        \captionof{figure}[Laufzeit der Sortierverfahren (String, Arraygröße 1 - 80M)]{
+            T16 = Tiefenbasierte Thread-Erzeugung mit 16 Threads,
+            WT16 = Worker-Thread-Variante mit 16 Worker-Threads
+        }
         \label{fig:EinflussDesDatentypsDiagrammA}
     \end{minipage}
 }
