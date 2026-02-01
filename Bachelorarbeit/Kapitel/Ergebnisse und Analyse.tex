@@ -304,7 +304,7 @@
 
 % \subsection{Erwartung}
 \newcommand{\WorkerthreadsErwartung}{
-    Auch hier wier die \(T(n,p)\)-Formel zum Vorhersagen der Performanceverbesserung genutz, genau wie bei der tiefenbasierten Thread-Erzeugung.
+    Auch hier wird die \(T(n,p)\)-Formel zum Vorhersagen der Performanceverbesserung genutz, genau wie bei der tiefenbasierten Thread-Erzeugung.
     \newline
     Es wird erwartet, dass Mergesort in der Worker-Thread-Variante schlechtere Ergebnisse erzielt als bei der tiefenbasierten Thread-Erzeugung.
     Dies ist darauf zurückzuführen, dass sich die Arbeit bei Mergesort in dieser Variante nicht mehr perfekt auf alle Threads verteilt und das Wait nicht wegoptimiert wurde.
@@ -379,6 +379,9 @@
 
 % \subsection{Erwartung}
 \newcommand{\EinflussDesDatentypsErwartung}{
+    Auch hier wird die $T(n,p)$-Formel zur Vorhersage der Performanceverbesserung genutzt, genau wie bei den Messungen zuvor.
+    Nur ist der Faktor jetzt für Quicksort $x = 13$ und für Mergesort $x = 26$.
+    \newline
     Es wird erwartet, dass das Sortieren länger dauert als bei \texttt{int}, da ein String wesentlich aufwendiger zu vergleichen ist. Dies liegt daran, dass er aus mehreren Zeichen (\texttt{char}) besteht und entsprechend mehr Speicher benötigt.
     Folglich sollte der durch die Threads entstehende Overhead einen geringeren Einfluss auf die gemessene Endzeit haben.
     Dies sollte dazu führen, dass die Graphen im Strong Scaling und Weak Scaling weniger von den theoretisch erwarteten Laufzeitverbesserungen abweichen.
