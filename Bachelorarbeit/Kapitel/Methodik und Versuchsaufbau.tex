@@ -18,9 +18,11 @@
 % \section{Messumgebung und Hardware}
 % % CPU, RAM, OS, Compiler
 \newcommand{\MessumgebungUndHardware}{
-    Die relevanten Hardwarekomponenten sind im Anhang detailliert aufgeführt. Zusammenfassend wurden die Tests auf einem System mit einer 8-Kern-CPU (8 physische Kerne, 16 logische Prozessoren) und 32~GB Arbeitsspeicher durchgeführt.
+    Die relevanten Hardwarekomponenten sind im Anhang detailliert aufgeführt. Zusammenfassend wurden die Messungen auf einem System mit einer 8-Kern-CPU (8 physische Kerne, 16 logische Prozessoren) und 32~GB Arbeitsspeicher durchgeführt.
     \newline
-    Als Betriebssystem kam Windows~10 in der Version~22H2 zum Einsatz. Der Code wurde in \texttt{C++} implementiert und mittels CMake mit dem MSVC-Compiler kompiliert. Die Ausführung der Tests erfolgte im integrierten Terminal von Visual Studio Code in einer Release-Konfiguration. Abweichungen hiervon werden an entsprechender Stelle gesondert angegeben.
+    Als Betriebssystem kam Windows~10 in der Version~22H2 zum Einsatz.
+    Der Code wurde in \texttt{C++20} implementiert und mittels CMake (Version 3.26.4) sowie dem MSVC-Compiler (Version 14.44.35207) unter Verwendung des \texttt{MultiThreaded}-Flags kompiliert.
+    Die Ausführung der Messungen erfolgte im integrierten Terminal von Visual Studio Code in einer Release-Konfiguration. Abweichungen hiervon werden an entsprechender Stelle gesondert angegeben.
 }
 
 % \section{Implementierungsvarianten}
@@ -30,7 +32,7 @@
     \begin{itemize}
         \item eine rekursiv sequenzielle Variante,
         \item eine rekursive Variante mit dynamischer Thread-Erzeugung bis zu einer Tiefe $e$, welche eine Thread-Anzahl von $2^e$ unterstützt (tiefenbasierte Thread-Erzeugung),
-        \item eine Worker-Thread-Variante basierend auf einem Work-Stealing-ähnlichen Ansatz mit $N$ Threads, umgesetzt als aufgabenbasierte Rekursionsverwaltung.
+        \item eine Worker-Thread-Variante basierend auf einem Work-Stealing-ähnlichen Ansatz mit $N$ Threads, umgesetzt als aufgabenbasierte Rekursionsverwaltung (Work-Stealing-Variante).
     \end{itemize}
     Für die tiefenbasierte Thread-Erzeugung ändert sich in der parallelen Phase die Rekursionsgleichung von $T(n) = 2 \cdot T(n/2) + n$ zu $T(n) = 1 \cdot T(n/2) + n$. Dies liegt daran, dass die zweite Hälfte der Arbeit parallel in einem anderen Thread verarbeitet wird und somit nicht zur Laufzeit der aktuellen Ebene beiträgt.
     Durch das Auflösen dieser Rekursion über die parallelen sowie anschließend sequenziellen Ebenen hinweg lässt sich die theoretische Laufzeit in eine geschlossene Form überführen.
