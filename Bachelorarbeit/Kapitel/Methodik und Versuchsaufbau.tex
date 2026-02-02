@@ -31,7 +31,7 @@
     Im Rahmen dieser Arbeit wurden folgende Implementierungsvarianten für Mergesort und Quicksort umgesetzt:
     \begin{itemize}
         \item eine rekursiv sequenzielle Variante,
-        \item eine rekursive Variante mit dynamischer Thread-Erzeugung bis zu einer Tiefe $e$, welche eine Thread-Anzahl von $2^e$ unterstützt (tiefenbasierte Thread-Erzeugung),
+        \item eine rekursive Variante mit Thread-Erzeugung bis zu einer Tiefe $e$, welche eine Thread-Anzahl von $2^e$ unterstützt (tiefenbasierte Thread-Erzeugung),
         \item eine Worker-Thread-Variante basierend auf einem Work-Stealing-ähnlichen Ansatz mit $N$ Threads, umgesetzt als aufgabenbasierte Rekursionsverwaltung (Work-Stealing-Variante).
     \end{itemize}
     Für die tiefenbasierte Thread-Erzeugung ändert sich in der parallelen Phase die Rekursionsgleichung von $T(n) = 2 \cdot T(n/2) + n$ zu $T(n) = 1 \cdot T(n/2) + n$. Dies liegt daran, dass die zweite Hälfte der Arbeit parallel in einem anderen Thread verarbeitet wird und somit nicht zur Laufzeit der aktuellen Ebene beiträgt.
