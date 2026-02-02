@@ -28,7 +28,8 @@ class Dateimanager {
 
 private:
     // Vaibalen
-    std::string originalPath = "E:/Code/Sortierverfahren/Messdaten/";
+    // std::string originalPath = "E:/Code/Sortierverfahren/Messdaten/";
+    std::string originalPath = "Messdaten/";
     std::string dateiendung = ".txt";
 
 public:
