@@ -426,6 +426,9 @@
 \newcommand{\EinflussDesDatentypsAnalyse}{
     Bei den Graphen zu Strong Scaling (Abbildung~\ref{fig:EinflussDesDatentypsDiagrammB}) und Weak Scaling (Abbildung~\ref{fig:EinflussDesDatentypsDiagrammC}) ist zu erkennen, dass Mergesort hier schlechter abschneidet als bei Integer-Daten, während Quicksort weiterhin nur minimal schlechter als die theoretische Laufzeit ist.
     Dass Mergesort schlechter abschneidet, liegt vermutlich daran, dass der Aufwand zum Kopieren der Teillisten bei Strings größer ist als bei Integern.
+    Ganz bedors fält auf das Mergesort beim Strong Scaling (Abbildung~\ref{fig:EinflussDesDatentypsDiagrammB}) schon noch 8 tahds nur noich eine minimale pervomce verungeung erzihlt.
+    Dies ligt an dem genanten kopern welches warschilch dazu führ das der cashe vollöuft und simt cashmises entshen,
+    Dsie sorgen dann wider für erhöte speicherlatzen.
     Betrachtet man die Gesamtlaufzeit, fällt zudem auf, dass das Sortieren einer bereits sortierten Liste deutlich langsamer ist, als man erwarten würde.
     Vereinfacht ausgedrückt liegt dies am Code zur Listengenerierung, der für sortierte Listen im Durchschnitt längere Strings erzeugt als für zufällige Listen. Dies erhöht den Vergleichsaufwand und wirkt sich negativ auf die Laufzeit aus.
 }
