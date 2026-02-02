@@ -308,8 +308,8 @@
     \newline
     Es wird erwartet, dass Mergesort in der Worker-Thread-Variante schlechtere Ergebnisse erzielt als bei der tiefenbasierten Thread-Erzeugung.
     Dies ist darauf zurückzuführen, dass sich die Arbeit bei Mergesort in dieser Variante nicht mehr perfekt auf alle Threads verteilt und das Wait nicht wegoptimiert wurde.
-    Dazu wird für die Mergesort Worker-Thread-Variante erwartet das es eine zu eine laufzet verbeung komt bis 32 thads erzugt wreden.
-    Dies liegt an dem Wait und wird nur durch addTaskSmart kompensiert, indem die Funktion dafür sorgt, dass immer mindestens die Hälfte aller Threads ausgelastet bleibt.
+    Dazu wird für die Mergesort-Worker-Thread-Variante erwartet, dass es zu einer Laufzeitverbesserung kommt, bis 32 Threads erzeugt werden.
+    Dies liegt an dem Wait und wird nur durch addTaskSmart kompensiert, indem die Funktion dafür sorgt, dass immer mindestens die Hälfte aller Threads ausgelastet bleiben.
     \newline
     Ebenso wird erwartet, dass der Best-Case von Quicksort im Vergleich zur tiefenbasierten Variante schlechter ausfällt, da auch hier keine optimale Arbeitsaufteilung erreicht wird.
     Für den Average-Case von Quicksort wird hingegen eine bessere Performance erwartet, da der Work-Stealing-Ansatz eine gleichmäßigere Lastverteilung über mehrere Threads ermöglicht.
