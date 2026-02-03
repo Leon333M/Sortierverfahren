@@ -16,7 +16,7 @@ p = Tiefenbasierte Thread-Erzeugung
 w = Worker-Thread-Variante
 m = Tiefenmessung (sequenziell)
 o = Tiefenmessung (Tiefenbasierte Thread-Erzeugung)
-a = alle Varianten
+a = Alle Varianten
 i = Inkrement-Array
 
 Das 3. Argument gibt an, welcher Listentyp gemessen werden soll:
