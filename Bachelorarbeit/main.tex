@@ -1,17 +1,6 @@
-% Bachelorarbeit LaTeX Template
-% Kompatibel mit VS Code + LaTeX Workshop
-\documentclass[
-a4paper,
-12pt,
-ngerman,                               % f�r Umlaute, Silbentrennung etc.
-titlepage,                             % es wird eine Titelseite verwendet
-bibliography=totoc,                    % Literaturverzeichnis im Inhaltsverzeichnis auff�hren
-% listof=totoc,                        % Verzeichnisse im Inhaltsverzeichnis auff�hren
-oneside,                               % einseitiges Dokument
-captions=nooneline,                    % einzeilige Gleitobjekttitel ohne Sonderbehandlung wie mehrzeilige Gleitobjekttitel behandeln
-numbers=noenddot,                      % �berschriften-??Nummerierung ohne Punkt am Ende
-parskip=half                           % zwischen Abs�tzen wird eine halbe Zeile eingef�gt
-]{scrbook}                             % article
+\documentclass[10pt, ngerman]{beamer}
+
+\usetheme{Madrid} 
 
 % ----------------------
 % Pakete
@@ -32,18 +21,6 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
 \usepackage{pgfplots}
 \usetikzlibrary{positioning, arrows.meta}
 \pgfplotsset{compat=1.18}
-
-% ----------------------
-% Seitenränder
-% ----------------------
-% \geometry{
-%     a4paper,
-%     left=30mm,
-%     right=30mm,
-%     top=25mm,
-%     bottom=25mm
-% }
-\areaset[0.5cm]{16cm}{24cm} 
 
 \hypersetup{
     pdfborder={0 0 0},    % Entfernt alle Rahmen um Links
@@ -67,250 +44,168 @@ parskip=half                           % zwischen Abs�tzen wird eine halbe Zei
     showstringspaces=false
 }
 
-% ----------------------
-% Ausgelagerte Texte für die Bachelorarbeit
-% ----------------------
-% \input{commands.tex}
-\input{Deckblatt/Metadaten.tex}
-\input{Kapitel/Kapitel.tex}
+\title[Skalierbarkeit paralleles Sortieren]{Untersuchung der Skalierbarkeit von parallelem Sortieren auf einem Multicore-Prozessor}
+\subtitle{Verteidigung der Bachelorarbeit}
+\author{Leon Zoerner}
+\institute{Informatik}
+\date{\today}
 
-% ----------------------
-% Dokumentbeginn
-% ----------------------
 \begin{document}
 
-% Titelseite
-% \begin{titlepage}
-%     \centering
-%     \vspace*{4cm}
-%     {\LARGE\textbf{Untersuchung der Skalierbarkeit von parallelem Sortieren auf einem Multicore-Prozessor}}\\[1.5cm]
-%     {\large Bachelorarbeit}\\[0.5cm]
-%     {\large Studiengang: Informatik}\\[0.5cm]
-%     {\large Bearbeiter: Leon Zoerner}\\[2cm]
-%     \vfill
-%     \today
-% \end{titlepage}
+\begin{frame}
+    \titlepage
+\end{frame}
 
-\include{Deckblatt/Deckblatt}
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
 
-\frontmatter
+\section{Formeln}
+\begin{frame}{Formeln: Mergesort}
+    \begin{flalign*}
+        T(n)    & = m_1 + m_2 + n                                                                                                             & \\
+        T(n)    & = T \left ( \left \lfloor \frac{n}{2} \right \rfloor \right) + T \left ( \left \lceil \frac{n}{2} \right \rceil \right) + n & \\
+        T(n)    & = 2 \cdot T \left( \frac{n}{2} \right) + n,                                                                                 & \\
+        T(n)    & = n \cdot \log_2(n) + n,                                                                                                    & \\
+        O(T(n)) & = O(n \log n).                                                                                                              &
+    \end{flalign*}
+\end{frame}
 
-% Inhaltsverzeichnis / Gliederung
-\tableofcontents
-\newpage
-\mainmatter
+\begin{frame}{Formeln: Quicksort}
+    \textbf{Best-Case} von Quicksort:
+    \begin{flalign*}
+        T(n)    & = q1 + q2 + n                                                                                                               & \\
+        T(n)    & = T \left ( \left \lfloor \frac{n}{2} \right \rfloor \right) + T \left ( \left \lceil \frac{n}{2} \right \rceil \right) + n & \\
+        T(n)    & = 2 \cdot T \left( \frac{n}{2} \right) + n,                                                                                 & \\
+        T(n)    & = n \cdot \log_2(n) + n,                                                                                                    & \\
+        O(T(n)) & = O(n \log n).                                                                                                              &
+    \end{flalign*}
+\end{frame}
 
-% \chapter
-% \section
-% \subsection
-% \subsubsection
+\begin{frame}{Formeln: Quicksort}
+    Der \textbf{Worst-Case} von Quicksort ist:
+    \begin{flalign*}
+        T(n)    & = q_1 + q_2 + n                      & \\
+        T(n)    & = T(n-1) + 1 + n,                    & \\
+        T(n)    & = \frac{1}{2} \cdot ( n^2 + n ) + n, & \\
+        O(T(n)) & = O(n^2).                            &
+    \end{flalign*}
 
-% ----------------------
-% 1. Einleitung
-% ----------------------
-\chapter{Einleitung}
+    Der \textbf{heuristisch betrachtete Average-Case} von Quicksort ist:
+    \begin{flalign*}
+        T(n)    & = q_1 + q_2 + n                                                                                                                                 & \\
+        q_1     & = T\left( \frac{1 + \dots + (n-1)}{n-1} \right) = T\left( n \cdot \frac{n-1}{2} \cdot \frac{1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
+        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n                                                                                                       & \\
+        T(n)    & = n \cdot \log_2(n) + n                                                                                                                         & \\
+        O(T(n)) & = O(n \log n).                                                                                                                                  &
+    \end{flalign*}
+\end{frame}
 
-\section{Motivation}
-% Hier Motivation einfügen
-\Motivation
+\begin{frame}{Formeln: parallel Mergesort}
+    \begin{flalign*}
+        p         & = \text{Thread-Anzahl}                                                                               &  & \\
+        e         & = \log_2(p)                                                                                          &  & \\
+        T(n,e)    & = \begin{cases}
+                          2 \cdot T\left(\frac{n}{2}, 0\right) + n   & \text{, wenn } e = 0 \\
+                          1 \cdot T\left(\frac{n}{2}, e-1\right) + n & \text{, wenn } e > 0
+                      \end{cases}                                 &  &                                       \\
+        T(n,p)    & = 2n \left( 1 - \frac{1}{p} \right) + \frac{n}{p} \cdot \log_2\left(\frac{n}{p}\right) + \frac{n}{p} &  & \\
+        O(T(n,p)) & = O\left( \frac{n}{p} \cdot \log_2(n) + n \right)                                                    &  & \\
+        e_{\max}  & = \log_2(n)                                                                                          &  & \\
+        p_{\max}  & = n
+    \end{flalign*}
+\end{frame}
 
-\section{Zielsetzung und Forschungsfrage}
-% Hier Zielsetzung und Forschungsfrage einfügen
-\ZielsetzungUndForschungsfrage
+\begin{frame}{Formeln: parallel Quicksort}
+    Der \textbf{Best-Case} und \textbf{heuristisch betrachtete Average-Case} von Quicksort ist:
+    \begin{flalign*}
+        p         & = \text{Thread-Anzahl}                                                                               &  & \\
+        e         & = \log_2(p)                                                                                          &  & \\
+        T(n,e)    & = \begin{cases}
+                          2 \cdot T\left(\frac{n}{2}, 0\right) + n   & \text{, wenn } e = 0 \\
+                          1 \cdot T\left(\frac{n}{2}, e-1\right) + n & \text{, wenn } e > 0
+                      \end{cases}                                 &  &                                       \\
+        T(n,p)    & = 2n \left( 1 - \frac{1}{p} \right) + \frac{n}{p} \cdot \log_2\left(\frac{n}{p}\right) + \frac{n}{p} &  & \\
+        O(T(n,p)) & = O\left( \frac{n}{p} \cdot \log_2(n) + n \right)                                                    &  & \\
+        e_{\max}  & = \log_2(n)                                                                                          &  & \\
+        p_{\max}  & = n
+    \end{flalign*}
+\end{frame}
 
+\begin{frame}{Formeln: parallel Quicksort}
+    Der \textbf{Worst-Case} von Quicksort (Worker-Thread-Variante) bei $p > 1$ ist:
+    \begin{flalign*}
+        T(n)    & = q_2 + n,                       & \\
+        T(n)    & = T(n-1) + n,                    & \\
+        T(n)    & = \frac{1}{2} \cdot ( n^2 + n ), & \\
+        O(T(n)) & = O(n^2).                        &
+    \end{flalign*}
+\end{frame}
 
-% ----------------------
-% 2. Theoretische Grundlagen
-% ----------------------
-\newpage
-\chapter{Theoretische Grundlagen}
-\HinweisFormelanpassung
-\section{Sortieralgorithmen: Quicksort und Mergesort}
-% Theorie zu Quicksort und Merge Sort
-\SortieralgorithmenQuicksortMergesort
-\section{Grundlagen der Parallelisierung}
-% Amdahl Law
-\GrundlagenDerParallelisierung
-\section{Thread-Modelle, Overheads und Skalierungsgrenzen}
-% Overheads, Threading, Thread-Erzeugung, Synchronisation, Grenzen der Parallelisierung
-\ThreadModelleOverheadsUndSkalierungsgrenzen
-\section{Begriffserklärung: Worker-Thread und Work-Stealing} % WorkerThread WorkStealing
-\WorkerthreadsBegriffsdefinition
+\begin{frame}{Formeln: Einheiten und Skalierung}
+    \begingroup
+    \setlength{\belowdisplayskip}{-5pt}
+    \begin{flalign*}
+        x \cdot T(n) & = 2 \cdot T \left( \frac{n}{2} \right) + x \cdot n & \\
+        x \cdot T(n) & =  x \cdot n \cdot \log_2(n) + x \cdot n           & \\
+        x \cdot T(n) & = x \cdot \left( n \cdot \log_2(n) + n \right)     & \\
+    \end{flalign*}
+    \endgroup
+    Aufgrund von Overheads wie z.\,B. erhöhte Speicherlatenzen durch Cache-Misses:
+    \begingroup
+    \setlength{\belowdisplayskip}{-10pt}
+    \begin{flalign*}
+        x      & = f(n,p)     & \\
+        f(n,p) & \le f(n+1,p) & \\
+        f(n,p) & \le f(n,p+1) & \\
+    \end{flalign*}
+    \endgroup
+    \includegraphics[width=1\textwidth]{Abbildungen/SpeicherlatenzenDiagramm.jpg}
+\end{frame}
 
-% ----------------------
-% 3. Methodik und Versuchsaufbau
-% ----------------------
-% \newpage
-\chapter{Methodik und Versuchsaufbau}
-\section{Messumgebung und Hardware}
-% CPU, RAM, OS, Compiler
-\MessumgebungUndHardware
+\section{Einleitung}
+\begin{frame}{Motivation \& Zielsetzung}
+    % Hier Kernpunkte aus \Motivation und \ZielsetzungUndForschungsfrage
+\end{frame}
 
-\section{Implementierungsvarianten}
-% Sequenziell, parallel, Workerthreads, neue Threads
-\label{sec:implementierung}
-\Implementierungsvarianten
+\section{Theoretische Grundlagen}
+\begin{frame}{Grundlagen der Parallelisierung}
+    % Hier Kernpunkte aus \SortieralgorithmenQuicksortMergesort
+    % Und \GrundlagenDerParallelisierung
+\end{frame}
 
-\section{Begriffserklärung Work-Stealing-ähnliche Ansatz} % Work-Stealing-ähnliche Ansatz
-\WorkStealingAehnlichErklaerung
-\begin{figure}[h]
+\section{Methodik und Versuchsaufbau}
+\begin{frame}{Messumgebung und Implementierung}
+    % Hier Details aus \MessumgebungUndHardware
+\end{frame}
+
+\begin{frame}[fragile]{Implementierungsvarianten Code}
+    % [fragile] ist nötig für Listings auf Folien
+\end{frame}
+
+\section{Ergebnisse und Analyse}
+\begin{frame}{Laufzeitmessungen (sequenziell)}
+    % Platz für Diagramme aus \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagramm
+\end{frame}
+
+\begin{frame}{Analyse der Threading-Methoden}
+    % Vergleich Workerthreads vs. Tiefenbasierte Erzeugung
+\end{frame}
+
+\section{Diskussion und Fazit}
+\begin{frame}{Beantwortung der Forschungsfrage}
+    % Kernpunkte aus \BeantwortungDerForschungsfrage
+\end{frame}
+
+\begin{frame}{Zusammenfassung und Ausblick}
+    % Kernpunkte aus \Zusammenfassung und \Ausblick
+\end{frame}
+
+\begin{frame}
     \centering
-    \WorkerthreadsAbildung
-    \caption[Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue]{Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue: Threads entnehmen Aufgaben aus der Queue und können neue Aufgaben auf diese legen.}
-    \label{fig:workstealing_dynamisch}
-\end{figure}
-\section{Parallele Implementierungsvarianten Code}
-\input{Kapitel/Implementierungsvarianten Code.tex}
+    \Huge Vielen Dank für Ihre Aufmerksamkeit!\\
+    \vspace{1cm}
+    \large Fragen und Diskussion
+\end{frame}
 
-\section{Optimierung}
-\Optimierung
-
-\section{Messmethodik}
-% Vorgehensweise zur Laufzeitmessung, Datenerhebung
-\Messmethodik
-
-% ----------------------
-% 4. Ergebnisse und Analyse
-% ----------------------
-% \newpage
-\chapter{Ergebnisse und Analyse}
-\paragraph{Hinweis zum Umfang der Darstellung}
-\HinweisZumUmfangDerDarstellung
-
-\section{Begriffsdefinition: Strong und Weak Scaling}
-\StrongUndWeakScalingBegriffsdefinition
-
-\section{Threading anhand des einfachen Beispiels Inkrement-Array erklärt}
-% Inkrement-Array
-\InkrementArray
-
-\section{Grundlegende Laufzeiten abhängig von der Arraygröße (sequenziell)}
-\subsection{Messziel} % Einleitung
-\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseMessziel
-\subsection{Erwartung}
-\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseErwartung
-\subsection{Diagramme}
-\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagramm
-\subsection{Analyse und Interpretation}
-\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseAnalyse
-
-% \newpage
-\section{Einfluss des Listentyps (sequenziell)} % Listentyps: Zufall, Sortiert, InvertiertSortiert, FastSortiert, Dupliziert
-\subsection{Messziel} % Einleitung
-\EinflussDesListentypsMessziel
-\subsection{Erwartung}
-\EinflussDesListentypsErwartung
-\subsection{Diagramme}
-\EinflussDesListentypsDiagramm
-\subsection{Analyse und Interpretation}
-\EinflussDesListentypsAnalyse
-% 
-% \newpage
-% \section{Einfluss der Arraygröße im Detail} % Tiefen mesungen (nTbE)
-% \subsection{Messziel} % Einleitung
-% \subsection{Erwartung}
-% \subsection{Diagramm}
-% \subsection{Analyse und Interpretation}
-
-% \newpage
-\section{Tiefenbasierte Thread-Erzeugung}
-\label{sec:messungen}
-\subsection{Messziel} % Einleitung
-\TiefenbasierteThreadErzeugungMessziel
-\subsection{Erwartung}
-\TiefenbasierteThreadErzeugungErwartung
-\subsection{Diagramme}
-\TiefenbasierteThreadErzeugungDiagramm
-\subsection{Analyse und Interpretation}
-\TiefenbasierteThreadErzeugungAnalyse
-
-%\newpage
-\section{Workerthreads}
-\subsection{Messziel} % Einleitung
-\WorkerthreadsMessziel
-\subsection{Erwartung}
-\WorkerthreadsErwartung
-\subsection{Diagramme}
-\WorkerthreadsDiagramm
-\subsection{Analyse und Interpretation}
-\WorkerthreadsAnalyse
-% 
-% \newpage
-% \section{Vergleich der Threading-Methoden}
-% \subsection{Messziel} % Einleitung
-% \subsection{Erwartung}
-% \subsection{Diagramme}
-% \subsection{Analyse und Interpretation}
-
-% \newpage
-\section{Einfluss des Datentyps der Liste} % Listenart: int, string
-\subsection{Messziel} % Einleitung
-\EinflussDesDatentypsMessziel
-\subsection{Erwartung}
-\EinflussDesDatentypsErwartung
-\subsection{Diagramme}
-\EinflussDesDatentypsDiagramm
-\subsection{Analyse und Interpretation}
-\EinflussDesDatentypsAnalyse
-
-% \section{Debug Vs Release}
-
-% ----------------------
-% 5. Diskussion und Fazit
-% ----------------------
-% \newpage
-\chapter{Diskussion und Fazit}
-\section{Interpretation aller Ergebnisse}
-% Ergebnisse interpretieren
-\InterpretationAllerErgebnisse
-\section{Ausblick und weiterführende Überlegungen}
-% Ausblick und weiterführende Überlegungen
-\Ausblick
-\section{Beantwortung der Forschungsfrage}
-% Forschungsfrage beantworten
-\BeantwortungDerForschungsfrage
-\section{Zusammenfassung}
-\Zusammenfassung
-% Kurze Zusammenfassung der Arbeit
-
-% ----------------------
-% 6. Anhang
-% ----------------------
-% \newpage
-\chapter{Anhang}
-\section{Hardware-Spezifikationen}
-% Hardware genau dokumentieren
-\HardwareSpezifikationen
-
-\section{Code}
-\Code
-% \lstinputlisting[language=C++,caption={Quicksort},label={lst:qs}]
-% {../../src/Quicksort.cpp}
-% \lstinputlisting[language=C++,caption={Quicksort WorkerPool},label={lst:qs_workerpool}]
-% {../../src/WorkerPool.h}
-% \lstinputlisting[language=C++,caption={Mergesort},label={lst:ms}]
-% {../../src/Mergesort.cpp}
-% \lstinputlisting[language=C++,caption={Mergesort WorkerPool},label={lst:ms_workerpool}]
-% {../../src/MergeWorkerPool.h}
-% \lstinputlisting[language=C++,caption={Listenersteler},label={lst:listenersteler}]
-% {../../src/Listenersteler.cpp}
-% \lstinputlisting[language=C++,caption={ListenerstelerString},label={lst:listenerstelerString}]
-% {../../src/string/ListenerstelerString.cpp}
-
-\section{Quellen}
-\Quellen
-
-\newpage
-\pagenumbering{Roman}
-\appendix
-\nocite{*}
-\bibliographystyle{plainurl}
-\bibliography{literatur}
-\listoffigures
-
-\include{Kapitel/Selbstaendigkeitserklaerung}
-
-% ----------------------
-% Dokumentende
-% ----------------------
 \end{document}
