@@ -208,4 +208,191 @@
     \large Fragen und Diskussion
 \end{frame}
 
+\section{Herleitung T(n,p)}
+\begin{frame}{Herleitung T(n,p): Ausgangsdefinition}
+
+    Gegeben ist die Rekursion:
+
+    \[
+        T(n,e)=
+        \begin{cases}
+            2\,T\!\left(\frac{n}{2},0\right)+n
+             & \text{falls } e=0 \\[8pt]
+            T\!\left(\frac{n}{2},e-1\right)+n
+             & \text{falls } e>0
+        \end{cases}
+    \]
+
+    Zusätzlich gilt:
+
+    \[
+        p = 2^e
+    \]
+
+\end{frame}
+
+\begin{frame}{Herleitung T(n,p): Entfaltung der Rekursion (1. Schritt)}
+
+    Für $e > 0$ gilt:
+
+    \[
+        T(n,e)=T\!\left(\frac{n}{2},e-1\right)+n
+    \]
+
+    Ein Einsetzen ergibt:
+
+    \[
+        T(n,e)
+        =
+        T\!\left(\frac{n}{4},e-2\right)
+        +
+        \frac{n}{2}
+        +
+        n
+    \]
+
+    Noch ein weiteres Einsetzen:
+
+    \[
+        T(n,e)
+        =
+        T\!\left(\frac{n}{8},e-3\right)
+        +
+        \frac{n}{4}
+        +
+        \frac{n}{2}
+        +
+        n
+    \]
+
+    Nach $e$ Schritten ergibt sich:
+
+    \[
+        T(n,e)
+        =
+        T\!\left(\frac{n}{2^e},0\right)
+        +
+        n
+        \left(
+        1+\frac12+\frac14+\dots+\frac1{2^{e-1}}
+        \right)
+    \]
+
+\end{frame}
+
+\begin{frame}{Herleitung T(n,p): Auswertung der geometrischen Reihe}
+
+    Die Summe
+
+    \[
+        \left(
+        1+\frac12+\frac14+\dots+\frac1{2^{e-1}}
+        \right) = \sum_{i=0}^{e-1} \frac{1}{2^i}
+    \]
+
+    ist eine geometrische Reihe mit Quotient $\frac{1}{2}$.
+
+    Sie ergibt:
+
+    \[
+        \sum_{i=0}^{e-1} \frac{1}{2^i}
+        =
+        2\left(1-\frac1{2^e}\right)
+    \]
+
+    Damit folgt:
+
+    \[
+        T(n,e)
+        =
+        T\!\left(\frac{n}{2^e},0\right)
+        +
+        2n\left(1-\frac1{2^e}\right)
+    \]
+
+\end{frame}
+
+\begin{frame}{Herleitung T(n,p): Einsetzen des Basisfalls}
+
+    Für $e=0$ gilt:
+
+    \[
+        T(n,0)=2T\!\left(\frac{n}{2},0\right)+n
+    \]
+
+    Dies entspricht der Rekursion von sequenziellem Mergesort.
+
+    Bekannt ist:
+
+    \[
+        T(n,0)=n\log_2 n + n
+    \]
+
+    Ersetzen von $n$ durch $\frac{n}{2^e}$ ergibt:
+
+    \[
+        T\!\left(\frac{n}{2^e},0\right)
+        =
+        \frac{n}{2^e}
+        \log_2\!\left(\frac{n}{2^e}\right)
+        +
+        \frac{n}{2^e}
+    \]
+
+    Einsetzen in $T(n,e)$ liefert:
+
+    \[
+        T(n,e)
+        =
+        \frac{n}{2^e}
+        \log_2\!\left(\frac{n}{2^e}\right)
+        +
+        \frac{n}{2^e}
+        +
+        2n\left(1-\frac1{2^e}\right)
+    \]
+
+\end{frame}
+
+\begin{frame}{Herleitung T(n,p): Substitution $p = 2^e$}
+
+    Da gilt:
+
+    \[
+        p = 2^e
+    \]
+
+    folgt:
+
+    \[
+        \frac{n}{2^e} = \frac{n}{p}
+    \]
+
+    Damit ergibt sich:
+
+    \[
+        T(n,p)
+        =
+        \frac{n}{p}
+        \log_2\!\left(\frac{n}{p}\right)
+        +
+        \frac{n}{p}
+        +
+        2n\left(1-\frac1{p}\right)
+    \]
+
+    Umsortiert erhält man:
+
+    \[
+        T(n,p)
+        =
+        2n\left(1-\frac1{p}\right)
+        +
+        \frac{n}{p}\log_2\!\left(\frac{n}{p}\right)
+        +
+        \frac{n}{p}
+    \]
+
+\end{frame}
+
 \end{document}
