@@ -105,6 +105,193 @@
     \large Fragen und Diskussion
 \end{frame}
 
+\section{Binärbaum}
+\begin{frame}{Balancierter Binärbaum für $n = 16$}
+
+    \centering
+    \begin{tikzpicture}[
+            level distance=1.2cm,
+            every node/.style={circle,draw,minimum size=6mm},
+            level 1/.style={sibling distance=6cm},
+            level 2/.style={sibling distance=3cm},
+            level 3/.style={sibling distance=1.5cm},
+            level 4/.style={sibling distance=0.75cm}
+        ]
+
+        \node {16}
+        child {node {8}
+                child {node {4}
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                    }
+                child {node {4}
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                    }
+            }
+        child {node {8}
+                child {node {4}
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                    }
+                child {node {4}
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                    }
+            };
+
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{Balancierter Binärbaum für $n = 16$, $p=4$, $e=2$}
+
+    \centering
+    \begin{tikzpicture}[
+            level distance=1.2cm,
+            every node/.style={circle,draw,minimum size=6mm},
+            level 1/.style={sibling distance=6cm},
+            level 2/.style={sibling distance=3cm},
+            level 3/.style={sibling distance=1.5cm},
+            level 4/.style={sibling distance=0.75cm}
+        ]
+
+        \node[fill=green!30] {16}
+        child {node[fill=blue!30] {8}
+                child {node[fill=orange] {4}
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                        child {node[fill=orange] {2}
+                                child {node {1}}
+                                child {node[fill=orange] {1}}
+                            }
+                    }
+                child {node[fill=blue!30] {4}
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                        child {node[fill=blue!30] {2}
+                                child {node {1}}
+                                child {node[fill=blue!30] {1}}
+                            }
+                    }
+            }
+        child {node[fill=green!30] {8}
+                child {node[fill=yellow] {4}
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                        child {node[fill=yellow] {2}
+                                child {node {1}}
+                                child {node[fill=yellow] {1}}
+                            }
+                    }
+                child {node[fill=green!30] {4}
+                        child {node {2}
+                                child {node {1}}
+                                child {node {1}}
+                            }
+                        child {node[fill=green!30] {2}
+                                child {node {1}}
+                                child {node[fill=green!30] {1}}
+                            }
+                    }
+            };
+
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{Balancierter Binärbaum für $n = 16$, $p=4$, $e=2$}
+
+    \centering
+    \begin{tikzpicture}[
+            level distance=1.2cm,
+            every node/.style={circle,draw,minimum size=6mm},
+            level 1/.style={sibling distance=6cm},
+            level 2/.style={sibling distance=3cm},
+            level 3/.style={sibling distance=1.5cm},
+            level 4/.style={sibling distance=0.75cm}
+        ]
+
+        \node[fill=green!30] {16}
+        child {node[fill=blue!30] {8}
+                child {node[fill=orange] {4}
+                        child {node[fill=orange] {2}
+                                child {node[fill=orange] {1}}
+                                child {node[fill=orange] {1}}
+                            }
+                        child {node[fill=orange] {2}
+                                child {node[fill=orange] {1}}
+                                child {node[fill=orange] {1}}
+                            }
+                    }
+                child {node[fill=blue!30] {4}
+                        child {node[fill=blue!30] {2}
+                                child {node[fill=blue!30] {1}}
+                                child {node[fill=blue!30] {1}}
+                            }
+                        child {node[fill=blue!30] {2}
+                                child {node[fill=blue!30] {1}}
+                                child {node[fill=blue!30] {1}}
+                            }
+                    }
+            }
+        child {node[fill=green!30] {8}
+                child {node[fill=yellow] {4}
+                        child {node[fill=yellow] {2}
+                                child {node[fill=yellow] {1}}
+                                child {node[fill=yellow] {1}}
+                            }
+                        child {node[fill=yellow] {2}
+                                child {node[fill=yellow] {1}}
+                                child {node[fill=yellow] {1}}
+                            }
+                    }
+                child {node[fill=green!30] {4}
+                        child {node[fill=green!30] {2}
+                                child {node[fill=green!30] {1}}
+                                child {node[fill=green!30] {1}}
+                            }
+                        child {node[fill=green!30] {2}
+                                child {node[fill=green!30] {1}}
+                                child {node[fill=green!30] {1}}
+                            }
+                    }
+            };
+
+    \end{tikzpicture}
+
+\end{frame}
+
 \section{Formeln}
 \begin{frame}{Formeln: Mergesort}
     \begin{flalign*}
