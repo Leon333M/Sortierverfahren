@@ -395,6 +395,35 @@
     \includegraphics[width=1\textwidth]{Abbildungen/SpeicherlatenzenDiagramm.jpg}
 \end{frame}
 
+\begin{frame}{Nebeneffekt des Skalierens mit dem Faktor $x$}
+
+    Sollte die Standard-Formel
+
+    \[
+        T(n) = 2T\!\left(\frac{n}{2}\right) + n
+    \]
+
+    falsch sein und stattdessen diese Formel gelten
+
+    \[
+        T(n) = 2T\!\left(\frac{n}{2}\right) + (n-1)
+    \]
+
+    kann man diese auch schreiben als
+
+    \[
+        T(n) =
+        2T\!\left(\frac{n}{2}\right) + \underbrace{\left(1-\frac{1}{n}\right)}_{x} \cdot n
+    \]
+
+    Dabei ist $\left(1-\frac{1}{n}\right)$ implizit auch durch unser $x$ repräsentiert.
+    Durch diesen Nebeneffekt korrigiert der Faktor x auch gleich implizit die Formel.
+    Dies macht die Formel nach dem Hochskalieren auf die sequentielle Laufzeit so präzise
+    und sorgt damit dafür,
+    dass die T(n,p)-Formel so exakt die untere Grenze der Laufzeitverbesserung vorhersagen kann.
+
+\end{frame}
+
 \section{Herleitung T(n,p)}
 \begin{frame}{Herleitung T(n,p): Ausgangsdefinition}
 
