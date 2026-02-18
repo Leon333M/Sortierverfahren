@@ -244,7 +244,7 @@
 
 \end{frame}
 
-\begin{frame}{Sortieralgorithmen: Quicksort}
+\begin{frame}{Sortieralgorithmen: Quicksort Best-Case}
     \textbf{Best-Case} von Quicksort:
     \begin{flalign*}
         T(n)    & = q_1 + q_2 + n                                                                                                             & \\
@@ -255,7 +255,7 @@
     \end{flalign*}
 \end{frame}
 
-\begin{frame}{Sortieralgorithmen: Quicksort}
+\begin{frame}{Sortieralgorithmen: Quicksort Best-Case}
     Balancierter Binärbaum für $n = 16$
     \newline
     \newline
@@ -288,6 +288,86 @@
     \QuicksortWorstCaseBaum
 \end{frame}
 
+\begin{frame}{Grundlagen der Parallelisierung}
+    \begin{itemize}
+        \item \textbf{Amdahlsches Gesetz}, Speedup $1/p$
+        \item theoretischer Speedup aufgrund von Overheads nie erreichbar
+    \end{itemize}
+    \begin{flalign*}
+        p       & = \text{Thread-Anzahl} ,                                                                                                   & \\
+        f       & = \text{serieller Code, wobei } 0 < f \le 1 ,                                                                              & \\
+        t ( p ) & = \underbrace{f \cdot t(1)}_{\text{serielle Arbeit}} + \underbrace{(1-f) \cdot \frac{t(1)}{p}}_{\text{parallele Arbeit}} . &
+    \end{flalign*}
+    $f$ nahe 0 bedeutet,
+    dass der Code fast die ganze Zeit alle Recheneinheiten beschäftigt hält.
+    Dies impliziert, dass sein Nebenläufigkeitsgrad immer gleich oder höher als die Anzahl der parallelen
+    Rechenknoten ist.
+    $f$ nahe 1 bedeutet, dass der Großteil unseres Codes nicht parallel läuft.
+    \cite{Weinzierl2024}
+    \begin{itemize}
+        \item Es ist kein linearer Speedup ($1/p$), daher nur eine eigene $T(n,p)$-Formel statt des exakten Amdahlschen Gesetzes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Thread-Modelle, Overheads und Skalierungsgrenzen}
+    \begin{itemize}
+        \item Overheads
+        \item Skalierungsgrenzen
+        \item Thread-Modelle, Implementierungsstrategien
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Overheads}
+    \begin{itemize}
+        \item Betrachten \textbf{Overheads} aus siecht eines Softwarearchitekten, für den die gesamte Hardware eine Blackbox ist.
+        \item \textbf{Overheads} (Zusatzlaufzeiten) verhindern theoretisch ideale Zeitersparnis.
+        \item \textbf{Overheads}:
+              \begin{itemize}
+                  \item Initialisierungs- und Join-Zeiten
+                  \item Destruktoren
+                  \item Synchronisation
+                  \item Swapping (Kontextwechsel)
+                  \item Speicherlatenzen (begrenzte Speichergröße, Cache-Misses, Datenübertragungsgeschwindigkeit (Latenzen), Datenübertragungsrate)
+                  \item ...
+              \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Overheads}
+    In der Praxis verursachen Threads verschiedene \textbf{Overheads} (Zusatzlaufzeiten), die verhindern, dass eine theoretisch ideale Zeitersparnis erreicht wird. Zu diesen Overheads zählen primär die Initialisierungs- und Join-Zeiten, die Laufzeiten von Destruktoren sowie die notwendige Synchronisation bei Abhängigkeiten zwischen Threads. Um die Datenkonsistenz zu gewährleisten, müssen Mechanismen wie Sperren (Mutexe) oder Barrieren (Synchronisationspunkte) eingesetzt werden, welche zusätzliche Wartezeiten und Verwaltungsoverheads verursachen. Parallel dazu setzen Hardware-Limitierungen der Skalierung Grenzen. Hierbei beeinflussen Context-Switching-Zeiten bei Überbelegung der Kerne (Oversubscription), die begrenzte Anzahl physischer Kerne (im Testsystem 8 physische bzw. 16 logische Prozessoren) sowie eine erhöhte Rate an Cache-Misses bei steigender Thread-Anzahl die Performance negativ. Letzteres führt dazu, dass vermehrt Daten aus dem RAM geladen werden müssen, wodurch das System je nach Anwendungsfall eher durch die Bandbreite und Speicherlatenz des Speichercontrollers (Memory Bound) als durch die Rechenleistung der CPU-Kerne begrenzt wird. Zudem ist zwischen physischen und logischen Prozessoren zu unterscheiden, da letztere aufgrund geteilter Hardware-Ressourcen weniger effizient skalieren.
+\end{frame}
+
+\begin{frame}{Skalierungsgrenzen: Hardware-Grenze CPU}
+    \begin{itemize}
+        \item Begrenzte Anzahl physischer Kerne (im Testsystem 8 physische bzw. 16 logische Prozessoren).
+        \item Je größer die Leistungsaufnahme der CPU ist, desto ineffizienter arbeitet sie.
+        \item Begrenzte maximale Leistungsaufnahme (Thermal Design Power, TDP), welche dafür sorgt, dass mehr Threads nicht unbedingt mehr Leistung bedeuten.
+        \item Leistungsaufnahme wird größtenteils zu Abwärme, die im schlimmsten Fall zur Runtertaktung (Thermal Throttling) einzelner CPU-Kerne führt.
+        \item Der wenige Rest der Leistungsaufnahme baut ein sich ständig wechselndes Magnetfeld auf, welches dabei Störströme (Kreisströme) induziert.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Overheads: Hardware-Grenze CPU}
+    Eine weitere wesentliche Hardware-Grenze stellt die CPU dar. Moderne CPUs sind durch eine maximale Leistungsaufnahme (Thermal Design Power, TDP) begrenzt. Eine höhere Auslastung aller Kerne führt daher nicht zwangsläufig zu proportional höherer Leistung. Beispielsweise weist die genutzte CPU einen Single-Core-Boost-Takt von 4,75 GHz auf, jedoch nur einen All-Core-Takt von 4,6 GHz, wodurch einzelne Threads bei geringer Auslastung performanter laufen. Zudem wird ein Großteil der TDP als Abwärme freigegeben, die effizient abgeführt werden muss. Bei unzureichender Kühlung oder Überschreitung thermischer Grenzen kommt es zur automatischen thermischen Drosselung (Thermal Throttling) der CPU, wodurch der Takt des jeweiligen Kerns temporär reduziert wird.
+    Der wenige Rest der TDP wird in elektromagnetische Felder umgewandelt, welche dann für Störströme (Kreisströme) sorgen.
+    Diese Faktoren beeinflussen die Performance ebenfalls negativ.
+\end{frame}
+
+\begin{frame}{Thread-Modelle, Implementierungsstrategien}
+    \begin{itemize}
+        \item Jeden Codeabschnitt ohne sequentielle Abhängigkeiten in einen neuen Thread auslagern
+        \item Thread-Anzahl begrenzen, da sonst oft Overheads dominieren.
+        \item Nutzen von Worker-Threads (Threadpool)
+        \item Work-Stealing-Ansatz
+        \item Nur neue Aufgaben auf Aufgabenliste legen, wenn freie Worker-Threads vorhanden sind.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Thread-Modelle, Implementierungsstrategien}
+    Hinsichtlich der Implementierung existieren verschiedene Ansätze. Die simpelste Methode besteht darin, jeden Codeabschnitt ohne sequentielle Abhängigkeiten in einen neuen Thread auszulagern. Dies ist jedoch oft kontraproduktiv, da ein Übermaß an Threads zu Performance-Verlusten durch Context Switching und hohen Speicherverbrauch führt. In der Praxis wird die Thread-Anzahl daher meist limitiert.
+    \newline
+    Eine Optimierung stellt die Nutzung von \textbf{Worker-Threads} dar. Hierbei werden Threads einmalig initialisiert und verbleiben über die gesamte Laufzeit aktiv, um kontinuierlich neue Aufgaben abzuarbeiten, anstatt nach jeder Aufgabe zerstört zu werden. Eine weiterführende Strategie ist das Dynamic Scheduling (oder Work-Stealing-Ansätze), bei dem Aufgaben nur dann zugewiesen werden, wenn Ressourcen frei sind. Sind alle Worker-Threads belegt, kann der aufrufende Thread die Aufgabe selbst bearbeiten, um Wartezeiten zu minimieren. Die Vor- und Nachteile dieser Strategien werden im Abschnitt der Implementierungsvarianten und der Messungen detailliert analysiert.
+\end{frame}
 
 \section{Methodik und Versuchsaufbau}
 \begin{frame}{Messumgebung und Implementierung}
@@ -324,5 +404,10 @@
 \end{frame}
 
 \alleFolien
+
+\begin{frame}[allowframebreaks]{Literatur}
+    \bibliographystyle{plain}
+    \bibliography{literatur}
+\end{frame}
 
 \end{document}
