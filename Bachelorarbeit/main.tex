@@ -288,6 +288,52 @@
     \QuicksortWorstCaseBaum
 \end{frame}
 
+\begin{frame}{Sortieralgorithmen: Quicksort Average-Case}
+    \begin{itemize}
+        \item Nicht zielführend, da eine einzige Laufzeit nie die Laufzeit des echten Zufalls abbilden kann.
+        \item Die echte Laufzeit wird fast nie Durchschnitt oder Median sein.
+        \item Man sollte generell eher vom gesamten Bereich, der vom Best-Case bis hin zum Worst-Case reicht, ausgehen.
+        \item Aus Sicht des Datenflusses (unbalancierte Baumstruktur) liegt man im Zufall eher am Best Case als am Worst Case.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Sortieralgorithmen: Quicksort Average-Case}
+    Der \textbf{heuristisch betrachtete Average-Case} von Quicksort ist:
+    \\[-0.8cm]
+    \begin{flalign*}
+        T(n)    & = q_1 + q_2 + n                                                                                                                                 & \\
+        q_1     & = T\left( \frac{1 + \dots + (n-1)}{n-1} \right) = T\left( n \cdot \frac{n-1}{2} \cdot \frac{1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
+        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n                                                                                                       & \\
+        T(n)    & = n \cdot \log_2(n) + n                                                                                                                         & \\
+        O(T(n)) & = O(n \log n).                                                                                                                                  &
+    \end{flalign*}
+    \\[-0.4cm]
+    \begin{itemize}
+        \item Mathematisch falsche Herangehensweise. Dadurch wird selbst der Worst-Case zu $T(n/2)$.
+        \item Soll mathematisch nur zeigen, dass man eher am Best-Case als am Worst-Case liegt.
+        \item Jedem sollte klar sein, dass man nur im Best-Case auch die Laufzeit des Best-Case erreichen kann und somit der echte Average-Case nie die Laufzeit des Best-Case haben kann.
+        \item Der echte Average Case wird über den Durchschnitt von $T(*)$ berechnet und nicht über die möglichen Werte von $n$, die $T(*)$ annehmen kann.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Sortieralgorithmen: Quicksort Average-Case}
+    \includegraphics[width=0.9\textwidth]{Abbildungen/Ernst2023S611.jpg}
+    \newline
+    \footnotesize
+    Quelle: Datenstrukturen, B{\"a}ume und Graphen \cite[S.~611]{Ernst2023}
+\end{frame}
+
+\begin{frame}{Sortieralgorithmen: Quicksort Average-Case}
+    Der echte \textbf{Average-Case} ist:
+    \begin{flalign*}
+        T_{\text{avg}}(n) & \approx 1.39 \cdot T_{\text{best}}(n)     & \\
+        T_{\text{avg}}(n) & \approx 1.39 \cdot (n \cdot log_2(n) + n) & \\
+    \end{flalign*}
+    \footnotesize
+    Quelle: 4. Auflage, \textit{Algorithmen}, Sedgewick \cite{Sedgewick2014DE}
+\end{frame}
+
 \begin{frame}{Grundlagen der Parallelisierung}
     \begin{itemize}
         \item \textbf{Amdahlsches Gesetz}, Speedup $1/p$
