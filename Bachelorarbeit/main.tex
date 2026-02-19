@@ -370,7 +370,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Overheads}
+\begin{frame}{Overheads (Text)}
     In der Praxis verursachen Threads verschiedene \textbf{Overheads} (Zusatzlaufzeiten), die verhindern, dass eine theoretisch ideale Zeitersparnis erreicht wird. Zu diesen Overheads zählen primär die Initialisierungs- und Join-Zeiten, die Laufzeiten von Destruktoren sowie die notwendige Synchronisation bei Abhängigkeiten zwischen Threads. Um die Datenkonsistenz zu gewährleisten, müssen Mechanismen wie Sperren (Mutexe) oder Barrieren (Synchronisationspunkte) eingesetzt werden, welche zusätzliche Wartezeiten und Verwaltungsoverheads verursachen. Parallel dazu setzen Hardware-Limitierungen der Skalierung Grenzen. Hierbei beeinflussen Context-Switching-Zeiten bei Überbelegung der Kerne (Oversubscription), die begrenzte Anzahl physischer Kerne (im Testsystem 8 physische bzw. 16 logische Prozessoren) sowie eine erhöhte Rate an Cache-Misses bei steigender Thread-Anzahl die Performance negativ. Letzteres führt dazu, dass vermehrt Daten aus dem RAM geladen werden müssen, wodurch das System je nach Anwendungsfall eher durch die Bandbreite und Speicherlatenz des Speichercontrollers (Memory Bound) als durch die Rechenleistung der CPU-Kerne begrenzt wird. Zudem ist zwischen physischen und logischen Prozessoren zu unterscheiden, da letztere aufgrund geteilter Hardware-Ressourcen weniger effizient skalieren.
 \end{frame}
 
@@ -384,7 +384,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Overheads: Hardware-Grenze CPU}
+\begin{frame}{Overheads: Hardware-Grenze CPU (Text)}
     Eine weitere wesentliche Hardware-Grenze stellt die CPU dar. Moderne CPUs sind durch eine maximale Leistungsaufnahme (Thermal Design Power, TDP) begrenzt. Eine höhere Auslastung aller Kerne führt daher nicht zwangsläufig zu proportional höherer Leistung. Beispielsweise weist die genutzte CPU einen Single-Core-Boost-Takt von 4,75 GHz auf, jedoch nur einen All-Core-Takt von 4,6 GHz, wodurch einzelne Threads bei geringer Auslastung performanter laufen. Zudem wird ein Großteil der TDP als Abwärme freigegeben, die effizient abgeführt werden muss. Bei unzureichender Kühlung oder Überschreitung thermischer Grenzen kommt es zur automatischen thermischen Drosselung (Thermal Throttling) der CPU, wodurch der Takt des jeweiligen Kerns temporär reduziert wird.
     Der wenige Rest der TDP wird in elektromagnetische Felder umgewandelt, welche dann für Störströme (Kreisströme) sorgen.
     Diese Faktoren beeinflussen die Performance ebenfalls negativ.
@@ -400,7 +400,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Thread-Modelle, Implementierungsstrategien}
+\begin{frame}{Thread-Modelle, Implementierungsstrategien (Text)}
     Hinsichtlich der Implementierung existieren verschiedene Ansätze. Die simpelste Methode besteht darin, jeden Codeabschnitt ohne sequentielle Abhängigkeiten in einen neuen Thread auszulagern. Dies ist jedoch oft kontraproduktiv, da ein Übermaß an Threads zu Performance-Verlusten durch Context Switching und hohen Speicherverbrauch führt. In der Praxis wird die Thread-Anzahl daher meist limitiert.
     \newline
     Eine Optimierung stellt die Nutzung von \textbf{Worker-Threads} dar. Hierbei werden Threads einmalig initialisiert und verbleiben über die gesamte Laufzeit aktiv, um kontinuierlich neue Aufgaben abzuarbeiten, anstatt nach jeder Aufgabe zerstört zu werden. Eine weiterführende Strategie ist das Dynamic Scheduling (oder Work-Stealing-Ansätze), bei dem Aufgaben nur dann zugewiesen werden, wenn Ressourcen frei sind. Sind alle Worker-Threads belegt, kann der aufrufende Thread die Aufgabe selbst bearbeiten, um Wartezeiten zu minimieren. Die Vor- und Nachteile dieser Strategien werden im Abschnitt der Implementierungsvarianten und der Messungen detailliert analysiert.
@@ -504,13 +504,122 @@
     \end{flalign*}
 \end{frame}
 
-\begin{frame}[fragile]{Implementierungsvarianten Code}
+\begin{frame}[fragile, shrink=10]{Implementierungsvarianten Code}
+    \begin{lstlisting}[language=C++, caption={Tiefenbasierte Thread-Erzeugung Mergesort}, label={lst:mergesortP}]
+void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
+    if (aktuelleEbene < neueThreadsBisEbene) {
+        int lange = rechts - links + 1;
+        if (lange > 1) {
+            int mitte = links + ((rechts - links) / 2);
+            // mergesort(liste, links, mitte);
+            std::thread thread(
+                static_cast<void (*)(int *, const int, const int, const int, const int)>(&Mergesort::mergesortP),
+                liste, links, mitte, aktuelleEbene + 1, neueThreadsBisEbene);
+            // mergesort(liste, mitte + 1, rechts);
+            mergesortP(liste, mitte + 1, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+            thread.join();
+            mischen(liste, links, mitte, rechts, lange);
+        }
+    } else {
+        mergesort(liste, links, rechts);
+    }
+};
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile, shrink=10]{Implementierungsvarianten Code}
+    \begin{lstlisting}[language=C++, caption={Tiefenbasierte Thread-Erzeugung Quicksort}, label={lst:quicksortP}]
+void Quicksort::quicksortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
+    if (aktuelleEbene < neueThreadsBisEbene) {
+        if (links < rechts) {
+            int ml, mr;
+            partitioniere(liste, links, rechts, ml, mr);
+            // quicksort(liste, links, ml);
+            std::thread thread(static_cast<void (*)(int *, const int, const int, const int, const int)>(&Quicksort::quicksortP), liste, links, ml, aktuelleEbene + 1, neueThreadsBisEbene);
+            // quicksort(liste, mr, rechts);
+            quicksortP(liste, mr, rechts, aktuelleEbene + 1, neueThreadsBisEbene);
+            thread.join();
+        }
+    } else {
+        quicksort(liste, links, rechts);
+    }
+};
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile, shrink=10]{Implementierungsvarianten Code}
+    \begin{lstlisting}[language=C++, caption={Worker-Thread-Variante Mergesort}, label={lst:mergesortW}]
+void Mergesort::mergesortW(int *liste, int links, int rechts, int workerThreads) {
+    MergeWorkerPool pool(workerThreads - 1);
+    pool.taskHandler = [&](int *liste, int links, int rechts, MergeWorkerPool &pool) {
+        if (links < rechts) {
+            int lange = rechts - links + 1;
+            if (lange < Sortierverfaren::mindestLange) {
+                mergesort(liste, links, rechts);
+            } else {
+                int mitte = links + ((rechts - links) / 2);
+                auto leftHandle = pool.addTaskSmart({liste, links, mitte});
+                pool.taskHandler(liste, mitte + 1, rechts, pool);
+                leftHandle.wait();
+                mischen(liste, links, mitte, rechts, lange);
+            }
+        }
+    };
+    // Starttask
+    pool.taskHandler(liste, links, rechts, pool);
+}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile, shrink=10]{Implementierungsvarianten Code}
+    \begin{lstlisting}[language=C++, caption={Worker-Thread-Variante Quicksort}, label={lst:quicksortW}]
+void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads) {
+    WorkerPool pool(workerThreads);
+    pool.taskHandler = [](int *liste, int links, int rechts, WorkerPool &pool) {
+        if (links < rechts) {
+            if (rechts - links < Sortierverfaren::mindestLange) {
+                quicksort(liste, links, rechts);
+            } else {
+                int ml, mr;
+                Quicksort::partitioniere(liste, links, rechts, ml, mr);
+                pool.addTask({liste, links, ml});
+                pool.taskHandler(liste, mr, rechts, pool);
+            }
+        }
+    };
+    pool.addTaskWaitUntilDone({liste, links, rechts});
+}
+    \end{lstlisting}
 \end{frame}
 
 \begin{frame}{Optimierung}
+    \Optimierung
 \end{frame}
 
 \begin{frame}{Messmethodik}
+    \begin{itemize}
+        \item Zufällige Listen (Arrays), gleicher Seed → reproduzierbar, vergleichbar
+        \item Zeitmessung mit \texttt{chrono}, Auflösung von 100\,ns
+        \item Zur Einordnung gilt: \(1\,\text{s} = 10^3\,\text{ms} = 10^9\,\text{ns}\).
+        \item Zeitpunkte der Messung: unmittelbar vor und nach dem Aufruf zum Sortieren.
+        \item Fast immer überprüft, ob das Ergebnis sortiert ist, um Korrektheit sicherzustellen.
+        \item Einzelergebnis (Stichprobenmessung), da praxisnäher und realitätssicher.
+        \item Insgesamt rund 20\,000 Einzelmessungen (Messdateien).
+        \item Es wird nur auf die wichtigsten Messungen eingegangen (rund 300 Einzelmessungen).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Messmethodik (Text)}
+    Zur Laufzeitmessung wurden zufällig erzeugte Listen verwendet, die stets mit demselben Seed initialisiert wurden. Dadurch sind alle Messungen reproduzierbar und miteinander vergleichbar.
+    \newline
+    Die Zeitmessung erfolgte mithilfe der Bibliothek \texttt{chrono}. Die gemessenen Zeiten besitzen eine Auflösung von 100\,ns und wurden entsprechend in Nanosekunden gespeichert sowie in den Diagrammen dargestellt. Zur Einordnung gilt:
+    \(1\,\text{s} = 10^3\,\text{ms} = 10^9\,\text{ns}\).
+    \newline
+    Die Messung begann unmittelbar vor dem Aufruf des zu untersuchenden Sortieralgorithmus und endete direkt nach dessen Abschluss. Die Zeit für die Initialisierung der Testlisten wurde dabei nicht mitgemessen.
+    \newline
+    Nach den meisten Messungen wurde überprüft, ob die resultierende Liste korrekt sortiert ist, um die funktionale Korrektheit der Implementierung sicherzustellen.
+    \newline
+    In der vorliegenden Untersuchung wird jeder Datenpunkt als Einzelergebnis (Stichprobenmessung) aufgeführt. Dieser Ansatz wurde gewählt, um die reale Systemperformance unter wechselnden Lastbedingungen unverfälscht darzustellen. Da jede Messung ein in der Praxis aufgetretenes Laufzeitverhalten repräsentiert, wird auf eine Mittelwertbildung verzichtet, um auch punktuelle Latenzen oder Ausreißer, die für die Stabilität des Algorithmus relevant sind, sichtbar zu machen.
 \end{frame}
 
 \section{Ergebnisse und Analyse}
