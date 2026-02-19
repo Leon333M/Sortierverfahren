@@ -270,15 +270,6 @@
         T(n)    & = \frac{1}{2} \cdot ( n^2 + n ) + n, & \\
         O(T(n)) & = O(n^2).                            &
     \end{flalign*}
-
-    Der \textbf{heuristisch betrachtete Average-Case} von Quicksort ist:
-    \begin{flalign*}
-        T(n)    & = q_1 + q_2 + n                                                                                                                                 & \\
-        q_1     & = T\left( \frac{1 + \dots + (n-1)}{n-1} \right) = T\left( n \cdot \frac{n-1}{2} \cdot \frac{1}{n-1} \right) = T\left( \frac{n}{2} \right) = q_2 & \\
-        T(n)    & = 2 \cdot T\left( \frac{n}{2} \right) + n                                                                                                       & \\
-        T(n)    & = n \cdot \log_2(n) + n                                                                                                                         & \\
-        O(T(n)) & = O(n \log n).                                                                                                                                  &
-    \end{flalign*}
 \end{frame}
 
 \begin{frame}{Sortieralgorithmen: Quicksort}
@@ -293,7 +284,7 @@
         \item Nicht zielführend, da eine einzige Laufzeit nie die Laufzeit des echten Zufalls abbilden kann.
         \item Die echte Laufzeit wird fast nie Durchschnitt oder Median sein.
         \item Man sollte generell eher vom gesamten Bereich, der vom Best-Case bis hin zum Worst-Case reicht, ausgehen.
-        \item Aus Sicht des Datenflusses (unbalancierte Baumstruktur) liegt man im Zufall eher am Best Case als am Worst Case.
+        \item Aus Sicht des Programmablaufs (unbalancierte Baumstruktur) liegt man im Zufall eher am Best Case als am Worst Case.
     \end{itemize}
 \end{frame}
 
@@ -415,13 +406,111 @@
     Eine Optimierung stellt die Nutzung von \textbf{Worker-Threads} dar. Hierbei werden Threads einmalig initialisiert und verbleiben über die gesamte Laufzeit aktiv, um kontinuierlich neue Aufgaben abzuarbeiten, anstatt nach jeder Aufgabe zerstört zu werden. Eine weiterführende Strategie ist das Dynamic Scheduling (oder Work-Stealing-Ansätze), bei dem Aufgaben nur dann zugewiesen werden, wenn Ressourcen frei sind. Sind alle Worker-Threads belegt, kann der aufrufende Thread die Aufgabe selbst bearbeiten, um Wartezeiten zu minimieren. Die Vor- und Nachteile dieser Strategien werden im Abschnitt der Implementierungsvarianten und der Messungen detailliert analysiert.
 \end{frame}
 
+\begin{frame}{Begriffserklärung: Worker-Thread und Work-Stealing}
+    \WorkerThreadErklaerung
+    \\[1cm]
+    \WorkStealingErklaerung
+\end{frame}
+
+\begin{frame}{Begriffserklärung Work-Stealing-ähnliche Ansatz}
+    \begin{figure}[h]
+        \centering
+        \scalebox{0.9}{
+            \WorkerthreadsAbildung
+        }
+        \caption[Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue]{Work-Stealing-ähnlicher Ansatz mit gemeinsamer Aufgaben-Queue: Threads entnehmen Aufgaben aus der Queue und können neue Aufgaben auf diese legen.}
+        \label{fig:workstealing_dynamisch}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Begriffserklärung Work-Stealing-ähnliche Ansatz}
+    \WorkStealingAehnlichErklaerung
+\end{frame}
+
 \section{Methodik und Versuchsaufbau}
-\begin{frame}{Messumgebung und Implementierung}
-    % Hier Details aus \MessumgebungUndHardware
+\begin{frame}{Methodik und Versuchsaufbau}
+    \begin{itemize}
+        \item Messumgebung und Hardware
+        \item Implementierungsvarianten
+        \item Programmablauf als Baumstruktur
+        \item Parallele Implementierungsvarianten Code
+        \item Optimierung
+        \item Messmethodik
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Messumgebung und Hardware}
+    \begin{itemize}
+        \item CPU: AMD Ryzen 7 5800x, 8-Kern-CPU (8 physische Kerne, 16 logische Prozessoren)
+        \item 32\,GB Ram: DDR4-3200, CL16-18-18-38 (2 Kits, insgesamt 4×8\,GB)
+        \item Betriebssystem: Windows~10 Version~22H2
+        \item Der Code wurde in \textbf{C++20} implementiert und mittels \textbf{CMake} (Version 3.26.4) sowie dem \textbf{MSVC-Compiler} (Version 14.44.35207) unter Verwendung des \textbf{MultiThreaded}-Flags kompiliert.
+        \item Im integrierten Terminal von Visual Studio Code.
+        \item In einer Release-Konfiguration (also mit Compiler-Optimierungen).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Messumgebung und Hardware}
+    \MessumgebungUndHardware
+\end{frame}
+
+\begin{frame}{Implementierungsvarianten}
+    Im Rahmen dieser Arbeit wurden folgende Implementierungsvarianten für Mergesort und Quicksort umgesetzt:
+    \begin{itemize}
+        \item eine rekursiv sequenzielle Variante,
+        \item eine rekursive Variante mit Thread-Erzeugung bis zu einer Tiefe $e$, welche eine Thread-Anzahl von $2^e$ unterstützt (tiefenbasierte Thread-Erzeugung),
+        \item eine Worker-Thread-Variante basierend auf einem Work-Stealing-ähnlichen Ansatz mit $N$ Threads, umgesetzt als aufgabenbasierte Rekursionsverwaltung (Work-Stealing-Variante).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Implementierungsvarianten: Formeln: parallel Mergesort}
+    \begin{flalign*}
+        p         & = \text{Thread-Anzahl}                                                                               &  & \\
+        e         & = \log_2(p)                                                                                          &  & \\
+        T(n,e)    & = \begin{cases}
+                          2 \cdot T\left(\frac{n}{2}, 0\right) + n   & \text{, wenn } e = 0 \\
+                          1 \cdot T\left(\frac{n}{2}, e-1\right) + n & \text{, wenn } e > 0
+                      \end{cases}                                 &  &                                       \\
+        T(n,p)    & = 2n \left( 1 - \frac{1}{p} \right) + \frac{n}{p} \cdot \log_2\left(\frac{n}{p}\right) + \frac{n}{p} &  & \\
+        O(T(n,p)) & = O\left( \frac{n}{p} \cdot \log_2(n) + n \right)                                                    &  & \\
+        e_{\max}  & = \log_2(n)                                                                                          &  & \\
+        p_{\max}  & = n
+    \end{flalign*}
+\end{frame}
+
+\begin{frame}{Implementierungsvarianten: Formeln: parallel Quicksort}
+    Der \textbf{Best-Case} von Quicksort ist:
+    \begin{flalign*}
+        p         & = \text{Thread-Anzahl}                                                                               &  & \\
+        e         & = \log_2(p)                                                                                          &  & \\
+        T(n,e)    & = \begin{cases}
+                          2 \cdot T\left(\frac{n}{2}, 0\right) + n   & \text{, wenn } e = 0 \\
+                          1 \cdot T\left(\frac{n}{2}, e-1\right) + n & \text{, wenn } e > 0
+                      \end{cases}                                 &  &                                       \\
+        T(n,p)    & = 2n \left( 1 - \frac{1}{p} \right) + \frac{n}{p} \cdot \log_2\left(\frac{n}{p}\right) + \frac{n}{p} &  & \\
+        O(T(n,p)) & = O\left( \frac{n}{p} \cdot \log_2(n) + n \right)                                                    &  & \\
+        e_{\max}  & = \log_2(n)                                                                                          &  & \\
+        p_{\max}  & = n
+    \end{flalign*}
+\end{frame}
+
+\begin{frame}{Implementierungsvarianten: Formeln: parallel Quicksort}
+    Der \textbf{Worst-Case} von Quicksort (Worker-Thread-Variante) bei $p > 1$ ist:
+    \begin{flalign*}
+        T(n)    & = q_2 + n,                       & \\
+        T(n)    & = T(n-1) + n,                    & \\
+        T(n)    & = \frac{1}{2} \cdot ( n^2 + n ), & \\
+        O(T(n)) & = O(n^2).                        &
+    \end{flalign*}
 \end{frame}
 
 \begin{frame}[fragile]{Implementierungsvarianten Code}
-    % [fragile] ist nötig für Listings auf Folien
+\end{frame}
+
+\begin{frame}{Optimierung}
+\end{frame}
+
+\begin{frame}{Messmethodik}
 \end{frame}
 
 \section{Ergebnisse und Analyse}
