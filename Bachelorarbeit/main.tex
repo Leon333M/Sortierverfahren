@@ -675,12 +675,88 @@ void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads)
 \end{frame}
 
 \section{Ergebnisse und Analyse}
-\begin{frame}{Laufzeitmessungen (sequenziell)}
-    % Platz für Diagramme aus \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagramm
+\begin{frame}{Ergebnisse und Analyse}
+    \begin{itemize}
+        \item Inkrement-Array
+        \item Grundlegende Laufzeiten abhängig von der Arraygröße (sequenziell)
+        \item Einfluss des Listentyps (sequenziell)
+        \item Tiefenbasierte Thread-Erzeugung
+        \item Workerthreads
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{Analyse der Threading-Methoden}
-    % Vergleich Workerthreads vs. Tiefenbasierte Erzeugung
+\begin{frame}{Ergebnisse und Analyse: Begriffsdefinition}
+    \begin{itemize}
+        \item \StrongScalingBegriffsdefinition
+        \item \WeakScalingBegriffsdefinition
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Inkrement-Array}
+    \begin{lstlisting}[language=C++]
+    std::unique_ptr<int[]> liste(new int[lange]);
+    volatile int *vptr = liste.get();
+
+    auto start = std::chrono::high_resolution_clock::now();
+    for (long long i = 0; i < lange; i++) {
+        vptr[i] = vptr[i]++;
+    }
+    auto stop = std::chrono::high_resolution_clock::now();
+
+    long long dauer = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start).count();
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile, shrink=10]{Inkrement-Array}
+    \begin{lstlisting}[language=C++]
+void Manager::incArrayMT(volatile int *liste, long long lange, int threadCount) {
+    std::vector<std::thread> threads;
+    threads.reserve(threadCount - 1);
+    long long chunk = lange / threadCount;
+
+    for (int t = 0; t < threadCount; t++) {
+        long long start = t * chunk;
+        long long lambdaStart = start;
+        if (t == threadCount - 1) {
+            // letzter Thread
+            long long lambdaEnd = lange;
+            for (long long i = lambdaStart; i < lambdaEnd; i++) {
+                liste[i] = liste[i] + 1;
+            }
+        } else {
+            long long lambdaEnd = start + chunk;
+            threads.emplace_back([=]() {
+                for (long long i = lambdaStart; i < lambdaEnd; i++) {
+                    liste[i] = liste[i] + 1;
+                }
+            });
+        }
+    }
+    for (auto &t : threads) {
+        t.join();
+    }
+};
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[shrink=10]{Inkrement-Array}
+    \InkrementArrayfolien
+\end{frame}
+
+\begin{frame}{Grundlegende Laufzeiten abhängig von der Arraygröße (sequenziell)}
+
+\end{frame}
+
+\begin{frame}{Einfluss des Listentyps (sequenziell)}
+
+\end{frame}
+
+\begin{frame}{Tiefenbasierte Thread-Erzeugung}
+
+\end{frame}
+
+\begin{frame}{Workerthreads}
+
 \end{frame}
 
 \section{Diskussion und Fazit}

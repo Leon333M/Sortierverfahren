@@ -1,4 +1,47 @@
 
+\newcommand{\InkrementArrayfolien}{
+    \resizebox{0.66\textwidth}{4.5cm}{%
+        \begin{minipage}{\textwidth}
+            \centering
+            % Zeile 1
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammA
+                \captionof{figure}[Inkrement-Array ($2\times$ Geschwindigkeit)]{
+                    Zeigt, ab welcher Arraygröße zum ersten Mal die halbe Laufzeit gegenüber der sequentiellen Laufzeit erreicht wird.
+                }
+                \label{fig:InkrementArrayDiagrammGeschwindigkeitssteigerung}
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammB
+                \captionof{figure}[Inkrement-Array (Strong Scaling: Laufzeit bei Arraygröße $2^{21}$)]{}
+                \label{fig:InkrementArrayDiagrammStrongScalingA}
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammE
+                \captionof{figure}[Inkrement-Array (Weak Scaling {\small (Start-Größe $2^{21}$)})]{}
+            \end{minipage}
+
+            \par\vspace{1em}
+
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammD
+                \captionof{figure}[Inkrement-Array (Laufzeit bei Arraygröße 16)]{
+                    Zeigt die Overheads, die durch Threads entstehen.
+                }
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammC
+                \captionof{figure}[Inkrement-Array (Strong Scaling: Laufzeit bei Arraygröße $2^{31}$)]{}
+                \label{fig:InkrementArrayDiagrammStrongScalingB}
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \centering \InkrementArrayDiagrammF
+                \captionof{figure}[Inkrement-Array (Arraygröße verdoppeln (16 Threads))]{}
+            \end{minipage}
+        \end{minipage}
+    }
+}
+
 \newcommand{\Baumfolien}{
 
     \begin{frame}{Implementierungsvarianten}
