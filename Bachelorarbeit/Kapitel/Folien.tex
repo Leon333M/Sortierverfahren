@@ -1,4 +1,291 @@
 
+\newcommand{\Baumfolien}{
+
+    \begin{frame}{Implementierungsvarianten}
+        Bildlich gesprochen lässt sich Mergesort als balancierter und Quicksort als unbalancierter binärer Baum darstellen.
+        Während die tiefenbasierte Thread-Erzeugung bis zu einer festen Ebene bei Mergesort zu einer optimalen Auslastung führt, resultiert dies bei Quicksort in einer schlechten Lastverteilung.
+        Im Gegensatz dazu ermöglicht die Work-Stealing-Variante, dass freie Threads Aufgaben aus anderen Ästen (dem linken Teilbaum) übernehmen.
+        Dadurch wird auch bei unbalancierten Baumstrukturen eine sehr gleichmäßige Lastverteilung erzielt, was wiederum in einer verkürzten Laufzeit resultiert.
+    \end{frame}
+
+
+    \begin{frame}{Balancierter Binärbaum für $n = 16$, $p=4$, $e=2$}
+        Tiefenbasierte Thread-Erzeugung bei Mergesort und Best-Case von Quicksort:
+        \newline
+        \newline
+        \centering
+        \begin{tikzpicture}[
+                level distance=1.2cm,
+                every node/.style={circle,draw,minimum size=6mm},
+                level 1/.style={sibling distance=6cm},
+                level 2/.style={sibling distance=3cm},
+                level 3/.style={sibling distance=1.5cm},
+                level 4/.style={sibling distance=0.75cm}
+            ]
+
+            \node[fill=green!30] {16}
+            child {node[fill=blue!30] {8}
+                    child {node[fill=orange] {4}
+                            child {node[fill=orange] {2}
+                                    child {node[fill=orange] {1}}
+                                    child {node[fill=orange] {1}}
+                                }
+                            child {node[fill=orange] {2}
+                                    child {node[fill=orange] {1}}
+                                    child {node[fill=orange] {1}}
+                                }
+                        }
+                    child {node[fill=blue!30] {4}
+                            child {node[fill=blue!30] {2}
+                                    child {node[fill=blue!30] {1}}
+                                    child {node[fill=blue!30] {1}}
+                                }
+                            child {node[fill=blue!30] {2}
+                                    child {node[fill=blue!30] {1}}
+                                    child {node[fill=blue!30] {1}}
+                                }
+                        }
+                }
+            child {node[fill=green!30] {8}
+                    child {node[fill=yellow] {4}
+                            child {node[fill=yellow] {2}
+                                    child {node[fill=yellow] {1}}
+                                    child {node[fill=yellow] {1}}
+                                }
+                            child {node[fill=yellow] {2}
+                                    child {node[fill=yellow] {1}}
+                                    child {node[fill=yellow] {1}}
+                                }
+                        }
+                    child {node[fill=green!30] {4}
+                            child {node[fill=green!30] {2}
+                                    child {node[fill=green!30] {1}}
+                                    child {node[fill=green!30] {1}}
+                                }
+                            child {node[fill=green!30] {2}
+                                    child {node[fill=green!30] {1}}
+                                    child {node[fill=green!30] {1}}
+                                }
+                        }
+                };
+
+        \end{tikzpicture}
+
+    \end{frame}
+
+    \begin{frame}{Maximal unbalancierter Binärbaum für $n = 4$, $p=2$, $e=1$}
+        Tiefenbasierte Thread-Erzeugung Quicksort \textbf{Worst-Case}:
+        \newline
+        \newline
+        \centering
+        \begin{tikzpicture}[
+                level distance=1.2cm,
+                every node/.style={circle,draw,minimum size=6mm},
+                level 1/.style={sibling distance=4cm},
+                level 2/.style={sibling distance=2cm},
+                level 3/.style={sibling distance=1.2cm}
+            ]
+
+            \node[fill=green!30] {4}
+            child {node[fill=blue!30] {1}
+                }
+            child {node[fill=green!30] {3}
+                    child {node[fill=green!30] {1}
+                        }
+                    child {node[fill=green!30] {2}
+                            child {node[fill=green!30] {1}}
+                            child {node[fill=green!30] {1}}
+                        }
+                };
+
+        \end{tikzpicture}
+    \end{frame}
+
+    \begin{frame}{Maximal unbalancierter Binärbaum für $n = 4$, $p=2$}
+        Worker-Thread-Variante Quicksort \textbf{Worst-Case}:
+        \newline
+        \newline
+        \centering
+        \begin{tikzpicture}[
+                level distance=1.2cm,
+                every node/.style={circle,draw,minimum size=6mm},
+                level 1/.style={sibling distance=4cm},
+                level 2/.style={sibling distance=2cm},
+                level 3/.style={sibling distance=1.2cm}
+            ]
+
+            \node[fill=green!30] {4}
+            child {node[fill=blue!30] {1}
+                }
+            child {node[fill=green!30] {3}
+                    child {node[fill=blue!30] {1}
+                        }
+                    child {node[fill=green!30] {2}
+                            child {node[fill=blue!30] {1}}
+                            child {node[fill=green!30] {1}}
+                        }
+                };
+
+        \end{tikzpicture}
+    \end{frame}
+
+    \begin{frame}{Maximal unbalancierter Binärbaum für $n = 4$, $p=2$}
+        Worker-Thread-Variante Quicksort \textbf{Worst-Case}:
+        \newline
+        \newline
+        \centering
+        \begin{tikzpicture}[
+                level distance=1.2cm,
+                every node/.style={circle,draw,minimum size=6mm},
+                level 1/.style={sibling distance=4cm},
+                level 2/.style={sibling distance=2cm},
+                level 3/.style={sibling distance=1.2cm}
+            ]
+
+            \node[fill=green!30] {4}
+            child {node[fill=blue!30] {3}
+                    child {node[fill=green!30] {2}
+                            child {node[fill=blue!30] {1}}
+                            child {node[fill=green!30] {1}}
+                        }
+                    child {node[fill=blue!30] {1}}
+                }
+            child {node[fill=green!30] {1}
+                };
+
+        \end{tikzpicture}
+    \end{frame}
+
+    \begin{frame}{Balancierter Binärbaum für $n = 16$, $p=4$}
+        Worker-Thread-Variante Quicksort \textbf{Best-Case}:
+        \newline
+        \newline
+        \centering
+        \begin{tikzpicture}[
+                level distance=1.2cm,
+                every node/.style={circle,draw,minimum size=6mm},
+                level 1/.style={sibling distance=6cm},
+                level 2/.style={sibling distance=3cm},
+                level 3/.style={sibling distance=1.5cm},
+                level 4/.style={sibling distance=0.75cm}
+            ]
+
+            \node[fill=green!30] {16}
+            child {node[fill=blue!30] {8}
+                    child {node[fill=green!30] {4}
+                            child {node[fill=orange] {2}
+                                    child {node[fill=blue!30] {1}}
+                                    child {node[fill=orange] {1}}
+                                }
+                            child {node[fill=green!30] {2}
+                                    child {node[fill=yellow] {1}}
+                                    child {node[fill=green!30] {1}}
+                                }
+                        }
+                    child {node[fill=blue!30] {4}
+                            child {node[fill=orange] {2}
+                                    child {node[fill=green!30] {1}}
+                                    child {node[fill=orange] {1}}
+                                }
+                            child {node[fill=blue!30] {2}
+                                    child {node[fill=blue!30] {1}}
+                                    child {node[fill=blue!30]{1}}
+                                }
+                        }
+                }
+            child {node[fill=green!30] {8}
+                    child {node[fill=yellow] {4}
+                            child {node[fill=yellow] {2}
+                                    child {node[fill=orange] {1}}
+                                    child {node[fill=yellow] {1}}
+                                }
+                            child {node[fill=yellow] {2}
+                                    child {node[fill=blue!30] {1}}
+                                    child {node[fill=yellow] {1}}
+                                }
+                        }
+                    child {node[fill=green!30] {4}
+                            child {node[fill=orange] {2}
+                                    child {node[fill=yellow] {1}}
+                                    child {node[fill=orange] {1}}
+                                }
+                            child {node[fill=green!30] {2}
+                                    child {node[fill=blue!30] {1}}
+                                    child {node[fill=green!30] {1}}
+                                }
+                        }
+                };
+
+        \end{tikzpicture}
+
+    \end{frame}
+
+    \begin{frame}{Balancierter Binärbaum für $n = 16$, $p=4$}
+        Worker-Thread-Variante Mergesort:
+        \newline
+        \newline
+        \centering
+        \begin{tikzpicture}[
+                level distance=1.2cm,
+                every node/.style={circle,draw,minimum size=6mm},
+                level 1/.style={sibling distance=6cm},
+                level 2/.style={sibling distance=3cm},
+                level 3/.style={sibling distance=1.5cm},
+                level 4/.style={sibling distance=0.75cm}
+            ]
+
+            \node[fill=green!30] {16}
+            child {node[fill=blue!30] {8}
+                    child {node[fill=blue!30] {4}
+                            child {node[fill=blue!30] {2}
+                                    child {node[fill=blue!30] {1}}
+                                    child {node[fill=blue!30] {1}}
+                                }
+                            child {node[fill=blue!30] {2}
+                                    child {node[fill=orange] {1}}
+                                    child {node[fill=blue!30] {1}}
+                                }
+                        }
+                    child {node[fill=blue!30] {4}
+                            child {node[fill=orange] {2}
+                                    child {node[fill=orange] {1}}
+                                    child {node[fill=orange] {1}}
+                                }
+                            child {node[fill=blue!30] {2}
+                                    child {node[fill=yellow] {1}}
+                                    child {node[fill=blue!30] {1}}
+                                }
+                        }
+                }
+            child {node[fill=green!30] {8}
+                    child {node[fill=yellow] {4}
+                            child {node[fill=yellow] {2}
+                                    child {node[fill=yellow] {1}}
+                                    child {node[fill=yellow] {1}}
+                                }
+                            child {node[fill=yellow] {2}
+                                    child {node[fill=yellow] {1}}
+                                    child {node[fill=yellow] {1}}
+                                }
+                        }
+                    child {node[fill=green!30] {4}
+                            child {node[fill=orange] {2}
+                                    child {node[fill=orange] {1}}
+                                    child {node[fill=orange] {1}}
+                                }
+                            child {node[fill=green!30] {2}
+                                    child {node[fill=green!30] {1}}
+                                    child {node[fill=green!30] {1}}
+                                }
+                        }
+                };
+
+        \end{tikzpicture}
+
+    \end{frame}
+
+}
+
 \newcommand{\BalancierterBinaerbaumNSechzehn}{
     \centering
     \begin{tikzpicture}[

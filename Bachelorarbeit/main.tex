@@ -504,6 +504,8 @@
     \end{flalign*}
 \end{frame}
 
+\Baumfolien
+
 \begin{frame}[fragile, shrink=10]{Implementierungsvarianten Code}
     \begin{lstlisting}[language=C++, caption={Tiefenbasierte Thread-Erzeugung Mergesort}, label={lst:mergesortP}]
 void Mergesort::mergesortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene) {
@@ -620,6 +622,56 @@ void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads)
     Nach den meisten Messungen wurde überprüft, ob die resultierende Liste korrekt sortiert ist, um die funktionale Korrektheit der Implementierung sicherzustellen.
     \newline
     In der vorliegenden Untersuchung wird jeder Datenpunkt als Einzelergebnis (Stichprobenmessung) aufgeführt. Dieser Ansatz wurde gewählt, um die reale Systemperformance unter wechselnden Lastbedingungen unverfälscht darzustellen. Da jede Messung ein in der Praxis aufgetretenes Laufzeitverhalten repräsentiert, wird auf eine Mittelwertbildung verzichtet, um auch punktuelle Latenzen oder Ausreißer, die für die Stabilität des Algorithmus relevant sind, sichtbar zu machen.
+\end{frame}
+
+\begin{frame}{Formeln: Einheiten und Skalierung}
+    \begingroup
+    \setlength{\belowdisplayskip}{-5pt}
+    \begin{flalign*}
+        x \cdot T(n) & = 2 \cdot T \left( \frac{n}{2} \right) + x \cdot n & \\
+        x \cdot T(n) & =  x \cdot n \cdot \log_2(n) + x \cdot n           & \\
+        x \cdot T(n) & = x \cdot \left( n \cdot \log_2(n) + n \right)     & \\
+    \end{flalign*}
+    \endgroup
+    Aufgrund von Overheads wie z.\,B. erhöhte Speicherlatenzen durch Cache-Misses:
+    \begingroup
+    \setlength{\belowdisplayskip}{-10pt}
+    \begin{flalign*}
+        x      & = f(n,p)     & \\
+        f(n,p) & \le f(n+1,p) & \\
+        f(n,p) & \le f(n,p+1) & \\
+    \end{flalign*}
+    \endgroup
+    \includegraphics[width=1\textwidth]{Abbildungen/SpeicherlatenzenDiagramm.jpg}
+\end{frame}
+
+\begin{frame}{Nebeneffekt des Skalierens mit dem Faktor $x$}
+
+    Sollte die Standard-Formel
+
+    \[
+        T(n) = 2T\!\left(\frac{n}{2}\right) + n
+    \]
+
+    falsch sein und stattdessen diese Formel gelten
+
+    \[
+        T(n) = 2T\!\left(\frac{n}{2}\right) + (n-1)
+    \]
+
+    kann man diese auch schreiben als
+
+    \[
+        T(n) =
+        2T\!\left(\frac{n}{2}\right) + \underbrace{\left(1-\frac{1}{n}\right)}_{x} \cdot n
+    \]
+
+    Dabei ist $\left(1-\frac{1}{n}\right)$ implizit auch durch $x$ repräsentiert.
+    Durch diesen Nebeneffekt korrigiert der Faktor x auch gleich implizit die Formel.
+    Dies macht die Formel nach dem Hochskalieren auf die sequentielle Laufzeit so präzise
+    und sorgt damit dafür,
+    dass die T(n,p)-Formel so exakt die untere Grenze der Laufzeitverbesserung vorhersagen kann.
+
 \end{frame}
 
 \section{Ergebnisse und Analyse}
