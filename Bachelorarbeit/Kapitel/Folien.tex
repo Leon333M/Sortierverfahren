@@ -1,4 +1,38 @@
 
+\newcommand{\GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseMesszielFolien}{
+
+    \begin{frame}[shrink=10]{Grundlegende Laufzeiten abhängig von der Arraygröße (sequenziell)}
+        \centering
+        \resizebox{0.99\textwidth}{!}{%
+            \centering
+            \begin{minipage}{\linewidth}
+                \begin{minipage}{0.5\linewidth}
+                    \centering
+                    \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA
+                    \captionof{figure}[Grundlegende Laufzeit der Sortierverfahren (Arraygröße 1 - 400M)]{}
+                    \label{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammA}
+                \end{minipage}%
+                \begin{minipage}{0.5\linewidth}
+                    \centering
+                    \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB
+                    \captionof{figure}[Grundlegende Laufzeit der Sortierverfahren (Arraygröße 25M - 400M, logarithmische Achsen)]{}
+                    \label{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammB}
+                \end{minipage}
+            \end{minipage}
+        }
+    \end{frame}
+
+    \begin{frame}{Grundlegende Laufzeiten abhängig von der Arraygröße (sequenziell)}
+        \begin{minipage}{\linewidth}
+            \centering
+            \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC
+            \captionof{figure}[Grundlegende Laufzeit der Sortierverfahren (Arraygröße 1 - 800k, logarithmische Achsen)]{}
+            \label{fig:GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC}
+        \end{minipage}
+    \end{frame}
+
+}
+
 \newcommand{\InkrementArrayfolien}{
     \resizebox{0.66\textwidth}{4.5cm}{%
         \begin{minipage}{\textwidth}
@@ -50,7 +84,6 @@
         Im Gegensatz dazu ermöglicht die Work-Stealing-Variante, dass freie Threads Aufgaben aus anderen Ästen (dem linken Teilbaum) übernehmen.
         Dadurch wird auch bei unbalancierten Baumstrukturen eine sehr gleichmäßige Lastverteilung erzielt, was wiederum in einer verkürzten Laufzeit resultiert.
     \end{frame}
-
 
     \begin{frame}{Balancierter Binärbaum für $n = 16$, $p=4$, $e=2$}
         Tiefenbasierte Thread-Erzeugung bei Mergesort und Best-Case von Quicksort:

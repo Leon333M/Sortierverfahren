@@ -154,10 +154,34 @@ void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads)
     pool.addTaskWaitUntilDone({liste, links, rechts});
 }
 
+void Quicksort::Quickselect(int *liste, int mitte, int bereich) {
+    int links = mitte - bereich;
+    int rechts = mitte + bereich;
+    // Standard Quickselect Loop
+    while (links < rechts) {
+        int ml, mr;
+        partitioniere(liste, links, rechts, ml, mr);
+        if (mitte >= ml && mitte <= mr) {
+            return;
+        } else if (mitte < ml) {
+            // Der gesuchte Wert liegt im linken Teil
+            rechts = ml - 1;
+        } else {
+            // Der gesuchte Wert liegt im rechten Teil
+            links = mr + 1;
+        }
+    }
+};
+
 void Quicksort::partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr) {
     int i = links;
     int j = rechts;
-    int mitte = links + ((rechts - links) / 2);
+    int lange = rechts - links;
+    int bereich = lange / 2;
+    int mitte = links + bereich;
+    // if (lange > Sortierverfaren::mindestLange) {
+    //     Quicksort::Quickselect(liste, mitte, 0.1 * bereich);
+    // }
     int p = liste[mitte];
     while (i <= j) {
         while (liste[i] < p) {
