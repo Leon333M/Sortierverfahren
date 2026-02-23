@@ -755,11 +755,89 @@ void Manager::incArrayMT(volatile int *liste, long long lange, int threadCount) 
 
 \section{Diskussion und Fazit}
 \begin{frame}{Beantwortung der Forschungsfrage}
-    % Kernpunkte aus \BeantwortungDerForschungsfrage
+    \begin{itemize}
+        \item Ein Wechsel zur parallelen Variante lohnt sich erst,
+              wenn die entsprechende Mindestlaufzeit erreicht wurde.
+        \item Die Quicksort-Worker-Thread-Variante (WT16) besitzt die beste Laufzeit,
+              ab einem Int-Array von 20k und einem String-Array von 8k.
+        \item Erst wenn der unwahrscheinliche Worst-Case von $O(n^2)$ untolerierbar ist,
+              wird die tiefenbasierte Thread-Erzeugung (T16) von Mergesort die bessere Wahl.
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{Zusammenfassung und Ausblick}
-    % Kernpunkte aus \Zusammenfassung und \Ausblick
+\begin{frame}{Beantwortung der Forschungsfrage (Text)}
+    \BeantwortungDerForschungsfrage
+\end{frame}
+
+\begin{frame}{Ausblick}
+    \begin{itemize}
+        \item Moderne Intel-CPUs besitzen Performance- und Effizienz-Kerne,
+              wobei vereinfacht ein P-Kern rund doppelt so schnell wie ein E-Kern ist.
+        \item Parallelisierung von Mischen und Partitionieren.
+        \item Quicksort-Worst-Case-Vermeidung durch bessere Pivot-Wahl.
+        \item Das beste Pivot-Element ist der Median des zu partitionierenden Teilarrays,
+              und um den Median zu bilden, wird die Liste sortiert.
+        \item Nur ein Teil des Arrays für die Medianbildung nutzen.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ausblick: Quicksort-Worst-Case-Vermeidung (Praxis)}
+    \begin{itemize}
+        \item Den mittleren Teilbereich für die Pivot-/Median-Wahl nehmen.
+        \item Median finden durch Quickselect (in-place, partitioniere).
+        \item 400M WT16 bei $0.05 \cdot n$ für Median, dafür rund $O_{\text{Worst}}(n \log n)$ \\
+              Multiplikator bei Zufall (4550 ms)/(3802 ms) = 1,19673856 \\
+              Multiplikator bei Sortiert (815 ms)/(763 ms) = 1,06815203
+        \item Bei $0.1 \cdot n$ für Median: \\
+              Multiplikator bei Zufall (4842 ms)/(3802 ms) = 1,27354024 \\
+              Multiplikator bei Sortiert (897 ms)/(763 ms) = 1,17562254
+        \item Bei $0.2 \cdot n$ für Median: \\
+              Multiplikator bei Zufall (5421 ms)/(3802 ms) = 1,42582851 \\
+              Multiplikator bei Sortiert (956 ms)/(763 ms) = 1,25294889
+        \item Bei $0.4 \cdot n$ für Median: \\
+              Multiplikator bei Zufall (8914 ms)/(3802 ms) = 2,3445555 \\
+              Multiplikator bei Sortiert (1152 ms)/(763 ms) = 1,50982962
+        \item Optimierung: Den Bereich größer machen, abhängig von der Rekursionstiefe.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zusammenfassung}
+    \begin{itemize}
+        \item Die Quicksort-Worker-Stealing-Variante ist der tiefenbasierten Thread-Erzeugungsvariante von Mergesort in der Regel überlegen ist.
+        \item Erst von der sequenziellen Version auf die Parallelisierung umzuschalten,
+              wenn die entsprechende Mindestlaufzeit bzw. Mindest-Array-Größe erreicht ist.
+        \item Die Ergebnisse zeigen, dass die theoretisch mögliche Laufzeitverbesserung nahezu erreicht wird.
+        \item Compiler-Optimierungen haben einen erheblichen Einfluss auf die Laufzeit, besonders im Zusammenhang mit Threading.
+        \item Es besteht sehr viel Verbesserungspotenzial, wie bei Optimierung und im Ausblick dargestellt.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Anhang}
+
+    Zur besseren Einordnung der Leistungsfähigkeit der verwendeten Hardware befindet sich unter folgendem Link ein Benchmark:
+    \newline
+    \href{https://www.userbenchmark.com/UserRun/70984567}{https://www.userbenchmark.com/UserRun/70984567}
+    \vspace{0.5cm}
+    \newline
+    Im Folgenden sind die relevanten Hardwarekomponenten aufgeführt.
+    \begin{itemize}
+        \item \href{https://geizhals.de/amd-ryzen-7-5800x-100-100000063wof-a2392525.html?t=alle&plz=&va=b&vl=de&hloc=de&v=e&togglecountry=set}
+              {CPU: AMD Ryzen 7 5800X, 8C/16T, 3.80--4.70\,GHz}
+              \newline
+        \item \href{https://geizhals.de/be-quiet-dark-rock-pro-4-bk022-a1794846.html?hloc=de}
+              {CPU-Kühler: be quiet! Dark Rock Pro 4}
+              \newline
+        \item \href{https://geizhals.de/g-skill-aegis-dimm-kit-16gb-f4-3200c16d-16gis-a2151626.html?hloc=de}
+              {RAM: G.Skill Aegis UDIMM 16GB Kit, DDR4-3200, CL16-18-18-38 (2 Kits, insgesamt 4×8\,GB = 32\,GB)}
+              \newline
+        \item Betriebssystem: Windows 10 Version 22H2
+    \end{itemize}
+    \vspace{0.5cm}
+    % Link oder Verweis auf Repository
+    Der gesamte Quellcode dieser Arbeit ist öffentlich unter folgendem Link verfügbar:
+    \newline
+    \href{https://github.com/Leon333M/Sortierverfahren}{https://github.com/Leon333M/Sortierverfahren}
+
 \end{frame}
 
 \begin{frame}
