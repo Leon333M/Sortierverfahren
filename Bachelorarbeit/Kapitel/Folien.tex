@@ -89,7 +89,7 @@
 }
 
 \newcommand{\TiefenbasierteThreadErzeugungMesszielFolien}{
-    \begin{frame}{Tiefenbasierte Thread-Erzeugung}
+    \begin{frame}[shrink=15]{Tiefenbasierte Thread-Erzeugung}
         \begin{minipage}{\linewidth}
             \centering
             \TiefenbasierteThreadErzeugungDiagrammB
@@ -100,7 +100,7 @@
         \end{minipage}
     \end{frame}
 
-    \begin{frame}{Tiefenbasierte Thread-Erzeugung}
+    \begin{frame}[shrink=15]{Tiefenbasierte Thread-Erzeugung}
         \begin{minipage}{\linewidth}
             \centering
             \TiefenbasierteThreadErzeugungDiagrammC
@@ -169,6 +169,46 @@
                     WT16 = Worker-Thread-Variante mit 16 Worker-Threads
                 }
                 \label{fig:WorkerthreadsDiagrammA}
+            \end{minipage}
+        }
+    \end{frame}
+}
+
+\newcommand{\EinflussDesDatentypsMesszielFolien}{
+    \begin{frame}[shrink=15]{Einfluss des Datentyps der Liste (String)}
+        \begin{minipage}{\linewidth}
+            \centering
+            \EinflussDesDatentypsDiagrammB
+            \captionof{figure}[Strong Scaling (String)]{Strong Scaling (String): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.
+                T = Tiefenbasierte Thread-Erzeugung,
+                WT = Worker-Thread-Variante
+            }
+            \label{fig:EinflussDesDatentypsDiagrammB}
+        \end{minipage}
+    \end{frame}
+
+    \begin{frame}[shrink=15]{Einfluss des Datentyps der Liste (String)}
+        \begin{minipage}{\linewidth}
+            \centering
+            \EinflussDesDatentypsDiagrammC
+            \captionof{figure}[Weak Scaling (String)]{Weak Scaling (String): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.
+                T = Tiefenbasierte Thread-Erzeugung,
+                WT = Worker-Thread-Variante
+            }
+            \label{fig:EinflussDesDatentypsDiagrammC}
+        \end{minipage}
+    \end{frame}
+
+    \begin{frame}[shrink=10]{Einfluss des Datentyps der Liste (String)}
+        \resizebox{0.99\textwidth}{0.5\textheight}{
+            \begin{minipage}{\linewidth}
+                \centering
+                \EinflussDesDatentypsDiagrammA
+                \captionof{figure}[Laufzeit der Sortierverfahren (String, Arraygröße 1 - 80M)]{
+                    T16 = Tiefenbasierte Thread-Erzeugung mit 16 Threads,
+                    WT16 = Worker-Thread-Variante mit 16 Worker-Threads
+                }
+                \label{fig:EinflussDesDatentypsDiagrammA}
             \end{minipage}
         }
     \end{frame}
