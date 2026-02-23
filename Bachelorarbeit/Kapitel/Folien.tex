@@ -22,7 +22,7 @@
         }
     \end{frame}
 
-    \begin{frame}{Grundlegende Laufzeiten abhängig von der Arraygröße (sequenziell)}
+    \begin{frame}[shrink=10]{Grundlegende Laufzeiten abhängig von der Arraygröße (sequenziell)}
         \begin{minipage}{\linewidth}
             \centering
             \GrundlegendeLaufzeitenAbhaengigVonDerArraygroesseDiagrammC
@@ -31,6 +31,147 @@
         \end{minipage}
     \end{frame}
 
+}
+
+\newcommand{\EinflussDesListentypsMesszielFolien}{
+
+    \begin{frame}{Einfluss des Listentyps (sequenziell)}
+        \resizebox{0.99\textwidth}{!}{
+            \begin{minipage}{\linewidth}
+                \centering
+                \EinflussDesListentypsDiagrammA
+                \captionof{figure}[Laufzeit der Sortierverfahren (Arraygröße 1 - 400M)]{}
+                \label{fig:EinflussDesListentypsDiagrammA}
+            \end{minipage}
+
+            \begin{minipage}{\linewidth}
+                \centering
+                \EinflussDesListentypsDiagrammB
+                \captionof{figure}[Laufzeit der Sortierverfahren (Arraygröße 25M - 400M, logarithmische Achsen)]{}
+                \label{fig:EinflussDesListentypsDiagrammB}
+            \end{minipage}
+        }
+    \end{frame}
+
+    \begin{frame}{Einfluss des Listentyps (sequenziell)}
+        \resizebox{0.99\textwidth}{!}{
+            \begin{minipage}{\linewidth}
+                \centering
+                \EinflussDesListentypsDiagrammB
+                \captionof{figure}[Laufzeit der Sortierverfahren (Arraygröße 25M - 400M, logarithmische Achsen)]{}
+                \label{fig:EinflussDesListentypsDiagrammB}
+            \end{minipage}
+        }
+    \end{frame}
+
+    \begin{frame}[shrink=10]{Einfluss des Listentyps (sequenziell)}
+        \resizebox{0.99\textwidth}{0.5\textheight}{
+            \begin{minipage}{\linewidth}
+                \centering
+                \EinflussDesListentypsDiagrammC
+                \captionof{figure}[Laufzeit der Sortierverfahren (Arraygröße 1 - 400M, logarithmische Achsen)]{}
+                \label{fig:EinflussDesListentypsDiagrammC}
+            \end{minipage}
+        }
+    \end{frame}
+
+    % \begin{frame}[shrink=10]{Einfluss des Listentyps (sequenziell)}
+    %     \resizebox{0.99\textwidth}{0.65\textheight}{
+    %         \begin{minipage}{\linewidth}
+    %             \centering
+    %             \EinflussDesListentypsDiagrammC
+    %             \captionof{figure}[Laufzeit der Sortierverfahren (Arraygröße 1 - 400M, logarithmische Achsen)]{}
+    %             \label{fig:EinflussDesListentypsDiagrammC}
+    %         \end{minipage}
+    %     }
+    % \end{frame}
+
+}
+
+\newcommand{\TiefenbasierteThreadErzeugungMesszielFolien}{
+    \begin{frame}{Tiefenbasierte Thread-Erzeugung}
+        \begin{minipage}{\linewidth}
+            \centering
+            \TiefenbasierteThreadErzeugungDiagrammB
+            \captionof{figure}[Strong Scaling (Tiefenbasierte Thread-Erzeugung)]{Strong Scaling (Tiefenbasierte Thread-Erzeugung): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen. Quicksort kann diese Verbesserung nur im Best-Case erreichen.
+                T = Tiefenbasierte Thread-Erzeugung
+            }
+            \label{fig:TiefenbasierteThreadErzeugungDiagrammB}
+        \end{minipage}
+    \end{frame}
+
+    \begin{frame}{Tiefenbasierte Thread-Erzeugung}
+        \begin{minipage}{\linewidth}
+            \centering
+            \TiefenbasierteThreadErzeugungDiagrammC
+            \captionof{figure}[Weak Scaling (Tiefenbasierte Thread-Erzeugung)]{Weak Scaling (Tiefenbasierte Thread-Erzeugung): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen. Quicksort kann diese Verbesserung nur im Best-Case erreichen.
+                T = Tiefenbasierte Thread-Erzeugung
+            }
+            \label{fig:TiefenbasierteThreadErzeugungDiagrammC}
+        \end{minipage}
+    \end{frame}
+
+    \begin{frame}[shrink=10]{Tiefenbasierte Thread-Erzeugung}
+        \resizebox{0.99\textwidth}{0.5\textheight}{
+            \begin{minipage}{\linewidth}
+                \centering
+                \TiefenbasierteThreadErzeugungDiagrammA
+                \captionof{figure}[Laufzeit der Sortierverfahren (Tiefenbasierte Thread-Erzeugung, Arraygröße 1 - 400M)]{
+                    T16 = Tiefenbasierte Thread-Erzeugung mit 16 Threads
+                }
+                \label{fig:TiefenbasierteThreadErzeugungDiagrammA}
+            \end{minipage}
+        }
+    \end{frame}
+}
+
+\newcommand{\WorkerthreadsMesszielFolien}{
+    \begin{frame}{Workerthreads}
+        \begin{minipage}{\linewidth}
+            \centering
+            \initZeitenDiagrammA
+            \captionof{figure}[Laufzeit der Sortierverfahren bei einer Arraygröße von 16 Elementen]{Dieses Diagramm dient der Abschätzung der durch Threads entstehenden Overheads.
+                T = Tiefenbasierte Thread-Erzeugung,
+                WT = Worker-Thread-Variante
+            }
+            \label{fig:initZeitenDiagrammA}
+        \end{minipage}
+    \end{frame}
+
+    \begin{frame}[shrink=20]{Workerthreads}
+        \begin{minipage}{\linewidth}
+            \centering
+            \WorkerthreadsDiagrammB
+            \captionof{figure}[Strong Scaling (Worker-Thread)]{Strong Scaling (Worker-Thread): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.
+                WT = Worker-Thread-Variante
+            }
+            \label{fig:WorkerthreadsDiagrammB}
+        \end{minipage}
+    \end{frame}
+
+    \begin{frame}[shrink=20]{Workerthreads}
+        \begin{minipage}{\linewidth}
+            \centering
+            \WorkerthreadsDiagrammC
+            \captionof{figure}[Weak Scaling (Worker-Thread)]{Weak Scaling (Worker-Thread): Die gestrichelten Linien zeigen die theoretisch zu erwartenden Laufzeitverbesserungen.
+                WT = Worker-Thread-Variante
+            }
+            \label{fig:WorkerthreadsDiagrammC}
+        \end{minipage}
+    \end{frame}
+
+    \begin{frame}[shrink=10]{Workerthreads}
+        \resizebox{0.99\textwidth}{0.5\textheight}{
+            \begin{minipage}{\linewidth}
+                \centering
+                \WorkerthreadsDiagrammA
+                \captionof{figure}[Laufzeit der Sortierverfahren (Worker-Thread, Arraygröße 1 - 400M)]{
+                    WT16 = Worker-Thread-Variante mit 16 Worker-Threads
+                }
+                \label{fig:WorkerthreadsDiagrammA}
+            \end{minipage}
+        }
+    \end{frame}
 }
 
 \newcommand{\InkrementArrayfolien}{
