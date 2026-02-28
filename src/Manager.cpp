@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-const int t[] = {1, 2, 4, 8, 15, 16, 17, 18, 32, 64, 128, 256, 1024, 4096, 8192, 16384};
+const int t[] = {/*1, 2, 4, 8, 15, */ 16 /*, 17, 18, 32, 64, 128, 256, 1024, 4096, 8192, 16384*/};
 const int te[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 const char listeVarianten[] = {'z', 's', 'i', 'f', 'd'};
 
@@ -202,24 +202,24 @@ void Manager::workerZeiten() {
     int maxEbene = static_cast<int>(std::ceil(std::log2(lange))) + 1;
     std::cout << "maxEbene : " << maxEbene << std::endl;
 
-    // Mergesort
-    std::cout << "Mergesort :" << std::endl;
-    for (int i : t) {
-        Mergesort mergesort;
-        int *liste = listenersteler.erstelleListe(listeVariante, lange);
-        std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-        mergesort.sortW(liste, lange, i);
-        std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
-        long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-        std::cout << "Laufzeit: " << dauer << " ms" << " workerThreads: " << i << std::endl;
-        istSortiert();
-        Messdaten *md = new Messdaten();
-        md->start1 = start;
-        md->ende1 = stop;
-        Messdaten::addMessDaten(1, md);
-        dateimanager.exportMessData("Mergesort", "w" + std::to_string(i));
-        Messdaten::resetMessDaten();
-    }
+    // // Mergesort
+    // std::cout << "Mergesort :" << std::endl;
+    // for (int i : t) {
+    //     Mergesort mergesort;
+    //     int *liste = listenersteler.erstelleListe(listeVariante, lange);
+    //     std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+    //     mergesort.sortW(liste, lange, i);
+    //     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
+    //     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    //     std::cout << "Laufzeit: " << dauer << " ms" << " workerThreads: " << i << std::endl;
+    //     istSortiert();
+    //     Messdaten *md = new Messdaten();
+    //     md->start1 = start;
+    //     md->ende1 = stop;
+    //     Messdaten::addMessDaten(1, md);
+    //     dateimanager.exportMessData("Mergesort", "w" + std::to_string(i));
+    //     Messdaten::resetMessDaten();
+    // }
 
     // Quicksort
     std::cout << "Quicksort :" << std::endl;

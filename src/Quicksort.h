@@ -1,6 +1,8 @@
 // Quicksort.h
 #pragma once
+#include "PartitionWorkerPool.h"
 #include "Sortierverfaren.h"
+#include "WorkerPool.h"
 
 class Quicksort : public Sortierverfaren {
 private:
@@ -26,8 +28,11 @@ private:
     static void quicksortP(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene, const int messEbene);
     static void quicksortPM(int *liste, const int links, const int rechts, const int aktuelleEbene, const int neueThreadsBisEbene);
     static void quicksortW(int *liste, const int links, const int rechts, const int workerThreads);
-    // aus Algorithmen und Datenstrukturen
+    // ...
     static void Quickselect(int *liste, int mitte, int bereich);
+    static void QuickselectW(int *liste, int mitte, int bereich, WorkerPool &pool);
     static void partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr);
     static void vertausche(int *liste, const int a, const int b);
+    static void partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr, WorkerPool &pool);
+    static void partitioniereBereich(int *liste, int lba, int lbi, int rbi, int rba, int pivo, PartitionWorkerPool &pool);
 };

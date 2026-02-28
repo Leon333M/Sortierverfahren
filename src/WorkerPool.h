@@ -17,33 +17,37 @@ class WorkerPool {
 private:
     std::vector<std::thread> threads;
     std::queue<Task> taskQueue;
-    std::mutex mutex;
+    std::mutex sperre;
     std::condition_variable cv;
+    std::condition_variable cvMain;
     std::atomic<int> activeTasks;
+    std::atomic<int> freieThreads;
     bool finished;
 
 public:
     std::function<void(int *, int, int, WorkerPool &)> taskHandler;
 
 public:
-    WorkerPool(int numThreads) : finished(false), activeTasks(0) {
-        for (int i = 0; i < numThreads; ++i)
+    WorkerPool(int numThreads) : finished(false), activeTasks(0), freieThreads(numThreads) {
+        for (int i = 0; i < numThreads; ++i) {
             threads.emplace_back(&WorkerPool::worker, this);
+        }
     }
 
     ~WorkerPool() {
         {
-            std::lock_guard<std::mutex> lock(mutex);
+            std::lock_guard<std::mutex> lock(sperre);
             finished = true;
         }
         cv.notify_all();
-        for (auto &t : threads)
+        for (auto &t : threads) {
             t.join();
+        }
     }
 
     void addTask(const Task &task) {
         {
-            std::lock_guard<std::mutex> lock(mutex);
+            std::lock_guard<std::mutex> lock(sperre);
             taskQueue.push(task);
             activeTasks++;
             cv.notify_one();
@@ -51,11 +55,15 @@ public:
     }
 
     void addTaskWaitUntilDone(const Task &task) {
-        std::unique_lock<std::mutex> lock(mutex);
+        std::unique_lock<std::mutex> lock(sperre);
         taskQueue.push(task);
         activeTasks++;
         cv.notify_one();
-        cv.wait(lock, [this] { return activeTasks == 0; });
+        cvMain.wait(lock, [this] { return activeTasks == 0; });
+    }
+
+    int getFreieThreads() {
+        return freieThreads;
     }
 
 private:
@@ -63,13 +71,16 @@ private:
         while (true) {
             Task task;
             {
-                std::unique_lock<std::mutex> lock(mutex);
+                std::unique_lock<std::mutex> lock(sperre);
+                freieThreads++;
                 cv.wait(lock, [this] { return finished || !taskQueue.empty(); });
-
-                if (finished && taskQueue.empty())
+                freieThreads--;
+                if (finished && taskQueue.empty()) {
                     return;
-                if (taskQueue.empty())
+                }
+                if (taskQueue.empty()) {
                     continue;
+                }
 
                 task = taskQueue.front();
                 taskQueue.pop();
@@ -81,7 +92,9 @@ private:
             }
 
             activeTasks--;
-            cv.notify_all();
+            if (activeTasks == 0) {
+                cvMain.notify_all();
+            }
         }
     }
 };

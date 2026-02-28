@@ -1,9 +1,10 @@
 // Quicksort.cpp
 #include "Quicksort.h"
-#include "WorkerPool.h"
 #include <chrono>
 #include <thread>
 #include <vector>
+
+#include <iostream>
 
 Quicksort::Quicksort() {};
 
@@ -144,7 +145,7 @@ void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads)
                 quicksort(liste, links, rechts);
             } else {
                 int ml, mr;
-                Quicksort::partitioniere(liste, links, rechts, ml, mr);
+                Quicksort::partitioniereW(liste, links, rechts, ml, mr, pool);
                 pool.addTask({liste, links, ml});
                 pool.taskHandler(liste, mr, rechts, pool);
             }
@@ -173,6 +174,25 @@ void Quicksort::Quickselect(int *liste, int mitte, int bereich) {
     }
 };
 
+void Quicksort::QuickselectW(int *liste, int mitte, int bereich, WorkerPool &pool) {
+    int links = mitte - bereich;
+    int rechts = mitte + bereich;
+    // Standard Quickselect Loop
+    while (links < rechts) {
+        int ml, mr;
+        partitioniereW(liste, links, rechts, ml, mr, pool);
+        if (mitte >= ml && mitte <= mr) {
+            return;
+        } else if (mitte < ml) {
+            // Der gesuchte Wert liegt im linken Teil
+            rechts = ml - 1;
+        } else {
+            // Der gesuchte Wert liegt im rechten Teil
+            links = mr + 1;
+        }
+    }
+};
+
 void Quicksort::partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr) {
     int i = links;
     int j = rechts;
@@ -180,7 +200,7 @@ void Quicksort::partitioniere(int *liste, const int links, const int rechts, int
     int bereich = lange / 2;
     int mitte = links + bereich;
     // if (lange > Sortierverfaren::mindestLange) {
-    //     Quicksort::Quickselect(liste, mitte, 0.1 * bereich);
+    //     Quicksort::Quickselect(liste, mitte, 0.5 * bereich);
     // }
     int p = liste[mitte];
     while (i <= j) {
@@ -204,4 +224,102 @@ void Quicksort::vertausche(int *liste, const int a, const int b) {
     int temp = liste[a];
     liste[a] = liste[b];
     liste[b] = temp;
+};
+
+void Quicksort::partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr, WorkerPool &pool) {
+    int lange = rechts - links;
+    int lange2 = lange / 2;
+    int maxWThrads = lange / (10000000);
+    int freieThreads = pool.getFreieThreads();
+    int useThreads = std::min(freieThreads, maxWThrads);
+    if (useThreads == 0) {
+        partitioniere(liste, links, rechts, ml, mr);
+        return;
+    }
+    useThreads = std::max(useThreads, 1);
+    int bereich = lange / (useThreads * 2);
+
+    int mitte = links + lange2;
+    // Quicksort::QuickselectW(liste, mitte, 0.5 * lange2, pool);
+    // std::cout << "Quickselect" << std::endl;
+    int pivo = liste[mitte];
+
+    std::vector<int> offsets(useThreads);
+    // std::vector<std::thread> threads;
+    PartitionWorkerPool partitionWorkerPool(useThreads - 1);
+    std::vector<PartitionWorkerPool::TaskHandle> handles;
+
+    for (int i = 0; i < useThreads - 1; i++) {
+        // von linker bereich ausen
+        int lba = links + i * bereich;
+        // bis linker bereich innen
+        int lbi = links + (i + 1) * bereich;
+        // bis rechter bereich innen
+        int rbi = rechts - (i + 1) * bereich;
+        // von rechter bereich ausen
+        int rba = rechts - i * bereich;
+        // partitioniereBereich(liste, lba, lbi, rbi, rba, pivo, offsets[i]);
+        // threads.emplace_back(&Quicksort::partitioniereBereich, liste, lba, lbi, rbi, rba, pivo, std::ref(offsets[i]));
+        handles.push_back(
+            partitionWorkerPool.addTask([=, &partitionWorkerPool]() {
+                partitioniereBereich(liste, lba, lbi, rbi, rba, pivo, partitionWorkerPool);
+            }));
+    }
+    int lba = links + (useThreads - 1) * bereich;
+    int rba = rechts - (useThreads - 1) * bereich;
+    int ml0, mr0;
+    partitioniereBereich(liste, lba, mitte, mitte, rba, pivo, partitionWorkerPool);
+    // for (int i = 0; i < threads.size(); i++) {
+    //     threads[i].join();
+    // }
+    for (auto &h : handles) {
+        h.wait();
+    }
+    // Aufraumen
+    partitioniere(liste, links, rechts, ml, mr);
+};
+
+void Quicksort::partitioniereBereich(int *liste, int lba, int lbi, int rbi, int rba, int pivo, PartitionWorkerPool &pool) {
+
+    int i = lba;
+    int j = rba;
+
+    while (i <= j) {
+        // Suche links (wenn i ueber lbi geht, springe zu rbi)
+        while (i <= j && liste[i] < pivo) {
+            i++;
+            if (i == lbi) {
+                i = rbi; // Der Sprung nach innen/rechts
+            }
+        }
+        // Suche rechts (wenn j unter rbi geht, springe zu lbi)
+        while (i <= j && liste[j] > pivo) {
+            j--;
+            if (j == rbi - 1) {
+                j = lbi - 1; // Der Sprung nach innen/links
+            }
+        }
+
+        if (i <= j) {
+            vertausche(liste, i, j);
+            // Nach dem Tausch auch hier die Spruenge pruefen!
+            i++;
+            if (i == lbi) {
+                i = rbi;
+            }
+            j--;
+            if (j == rbi - 1) {
+                j = lbi - 1;
+            }
+        }
+    }
+
+    // Berechnung des Offsets:
+    // if (i >= rbi) {
+    //     // i ist im rechten Teil gelandet
+    //     offset = (i - rbi);
+    // } else {
+    //     // i ist im linken Teil stehen geblieben
+    //     offset = -(lbi - i);
+    // }
 };
