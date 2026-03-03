@@ -28,7 +28,7 @@ public:
     std::function<void(int *, int, int, WorkerPool &)> taskHandler;
 
 public:
-    WorkerPool(int numThreads) : finished(false), activeTasks(0), freieThreads(numThreads) {
+    WorkerPool(int numThreads) : finished(false), activeTasks(0), freieThreads(0) {
         for (int i = 0; i < numThreads; ++i) {
             threads.emplace_back(&WorkerPool::worker, this);
         }

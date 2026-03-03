@@ -34,5 +34,5 @@ private:
     static void partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr);
     static void vertausche(int *liste, const int a, const int b);
     static void partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr, WorkerPool &pool);
-    static void partitioniereBereich(int *liste, int lba, int lbi, int rbi, int rba, int pivo, PartitionWorkerPool &pool);
+    static void partitioniereBereich(int *liste, int lba, int lbi, int rbi, int rba, int pivo, int &offset);
 };
