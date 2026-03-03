@@ -1,5 +1,6 @@
 // Quicksort.cpp
 #include "Quicksort.h"
+#include "Bereiche.h"
 #include <chrono>
 #include <thread>
 #include <vector>
@@ -174,25 +175,6 @@ void Quicksort::Quickselect(int *liste, int mitte, int bereich) {
     }
 };
 
-void Quicksort::QuickselectW(int *liste, int mitte, int bereich, WorkerPool &pool) {
-    int links = mitte - bereich;
-    int rechts = mitte + bereich;
-    // Standard Quickselect Loop
-    while (links < rechts) {
-        int ml, mr;
-        partitioniereW(liste, links, rechts, ml, mr, pool);
-        if (mitte >= ml && mitte <= mr) {
-            return;
-        } else if (mitte < ml) {
-            // Der gesuchte Wert liegt im linken Teil
-            rechts = ml - 1;
-        } else {
-            // Der gesuchte Wert liegt im rechten Teil
-            links = mr + 1;
-        }
-    }
-};
-
 void Quicksort::partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr) {
     int i = links;
     int j = rechts;
@@ -224,11 +206,6 @@ void Quicksort::vertausche(int *liste, const int a, const int b) {
     int temp = liste[a];
     liste[a] = liste[b];
     liste[b] = temp;
-};
-
-struct Bereich {
-    int bereichAnfang;
-    int lange;
 };
 
 void Quicksort::partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr, WorkerPool &pool) {
