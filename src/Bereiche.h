@@ -1,5 +1,6 @@
 // Bereiche.h
 #pragma once
+#include "PartitionWorkerPool.h"
 #include "Sortierverfaren.h"
 #include <condition_variable>
 #include <functional>
@@ -23,10 +24,12 @@ private:
     std::queue<Bereich> unsortierteBereicheLinks;
     std::queue<Bereich> unsortierteBereicheRechts;
     std::mutex mutex;
-    const int mindestLange = Sortierverfaren::mindestLange * log2(Sortierverfaren::mindestLange);
+    const int mindestLange = 500000;
+    int freieThreads;
+    PartitionWorkerPool workerPool;
 
 public:
-    Bereiche(int *liste0) : liste(liste0) {};
+    Bereiche(int *liste0, int freieThreads0) : liste(liste0), freieThreads(freieThreads0), workerPool(freieThreads) {};
 
     void partitioniereAlles(int *liste, int links, int rechts, int &ml, int &mr) {
         int startLinks = links;
@@ -104,10 +107,20 @@ private:
         if (leftQueueSize == 0 || rightQueueSize == 0) {
             std::cout << "Error!: leftQueueSize: " << leftQueueSize << " rightQueueSize: " << rightQueueSize << std::endl;
         }
+        int useThreads = std::min(freieThreads, minBereiche);
+        std::vector<PartitionWorkerPool::TaskHandle> handles;
+        handles.reserve(useThreads);
         // spilt in neuen thads partitioniereBereich();
-        // partitioniere(liste, mainLinks, mainRechts, ml, mr);
+        for (int i = 0; i < useThreads; i++) {
+            handles.push_back(workerPool.addTask([=]() {
+                partitioniereBereich();
+            }));
+        }
         partitioniereBereich();
         // join / wait auf thads
+        for (const auto &handle : handles) {
+            handle.wait();
+        }
     }
 
     void istFertigUpdate(int *liste, int &links, int &rechts, int &ml, int &mr, int &mitte, bool &retFlag) {
