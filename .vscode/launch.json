@@ -7,7 +7,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/build/Release/Sortierverfahren.exe",
       "args": [
-        "14",
+        "4000",
         "g",
         "z",
       ],
@@ -21,7 +21,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/build/Debug/Sortierverfahren.exe",
       "args": [
-        "21",
+        "1",
         "g",
         "z",
       ],

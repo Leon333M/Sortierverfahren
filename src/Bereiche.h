@@ -47,9 +47,9 @@ public:
             if (rechts - links + 1 <= mindestLange) {
                 partitioniere(liste, links, rechts, ml, mr);
                 istFertig = true;
-                zeigeStatus(mr, links, mitte, liste, rechts, ml);
-                std::cout << " partit ";
-                zeigeStatusEnde(istFertig);
+                // zeigeStatus(mr, links, mitte, liste, rechts, ml);
+                // std::cout << " partit ";
+                // zeigeStatusEnde(istFertig);
             } else {
                 // Erstellen
                 erstelleBereiche(links, mindestLange, mitte, rechts, minBereiche);
@@ -58,9 +58,9 @@ public:
                 // Auswerten
                 ml = mitte - 1;
                 mr = mitte + 1;
-                zeigeStatus(mr, links, mitte, liste, rechts, ml);
+                // zeigeStatus(mr, links, mitte, liste, rechts, ml);
                 istFertigUpdate(liste, links, rechts, ml, mr, mitte, istFertig);
-                zeigeStatusEnde(istFertig);
+                // zeigeStatusEnde(istFertig);
             }
         }
     }
@@ -71,7 +71,7 @@ private:
         while (true) {
             int bAnfag = links + bNumerL * mindestLange;
             int bEnde = links + (bNumerL + 1) * mindestLange - 1;
-            if (bEnde >= mitte) {
+            if (bEnde + 1 >= mitte) {
                 bEnde = mitte - 1;
                 Bereich bereich{bAnfag, bEnde};
                 addUnsortierterBereichLinks(bereich);
@@ -85,7 +85,7 @@ private:
         while (true) {
             int bEnde = rechts - bNumerR * mindestLange;
             int bAnfag = rechts - (bNumerR + 1) * mindestLange + 1;
-            if (bAnfag <= mitte) {
+            if (bAnfag - 1 <= mitte) {
                 bAnfag = mitte + 1;
                 Bereich bereich{bAnfag, bEnde};
                 addUnsortierterBereichRechts(bereich);
@@ -118,6 +118,7 @@ private:
         int rightQueueSize = unsortierteBereicheRechts.size();
         if ((leftQueueSize == 0) && (rightQueueSize == 0)) {
             // fertig !
+            // std::cout << " Mitte  ";
             return;
         }
         if ((leftQueueSize > 0) && (rightQueueSize > 0)) {
@@ -125,7 +126,7 @@ private:
             return partitioniere(liste, links, rechts, ml, mr);
         }
         if (rightQueueSize > 0) {
-            std::cout << " Rechts ";
+            // std::cout << " Rechts ";
             links = mitte; // nicht Partitionieren
             // rechts = max unsortierteBereicheRechts.bereichEnde
             rechts = entnehmeUnsortierterBereichRechts().bereichEnde;
@@ -139,7 +140,7 @@ private:
             vertausche(liste, links, mitte);
         }
         if (leftQueueSize > 0) {
-            std::cout << " Links  ";
+            // std::cout << " Links  ";
             rechts = mitte; // nicht Partitionieren
             // links = min unsortierteBereicheLinks.bereichAnfang
             links = entnehmeUnsortierterBereichLinks().bereichAnfang;
@@ -205,7 +206,7 @@ private:
                         rechterBereichUngueltig = true;
                     }
                     if (linkerBereichUngueltig && rechterBereichUngueltig) {
-                        std::cout << "sodnerfall" << std::endl;
+                        // std::cout << "sodnerfall" << std::endl;
                         break;
                     }
                     if (aktualisiereLinkenBereich(linkerBereich, rechterBereich)) {

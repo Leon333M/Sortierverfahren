@@ -83,43 +83,32 @@ void Manager::grundzeiten() {
     mergesort.sortG(liste, lange);
     std::chrono::time_point<std::chrono::high_resolution_clock> stop = std::chrono::high_resolution_clock::now();
     long long dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    // std::cout << "Laufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
-    // istSortiert();
+    std::cout << "Laufzeit: " << dauer << " ms" << " Mergesort" << std::endl;
+    istSortiert();
 
-    // Messdaten *md = new Messdaten();
-    // md->start1 = start;
-    // md->ende1 = stop;
-    // Messdaten::addMessDaten(1, md);
-    // dateimanager.exportMessData("Mergesort", "g");
-    // Messdaten::resetMessDaten();
+    Messdaten *md = new Messdaten();
+    md->start1 = start;
+    md->ende1 = stop;
+    Messdaten::addMessDaten(1, md);
+    dateimanager.exportMessData("Mergesort", "g");
+    Messdaten::resetMessDaten();
 
     // Quicksort
-    while (true) {
-        liste = listenersteler.erstelleListe(listeVariante, lange);
-        Quicksort quicksort;
-        start = std::chrono::high_resolution_clock::now();
-        quicksort.sortG(liste, lange);
-        stop = std::chrono::high_resolution_clock::now();
-        dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-        std::cout << lange << std::endl;
-        if (!listenersteler.istSortiert()) {
-            std::cout << "Laufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
-            istSortiert();
-            for (int i = 0; i < lange; i++) {
-                std::cout << liste[i] << " ";
-            }
-            std::cout << std::endl;
-            break;
-        }
-        lange++;
-    }
+    liste = listenersteler.erstelleListe(listeVariante, lange);
+    Quicksort quicksort;
+    start = std::chrono::high_resolution_clock::now();
+    quicksort.sortG(liste, lange);
+    stop = std::chrono::high_resolution_clock::now();
+    dauer = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Laufzeit: " << dauer << " ms" << " Quicksort" << std::endl;
+    istSortiert();
 
-    // md = new Messdaten();
-    // md->start1 = start;
-    // md->ende1 = stop;
-    // Messdaten::addMessDaten(1, md);
-    // dateimanager.exportMessData("Quicksort", "g");
-    // Messdaten::resetMessDaten();
+    md = new Messdaten();
+    md->start1 = start;
+    md->ende1 = stop;
+    Messdaten::addMessDaten(1, md);
+    dateimanager.exportMessData("Quicksort", "g");
+    Messdaten::resetMessDaten();
 };
 
 void Manager::messeSortierzeiten() {
