@@ -4,7 +4,7 @@
 
 class Sortierverfaren {
 public:
-    static const int mindestLange = 4000;
+    static const int mindestLange = 2;
 
 protected:
     // Vaibalen
