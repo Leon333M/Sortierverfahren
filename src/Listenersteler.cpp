@@ -39,8 +39,8 @@ int *Listenersteler::erstelleZufallsListe(int lange) {
     // std::random_device rd;
     // std::mt19937 gen(rd());
     std::mt19937 gen(seed);
-    // std::uniform_int_distribution<> dis(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
-    std::uniform_int_distribution<> dis(0, 9);
+    std::uniform_int_distribution<> dis(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+    // std::uniform_int_distribution<> dis(0, 9);
 
     std::generate_n(liste.get(), lange, [&]() { return dis(gen); });
 

@@ -181,7 +181,7 @@ private:
             // partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr) {
             // int p = liste[mitte];
             while (linkerBereich.bereichAnfang <= rechterBereich.bereichEnde) {
-                while (liste[linkerBereich.bereichAnfang] <= p) {
+                while (liste[linkerBereich.bereichAnfang] < p) {
                     linkerBereich.bereichAnfang++;
                     if (aktualisiereLinkenBereich(linkerBereich, rechterBereich)) {
                         return;

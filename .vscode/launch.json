@@ -21,8 +21,8 @@
       "request": "launch",
       "program": "${workspaceFolder}/build/Debug/Sortierverfahren.exe",
       "args": [
-        "1",
-        "g",
+        "400000000",
+        "w",
         "z",
       ],
       "stopAtEntry": false,
