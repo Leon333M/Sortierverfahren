@@ -7,8 +7,8 @@
       "request": "launch",
       "program": "${workspaceFolder}/build/Release/Sortierverfahren.exe",
       "args": [
-        "4000",
-        "g",
+        "400000000",
+        "w",
         "z",
       ],
       "stopAtEntry": false,

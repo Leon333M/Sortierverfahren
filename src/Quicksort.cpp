@@ -43,7 +43,7 @@ void Quicksort::sortW(int *liste, const int lange, const int workerThreads) {
 void Quicksort::quicksort(int *liste, const int links, const int rechts) {
     if (links < rechts) {
         int ml, mr;
-        partitioniereW(liste, links, rechts, ml, mr);
+        partitioniere(liste, links, rechts, ml, mr);
         quicksort(liste, links, ml);
         quicksort(liste, mr, rechts);
     }
@@ -146,7 +146,7 @@ void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads)
                 quicksort(liste, links, rechts);
             } else {
                 int ml, mr;
-                Quicksort::partitioniereW(liste, links, rechts, ml, mr /*, pool*/);
+                Quicksort::partitioniereW(liste, links, rechts, ml, mr, pool);
                 pool.addTask({liste, links, ml});
                 pool.taskHandler(liste, mr, rechts, pool);
             }
@@ -208,7 +208,11 @@ void Quicksort::vertausche(int *liste, const int a, const int b) {
     liste[b] = temp;
 };
 
-void Quicksort::partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr /*, WorkerPool &pool*/) {
-    Bereiche b(liste);
-    b.partitioniereAlles(liste, links, rechts, ml, mr);
+void Quicksort::partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr, WorkerPool &pool) {
+    if (pool.getFreieThreads() > 0) {
+        Bereiche b(liste);
+        b.partitioniereAlles(liste, links, rechts, ml, mr);
+    } else {
+        partitioniere(liste, links, rechts, ml, mr);
+    }
 };

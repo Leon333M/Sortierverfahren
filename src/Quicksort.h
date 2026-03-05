@@ -33,5 +33,5 @@ private:
     static void QuickselectW(int *liste, int mitte, int bereich, WorkerPool &pool);
     static void partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr);
     static void vertausche(int *liste, const int a, const int b);
-    static void partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr /*, WorkerPool &pool,*/);
+    static void partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr, WorkerPool &pool);
 };
