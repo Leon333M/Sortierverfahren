@@ -146,8 +146,8 @@ void Quicksort::quicksortW(int *liste, int links, int rechts, int workerThreads)
                 quicksort(liste, links, rechts);
             } else {
                 int ml, mr;
-                Quicksort::partitioniere(liste, links, rechts, ml, mr);
-                // Quicksort::partitioniereW(liste, links, rechts, ml, mr, pool);
+                // Quicksort::partitioniere(liste, links, rechts, ml, mr);
+                Quicksort::partitioniereW(liste, links, rechts, ml, mr, pool);
                 pool.addTask({liste, links, ml});
                 pool.taskHandler(liste, mr, rechts, pool);
             }
