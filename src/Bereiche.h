@@ -10,8 +10,6 @@
 #include <thread>
 #include <vector>
 
-#include <iostream>
-
 struct Bereich {
     int bereichAnfang;
     int bereichEnde;
@@ -31,10 +29,6 @@ public:
     Bereiche(int *liste0, WorkerPool &pool) : liste(liste0), workerPool(pool) {};
 
     void partitioniereAlles(int *liste, int links, int rechts, int &ml, int &mr) {
-        int startLinks = links;
-        int startRechts = rechts;
-        ml = startLinks;
-        mr = startRechts;
         int lange = rechts - links;
         int bereich = lange / 2;
         int mitte = links + bereich;
@@ -42,16 +36,12 @@ public:
         //     Quicksort::Quickselect(liste, mitte, 0.5 * bereich);
         // }
         p = liste[mitte];
-        // return partitioniere(liste, links, rechts, ml, mr);
         int minBereiche;
         bool istFertig = false;
         while (!istFertig) {
             if (rechts - links + 1 <= mindestLange) {
                 partitioniere(liste, links, rechts, ml, mr);
                 istFertig = true;
-                // zeigeStatus(mr, links, mitte, liste, rechts, ml);
-                // std::cout << " partit ";
-                // zeigeStatusEnde(istFertig);
             } else {
                 // Erstellen
                 erstelleBereiche(links, mindestLange, mitte, rechts, minBereiche);
@@ -60,9 +50,7 @@ public:
                 // Auswerten
                 ml = mitte - 1;
                 mr = mitte + 1;
-                // zeigeStatus(mr, links, mitte, liste, rechts, ml);
                 istFertigUpdate(liste, links, rechts, ml, mr, mitte, istFertig);
-                // zeigeStatusEnde(istFertig);
             }
         }
     }
@@ -104,7 +92,7 @@ private:
         int leftQueueSize = unsortierteBereicheLinks.size();
         int rightQueueSize = unsortierteBereicheRechts.size();
         if (leftQueueSize == 0 || rightQueueSize == 0) {
-            std::cout << "Error!: leftQueueSize: " << leftQueueSize << " rightQueueSize: " << rightQueueSize << std::endl;
+            // std::cout << "Error!: leftQueueSize: " << leftQueueSize << " rightQueueSize: " << rightQueueSize << std::endl;
         }
         std::vector<WorkerPool::TaskHandle> handles;
         {
@@ -135,16 +123,14 @@ private:
         int rightQueueSize = unsortierteBereicheRechts.size();
         if ((leftQueueSize == 0) && (rightQueueSize == 0)) {
             // fertig !
-            // std::cout << " Mitte  ";
             return;
         }
         if ((leftQueueSize > 0) && (rightQueueSize > 0)) {
-            std::cout << "Error: leftQueueSize: " << leftQueueSize << " rightQueueSize: " << rightQueueSize << std::endl;
+            // std::cout << "Error: leftQueueSize: " << leftQueueSize << " rightQueueSize: " << rightQueueSize << std::endl;
             return partitioniere(liste, links, rechts, ml, mr);
         }
         if (rightQueueSize > 0) {
-            // std::cout << " Rechts ";
-            links = mitte; // nicht Partitionieren
+            links = mitte;
             // rechts = max unsortierteBereicheRechts.bereichEnde
             rechts = entnehmeUnsortierterBereichRechts().bereichEnde;
             for (int i = 0; i < rightQueueSize - 1; i++) {
@@ -157,8 +143,7 @@ private:
             vertausche(liste, links, mitte);
         }
         if (leftQueueSize > 0) {
-            // std::cout << " Links  ";
-            rechts = mitte; // nicht Partitionieren
+            rechts = mitte;
             // links = min unsortierteBereicheLinks.bereichAnfang
             links = entnehmeUnsortierterBereichLinks().bereichAnfang;
             for (int i = 0; i < leftQueueSize - 1; i++) {
@@ -170,7 +155,7 @@ private:
             mitte = mitte - (mitte - links) / 2;
             vertausche(liste, mitte, rechts);
         }
-        // fur neuen bereich widerholen (begin:) bis fertig !
+        // fur neuen bereich widerholen bis fertig !
         retFlag = false;
     }
 
@@ -223,7 +208,6 @@ private:
                         rechterBereichUngueltig = true;
                     }
                     if (linkerBereichUngueltig && rechterBereichUngueltig) {
-                        // std::cout << "sodnerfall" << std::endl;
                         break;
                     }
                     if (aktualisiereLinkenBereich(linkerBereich, rechterBereich)) {
@@ -234,8 +218,6 @@ private:
                     }
                 }
             };
-            // ml = rechterBereich.bereichEnde;
-            // mr = linkerBereich.bereichAnfang;
         }
     }
 
@@ -268,9 +250,6 @@ private:
     void partitioniere(int *liste, const int links, const int rechts, int &ml, int &mr) {
         int i = links;
         int j = rechts;
-        // if (lange > Sortierverfaren::mindestLange) {
-        //     Quicksort::Quickselect(liste, mitte, 0.5 * bereich);
-        // }
         while (i <= j) {
             while (liste[i] < p) {
                 i++;
@@ -294,40 +273,11 @@ private:
         liste[b] = temp;
     };
 
-    void zeigeStatusEnde(bool istFertig) {
-        std::cout << " istFertig: " << istFertig;
-        std::cout << std::endl;
-    }
-
-    void zeigeStatus(int &mr, int links, int mitte, int *liste, int rechts, int &ml) {
-        std::cout << "pivo: " << p << " Liste: ";
-        for (int i = 0; i < 21; i++) {
-            if ((i == mr)) {
-                std::cout << " -| ";
-            }
-            if (i == links) {
-                std::cout << " L ";
-            }
-            if (i == mitte) {
-                std::cout << " |M ";
-            }
-            std::cout << liste[i] << " ";
-            if (i == mitte) {
-                std::cout << " M| ";
-            }
-            if (i == rechts) {
-                std::cout << " R ";
-            }
-            if ((i == ml)) {
-                std::cout << " |- ";
-            }
-        }
-    }
-
     void addUnsortierterBereichLinks(Bereich bereich) {
         // std::unique_lock<std::mutex> lock(mutex);
         unsortierteBereicheLinks.push(bereich);
     };
+
     void addUnsortierterBereichRechts(Bereich bereich) {
         // std::unique_lock<std::mutex> lock(mutex);
         unsortierteBereicheRechts.push(bereich);
@@ -342,6 +292,7 @@ private:
         unsortierteBereicheLinks.pop();
         return bereich;
     };
+
     Bereich entnehmeUnsortierterBereichRechts() {
         // std::unique_lock<std::mutex> lock(mutex);
         if (unsortierteBereicheRechts.empty()) {
