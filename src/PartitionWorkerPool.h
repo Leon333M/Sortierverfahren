@@ -28,8 +28,7 @@ public:
         std::shared_ptr<std::atomic<bool>> done;
 
     public:
-        TaskHandle(std::shared_ptr<std::atomic<bool>> d)
-            : done(d) {}
+        TaskHandle(std::shared_ptr<std::atomic<bool>> d) : done(d) {}
 
         void wait() const {
             while (!done->load(std::memory_order_acquire)) {

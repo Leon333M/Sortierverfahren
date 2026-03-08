@@ -1,7 +1,7 @@
 // Bereiche.h
 #pragma once
-#include "PartitionWorkerPool.h"
 #include "Sortierverfaren.h"
+#include "WorkerPool.h"
 #include <condition_variable>
 #include <functional>
 #include <memory>
@@ -21,15 +21,14 @@ class Bereiche {
 private:
     int *liste;
     int p;
+    const int mindestLange = 500000;
     std::queue<Bereich> unsortierteBereicheLinks;
     std::queue<Bereich> unsortierteBereicheRechts;
     std::mutex mutex;
-    const int mindestLange = 500000;
-    int freieThreads;
-    PartitionWorkerPool workerPool;
+    WorkerPool &workerPool;
 
 public:
-    Bereiche(int *liste0, int freieThreads0) : liste(liste0), freieThreads(freieThreads0), workerPool(freieThreads) {};
+    Bereiche(int *liste0, WorkerPool &pool) : liste(liste0), workerPool(pool) {};
 
     void partitioniereAlles(int *liste, int links, int rechts, int &ml, int &mr) {
         int startLinks = links;
@@ -107,14 +106,19 @@ private:
         if (leftQueueSize == 0 || rightQueueSize == 0) {
             std::cout << "Error!: leftQueueSize: " << leftQueueSize << " rightQueueSize: " << rightQueueSize << std::endl;
         }
-        int useThreads = std::min(freieThreads, minBereiche);
-        std::vector<PartitionWorkerPool::TaskHandle> handles;
-        handles.reserve(useThreads);
-        // spilt in neuen thads partitioniereBereich();
-        for (int i = 0; i < useThreads; i++) {
-            handles.push_back(workerPool.addTask([=]() {
-                partitioniereBereich();
-            }));
+        std::vector<WorkerPool::TaskHandle> handles;
+        {
+            std::mutex &sperre = workerPool.getSperre();
+            std::unique_lock<std::mutex> lock(sperre);
+            int freieThreads = workerPool.getFreieThreads();
+            int useThreads = std::min(freieThreads, minBereiche);
+            handles.reserve(useThreads);
+            // spilt in neuen thads partitioniereBereich();
+            for (int i = 0; i < useThreads; i++) {
+                handles.push_back(workerPool.addLambdaTask([=]() {
+                    partitioniereBereich();
+                }));
+            }
         }
         partitioniereBereich();
         // join / wait auf thads
