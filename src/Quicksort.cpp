@@ -5,8 +5,6 @@
 #include <thread>
 #include <vector>
 
-#include <iostream>
-
 Quicksort::Quicksort() {};
 
 void Quicksort::sortG(int *liste, int lange) {

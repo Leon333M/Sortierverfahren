@@ -10,6 +10,9 @@
 #include <thread>
 #include <vector>
 
+#include <chrono>
+#include <iostream>
+
 struct Bereich {
     int bereichAnfang;
     int bereichEnde;
@@ -46,10 +49,8 @@ public:
                 // Erstellen
                 erstelleBereiche(links, mindestLange, mitte, rechts, minBereiche);
                 // Verarbeiten
-                koordiniereParallelePartitionierung(liste, links, rechts, minBereiche, ml, mr);
+                koordiniereParallelePartitionierung(liste, minBereiche);
                 // Auswerten
-                ml = mitte - 1;
-                mr = mitte + 1;
                 istFertigUpdate(liste, links, rechts, ml, mr, mitte, istFertig);
             }
         }
@@ -88,7 +89,7 @@ private:
         minBereiche = std::min(bNumerL, bNumerR);
     }
 
-    void koordiniereParallelePartitionierung(int *liste, int links, int rechts, int minBereiche, int &ml, int &mr) {
+    void koordiniereParallelePartitionierung(int *liste, int minBereiche) {
         int leftQueueSize = unsortierteBereicheLinks.size();
         int rightQueueSize = unsortierteBereicheRechts.size();
         if (leftQueueSize == 0 || rightQueueSize == 0) {
@@ -99,9 +100,11 @@ private:
             std::mutex &sperre = workerPool.getSperre();
             std::unique_lock<std::mutex> lock(sperre);
             int freieThreads = workerPool.getFreieThreads();
+            freieThreads = freieThreads - workerPool.getTaskQueueSize();
+            freieThreads = std::max(freieThreads, 0);
             int useThreads = std::min(freieThreads, minBereiche);
             handles.reserve(useThreads);
-            // spilt in neuen thads partitioniereBereich();
+            // split in neuen Threads partitioniereBereich();
             for (int i = 0; i < useThreads; i++) {
                 handles.push_back(workerPool.addLambdaTask([=]() {
                     partitioniereBereich();
@@ -109,8 +112,8 @@ private:
             }
         }
         partitioniereBereich();
-        // join / wait auf thads
-        for (const auto &handle : handles) {
+        // join / wait auf Threads
+        for (auto &handle : handles) {
             handle.wait();
         }
     }
@@ -123,6 +126,8 @@ private:
         int rightQueueSize = unsortierteBereicheRechts.size();
         if ((leftQueueSize == 0) && (rightQueueSize == 0)) {
             // fertig !
+            ml = mitte - 1;
+            mr = mitte + 1;
             return;
         }
         if ((leftQueueSize > 0) && (rightQueueSize > 0)) {

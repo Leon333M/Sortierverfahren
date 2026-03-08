@@ -55,6 +55,10 @@ public:
         for (int i = 0; i < numThreads; ++i) {
             threads.emplace_back(&WorkerPool::worker, this);
         }
+        // Warten, bis alle Threads "bereit" (im wait-Zustand) sind
+        while (freieThreads.load() < numThreads) {
+            std::this_thread::yield();
+        }
     }
 
     ~WorkerPool() {
@@ -102,6 +106,10 @@ public:
 
     std::mutex &getSperre() {
         return sperre;
+    };
+
+    int getTaskQueueSize() {
+        return taskQueue.size();
     };
 
 private:
