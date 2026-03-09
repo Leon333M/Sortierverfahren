@@ -19,10 +19,12 @@ struct Bereich {
 };
 
 class Bereiche {
+public:
+    static const int mindestLange = 500000;
+
 private:
     int *liste;
     int p;
-    const int mindestLange = 500000;
     std::queue<Bereich> unsortierteBereicheLinks;
     std::queue<Bereich> unsortierteBereicheRechts;
     std::mutex mutex;
@@ -204,15 +206,15 @@ private:
                     vertausche(liste, linkerBereich.bereichAnfang, rechterBereich.bereichEnde);
                     linkerBereich.bereichAnfang++;
                     rechterBereich.bereichEnde--;
-                    bool linkerBereichUngueltig = false;
-                    bool rechterBereichUngueltig = false;
+                    bool linkerBereichFertig = false;
+                    bool rechterBereichFertig = false;
                     if (linkerBereich.bereichAnfang > linkerBereich.bereichEnde) {
-                        linkerBereichUngueltig = true;
+                        linkerBereichFertig = true;
                     }
                     if (rechterBereich.bereichEnde < rechterBereich.bereichAnfang) {
-                        rechterBereichUngueltig = true;
+                        rechterBereichFertig = true;
                     }
-                    if (linkerBereichUngueltig && rechterBereichUngueltig) {
+                    if (linkerBereichFertig && rechterBereichFertig) {
                         break;
                     }
                     if (aktualisiereLinkenBereich(linkerBereich, rechterBereich)) {

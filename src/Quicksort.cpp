@@ -209,7 +209,7 @@ void Quicksort::vertausche(int *liste, const int a, const int b) {
 
 void Quicksort::partitioniereW(int *liste, const int links, const int rechts, int &ml, int &mr, WorkerPool &pool) {
     int freieThreads = pool.getFreieThreads();
-    if (freieThreads > 0 && rechts - links > 16000000) {
+    if (freieThreads > 0 && rechts - links > 2 * Bereiche::mindestLange) {
         Bereiche b(liste, pool);
         b.partitioniereAlles(liste, links, rechts, ml, mr);
     } else {
