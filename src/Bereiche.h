@@ -10,9 +10,6 @@
 #include <thread>
 #include <vector>
 
-#include <chrono>
-#include <iostream>
-
 struct Bereich {
     int bereichAnfang;
     int bereichEnde;
