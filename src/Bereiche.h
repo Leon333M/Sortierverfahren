@@ -24,6 +24,7 @@ private:
     int p;
     std::queue<Bereich> unsortierteBereicheLinks;
     std::queue<Bereich> unsortierteBereicheRechts;
+    std::queue<std::shared_ptr<std::atomic<bool>>> ThreadFertigStatusListe;
     std::mutex mutex;
     WorkerPool &workerPool;
 
@@ -53,7 +54,15 @@ public:
                 istFertigUpdate(liste, links, rechts, ml, mr, mitte, istFertig);
             }
         }
-    }
+    };
+
+    // void meldeThreadAnUndArbeite() {
+    //     std::unique_lock<std::mutex> lock(mutex);
+    //     std::shared_ptr<std::atomic_bool> fetig = false;
+    //     ThreadFertigStatusListe.push(fetig);
+    //     partitioniereBereich();
+    //     fetig.get()->store(true);
+    // };
 
 private:
     void erstelleBereiche(int links, int mindestLange, int mitte, int rechts, int &minBereiche) {
