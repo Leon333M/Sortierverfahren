@@ -867,4 +867,29 @@ void Manager::incArrayMT(volatile int *liste, long long lange, int threadCount) 
     \end{minipage}
 \end{frame}
 
+\begin{frame}{Analyse des Overheads (16 Threads / 400M)}
+    \begin{enumerate}
+        \item \textbf{Standard-Quicksort (QS WT):}
+              \begin{itemize}
+                  \item Messwert (3,84\,s) $-$ Theorie (3,47\,s) $\approx$ \textbf{0,37\,s langsamer}
+                  \item \textbf{0,37\,s / 3,47\,s (Theorie) $\approx$ 10\% Overhead}
+              \end{itemize}
+
+              \vspace{0.2cm}
+        \item \textbf{Optimierter Quicksort (QS WTP):}
+              \begin{itemize}
+                  \item Messwert (2,54\,s) $-$ Theorie (1,86\,s) $\approx$ \textbf{0,68\,s langsamer}
+                  \item \textbf{0,68\,s / 1,86\,s (Theorie) $\approx$ 36\% Overhead}
+                  \item WTP besitzt mindestens den WT-Overhead (0,37\,s).
+              \end{itemize}
+
+              \vspace{0.2cm}
+        \item \textbf{Parallel Paritzonire Overhead (WTP):}
+              \begin{itemize}
+                  \item 0,68\,s (WTP-Gesamt) $-$ 0,37\,s (WT-Overhead) $\approx$ \textbf{0,31\,s}
+                  \item \textbf{0,31\,s / 1,86\,s (Theorie) $\approx$ 16\% Overhead}
+              \end{itemize}
+    \end{enumerate}
+\end{frame}
+
 \end{document}
