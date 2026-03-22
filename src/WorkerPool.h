@@ -135,8 +135,9 @@ private:
             // Fallunterscheidung: Was ist in der Queue?
             if (std::holds_alternative<Task>(currentTask)) {
                 Task &t = std::get<Task>(currentTask);
-                if (taskHandler)
+                if (taskHandler) {
                     taskHandler(t.liste, t.links, t.rechts, *this);
+                }
             } else if (std::holds_alternative<LambdaTaskWrapper>(currentTask)) {
                 auto &lt = std::get<LambdaTaskWrapper>(currentTask);
                 lt.func();
