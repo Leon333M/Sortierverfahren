@@ -288,11 +288,13 @@ private:
 
     void addUnsortierterBereichLinks(Bereich bereich) {
         // std::unique_lock<std::mutex> lock(mutex);
+        // TODO: Auf die Seite pushen, von der aus genommen wird.
         unsortierteBereicheLinks.push(bereich);
     };
 
     void addUnsortierterBereichRechts(Bereich bereich) {
         // std::unique_lock<std::mutex> lock(mutex);
+        // TODO: Auf die Seite pushen, von der aus genommen wird.
         unsortierteBereicheRechts.push(bereich);
     };
 
@@ -301,6 +303,7 @@ private:
         if (unsortierteBereicheLinks.empty()) {
             return Bereich{-1, -1};
         }
+        // TODO: Optimieren, indem man hier den Bereich berechnet, anstatt in erstelleBereiche.
         Bereich bereich = unsortierteBereicheLinks.front();
         unsortierteBereicheLinks.pop();
         return bereich;
@@ -311,6 +314,7 @@ private:
         if (unsortierteBereicheRechts.empty()) {
             return Bereich{-1, -1};
         }
+        // TODO: Optimieren, indem man hier den Bereich berechnet, anstatt in erstelleBereiche.
         Bereich bereich = unsortierteBereicheRechts.front();
         unsortierteBereicheRechts.pop();
         return bereich;
